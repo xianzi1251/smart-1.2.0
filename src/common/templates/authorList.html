@@ -1,0 +1,56 @@
+<ion-view title="平台导师" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            平台导师
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="index-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="authorList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 套装推荐 -->
+        <div class="index-recommend" ng-if="authorList.suitList">
+            <div class="recommend-title">套装推荐</div>
+            <ul class="recommend-list row">
+                <li class="recommend-item col" 
+                    ng-repeat="suit in authorList.suitList"
+                    ng-click="authorList.goSuitInfo(suit.entityName)">
+                    <div class="recommend-img">
+                        <img class="img" cm-lazyload="suit.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="recommend-text">{{suit.fullTitle}}</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 专栏作家 -->
+        <div class="index-author" ng-if="authorList.authorList">
+            <ul class="author-list">
+                <li class="author-item clearfix" 
+                    ng-repeat="author in authorList.authorList"
+                    ng-click="authorList.goAdvInfo(author.id)">
+                    <div class="author-img fl">
+                        <img class="img" cm-lazyload="author.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="author-text">
+                        <div class="author-name">{{author.label}}</div>
+                        <div class="author-remark">{{author.remark}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </ion-content>
+
+</ion-view>

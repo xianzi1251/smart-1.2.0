@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+.exchange-code-panel {
+    
+    .exchange-form {
+        margin: 12px;
+        padding: 20px;
+    }
+
+    .code-input {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        font-size: 14px;
+        color: $text-color-secondary;
+        line-height: 1.1em;
+        border: $line-color 1px solid;
+        border-radius: 3px;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+    }
+
+    .button {
+        margin: 15px 0;
+    }
+
+    .code-rule {
+        width: 100%;
+        line-height: 1.5em;
+        text-align: right;
+        color: $text-color-quiet;
+        @extend %font-size-small;
+    }
+}

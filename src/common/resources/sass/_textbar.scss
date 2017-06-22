@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+// 带有边框及圆角的普通文本框样式
+// -----------------------------------------------------------------------------
+
+@mixin textbar-size($height, $border-width, $child-spacing) {
+    $line-height: $height - ($border-width * 2);
+
+    width: 100%;
+    min-height: $height;
+    padding: 0 $child-spacing / 2;
+    border-width: $border-width;
+    line-height: $line-height;
+
+    > * {
+        margin: {
+            left: $child-spacing / 2;
+            right: $child-spacing / 2;
+        }
+    }
+
+    > input,
+    > textarea {
+        height: $line-height;
+        line-height: $line-height;
+    }
+
+    // 分割线样式
+    .sl {
+        height: $line-height * .7;
+    }
+}
+
+body .textbar {  // 这里使用 body 仅是为了提高选择器的优先级
+    display: flex;
+    align-items: center;
+
+    @include textbar-size(40px, 5px, $distance-horizontal);
+
+    background: transparent;
+    border-image: url('#{$images-path}/textbox-bg.png') 10 fill;
+
+    position: relative;
+
+    > * {
+        display: block;
+        flex: 0 0 auto;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    > input,
+    > textarea {
+        flex: 1 1 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    // 分割线样式
+    .sl {
+        display: inline-block;
+        @include size(0);
+
+        border-left: 1px solid $line-color;
+
+        overflow: hidden;
+        @include hide-text;
+    }
+}
+
+
+// 在 bar 控件中的 textbar
+// -----------------------------------------------------------------------------
+
+.bar .textbar {
+
+    @include textbar-size(
+        $height: $bar-height - ($bar-padding-portrait * 2),
+        $border-width: 5px,
+        $child-spacing: $distance-horizontal * .8);
+}

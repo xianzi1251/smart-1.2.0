@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+.feedback-view {
+
+    .bar.bar-header {
+
+        .button.button-submit {
+            font-size: 17px;
+            color: $primary-color;
+        }
+    }
+
+    .feedback-panel {
+        padding-top: 20px;
+    }
+
+    .feedback-text {
+        margin-bottom: 5px;
+        padding-left: 12px;
+        color: $text-color-secondary;
+        font-size: 13px;
+    }
+
+    .feedback-content {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 12px;
+        line-height: 1.2em;
+        font-size: 14px;
+        background-color: $light;
+        resize: none;
+    }
+
+    .feedback-contact {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        font-size: 14px;
+        line-height: 1.2em;
+        background-color: $light;
+    }
+}

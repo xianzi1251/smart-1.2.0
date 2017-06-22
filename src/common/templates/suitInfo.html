@@ -1,0 +1,83 @@
+<ion-view class="product-info-radio-and-article-view" title="{{info.baseData.title}}" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            {{info.baseData.title}}
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="stable-bg radio-and-article-panel" scroll="false" cm-caculate-top>
+        <div class="radio-and-article-cont">
+        
+            <div class="banner">
+                <div class="banner-user-image">
+                    <img class="img" src="{{info.baseData.picUrl}}" />
+                </div>
+                <div class="banner-user-name">{{info.baseData.title}}</div>
+            </div>
+
+            <div class="user-info clearfix">
+                <span class="user-info-title">教师身份</span>
+                <div class="user-info-cont">{{info.baseData.summary}}</div>
+            </div>       
+
+            <ul class="tab-info-list">
+                <li class="tab-info-item" ng-class="{'active': tab.active}" 
+                    ng-repeat="tab in info.infoTabs"
+                    ng-click="info.changeTab($index)">{{tab.label}}</li>
+            </ul>
+        </div>
+
+        <ion-content class="info-scroll stable-bg" ng-show="info.tabAction == 0">
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="info.refresh({showLoading: false})" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+            <div class="author-info" ng-bind-html="info.baseData.content"></div>
+        </ion-content>
+
+        <ion-content class="info-scroll stable-bg" ng-show="info.tabAction == 1">
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="info.refresh({showLoading: false})" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+            <div class="pd tc" ng-if="!info.suitCourseList.length">
+                暂无课程信息
+            </div>
+
+            <ul class="course-list" ng-if="info.suitCourseList.length">
+                <li class="course-item clearfix" ng-repeat="item in info.suitCourseList">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-title">{{item.title}}</div>
+                        <div class="item-content">{{item.summary}}</div>
+                    </div>
+                </li>
+            </ul>
+        </ion-content>
+
+    </ion-content>
+
+    <ion-footer-bar class="info-footer">
+        <ul class="row">
+            <li class="footer-item col">
+                <button class="button button-block button-outline" 
+                    ng-click="info.goFreeList()">免费试读</button>
+            </li>
+            <li class="footer-item col">
+                <button class="button button-block button-primary"
+                    ng-click="info.buyNow()">购买<span ng-if="info.baseData.listPrice">({{info.baseData.listPrice | currency: '¥'}})</span></button>
+            </li>
+        </ul>
+    </ion-footer-bar>
+
+</ion-view>

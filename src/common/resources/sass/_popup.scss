@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.popup-container {
+
+    &.popup-input-focus {
+        display: block;
+        transition: transform 0.15s;
+
+        .popup {
+            position: absolute;
+            top: 50%;
+            display: block;
+            width: 84%;
+            left: 8%;
+            margin-top: -90px;
+        }
+    }
+
+    .popup {
+        border-radius: 5px;
+    }
+
+    .popup-head {
+        padding-bottom: 0;
+        border-bottom: none;
+
+        .popup-title {
+            font-size: 17px;
+        }
+    }
+
+    .popup-body {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .button-balanced {
+        border: 0;
+    }
+
+    .popup-buttons {
+        min-height: 36px;
+        padding: 0;
+
+        .button {
+            border-radius: 2px 2px 5px;
+        }
+    }
+
+}

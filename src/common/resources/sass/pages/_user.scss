@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+.user-panel {
+
+    .row,
+    .col {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .user-info {
+        padding: convert-rem(160px) 0 20px;
+        text-align: center;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-image: url(#{$images-path}/user-banner.png);
+        background-size: convert-rem(320px) auto;
+        background-color: $light;
+    }
+
+    .user-info-pic {
+        width: convert-rem(70px);
+        height: convert-rem(70px);
+        margin: 0 auto 5px;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-image: url(#{$images-path}/default-pic.png);
+        background-size: convert-rem(50px) auto;
+        background-color: $light;
+        border-radius: 50%;
+
+        .img {
+            width: 100%;
+            height: convert-rem(70px);
+            border: $light 2px solid; 
+            border-radius: 50%;
+        }
+    }
+
+    .user-info-name {
+        overflow: hidden;
+        height: 1.5em;
+        line-height: 1.5em;
+        color: $text-color;
+        @extend %font-size-large;
+    }
+
+    .user-info-describe {
+        overflow: hidden;
+        height: 2em;
+        line-height: 2em;
+        @extend %font-size-small;
+        color: $text-color-secondary;
+    }
+
+    .user-list {
+        margin-bottom: 10px;
+    }
+
+    .user-item {
+        padding-left: 12px;
+        line-height: 2.5em;
+        @extend %font-size-big;
+
+        .item-row {
+            padding-right: 8px;
+            @extend %font-size-big;
+            background: superfine-border-bottom($line-color);
+        }
+
+        .item-text {
+            padding: 0;
+            color: $text-color;
+        }
+
+        .item-tip {
+            padding-right: 0;
+            color: $text-color-quiet;
+        }
+
+        .icon-left {
+            margin-right: 8px;
+            @extend %font-size-huge;
+            color: #435985;
+        }
+
+        .icon-rightarrow {
+            padding: 0;
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        &:last-child {
+
+            .item-row {
+                background: none;
+            }
+        }
+    }
+
+    .user-logout {
+        padding: 20px 12px;
+
+        .button {
+            font-size: 16px;
+        }
+    }
+}

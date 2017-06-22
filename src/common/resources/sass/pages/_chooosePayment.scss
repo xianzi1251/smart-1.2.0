@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+.choose-payment-modal-view {
+    
+    .payment-content {
+        background-color: $light;
+    }
+
+    .payment-txt {
+        padding: 15px 0 5px 15px;
+        color: $text-color-quiet;
+        @extend %font-size-big;
+    }
+
+    .payment-item {
+        margin: 0;
+        padding: 15px 8px 15px 15px;
+        background: superfine-border-bottom($line-color);
+        background-color: $light;
+
+        .icon-zhifubao,
+        .icon-weixin {
+            padding: 0;
+            font-size: 24px;
+        }
+
+        .icon-zhifubao {
+            color: #1296DB;
+        }
+
+        .icon-weixin {
+            color: #1aad19;
+        }
+
+        .payment-text {
+            @extend %font-size-big;
+            color: $text-color;
+        }
+
+        .icon-rightarrow {
+            padding: 0;
+            color: $text-color-quiet;
+            font-weight: bold;
+        }
+    }
+}

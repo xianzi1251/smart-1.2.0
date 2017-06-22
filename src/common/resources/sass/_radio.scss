@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+/**
+ * radio
+ * --------------------------------------------------
+ */
+
+.radio {
+    display: inline-block;
+    @include size($radio-size);
+
+    position: relative;
+    top: -1px;
+
+    vertical-align: middle;
+
+    cursor: pointer;
+}
+
+label.radio {
+    position: relative;
+
+    &:after {
+        content: ' ';
+        @include position(absolute, -8, 1);
+    }
+}
+
+label.radio-label {
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+    font-size: $font-size-base-rem;
+}
+
+label.radio-label input {
+    margin-top: 10px;
+}
+
+.radio input,
+.radio-icon {
+    position: relative;
+    display: block;
+    @include size($radio-size);
+
+    border: 0;
+    background: transparent;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+
+    &:before {
+        content: ' ';
+
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        border: 1px solid $radio-border;
+        background: $radio-bg;
+        border-radius: 50%;
+
+        @include transition(background-color 20ms ease-in-out);
+    }
+
+    &:after {
+        @extend .ion;
+
+        content: $ionicon-var-ios-checkmark-empty;
+
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+
+        font-size: $radio-size * 1.5;
+        line-height: $radio-size;
+        text-align: center;
+        color: $radio-checked-color;
+
+        opacity: 0;
+    }
+}
+
+.radio input:checked,
+.radio input:checked + .radio-icon {
+    &:before {
+        border-color: $radio-checked-border;
+        background: $radio-checked-bg;
+    }
+
+    &:after {
+        opacity: 1;
+    }
+}
+
+.radio.radio-input-hidden input {
+    display: none !important;
+}

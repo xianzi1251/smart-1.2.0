@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+.exchange-list-panel {
+    
+    .exchange-score {
+        padding: convert-rem(12px) 0;
+        color: $light;
+        text-align: center;
+        background-color: $energized;
+
+        .score-tips {
+            line-height: 2em;
+            @extend %font-size-nano;
+        }
+
+        .score-amount {
+            height: 1.2em;
+            line-height: 1.2em;
+            font-size: 42px;
+        }
+    }
+
+    .exchange-list {
+        padding: 0 12px;
+    }
+
+    .exchange-item {
+        padding: 15px 0;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+    }
+
+    .item-img {
+        width: convert-rem(60px);
+        height: convert-rem(60px);
+        background-image: url(#{$images-path}/exchange.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: convert-rem(60px) auto;
+        border-radius: 4px;
+    }
+
+    .item-info {
+        margin-left: convert-rem(60px);
+        padding-left: 10px;
+    }
+
+    .item-name {
+        overflow: hidden;
+        height: 1.5em;
+        line-height: 1.5em;
+        color: $text-color;
+        @extend %font-size-base;
+    }
+
+    .item-score {
+        margin: 0;
+        line-height: convert-rem(22px);
+
+        .score {
+            padding: 0;
+            color: $text-color-quiet;
+            @extend %font-size-nano;
+        }
+
+        .amount {
+            color: $primary-color;
+            @extend %font-size-big;
+        }
+
+        .score-text {
+            color: $text-color-quiet;
+            @extend %font-size-small;
+        }
+
+        .score-btn {
+            padding: 0;
+
+            .button {
+                width: convert-rem(64px);
+                height: convert-rem(22px);
+                min-height: convert-rem(22px);
+                margin: 0;
+                line-height: convert-rem(22px);
+                border: none;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .item-time {
+        line-height: 1.5em;
+        color: $text-color-secondary;
+        @extend %font-size-nano; 
+    }
+
+    .exchange-tips {
+        padding-top: 15px;
+        line-height: 1.5em;
+        text-align: center;
+        @extend %font-size-nano;
+    }
+}

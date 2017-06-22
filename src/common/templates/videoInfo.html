@@ -1,0 +1,88 @@
+<ion-view class="video-info-view stable-bg" title="视频" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item logo-title"></div>
+    </ion-header-bar>
+
+    <ion-content delegate-handle="infoScroll">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="videoInfo.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="!videoInfo.sellAbled">
+            <div class="img"></div>
+            <div class="text">暂无视频信息</div>
+        </div>
+
+        <div ng-if="videoInfo.sellAbled">
+
+            <!-- banner图 -->
+            <div class="banner stable-bg" ng-if="videoInfo.genreName != 'video'">
+                <img class="img" ng-src="{{videoInfo.baseData.picUrl}}" />
+            </div>
+
+            <!-- 视频 -->
+            <div class="video-info-container mb" id="video-container" 
+                ng-if="videoInfo.genreName == 'video'"
+                cm-video="videoInfo.videoUrl">
+            </div>
+
+            <!-- 音频 -->
+            <div ng-if="videoInfo.genreName == 'radio'">
+                <audio controls="controls" style="width: 100%">
+                    <source ng-src="{{videoInfo.videoUrl}}" type="video/webm" >
+                    <source ng-src="{{videoInfo.videoUrl}}" type="audio/ogg">
+                    <source ng-src="{{videoInfo.videoUrl}}" type="audio/mpeg">
+                    您的浏览器版本过低不能支持html5视频标签
+                </audio>
+            </div>
+
+            <!-- 商品基本信息 -->
+            <div class="video-info light-bg">
+                <div class="info-name">{{videoInfo.baseData.title}}</div>
+                <div class="info-describe" ng-if="videoInfo.baseData.subtitle">
+                    {{videoInfo.baseData.subtitle}}
+                </div>
+            </div>
+
+            <!-- 视频介绍 -->
+            <div class="video-info-describe light-bg" cm-scroll>
+                <div class="describe-title">内容介绍</div>
+                <div class="describe-content" ng-bind-html="videoInfo.baseData.content"></div>
+                <div class="describe-btn"></div>
+            </div>
+
+            <!-- 点评 -->
+            <!-- <div class="video-info-comments light-bg" ng-if="videoInfo.commentsList">
+                <div class="comments-title">点评<span class="amount">({{videoInfo.commentsList.length}})</span></div>
+                <ul class="comments-list">
+                    <li class="comments-item clearfix" ng-repeat="comment in videoInfo.commentsList">
+                        <div class="comments-pic fl">
+                            <img class="img" cm-lazyload="comment.imagePath" load-immediate="true" 
+                                ng-if="comment.imagePath"/>
+                        </div>
+                        <div class="comments-right">
+                            <div class="comments-info clearfix">
+                                <span class="comments-name fl">{{comment.nickName | textFormat: true}}</span>
+                                <span class="comments-time fl">{{comment.createTime}}</span>
+                                <cm-comment-level class="fr" level="{{comment.score}}"></cm-comment-level>
+                            </div>
+                            <div class="comments-content">{{comment.content}}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+
+    </ion-content>
+
+</ion-view>

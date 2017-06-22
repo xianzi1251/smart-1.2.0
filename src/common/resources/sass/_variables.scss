@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+@import "nojiko/sass/variables";
+
+// 颜色表定义
+$light:                    #ffffff;
+$stable:                   #f9f9f9;
+$positive:                 #376edc;
+$calm:                     #4dcbff;
+$balanced:                 #1aad19;
+$energized:                #fd9d00;
+$assertive:                #d0021b;
+$royal:                    #92308d;
+$dark:                     #262626;
+
+$support-for-ie6:          false;
+$support-for-ie7:          false;
+$support-for-ie8:          false;
+
+$font-family:              lanting;
+
+$font-size-nano:           10px;
+$font-size-mini:           11px;
+$font-size-small:          12px;
+$font-size-base:           13px;
+$font-size-big:            14px;
+$font-size-large:          17px;
+$font-size-huge:           20px;
+
+$font-size-map:            (
+                              nano:  (thin: 10px, medium: 11px, wide: 13px),
+                              mini:  (thin: 11px, medium: 12px, wide: 14px),
+                              small: (thin: 12px, medium: 14px, wide: 15px),
+                              base:  (thin: 13px, medium: 15px, wide: 16px),
+                              big:   (thin: 14px, medium: 16px, wide: 18px),
+                              large: (thin: 17px, medium: 19px, wide: 21px),
+                              huge:  (thin: 20px, medium: 22px, wide: 24px),
+                           );
+
+$font-size-breakpoints:   (
+                              thin  : null,
+                              medium: 350px,
+                              wide  : 400px
+                          );
+
+$font-size-mini-rem:       convert-rem($font-size-mini);
+$font-size-small-rem:      convert-rem($font-size-small);
+$font-size-base-rem:       convert-rem($font-size-base);
+$font-size-big-rem:        convert-rem($font-size-big);
+$font-size-large-rem:      convert-rem($font-size-large);
+
+$font-size-icon:           24px;
+
+$primary-color:            $assertive;
+
+$text-color:               #000;
+$text-color-secondary:     #4a4a4a;
+$text-color-quiet:         #9b9b9b;
+
+$placeholder-color:        lighten($text-color, 40%);
+
+$line-color:               #ccc;
+
+$default-box-sizing:       border-box;
+
+$distance-vertical:        10px;
+$distance-horizontal:      10px;
+
+$stable-border-color:      #d2d2d2;
+$stable-background:        $stable;
+
+// 轮播图描点颜色
+$slider-color:             rgba(236, 236, 236, 0.4);
+$slider-color-quiet:       $light;
+
+// 评分颜色
+$comment-color-active:     $energized;
+$comment-color:            #ccc;
+
+// 栅格配置
+// -----------------------------------------------------------------------------
+
+// 栅格列数
+$hina-column-number:       12;
+
+// 槽宽；px，2 的倍数
+$hina-gutter-width:        $distance-horizontal;
+
+
+// 复选框配置
+// -----------------------------------------------------------------------------
+
+$checkbox-size:            20px;
+
+$checkbox-bg:              transparent;
+$checkbox-border:          $gray-light;
+
+$checkbox-checked-bg:      $primary-color;
+$checkbox-checked-border:  $primary-color;
+$checkbox-checked-color:   $light;
+
+// 单选框配置
+// -----------------------------------------------------------------------------
+
+$radio-size:            20px;
+
+$radio-bg:              transparent;
+$radio-border:          $line-color;
+
+$radio-checked-bg:      $assertive;
+$radio-checked-border:  $assertive;
+$radio-checked-color:   $light;
+
+// 标题类内容的行高
+$title-line-height:        1.3;
+
+// 暗背景色，当需要使用背景色以分割列表项时，使用该背景色
+$darker-background-color:         $stable;
+
+// 商品图片边框颜色
+$product-image-border-color:      $gray-light;
+
+
+// header-bar/tabs配置
+// -----------------------------------------------------------------------------
+
+$nav-bar-background-color:    $light;
+$nav-bar-color:               $text-color-loud;
+$nav-bar-border-color:        #b2b2b2;
+
+$tab-color:                   #585858;
+$tab-background-color:        $light;
+$tab-border-color:            #b7b7b7;

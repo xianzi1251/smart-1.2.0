@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+.slider-list-panel {
+    
+    .slider-list {
+        box-sizing: content-box;
+        height: 90%;
+        transform: translate3d(0, 3%, 0);
+    }
+
+    .swiper-container {
+        overflow: visible !important;
+    }
+
+    .slider-item {
+        position: relative;
+        padding: convert-rem(30px) convert-rem(24px);
+        color: $text-color-secondary;
+        border-radius: 4px;
+        background: rgba(231, 231, 210, .7);
+
+        &:before {
+            position: absolute;
+            top: convert-rem(9px);
+            bottom: convert-rem(9px);
+            left: convert-rem(6px);
+            right: convert-rem(6px);
+            z-index: 9;
+            border: $line-color 1px solid;
+            content: '';
+        }
+
+        &:after {
+            position: absolute;
+            top: convert-rem(6px);
+            bottom: convert-rem(6px);
+            left: convert-rem(9px);
+            right: convert-rem(9px);
+            z-index: 10;
+            border: $line-color 1px solid;
+            content: '';
+        }
+    }
+
+    .swiper-slide-active {
+        background: rgba(231, 231, 210, 1);
+    }
+
+    .info {
+        overflow: hidden;
+    }
+
+    .info-img {
+        width: convert-rem(50px);
+        height: convert-rem(50px);
+
+        .img {
+            width: 100%;
+            height: convert-rem(50px);
+            border-radius: 50%;
+        }
+    }
+
+    .info-main {
+        margin-left: convert-rem(50px);
+        padding-left: 10px;
+    }
+
+    .info-name {
+        line-height: 1.4em;
+        @extend %font-size-big;
+    }
+
+    .info-content {
+        height: 2.7em;
+        line-height: 1.4em;
+        @extend %font-size-base;
+
+        -webkit-line-clamp: 2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+
+    .info-text {
+        position: relative;
+        padding-top: 20px;
+        line-height: 1.4em;
+        @extend %font-size-base;
+
+        // &:before {
+        //     position: absolute;
+        //     top: 0;
+        //     left: convert-rem(-40px);
+        //     width: 1em;
+        //     height: 1em;
+        //     line-height: 1em;
+        //     color: $text-color-secondary;
+        //     font-size: convert-rem(64px);
+        //     content: '“';
+        // }
+    }
+
+    .info-like {
+        position: absolute;
+        bottom: convert-rem(20px);
+        right: convert-rem(24px);
+        z-index: 999;
+        text-align: right;
+        @extend %font-size-small;
+
+        .iconfont {
+            margin-right: 5px;
+            font-size: 24px;
+        }
+    }
+}

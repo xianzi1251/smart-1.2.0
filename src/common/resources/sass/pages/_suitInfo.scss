@@ -1,0 +1,177 @@
+@charset "utf-8";
+
+.product-info-radio-and-article-view {
+
+    .banner {
+        position: relative;
+        height: convert-rem(90px);
+        background-image: url(#{$images-path}/suitinfo-banner.png);
+        background-size: 100% auto;
+    }
+
+    .banner-user-image {
+        position: absolute;
+        bottom: convert-rem(-15px);
+        left: convert-rem(12px);
+        width: convert-rem(50px);
+        height: convert-rem(50px);
+
+        .img {
+            width: convert-rem(50px);
+            height: convert-rem(50px);
+            border-radius: 50%;
+        }
+    }
+
+    .banner-user-name {
+        position: absolute;
+        left: convert-rem(75px);
+        bottom: 10px;
+        right: 10px;
+        overflow: hidden;
+        line-height: 1.3em;
+        height: 1.3em;
+        font-size: convert-rem(14px);
+        color: #fff;
+    }
+
+    .user-info {
+        padding: convert-rem(30px) convert-rem(12px) convert-rem(12px);
+        line-height: 1.3em;
+        font-size: convert-rem(13px);
+        background-color: #fff;
+        border-bottom: $line-color 1px solid;
+    }
+
+    .user-info-title {
+        float: left;
+        color: $text-color-quiet;
+    }
+
+    .user-info-cont {
+        overflow: hidden;
+        height: 1.3em;
+        margin-left: 5em;
+        color: $text-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .tab-info-list {
+        height: 40px;
+        background-color: #fff;
+    }
+
+    .tab-info-item {
+        position: relative;
+        float: left;
+        width: 50%;
+        height: 40px;
+        line-height: 38px;
+        text-align: center;
+        color: $text-color;
+        font-size: 13px;
+
+        &:before {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background-color: $line-color;
+            content: '';
+        }
+
+        &.active {
+            color: $primary-color;
+
+            &:before {
+                background-color: $primary-color;
+            }
+        }
+    }
+
+    .author-info {
+        padding: 12px 12px 0;
+        line-height: 2em;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .course-list {
+        padding: 0 12px;
+        background-color: $light;
+    }
+
+    .course-item {
+        padding: 12px 0;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+    }
+
+    .item-img {
+        width: convert-rem(75px);
+        height: convert-rem(110px);
+
+        .img {
+            width: 100%;
+            height: convert-rem(110px);
+        }
+    }
+
+    .item-info {
+        margin-left: convert-rem(75px);
+        padding-left: 12px;
+    }
+
+    .item-title {
+        overflow: hidden;
+        height: 1.5em;
+        line-height: 1.5em;
+        color: $text-color;
+        @extend %font-size-base;
+    }
+
+    .item-content {
+        height: 4.1em;
+        margin: convert-rem(5px) 0 convert-rem(10px);
+        line-height: 1.4em;
+        color: $text-color-secondary;
+        @extend %font-size-small;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+
+    .item-row {
+        line-height: 1.5em;
+        color: $text-color-quiet;
+        @extend %font-size-small;
+    }
+
+    .item-price {
+        color: $primary-color;
+    }
+
+    .info-footer {
+
+        .button {
+            margin: 0;
+        }
+
+        .button-outline {
+            color: $text-color;
+        }
+    }
+}

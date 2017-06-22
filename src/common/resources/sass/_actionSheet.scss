@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+
+.platform-android .action-sheet {
+
+    .action-sheet-title {
+        background: superfine-border-bottom($line-color);
+        text-align: center;
+    }
+
+    .action-sheet-option {
+        text-align: center;
+    }
+
+    .action-sheet-option {
+        font-weight: bold;
+    }
+}

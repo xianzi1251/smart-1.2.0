@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+.toast-container {
+    @include position(absolute, 0 0 0 0);
+    z-index: $z-index-toast;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    visibility: hidden;
+    pointer-events: auto;
+
+    &.visible {
+        visibility: visible;
+    }
+
+    &.bottom {
+        align-items:flex-end;
+    }
+
+    &:not(.visible) .icon,
+    &:not(.visible) .spinner {
+        display: none;
+    }
+
+    .toast {
+        position: relative;
+        background: $toast-bg-color;
+        color: $toast-text-color;
+        padding: $toast-padding;
+        border-radius: $toast-border-radius;
+        font-size: $toast-font-size;
+        text-align: center;
+        text-overflow: ellipsis;
+
+        opacity: 0;
+        transition: .4s opacity ease;
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: $toast-font-size;
+        }
+
+        &.active {
+            transition: .1s opacity ease;
+            opacity: 1;
+        }
+    }
+
+    .toast-loading-icon {
+        $size: 20px;
+        $color: $toast-text-color;
+
+        @include size($size);
+        font-size: $size - 2px;
+        line-height: $size;
+        margin: 0 auto 6px;
+        color: $color;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        svg {
+            @include size($size);
+            fill: $color;
+            stroke: $color;
+        }
+    }
+
+    .toast-loading-text {
+        font-size: 12px;
+        padding: 0 16px;
+        min-width: 100px;
+        white-space: nowrap;
+    }
+
+    &.loading-toast-container {
+        .toast {
+            background: none;
+        }
+    }
+}
+
+.toast-container-penetrate {
+    pointer-events: none;
+}

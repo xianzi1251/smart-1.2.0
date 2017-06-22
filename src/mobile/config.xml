@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.bytxmt.banyuetan" version="<<< version >>>" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-packageName="com.bytxmt.banyuetan" ios-CFBundleIdentifier="com.bytxmt.banyuetan">
+  <name><<< name >>></name>
+  <description> 半月谈手机 APP</description>
+  <author></author>
+  <content src="index.html"/>
+  <access origin="*"/>
+  <access origin="cdvfile://*"/>
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
+  <allow-navigation href="*"/>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="android-minSdkVersion" value="16"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <preference name="Orientation" value="portrait"/>
+  <preference name="StatusBarOverlaysWebView" value="true"/>
+  <preference name="StatusBarStyle" value="default" />
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="AutoHideSplashScreen" value="false"/>
+  <preference name="FadeSplashScreen" value="true"/>
+  <preference name="FadeSplashScreenDuration" value="1000"/>
+  <preference name="ShowSplashScreenSpinner" value="false"/>
+  <preference name="SplashScreenDelay" value="100000"/>
+  <preference name="SplashMaintainAspectRatio" value="true" />
+  <preference name="SplashShowOnlyFirstTime" value="false" />
+  <preference name="SuppressesLongPressGesture" value="false" />
+  <preference name="LoadUrlTimeoutValue" value="100000"/>
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  <platform name="android">
+    <allow-intent href="market:*" />
+    <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
+    <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
+    <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi"/>
+    <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi"/>
+    <icon src="resources/android/icon/drawable-xxhdpi-icon.png" density="xxhdpi"/>
+    <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
+    <splash src="resources/android/splash/drawable-port-ldpi-screen.png" density="port-ldpi"/>
+    <splash src="resources/android/splash/drawable-port-mdpi-screen.png" density="port-mdpi"/>
+    <splash src="resources/android/splash/drawable-port-hdpi-screen.png" density="port-hdpi"/>
+    <splash src="resources/android/splash/drawable-port-xhdpi-screen.png" density="port-xhdpi"/>
+    <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
+    <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
+    <!-- <preference name="APP_SIGNATURE" value="B5F4LfZnbWbs3mq1m8j3GtZZpZ4="/> -->
+  </platform>
+  <platform name="ios">
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
+    <preference name="target-device" value="handset" />
+    <preference name="deployment-target" value="7.0" />
+    <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
+    <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
+    <icon src="resources/ios/icon/icon-40.png" width="40" height="40"/>
+    <icon src="resources/ios/icon/icon-40@2x.png" width="80" height="80"/>
+    <icon src="resources/ios/icon/icon-50.png" width="50" height="50"/>
+    <icon src="resources/ios/icon/icon-50@2x.png" width="100" height="100"/>
+    <icon src="resources/ios/icon/icon-60.png" width="60" height="60"/>
+    <icon src="resources/ios/icon/icon-60@2x.png" width="120" height="120"/>
+    <icon src="resources/ios/icon/icon-60@3x.png" width="180" height="180"/>
+    <icon src="resources/ios/icon/icon-72.png" width="72" height="72"/>
+    <icon src="resources/ios/icon/icon-72@2x.png" width="144" height="144"/>
+    <icon src="resources/ios/icon/icon-76.png" width="76" height="76"/>
+    <icon src="resources/ios/icon/icon-76@2x.png" width="152" height="152"/>
+    <icon src="resources/ios/icon/icon-small.png" width="29" height="29"/>
+    <icon src="resources/ios/icon/icon-small@2x.png" width="58" height="58"/>
+    <icon src="resources/ios/icon/icon-small@3x.png" width="87" height="87"/>
+    <splash src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
+    <splash src="resources/ios/splash/Default-667h.png" width="750" height="1334"/>
+    <splash src="resources/ios/splash/Default-736h.png" width="1242" height="2208"/>
+    <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
+    <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
+  </platform>
+  <preference name="CHANNEL" value="<<< channel >>>"/>
+  <preference name="ALIPAY_URL_SCHEME" value="alisdkbanyuetan"/>
+  <preference name="WECHAT_APPKEY" value="wx3fc05c955a155a9b"/>
+  <preference name="WECHAT_APPSECRET" value="d44f61ccd46e642f5273570780bb3971"/>
+
+  <!-- <preference name="QQ_APPKEY" value="1104756866"/>
+  <preference name="QQ_APPSECRET" value="jTcZJDN6NSi85aJe"/>
+  <preference name="SINA_APPKEY" value="1573930227"/>
+  <preference name="SINA_APPSECRET" value="aafe46518e4c90562bbd616b4fe4fbab"/>
+  <preference name="TAOBAO_OPEN_PLATFORM_APPKEY" value="23278768" /> -->
+  <preference name="xwalkVersion" value="15+" />
+  <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
+  <preference name="xwalkMode" value="embedded" />
+  <preference name="xwalkMultipleApk" value="true" />
+
+  <!-- <plugin name="de.appplant.cordova.plugin.local-notification" spec="../plugins/de.appplant.cordova.plugin.local-notification" /> -->
+  <plugin name="cordova-plugin-comall-wechat" spec="../plugins/cordova-plugin-comall-wechat">
+      <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
+  </plugin>
+  <!-- <plugin name="cordova-plugin-comall-wechat-pay" spec="../plugins/cordova-plugin-comall-wechat-pay">
+      <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
+  </plugin> -->
+  <plugin name="cordova-plugin-comall-alipay" spec="../plugins/cordova-plugin-comall-alipay">
+      <variable name="ALIPAY_URL_SCHEME" value="alisdkbanyuetan" />
+  </plugin>
+<!--   <plugin name="cn.jpush.phonegap.JPushPlugin" spec="../plugins/cn.jpush.phonegap.JPushPlugin">
+      <variable name="API_KEY" value="336fa6c7430cdc841c26b601" />
+  </plugin>
+  <plugin name="cordova-plugin-datepicker" spec="../plugins/cordova-plugin-datepicker" />
+  <plugin name="cordova-plugin-comall-addresspicker" spec="../plugins/cordova-plugin-comall-addresspicker" /> -->
+  <!-- <plugin name="com.comall.barcodescanner" spec="../plugins/com.comall.barcodescanner" /> -->
+  <plugin name="com.comall.preference" spec="../plugins/com.comall.preference" />
+ <!--  <plugin name="cordova-plugin-comall-deploy" spec="../plugins/cordova-plugin-comall-deploy" /> -->
+  <plugin name="com.verso.cordova.clipboard" spec="../plugins/com.verso.cordova.clipboard" />
+  <!-- <plugin name="cordova-plugin-comall-taobao-open-platform" spec="../plugins/cordova-plugin-comall-taobao-open-platform" /> -->
+  <!-- <plugin name="cordova-plugin-comall-launch-navigator" spec="../plugins/cordova-plugin-comall-launch-navigator" /> -->
+  <!-- <plugin name="cordova.plugins.diagnostic" spec="../plugins/cordova.plugins.diagnostic" /> -->
+  <!-- <plugin name="cordova-plugin-comall-sensors-analytics" spec="../plugins/cordova-plugin-comall-sensors-analytics" />
+  <plugin name="cordova-plugin-comall-localization" spec="../plugins/cordova-plugin-comall-localization" /> -->
+
+  <plugin name="cordova-plugin-device" spec="~1.1.2" />
+  <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
+  <plugin name="ionic-plugin-keyboard" spec="~2.2.0" />
+  <plugin name="cordova-plugin-file" spec="~4.2.0" />
+  <plugin name="cordova-plugin-file-transfer" spec="~1.5.1" />
+  <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
+  <!-- <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0" />
+  <plugin name="cordova-plugin-network-information" spec="~1.2.1" /> -->
+  <plugin name="cordova-plugin-splashscreen" spec="~3.2.2" />
+  <!-- <plugin name="cordova-plugin-camera" spec="../plugins/cordova-plugin-camera" />
+  <plugin name="cordova-plugin-geolocation" spec="~2.2.0" /> -->
+  <!-- <plugin name="cordova-plugin-customurlscheme" spec="~4.2.0">
+      <variable name="URL_SCHEME" value="songshuhaigou" />
+  </plugin> -->
+  <plugin name="cordova-plugin-crosswalk-webview" spec="~1.6.1" />
+  <plugin name="cordova-plugin-app-name" spec="~1.0.1">
+      <variable name="APP_NAME" value="<<< displayName >>>" />
+  </plugin>
+  <plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
+</widget>

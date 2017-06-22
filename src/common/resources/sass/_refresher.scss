@@ -1,0 +1,131 @@
+@charset "utf-8";
+
+$refresher-height: 80px;
+$refresher-spinner-height: 30px;
+
+.ui-refresher {
+    position: relative;
+    width: 100%;
+    height: 0;
+    line-height: 0;
+    text-align: center;
+
+    .refresher-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $refresher-height;
+    }
+
+    .icon-pulling {
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        font-size: $refresher-spinner-height;
+        animation-duration: 200ms;
+        animation-timing-function: linear;
+        animation-fill-mode: none;
+        transform: translate3d(0, 0, 0) scale(0.8);
+    }
+
+    .text-pulling{
+        font-size: $font-size-mini;
+        line-height: $font-size-mini;
+        color: $text-color-quiet;
+    }
+
+    &.active {
+        .icon-pulling {
+            animation-name: refresh-zoom;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .text-pulling,
+        .text-refreshing{
+            display: none;
+        }
+
+        .icon-pulling:after{
+            display: block;
+            content: '松开刷新';
+            font-size: $font-size-mini;
+            line-height: $font-size-mini;
+            color: $text-color-quiet;
+        }
+    }
+
+    &.inactive {
+        .icon-pulling {
+            animation-name: refresh-zoom-back;
+        }
+
+        .text-refreshing {
+            display: none;
+        }
+    }
+
+    &.refreshing {
+
+        .icon-pulling{
+            display: none;
+        }
+
+        .text-refreshing{
+            display: block;
+            font-size: $font-size-mini;
+            line-height: $font-size-mini;
+            color: $text-color-quiet;
+        }
+    }
+}
+
+.scroll-refresher {
+
+    top: -80px !important;
+    height: 80px !important;
+
+    .ionic-refresher-content {
+        bottom: 0;
+    }
+
+    .icon-pulling {
+        animation-name: refresh-zoom-back;
+        transform: translate3d(0, 0, 0) scale(0.8);
+    }
+
+    &.active {
+        .icon-pulling:not(.pulling-rotation-disabled) {
+            animation-name: refresh-zoom;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .text-pulling {
+            display: none;
+        }
+
+        .icon-pulling:after {
+            content: '松开刷新';
+            display: block;
+            font-size: $font-size-mini;
+            line-height: $font-size-mini;
+            color: $text-color-quiet;
+        }
+    }
+
+    .text-pulling,
+    .text-refreshing {
+        font-size: $font-size-mini !important;
+        line-height: $font-size-mini !important;
+        color: $text-color-quiet;
+    }
+}
+
+@keyframes refresh-zoom {
+  0%   { transform: translate3d(0,0,0) scale(0.8); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+@keyframes refresh-zoom-back {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  100% { transform: translate3d(0,0,0) scale(0.8); }
+}

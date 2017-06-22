@@ -1,0 +1,22 @@
+<ion-modal-view class="upgrade-modal">
+
+    <ion-content class="upgrade-content" scroll="false">
+        <cm-switch does-continue="false" class="wide-slider wide-slider-gray"
+            class-prefix="ui-switch" data-type="slider">
+            <cm-switch-content>
+                <cm-switch-panel>
+                    <div class="upgrade-panel upgrade-panel-1"></div>
+                </cm-switch-panel>
+                <cm-switch-panel>
+                    <div class="upgrade-panel upgrade-panel-2"></div>
+                </cm-switch-panel>
+                <cm-switch-panel>
+                    <div class="upgrade-panel upgrade-panel-3" ng-click="upgrade.closeModel()"></div>
+                </cm-switch-panel>
+            </cm-switch-content>
+            <!-- <cm-switch-nav class="ui-switch-nav"></cm-switch-nav> -->
+        </cm-switch>
+
+    </ion-content>
+
+</ion-modal-view>

@@ -1,0 +1,40 @@
+<ion-view class="exchange-record-list-view stable-bg" title="兑换记录" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            兑换记录
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="exchangeRecordList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="exchangeRecordList.finishLoading && exchangeRecordList.list.length == 0">
+            <div class="img"></div>
+            <div class="text">暂无兑换信息</div>
+        </div>
+
+        <ul class="record-list">
+            <li class="record-item" ng-repeat="item in exchangeRecordList.list"
+                ng-click="exchangeRecordList.goVideoList(item)">
+                <div class="item-content-row content">{{item.title}}</div>
+                <div class="item-content-row clearfix">
+                    <span class="date fr">{{item.exchangedDate}}</span>兑换成功
+                </div>
+            </li>
+        </ul>
+
+    </ion-content>
+
+</ion-view>

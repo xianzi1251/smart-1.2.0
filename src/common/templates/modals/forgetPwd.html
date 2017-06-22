@@ -1,0 +1,67 @@
+<ion-modal-view class="form-view light-bg">
+
+    <ion-header-bar class="bar-primary">
+        <button class="button button-clear left-btn" ng-click="modals.forgetPwd.close()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">忘记密码</h1>
+    </ion-header-bar>
+
+    <ion-content>
+
+        <form name="form" ng-submit="forgetPwd.submit()" novalidate>
+            <div class="form-content">
+                <div class="form-content-row row">
+                    <span class="col col-adaptive row-code col-center">+86</span>
+                    <div class="col row-input col-center">
+                        <input type="text" placeholder="请输入手机号" 
+                            ng-minlength="11" maxlength="11"
+                            name="loginName" ng-model="forgetPwd.loginName"
+                            required />
+                    </div>
+                </div>
+                <div class="form-content-row row">
+                    <div class="col row-input col-center">
+                        <input type="text" placeholder="请输入验证码"
+                           name="smsVerifyCode" ng-model="forgetPwd.smsVerifyCode"
+                           ng-minlength="6" maxlength="6" 
+                           required />
+                    </div>
+                    <div class="col col-adaptive form-code">
+                        <button type="button" class="button button-clear"
+                            ng-disabled="forgetPwd.timeDown != undefined || form.loginName.$invalid"
+                            ng-click="forgetPwd.sendSMSVerifyCode()">
+                            {{forgetPwd.sendVerifyCodeText}}
+                            <b class="time-down" ng-if="forgetPwd.timeDown != undefined">
+                                ({{forgetPwd.timeDown}})
+                            </b>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-content-row row">
+                    <div class="col row-input col-center">
+                        <input type="password" placeholder="请输入6-8位字符新密码"
+                            name="password" ng-model="forgetPwd.password"
+                            ng-minlength="6" ng-maxlength="8" 
+                            required />
+                    </div>
+                </div>
+                <div class="form-content-row row">
+                    <div class="col row-input col-center">
+                        <input type="password" placeholder="请再次输入6-8位字符新密码"
+                            name="rePassword" ng-model="forgetPwd.rePassword"
+                            ng-minlength="6" ng-maxlength="8" 
+                            required />
+                    </div>
+                </div>
+                <div class="form-btn">
+                    <button type="button" class="button button-block button-primary"
+                        ng-click="forgetPwd.submit()"
+                        ng-disabled="form.$invalid">完成</button>
+                </div>
+            </div> 
+        </form>
+
+    </ion-content>
+
+</ion-modal-view>

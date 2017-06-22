@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+.free-list-view {
+
+    .free-list {
+        padding: 12px 12px 0;
+    }
+
+    .free-item {
+        margin-bottom: 12px;
+        padding: 10px 12px;
+        background-color: #fff;
+    }
+
+    .item-title {
+        font-size: convert-rem(14px);
+        line-height: 1.25em;
+        color: $text-color;
+    }
+
+    .item-line {
+        font-size: convert-rem(12px);
+        line-height: 1.5em;
+        color: $text-color-quiet;
+    }
+
+    .item-date {
+        margin-right: 12px;
+    }
+
+    .item-like {
+        position: relative;
+        padding-left: 20px;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 24px;
+            content: '\e624';
+        }
+    }
+
+    .item-image {
+        width: 100%;
+
+        .img {
+            width: 100%;
+        }
+    }
+
+    .item-text {
+        color: #666;
+        font-size: convert-rem(12px);
+        line-height: 1.5em;
+    }
+}

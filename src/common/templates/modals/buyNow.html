@@ -1,0 +1,25 @@
+<!-- 立即购买 -->
+<ion-modal-view class="buy-now-modal-view light-bg" cm-push-background>
+
+    <ion-content scroll="false">
+
+        <div class="item-info">
+            <div class="item-img">
+                <img class="img" cm-lazyload="buyNow.item.picUrl" load-immediate="true" />
+            </div>
+            <div class="item-name clearfix">
+                <div class="name">{{buyNow.item.title}}</div>
+                <i class="iconfont icon-close" ng-click="buyNow.close()"></i>
+            </div>
+            <div class="item-price"><span class="price">{{buyNow.item.listPrice | currency: ''}}</span>元</div>
+            <div class="item-describe">{{buyNow.item.viceTitle}}</div>
+        </div>
+
+        <div class="item-btn">
+            <button type="button" class="button button-block button-primary" 
+                ng-click="buyNow.submit()">确定</button>
+        </div>
+
+    </ion-content>
+
+</ion-modal-view>

@@ -1,0 +1,39 @@
+<ion-view class="free-list-view stable-bg" title="免费试读" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            免费试读
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="freeList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <div class="pd tc" ng-if="!freeList.courseList.length">
+            暂无免费试读信息
+        </div>
+
+        <ul class="free-list" ng-if="freeList.courseList.length">
+            <li class="free-item" ng-repeat="item in freeList.courseList"
+                ng-click="freeList.goFreeInfo(item.entityName, item.genreName, item.videoUrl)">
+                <div class="item-title mb">{{item.title}}</div>
+                <div class="item-image">
+                    <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                </div>
+                <div class="item-text">{{item.summary}}</div>
+            </li>
+        </ul>
+
+    </ion-content>
+
+</ion-view>

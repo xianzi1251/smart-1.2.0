@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.list-empty {
+    padding-top: convert-rem(110px);
+    text-align: center;
+
+    .img {
+        margin: 0 auto;
+        width: convert-rem(80px);
+        height: convert-rem(80px);
+        background-image: url(#{$images-path}/icon-empty@2x.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: convert-rem(80px) auto;
+    }
+
+    .text {
+        line-height: 1.2em;
+        font-size: 16px;
+        color: $text-color-secondary;
+        padding-top: convert-rem(20px);
+    }
+}

@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+.consignee-add-panel {
+    
+    .consignee-row {
+        padding: 10px 12px 10px 0;
+        margin-left: 12px;
+        background: superfine-border-bottom($line-color);
+    }
+
+    .consignee-name {
+        min-width: 5em;
+        padding: 0;
+        color: $text-color;
+        @extend %font-size-base;
+    }
+
+    .consignee-info {
+        padding: 0;
+    }
+
+    .consignee-input {
+        width: 100%;
+        border: 0;
+        padding: 0;
+        line-height: 1.2em;
+        padding: .4em 0;
+        color: $text-color-secondary;
+        background-color: $light !important;
+        @extend %font-size-base;
+    }
+
+    .iconfont {
+        color: $text-color-secondary;
+    }
+
+    .consignee-btn {
+        margin: 20px 12px;
+
+        .button {
+            font-size: 16px;
+        }
+    }
+}

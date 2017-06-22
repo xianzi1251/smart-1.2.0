@@ -1,0 +1,24 @@
+<!-- 加入购物车 -->
+<ion-modal-view class="add-to-cart-modal-view light-bg" cm-push-background>
+
+    <ion-content scroll="false">
+
+        <div class="item-info">
+            <div class="item-img">
+                <img class="img" cm-lazyload="addToCart.item.img" load-immediate="true" />
+            </div>
+            <div class="item-name clearfix">
+                <div class="name">{{addToCart.item.name}}</div>
+                <i class="iconfont icon-close" ng-click="addToCart.close()"></i>
+            </div>
+            <div class="item-price"><span class="price">{{addToCart.item.price}}</span>元</div>
+            <div class="item-describe">{{addToCart.item.describe}}</div>
+        </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="cart-footer-bar">
+        <button class="button button-block button-primary" ng-click="addToCart.submit()">确定</button>
+    </ion-footer-bar>
+
+</ion-modal-view>

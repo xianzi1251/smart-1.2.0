@@ -1,0 +1,32 @@
+<!-- 支付成功 -->
+<ion-modal-view class="payment-order-success-modal-view stable-bg">
+
+    <ion-header-bar class="bar-primary">
+        <button class="button button-clear left-btn" ng-click="success.close()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">支付成功</h1>
+    </ion-header-bar>
+
+    <ion-content scroll="false">
+
+        <div class="success">
+            <div class="success-icon">
+                <i class="iconfont icon-goumaichenggong"></i>
+            </div>
+            <div class="success-text">恭喜您，支付成功！</div>
+            <div class="success-btn-row clearfix">
+                <div class="success-btn fl">
+                    <button class="button button-block button-stable button-outline"
+                        ng-click="success.goOrderInfo()">查看我的订单</button>
+                </div>
+                <div class="success-btn fr">
+                    <button class="button button-block button-energized"
+                        ng-click="success.goShopping()">继续购买</button>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-modal-view>

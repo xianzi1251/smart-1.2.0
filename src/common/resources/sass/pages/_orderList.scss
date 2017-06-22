@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+.order-list-panel {
+
+    .button {
+        min-height: 1.5em;
+        font-size: 13px;
+        line-height: 1.5em;
+    }
+
+    .order-item {
+        margin-bottom: 8px;
+        background-color: $light;
+    }
+
+    .item-top {
+        padding: 0 12px;
+        margin: 0;
+        line-height: convert-rem(40px);
+        background: superfine-border-bottom($line-color);
+    }
+
+    .item-order-number {
+        padding: 0;
+        color: $text-color-quiet;
+        @extend %font-size-small;
+
+        .order {
+            color: $text-color;
+        }
+    }
+
+    .item-pay {
+        padding: 0;
+        font-size: 12px;
+        line-height: 2em;
+    }
+
+    .item-cancle {
+        padding: 0;
+        color: $primary-color;
+        @extend %font-size-small;
+    }
+
+    .item-main {
+        padding: 12px 0;
+        margin: 0 10px;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+    }
+
+    .item-img {
+        width: convert-rem(75px);
+        height: convert-rem(110px);
+
+        .img {
+            width: 100%;
+            height: convert-rem(110px);
+            border-radius: 4px;
+        }
+    }
+
+    .item-info {
+        margin-left: convert-rem(75px);
+        padding-left: 12px;
+    }
+
+    .item-name {
+        overflow: hidden;
+        height: 1.5em;
+        line-height: 1.5em;
+        color: $text-color;
+        @extend %font-size-base;
+    }
+
+    .item-content {
+        margin: convert-rem(5px) 0 convert-rem(10px);
+        line-height: 1.4em;
+        color: $text-color-secondary;
+        @extend %font-size-small;
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+
+        &.pay-not {
+            height: 4.1em;
+            -webkit-line-clamp: 3;
+        }
+
+        &.pay-has {
+            height: 2.7em;
+            -webkit-line-clamp: 2;
+        }
+    }
+
+    .item-row {
+        overflow: hidden;
+        line-height: 1.5em;
+        color: $text-color-quiet;
+        @extend %font-size-small;
+    }
+
+    .item-price {
+        color: $energized;
+    }
+
+    .item-btn {
+        margin-top: convert-rem(3px);
+        text-align: right;
+        color: $text-color-quiet;
+    }
+}

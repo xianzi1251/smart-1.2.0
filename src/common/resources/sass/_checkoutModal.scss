@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+.bar-primary-modal {
+    position: relative;
+    z-index: 1;
+    padding-left: $distance-horizontal;
+    height: 34px;
+    line-height: 34px;
+    color: $nav-bar-color;
+    background: superfine-border-bottom($line-color);
+    background-color: $nav-bar-background-color;
+    font-size: $font-size-big;
+    text-align: left;
+
+    .icon {
+        float: right;
+        width: 30px;
+        height: 34px;
+        line-height: 34px;
+        color: $nav-bar-color;
+        text-align: center;
+
+        &:before {
+            height: 34px;
+            line-height: 34px;
+        }
+    }
+
+    .icon-close:before {
+        font-size: 30px;
+    }
+
+    .icon-back:before {
+        font-size: 20px;
+    }
+}
+
+// 结算中心公共的弹层样式
+.checkout-modal-panel {
+    height: 68%;
+    min-height: 0;
+    max-height: 100%;
+    top: auto;
+    bottom: 0;
+    background-color: $light;
+
+    > .scroll-content {
+        top: 34px;
+
+        &.has-footer {
+            bottom: 50px;
+        }
+    }
+
+    .bar-footer {
+        height: 50px;
+        padding: 8px 15px;
+        background: none !important;
+
+        .button {
+            height: 34px;
+            min-height: 34px;
+            margin: 0;
+            line-height: 32px;
+            font-size: $font-size-large;
+        }
+    }
+}
+
+.keyboard-open {
+    .checkout-modal-panel {
+        top: 0;
+        height: auto;
+        .checkout-button {
+            display: block;
+        }
+    }
+    .invoice-panel {
+        .invoice-button {
+            display: block;
+        }
+    }
+    .checkout-consignee-edit-panel {
+        .consignee-edit-button {
+            display: block;
+        }
+    }
+
+    &.platform-ios.platform-cordova {
+        .bar-primary-modal {
+            padding-top: 20px;
+            height: 54px;
+        }
+
+        .checkout-modal-panel > .scroll-content {
+            top: 54px;
+        }
+    }
+}

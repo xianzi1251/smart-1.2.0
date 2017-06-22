@@ -1,0 +1,45 @@
+<ion-view class="user-account-setting-view stable-bg" title="账号设置" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            账号设置
+        </div>
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear button-submit" ng-click="setting.submit()">完成</button>
+            </span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+
+        <form name="form" ng-submit="setting.submit()" novalidate>
+            <div class="setting-row row">
+                <span class="col col-adaptive col-center setting-txt">昵称</span>
+                <div class="col">
+                    <input type="text" class="setting-input" placeholder="请输入昵称" 
+                        ng-model="setting.nickName">
+                </div>
+            </div>
+            <div class="setting-row row" ng-if="setting.isthird">
+                <span class="col col-adaptive col-center setting-txt">手机号</span>
+                <div class="col">
+                    <input type="text" class="setting-input" placeholder="请输入需要绑定的手机号，绑定送10个积分" 
+                        ng-model="setting.mobile">
+                </div>
+            </div>
+            <p class="setting-text">简介</p>
+            <textarea class="setting-info" placeholder="请输入简介" 
+                ng-model="setting.personInfo" rows="8"></textarea>
+        </form>
+
+    </ion-content>
+
+</iion-view>

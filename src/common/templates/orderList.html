@@ -1,0 +1,88 @@
+<ion-view title="我的订单" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            我的订单
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="order-list-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="orderList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="orderList.finishLoading && orderList.orders.length == 0">
+            <div class="img"></div>
+            <div class="text">您还没有订单</div>
+        </div>
+
+        <ul class="order-list">
+            <li class="order-item" ng-repeat="order in orderList.orders">
+
+                <!-- 订单编号和支付按钮 -->
+                <div class="item-top row">
+                    <div class="item-order-number col col-center">
+                        订单编号：<span class="order">{{order.orderNumber}}</span>
+                    </div>
+                    <div class="item-pay col col-center col-adaptive" 
+                        ng-if="order.paymentStatus == 0 && order.orderStatus == 1">
+                        <button type="button" class="button button-outline button-energized"
+                            ng-click="orderList.pay(order.orderId)">去支付</button>
+                    </div>
+                    <div class="item-cancle col col-center col-adaptive" 
+                        ng-if="order.orderStatus == 5">已取消</div>
+                    <div class="item-cancle col col-center col-adaptive" 
+                        ng-if="order.orderStatus == 8">已完成</div>
+                </div>
+
+                <!-- 订单商品 － repeat -->
+                <div class="item-main clearfix" ng-repeat="item in order.items"
+                    ng-click="orderList.goOrderInfo(order.orderId)">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">{{item.title}}</div>
+
+                        <!-- 未支付 -->
+                        <div ng-if="order.paymentStatus == 0">
+                            <div class="item-content pay-not">{{item.subtitle}}</div>
+                            <div class="item-row clearfix">
+                                <div class="item-price fl">{{item.price | currency: '¥'}}/年</div>
+                                <div class="item-date fr">下单时间: {{order.placedTime}}</div>
+                            </div>
+                        </div>
+
+                        <!-- 已支付 -->
+                        <div ng-if="order.paymentStatus == 1">
+                            <div class="item-content pay-has">{{item.subtitle}}</div>
+                            <div class="item-row clearfix">
+                                <div class="fl">{{item.price | currency: '¥'}}/年</div>
+                                <div class="item-date fr">购买时间: {{order.payTime}}</div>
+                            </div>
+                            <!-- 未评论 -->
+                            <div class="item-btn" ng-if="!item.isComment">
+                                <button type="button" class="button button-outline button-energized"
+                                    ng-click="orderList.goComment(item, $event)">点评</button>
+                            </div>
+                            <!-- 已评论 -->
+                            <div class="item-btn" ng-if="item.isComment">已点评</div>
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+        </ul>
+        
+    </ion-content>
+
+</ion-view>

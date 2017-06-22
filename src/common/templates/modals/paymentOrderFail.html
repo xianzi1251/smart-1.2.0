@@ -1,0 +1,47 @@
+<!-- 支付失败 -->
+<ion-modal-view class="payment-order-fail-modal-view stable-bg">
+
+    <ion-header-bar class="bar-primary">
+        <button class="button button-clear left-btn" ng-click="fail.close()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">支付失败</h1>
+    </ion-header-bar>
+
+    <ion-content scroll="false">
+
+        <div class="fail-content">
+            <div class="fail-icon">
+                <i class="iconfont icon-xiazai"></i>
+            </div>
+            <div class="fail-text">抱歉，支付失败！</div>
+
+            <div class="fail-payment-txt">继续以下操作</div>            
+            <ul class="payment-list">
+                <li class="payment-item row" ng-click="fail.goPay('AliPay')">
+                    <i class="iconfont icon-zhifubao col col-adaptive"></i>
+                    <div class="payment-text col">使用支付宝付款</div>
+                    <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                </li>
+                <li class="payment-item row" ng-click="fail.goPay('WeChat')">
+                    <i class="iconfont icon-weixin col col-adaptive"></i>
+                    <div class="payment-text col">使用微信付款</div>
+                    <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="fail-btn-list">
+            <li class="fail-btn-item row" ng-click="fail.goOrderInfo()">
+                <div class="fail-btn-text col">查看我的订单</div>
+                <i class="iconfont icon-rightarrow col col-adaptive"></i>
+            </li>
+            <li class="fail-btn-item row" ng-click="fail.goShopping()">
+                <div class="fail-btn-text col">继续购物</div>
+                <i class="iconfont icon-rightarrow col col-adaptive"></i>
+            </li>
+        </ul>
+
+    </ion-content>
+
+</ion-modal-view>

@@ -1,0 +1,27 @@
+<ion-view title="关于我们" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            关于我们
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="about-us-panel light-bg">
+
+        <div class="logo"></div>
+        <div class="about-us-box" ng-bind-html="aboutUs.content"></div>
+        <p class="about-us-text">版本信息：V{{aboutUs.version}}</p>
+        <p class="about-us-text">copyright@2017</p>
+        <p class="about-us-text">半月谈新媒体科技有限公司</p>
+        <div class="user-version" ng-click="aboutUs.goVersion()">版权声明</div>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+.checkout-modal-view {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    overflow: inherit;
+
+    .checkout-consignee {
+    	padding: 6px 12px;
+    	color: $text-color;
+    	background-color: $light;
+
+        .icon-dizhi {
+            color: $text-color-secondary;
+        }
+
+        .icon-rightarrow {
+            color: $text-color-quiet;
+            font-weight: bold;
+        }
+    }
+
+    .checkout-add-consignee {
+        padding: 12px 0;
+    }
+
+    .consignee-info-name {
+        line-height: 2em;
+        color: $text-color;
+        @extend %font-size-big;
+    }
+
+    .consignee-info-street {
+        line-height: 1.5em;
+        color: $text-color-secondary;
+        @extend %font-size-base;
+    }
+
+    .checkout-list {
+    	margin: 8px 0;
+    	background-color: $light;
+    }
+
+    .checkout-item {
+        padding: 12px;
+        background: superfine-border-bottom($line-color);
+    }
+
+    .item-img {
+        width: convert-rem(75px);
+        height: convert-rem(110px);
+
+        .img {
+            width: 100%;
+            height: convert-rem(110px);
+            border-radius: 4px;
+        }
+    }
+
+    .item-info {
+        margin-left: convert-rem(75px);
+        padding-left: 12px;
+    }
+
+    .item-title {
+        overflow: hidden;
+        height: 1.5em;
+        line-height: 1.5em;
+        color: $text-color;
+        @extend %font-size-big;
+    }
+
+    .item-content {
+        height: 4.1em;
+        margin: convert-rem(5px) 0 convert-rem(10px);
+        line-height: 1.4em;
+        color: $text-color-secondary;
+        @extend %font-size-base;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+
+    .item-price {
+    	color: $energized;
+    }
+
+    .checkout-amount {
+    	padding-right: 15px;
+		line-height: 3em;
+    	color: $text-color;
+    	text-align: right;
+    	background: superfine-border-bottom($line-color);
+    	background-color: $light;
+    	@extend %font-size-base;
+
+    	.amount {
+    		color: $energized;
+    	}
+    }
+
+   .payment-item {
+   		margin: 0;
+        padding: 15px 8px 15px 15px;
+        background: superfine-border-bottom($line-color);
+        background-color: $light;
+
+        .icon-zhifubao,
+        .icon-weixin {
+            padding: 0;
+            font-size: 24px;
+        }
+
+        .icon-zhifubao {
+            color: #1296DB;
+        }
+
+        .icon-weixin {
+            color: #1aad19;
+        }
+
+        .payment-text {
+            @extend %font-size-big;
+            color: $text-color;
+        }
+
+        .icon-rightarrow {
+            padding: 0;
+            color: $text-color-quiet;
+            font-weight: bold;
+        }
+    }
+}

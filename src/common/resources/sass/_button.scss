@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+.button {
+
+    border-radius: 4px;
+
+    &.button-primary {
+        $button-primary-bg: $primary-color;
+        $button-primary-text: #fff;
+        $button-primary-border: $button-primary-bg;
+        $button-primary-active-bg: darken($primary-color, 10%);
+        $button-primary-active-border: $button-primary-active-bg;
+
+        @include button-style($button-primary-bg, $button-primary-border, $button-primary-active-bg, $button-primary-active-border, $button-primary-text);
+        @include button-clear($button-primary-bg);
+        @include button-outline($button-primary-bg);
+    }
+
+    &.disabled,
+    &[disabled] {
+        $button-disabled-bg: #cecece;
+        $button-disabled-text: #fff;
+        $button-disabled-border: #cecece;
+        $button-disabled-active-bg: #cecece;
+        $button-disabled-active-border: #cecece;
+
+        @include button-style($button-disabled-bg, $button-disabled-border, $button-disabled-active-bg, $button-disabled-active-border, $button-disabled-text);
+        @include button-clear($button-disabled-bg);
+        @include button-outline($button-disabled-bg);
+
+        opacity: 1;
+        cursor: default !important;
+        pointer-events: none;
+    }
+}
+
+a.button {
+    &.activated {
+        opacity: 1;
+    }
+}

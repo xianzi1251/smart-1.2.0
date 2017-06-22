@@ -1,0 +1,41 @@
+<ion-view>
+    <ion-tabs class="app-tabs tabs-icon-top">
+        <ion-tab title="首页"
+                 icon-on="iconfont icon-index"
+                 icon-off="iconfont icon-index"
+                 href="#/tabs/index">
+            <ion-nav-view name="index"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="购物车"
+                 icon-on="iconfont icon-shoppingcart"
+                 icon-off="iconfont icon-shoppingcart"
+                 href="#/tabs/shoppingCart"
+                 ng-click="goShoppingCart()">
+            <ion-nav-view name="cart"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="翻一翻"
+                 icon-on="iconfont icon-fanyifan"
+                 icon-off="iconfont icon-fanyifan"
+                 href="#/tabs/sliderList">
+            <ion-nav-view name="sliderList"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="已购"
+                 icon-on="iconfont icon-packet"
+                 icon-off="iconfont icon-packet"
+                 href="#/tabs/purchasedList"
+                 ng-click="goPurchasedList()">
+            <ion-nav-view name="purchased"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="我的"
+                 icon-on="iconfont icon-usercenter"
+                 icon-off="iconfont icon-usercenter"
+                 href="#/tabs/user"
+                 ng-click="goUser()">
+            <ion-nav-view name="user"></ion-nav-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

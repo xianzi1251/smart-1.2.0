@@ -1,0 +1,135 @@
+<ion-view cm-hide-tabs="false" hide-nav-bar="true">
+
+    <ion-content class="user-panel stable-bg" delegate-handle="userContentScroll">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="user.init()" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+        
+        <div class="user-info">
+            <div class="user-info-pic" ng-click="user.goUserAccountSetting()">
+                <img class="img" cm-lazyload="user.picUrl" load-immediate="true" 
+                    ng-if="user.picUrl"/>
+            </div>
+            <div class="user-info-name mh">{{user.nickName}}</div>
+            <div class="user-info-describe mh" ng-if="user.personInfo">{{user.personInfo}}</div>
+        </div>
+
+        <ul class="user-list light-bg">
+
+            <li class="user-item row" ng-click="user.goShoppingCart()">
+                <i class="iconfont icon-shoppingcart icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">购物车</span>
+                        <span class="item-tip col col-adaptive">{{user.countAmount}}</span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goOrderList()">
+                <i class="iconfont icon-qianbao icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">我的订单</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goAuthentication()">
+                <i class="iconfont icon-huizhang icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">军人认证</span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goExchangeList()"
+                ng-if="user.bytSwitch">
+                <i class="iconfont icon-duihuan icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">积分兑换</span>
+                        <span class="item-tip col col-adaptive">{{user.loyalty}}积分</span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goExchangeCode()"
+                ng-if="user.bytSwitch">
+                <i class="iconfont icon-code icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">兑换码</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goConsigneeList()"
+                ng-if="!user.bytSwitch">
+                <i class="iconfont icon-dizhi icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">收货地址</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goModifyPwd()"
+                ng-if="!user.thirdPartylogin">
+                <i class="iconfont icon-setting icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">修改密码</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <ul class="user-list light-bg">
+
+            <li class="user-item row" ng-click="user.goFeedback()">
+                <i class="iconfont icon-fankui icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">意见反馈</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goAboutUs()">
+                <i class="iconfont icon-info icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">关于我们</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+        <div class="user-logout">
+            <button class="button button-block button-primary"
+                ng-click="user.logout()">退出账号</button>
+        </div>
+
+    </ion-content>
+
+</ion-view>

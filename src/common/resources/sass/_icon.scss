@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+.iconfont {
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.icon-fanyifan {
+        position: relative;
+
+        &:before {
+            position: relative;
+            z-index: 9;
+        }
+
+        &:after {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            z-index: 1;
+            width: 70px;
+            height: 39px;
+            background-image: url(#{$images-path}/icon-tab@2x.png);
+            background-size: 70px auto;
+            transform: translate3d(-50%, 0, 0);
+            content: '';
+        }
+    }
+
+    &.icon-loading {
+        background-image: url(#{$images-path}/loading.png);
+        background-size: 100% auto;
+        background-position: center top;
+        animation: icon-loading 0.8s steps(12) infinite;
+        width: 15px;
+        height: 15px;
+    }
+}
+
+@keyframes icon-loading {
+    0% {
+       background-position: center 0;
+    }
+    100% {
+       background-position: center -180px;
+    }
+
+}

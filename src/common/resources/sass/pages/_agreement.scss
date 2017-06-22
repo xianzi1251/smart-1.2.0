@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.agreement-panel {
+    
+    .agreement-content {
+        padding: 25px 12px;
+        line-height: 1.5em;
+        color: $text-color;
+        @extend %font-size-base;
+    }
+
+    .agreement-title {
+		text-align: center;
+		@extend %font-size-big;
+    }
+}

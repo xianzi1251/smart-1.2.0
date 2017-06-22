@@ -1,0 +1,31 @@
+<ion-view title="翻一翻" cm-hide-tabs="false">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            翻一翻
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="slider-list-panel" scroll="false">
+
+        <ion-slides class="slider-list" options="sliderList.sliderOptions">
+            <ion-slide-page class="slider-item" 
+                ng-repeat="slider in sliderList.sliderList">
+                <div class="info-name">{{slider.label}}</div>
+                <div class="info-text" ng-bind-html="slider.content"></div>
+                <div class="info-like" ng-click="sliderList.likes(slider.id)">
+                    <i class="iconfont icon-good"></i>{{slider.hitCount}}
+                </div>
+            </ion-slide-page>
+        </ion-slides>
+        
+    </ion-content>
+
+</ion-view>

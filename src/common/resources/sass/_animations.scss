@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+.slide-in-right {
+  @include translate3d(100%, 0, 0);
+}
+
+.slide-in-right.ng-enter,
+.slide-in-right > .ng-enter {
+  @include transition(all cubic-bezier(.1, .7, .1, 1) 400ms);
+}
+
+.slide-in-right.ng-enter-active,
+.slide-in-right > .ng-enter-active {
+  @include translate3d(0, 0, 0);
+}
+
+.slide-in-right.ng-leave,
+.slide-in-right > .ng-leave {
+  @include transition(all ease-in-out 250ms);
+}
+
+.fade {
+  opacity: 0;
+}
+
+.fade.ng-enter,
+.fade > .ng-enter {
+  transition: opacity ease-in-out 250ms;
+}
+
+.fade.ng-enter-active,
+.fade > .ng-enter-active {
+  opacity: 1;
+}
+
+.fade.ng-leave,
+.fade > .ng-leave {
+  transition: opacity ease-in-out 250ms;
+}
+
+.fade-out.ng-leave,
+.fade-out > .ng-leave {
+  transition: opacity ease-in-out 250ms;
+  opacity: 0;
+}
+
+.slide-in-up-fade {
+  @include translate3d(0, 100%, 0);
+  opacity: 0;
+}
+
+.slide-in-up-fade.ng-enter,
+.slide-in-up-fade > .ng-enter {
+  @include transition(all cubic-bezier(.1, .7, .1, 1) 400ms);
+}
+
+.slide-in-up-fade.ng-enter-active,
+.slide-in-up-fade > .ng-enter-active {
+  @include translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.slide-in-up-fade.ng-leave,
+.slide-in-up-fade > .ng-leave {
+  @include transition(all ease-in-out 250ms);
+}

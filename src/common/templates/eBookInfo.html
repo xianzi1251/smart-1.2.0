@@ -1,0 +1,25 @@
+<ion-view title="详情" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            详情
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="adv-info-panel light-bg" scroll="false">
+
+        <ion-scroll class="adv-info-scorll" zooming="true" direction="xy" 
+            max-zoom="3" min-zoom="1" has-bouncing="false" overflow-scroll="false">
+            <div class="adv-main" ng-bind-html="advInfo.adv.content"></div>
+        </ion-scroll>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,65 @@
+<ion-modal-view class="form-view light-bg">
+
+    <ion-header-bar class="bar-primary">
+        <button class="button button-clear left-btn" ng-click="modals.register.close()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">注册</h1>
+    </ion-header-bar>
+
+    <ion-content class="register-panel">
+
+        <div class="logo"></div>
+
+        <form name="form" ng-submit="register.submit()" novalidate>
+            <div class="form-content">
+                <div class="form-content-row row">
+                    <span class="col col-adaptive row-code col-center">+86</span>
+                    <div class="col row-input col-center">
+                        <input type="text" placeholder="请输入手机号" 
+                            ng-minlength="11" maxlength="11"
+                            name="loginName" ng-model="register.loginName"
+                            required />
+                    </div>
+                </div>
+                <div class="form-content-row row">
+                    <div class="col row-input col-center">
+                        <input type="text" placeholder="请输入验证码"
+                           name="smsVerifyCode" ng-model="register.smsVerifyCode"
+                           ng-minlength="6" maxlength="6" 
+                           required />
+                    </div>
+                    <div class="col col-adaptive form-code">
+                        <button type="button" class="button button-clear"
+                            ng-disabled="register.timeDown != undefined || form.loginName.$invalid"
+                            ng-click="register.sendSMSVerifyCode()">
+                            {{register.sendVerifyCodeText}}
+                            <b class="time-down" ng-if="register.timeDown != undefined">
+                                ({{register.timeDown}})
+                            </b>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-content-row row">
+                    <div class="col row-input col-center">
+                        <input type="password" placeholder="请输入6-8位字符密码"
+                            name="password" ng-model="register.password"
+                            ng-minlength="6" ng-maxlength="8" 
+                            required />
+                    </div>
+                </div>
+                <div class="form-btn">
+                    <button type="button" class="button button-block button-primary"
+                        ng-click="register.submit()" 
+                        ng-disabled="form.$invalid">注册</button>
+                </div>
+            </div> 
+        </form>
+
+        <div class="register-bottom-row" ng-click="register.goAgreement()">
+            点击注册，即表示您同意 <span class="agreement">用户注册协议</span>
+        </div>
+
+    </ion-content>
+
+</ion-modal-view>

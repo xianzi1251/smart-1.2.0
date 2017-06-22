@@ -1,0 +1,41 @@
+<ion-view title="兑换码" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            兑换码
+        </div>
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear" ng-click="exchangeCode.goExchangeCodeList()">
+                    <i class="iconfont icon-more"></i>
+                </button>
+            </span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="exchange-code-panel stable-bg">
+
+        <form method="get" ng-submit="exchangeCode.submit()">
+        
+            <div class="exchange-form light-bg">
+                <input class="code-input" type="text" 
+                    placeholder="请输入兑换码" ng-model="exchangeCode.excode" />
+                <button class="button button-block button-energized"
+                    ng-disabled="!exchangeCode.excode">兑换</button>
+                <div class="code-rule iconfont icon-wenhao" ng-click="exchangeCode.goExchangeRule()">
+                    兑换规则
+                </div>
+            </div>
+
+        </form>
+
+    </ion-content>
+
+</ion-view>

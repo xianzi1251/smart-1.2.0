@@ -1,0 +1,22 @@
+<ion-view title="版权声明" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            版权声明
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="version-panel light-bg">
+
+        <div class="version-box" ng-bind-html="version.content"></div>
+
+    </ion-content>
+
+</ion-view>

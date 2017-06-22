@@ -1,0 +1,138 @@
+<ion-view title="首页" cm-hide-tabs="false">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="logo-title"></div>
+    </ion-header-bar>
+
+    <ion-content class="index-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="index.init()" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 轮播图 -->
+        <cm-switch class="index-img-slider"
+            class-prefix="ui-switch" data-type="slider" auto-play="5000">
+            <cm-switch-content>
+                <cm-switch-panel ng-repeat="slider in index.sliderList">
+                    <img class="img" cm-lazyload="slider.picUrl" load-immediate="true" 
+                        ng-click="index.goAdvInfo(slider.id)"/>
+                </cm-switch-panel>
+            </cm-switch-content>
+            <cm-switch-nav class="ui-switch-nav" ng-class="{'nav-hide': (index.sliderList.length <= 1)}"></cm-switch-nav>
+        </cm-switch>
+
+        <!-- 分类 -->
+        <div class="index-sort-list row light-bg">
+            <div class="sort-item item-1 col" ng-click="index.goCategoryList(0)">
+                <div class="item-icon">
+                    <i class="iconfont icon-shizheng"></i>
+                </div>
+                <div class="item-text">时政大家谈</div>
+            </div>
+            <div class="sort-item item-2 col" ng-click="index.goCategoryList(1)">
+                <div class="item-icon">
+                    <i class="iconfont icon-gongkaopeixun"></i>
+                </div>
+                <div class="item-text">公考培训</div>
+            </div>
+            <div class="sort-item item-3 col" ng-click="index.goCategoryList(2)">
+                <div class="item-icon">
+                    <i class="iconfont icon-junzhuanpeixun"></i>
+                </div>
+                <div class="item-text">军转培训</div>
+            </div>
+            <div class="sort-item item-4 col" ng-click="index.goCategoryList(3)">
+                <div class="item-icon">
+                    <i class="iconfont icon-zaizhipeixun"></i>
+                </div>
+                <div class="item-text">在职培训</div>
+            </div>
+        </div>
+
+        <!-- 精品推荐 -->
+        <div class="index-recommend" ng-if="index.recommendList">
+            <div class="recommend-title">精品推荐</div>
+            <ul class="recommend-list row">
+                <li class="recommend-item col" 
+                    ng-repeat="recommend in index.recommendList"
+                    ng-click="index.goProductInfo(recommend.entityName, recommend.genreName)">
+                    <div class="recommend-img">
+                        <img class="img" cm-lazyload="recommend.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="recommend-text">{{recommend.fullTitle}}</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 套装推荐 -->
+        <!-- <div class="index-recommend" ng-if="index.suitList">
+            <div class="recommend-title">套装推荐</div>
+            <ul class="recommend-list row">
+                <li class="recommend-item col" 
+                    ng-repeat="suit in index.suitList"
+                    ng-click="index.goSuitInfo(suit.entityName)">
+                    <div class="recommend-img">
+                        <img class="img" cm-lazyload="suit.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="recommend-text">{{suit.fullTitle}}</div>
+                </li>
+            </ul>
+        </div> -->
+
+        <div class="index-author" ng-if="index.suitList">
+            <div class="author-title">平台导师</div>
+            <ul class="author-list">
+                <li class="author-item clearfix" 
+                    ng-repeat="suit in index.suitList"
+                    ng-click="index.goSuitInfo(suit.entityName)">
+                    <div class="author-img fl">
+                        <img class="img" cm-lazyload="suit.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="author-text">
+                        <div class="author-name">{{suit.fullTitle}}</div>
+                        <div class="author-remark">{{suit.remark}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 平台导师，暂时仅显示前3条内容 -->
+        <!-- <div class="index-author" ng-if="index.authorList">
+            <div class="author-title">
+                <div class="author-more fr" ng-click="index.goAuthorList()">查看更多 ></div>
+                平台导师
+            </div>
+            <ul class="author-list">
+                <li class="author-item clearfix" 
+                    ng-repeat="author in index.authorList"
+                    ng-click="index.goAdvInfo(author.id)"
+                    ng-if="$index < 4">
+                    <div class="author-img fl">
+                        <img class="img" cm-lazyload="author.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="author-text">
+                        <div class="author-name">{{author.label}}</div>
+                        <div class="author-remark">{{author.remark}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div> -->
+
+        <!-- 广告 -->
+        <!-- <ul class="index-adv-list clearfix">
+            <li class="adv-item fl" ng-repeat="adv in index.bottomAdvList"
+                ng-click="index.goProductInfo(adv.entityName)">
+                <img class="img" cm-lazyload="adv.picUrl" load-immediate="true" />
+            </li>
+        </ul> -->
+        <ul class="index-adv-list clearfix">
+            <li class="adv-item item-1 fl" ng-click="index.goAdvList(1483425657036, '时政热点')"></li>
+            <li class="adv-item item-2 fl" ng-click="index.goAdvList(1483458340025, '苏北文选')"></li>
+            <li class="adv-item item-3 fl" ng-click="index.goAdvList(1483435590039, '电子书')"></li>
+            <li class="adv-item item-4 fl" ng-click="index.goAdvList()"></li>
+        </ul>
+
+    </ion-content>
+
+</ion-view>

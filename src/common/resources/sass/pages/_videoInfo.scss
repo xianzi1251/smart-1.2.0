@@ -1,0 +1,221 @@
+@charset "utf-8";
+
+.video-info-view {
+
+    .bar {
+
+        .title.logo-title {
+            top: 5px;
+        }
+    }
+
+    .banner {
+        overflow: hidden;
+        padding: 15px 0;
+        margin-bottom: 5px;
+        text-align: center;
+
+        .img {
+            width: convert-rem(150px);
+            height: convert-rem(220px);
+        }
+    }
+}
+
+.video-info-container {
+    height: convert-rem(185px);
+
+    .vcp-timelabel {
+        width: auto !important;
+    }
+
+    .vcp-error-tips {
+        display: none !important;
+    }
+}
+
+.video-info {
+    padding: 5px 12px 0;
+
+    .info-name {
+        height: 1.5em;
+        line-height: 1.5em;
+        font-size: 18px;
+        color: $text-color;
+        @include text-overflow-ellipsis;
+    }
+
+    .info-price {
+        line-height: 1.5em;
+        font-size: 15px;
+        color: $text-color-quiet;
+
+        .price {
+            color: $primary-color;
+        }
+    }
+
+    .info-describe {
+        max-height: 3.6em;
+        margin-top: 10px;
+        line-height: 1.2em;
+        color: $text-color-secondary;
+        font-size: 15px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+}
+
+.video-info-describe {
+    margin-bottom: 10px;
+    padding: 12px;
+
+    .describe-title {
+        line-height: 1.5em;
+        color: $text-color;
+        font-size: 15px;
+    }
+
+    .describe-content {
+        overflow: auto;
+        max-height: none;
+        line-height: 1.5em;
+        font-size: 13px;
+        color: $text-color-secondary;
+
+        &.max-list {
+            overflow: hidden;
+            max-height: 9em;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .describe-btn {
+        padding: 10px 0;
+        line-height: 2em;
+        font-size: 14px;
+        text-align: center;
+        color: $text-color-quiet;
+    }
+}
+
+.video-info-comments {
+    padding-top: 10px;
+    margin-bottom: 10px;
+
+    .comments-title {
+        padding: 0 12px;
+        line-height: 1.5em;
+        font-size: 15px;
+        color: $text-color;
+
+        .amount {
+            color: $text-color-quiet;
+        }
+    }
+
+    .comments-list {
+        padding: 0 12px;
+        background: superfine-border-bottom($line-color);
+    }
+
+    .comments-item {
+        padding: 10px 0;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+    }
+
+    .comments-pic {
+        width: convert-rem(50px);
+        height: convert-rem(50px);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url(#{$images-path}/default-pic.png);
+        background-size: convert-rem(35px) auto;
+        background-color: $light;
+        border-radius: 50%;
+
+        .img {
+            width: 100%;
+            height: convert-rem(50px);
+            border-radius: 50%;
+        }
+    }
+
+    .comments-right {
+        margin-left: convert-rem(50px);
+        padding-left: 12px;
+    }
+
+    .comments-info {
+        overflow: hidden;
+        height: 1.5em;
+        font-size: 14px;
+        line-height: 1.5em;
+    }
+
+    .comments-name {
+        overflow: hidden;
+        max-width: 40%;
+        height: 1.5em;
+        margin-right: 5px;
+        color: $text-color;
+    }
+
+    .comments-time {
+        color: $text-color-quiet;
+    }
+
+    .comment-level {
+        margin-top: -3px;
+        
+        .iconfont {
+            margin-right: 2px;
+            font-size: convert-rem(8px);
+            color: $comment-color;
+        }
+
+        .icon-on {
+            color: $comment-color-active;
+        }
+    }
+
+    .comments-content {
+        max-height: 2.4em;
+        line-height: 1.2em;
+        color: $text-color-secondary;
+        font-size: 13px;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+
+    .comments-more {
+        padding: 10px 0;
+        line-height: 1.5em;
+        color: $text-color-quiet;
+        text-align: center;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.comment-view {
+    
+    .bar.bar-header {
+
+        .button {
+            font-size: 17px;
+            color: $primary-color;
+        }
+    }
+
+    .comment-panel {
+        padding-top: 20px;
+    }
+
+    .comment-text {
+        margin-bottom: 5px;
+        padding-left: 12px;
+        color: $text-color-secondary;
+        font-size: 13px;
+    }
+
+    .comment-content {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 12px;
+        line-height: 1.2em;
+        font-size: 14px;
+        background-color: $light;
+        resize: none;
+    }
+
+    .comment-level {
+        padding-left: 12px;
+        line-height: 50px;
+        background: superfine-border-bottom($line-color);
+        background-color: $light;
+
+        .iconfont {
+            margin-right: 5px;
+            font-size: 20px;
+            color: $comment-color;
+        }
+
+        .icon-on {
+            color: $comment-color-active;
+        }
+    }
+}

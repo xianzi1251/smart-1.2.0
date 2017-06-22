@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+.free-info-view {
+
+    .banner {
+        overflow: hidden;
+        padding: 15px 0;
+        margin-bottom: 5px;
+        text-align: center;
+
+        .img {
+            width: convert-rem(150px);
+            height: convert-rem(220px);
+        }
+    }
+
+    .free-info-title {
+        padding: 0 12px;
+        line-height: 2em;
+        font-size: 18px;
+        color: $text-color;
+    }
+
+    .free-content {
+        padding: 0 12px;
+        line-height: 2em;
+        font-size: 13px;
+        color: $text-color-secondary;
+
+        p {
+            margin-bottom: 0;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+}

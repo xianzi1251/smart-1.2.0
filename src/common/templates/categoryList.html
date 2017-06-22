@@ -1,0 +1,59 @@
+<ion-view title="{{categoryList.categoryTitle}}" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            {{categoryList.categoryTitle}}
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="stable-bg" scroll="false">
+
+        <cm-dynamic-tabs fill-mode="true">
+            <cm-dynamic-tab-item 
+                 ng-repeat="tab in categoryList.infoTabs"
+                 ng-click="categoryList.changeTab(tab.categoryId, $index)"
+                 ng-class="{'active': tab.active}" 
+                 tab-text="tab.label">
+            </cm-dynamic-tab-item>
+        </cm-dynamic-tabs>
+
+        <ion-content class="category-list-panel" delegate-handle="categoryListScroll">
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="categoryList.getItems()" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+            <!-- 空警告，当页面内没有数据时，显示该信息 -->
+            <div class="list-empty" ng-if="categoryList.finishLoading && categoryList.infoItems.length == 0">
+                <div class="img"></div>
+                <div class="text">该分类没有商品</div>
+            </div>
+
+            <ul class="category-list">
+                <li class="category-item clearfix" 
+                    ng-repeat="item in categoryList.infoItems"
+                    ng-click="categoryList.goProductInfo(item.entityName, item.genreName)">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-title">{{item.title}}</div>
+                        <div class="item-content">{{item.subtitle}}</div>
+                        <div class="item-row clearfix">
+                            <div class="item-price fl">{{item.offerPrice | currency: '¥'}}/年</div>
+                            <div class="fr">{{item.salesvolume}}人购买</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </ion-content>
+
+    </ion-content>
+
+</ion-view>

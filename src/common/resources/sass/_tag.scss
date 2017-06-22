@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@mixin set-tag-style($color) {
+    border-color: $color;
+    color: $color;
+
+    &.active {
+        color: #fff;
+        background: $color;
+    }
+}
+
+.tag {
+    border: 1px solid $base-color;
+    color: $base-color;
+    line-height: 1.2;
+    padding: 0.15em 0.3em;
+    display: inline-block;
+    border-radius: 0.2em;
+    text-align: center;
+    white-space: nowrap;
+
+    &.active {
+        background: $base-color;
+        color: #fff;
+    }
+}
+
+.tag-primary   { @include set-tag-style($primary-color); }
+.tag-assertive { @include set-tag-style($assertive);     }
+.tag-positive  { @include set-tag-style($positive);      }
+.tag-calm      { @include set-tag-style($calm);          }
+.tag-balanced  { @include set-tag-style($balanced);      }
+.tag-energized { @include set-tag-style($energized);     }
+.tag-royal     { @include set-tag-style($royal);         }
+.tag-dark      { @include set-tag-style($dark);          }

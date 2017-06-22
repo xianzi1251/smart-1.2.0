@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+a {
+    text-decoration: none;
+    color: $link-color;
+
+    &.activated {
+        opacity: .7;
+    }
+}
+
+.placeholder-text {
+    color: $placeholder-color;
+}
+
+// 修改 ionic 组件样式
+// -----------------------------------------------------------------------------
+
+ion-scroll {
+    display: block;
+}
+
+.bar {
+    padding: $bar-padding-portrait $distance-horizontal;
+}
+
+.item-divider {
+    background: transparent;
+    padding-top: $distance-vertical;
+    padding-bottom: $distance-vertical;
+    color: $text-color-quiet;
+    border: 0;
+}
+
+// 因为有选择地区等非全屏显示的 modal，因此这里默认开启 modal 的背景遮罩
+.modal-backdrop-bg {
+    @include transition(opacity 300ms ease-in-out);
+    background-color: $modal-backdrop-bg-active;
+    opacity: 0;
+}
+
+// 只有第一个弹出层的遮罩层显示
+.active {
+
+    .modal-backdrop-bg {
+        opacity: 0.7;
+    }
+
+    & ~ .active {
+        .modal-backdrop-bg {
+            opacity: 0
+        }
+    }
+}
+
+
+// 自定义通用组件
+// -----------------------------------------------------------------------------
+
+.image-verify-code {
+    border-radius: 4px;
+}
+
+.bar-header {
+    .logo {
+        @include size(34px);
+        margin: 0;
+
+        background: url('#{$images-path}/logo@2x.png') center center no-repeat;
+        background-size: 34px;
+
+        @include hide-text;
+    }
+
+    .button.select-region-button {
+        font-size: 14px;
+        line-height: 18px;
+
+        .icon {
+            font-size: 12px;
+        }
+
+        .icon:before {
+            font-size: 18px;
+            line-height: 14px;
+        }
+    }
+}
+
+
+// 安卓手机中多余文本添加省略号时异常
+// -----------------------------------------------------------------------------
+body, 
+.ionic-body {
+    text-rendering: auto;
+}

@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+$nojiko-el-class-style: 'small';
+
+$nojiko-el-width-values: (0);
+$nojiko-el-em-width-values: (2, 3, 4, 5);
+$nojiko-el-per-width-values: null;
+
+$nojiko-el-size: false;
+$nojiko-el-background-color: false;
+$nojiko-el-display-block: false;
+$nojiko-el-display-inline: false;
+$nojiko-el-display-inline-block: false;
+$nojiko-el-separator-line: false;
+$nojiko-el-triangle: false;
+
+@import "nojiko/sass/elements";

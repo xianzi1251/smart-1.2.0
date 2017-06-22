@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+.about-us-panel {
+    
+    .logo {
+        width: convert-rem(196px);
+        height: convert-rem(28px);
+        margin: 40px auto 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url(#{$images-path}/logo.png);
+        background-size: convert-rem(196px) auto;
+    }
+
+    .about-us-box {
+        padding: 12px;
+        line-height: 2em;
+
+        p, span {
+            color: $text-color-secondary;
+            @extend %font-size-base;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+
+        img {
+            max-width: 100%;
+            margin-left: -2em;
+        }
+    }
+
+    .about-us-text {
+        margin-bottom: 5px;
+        line-height: 1.5em;
+        text-align: center;
+        color: $text-color-quiet;
+        @extend %font-size-small;
+    }
+
+    .user-version {
+        line-height: 2em;
+        text-align: center;
+        color: $primary-color;
+        @extend %font-size-big;
+    }
+}

@@ -1,0 +1,138 @@
+@charset "utf-8";
+
+.shopping-cart-view {
+    
+    .bar.bar-header {
+
+        .button.button-clear {
+            font-size: 17px;
+        }
+    }
+
+    .cart-list {
+        padding: 0 12px;
+        background-color: $light;
+    }
+
+    .cart-item {
+        margin: 0;
+
+        &:last-child {
+
+            .cart-content {
+                background: none;
+            }
+        }
+
+        .checkbox {
+            padding: 0;
+            margin-right: 12px;
+        }
+    }
+
+    .cart-content {
+        padding: 15px 0;
+        background: superfine-border-bottom($line-color);
+    }
+    
+    .item-img {
+        width: convert-rem(75px);
+        height: convert-rem(110px);
+
+        .img {
+            width: 100%;
+            height: convert-rem(110px);
+        }
+    }
+
+    .item-info {
+        margin-left: convert-rem(75px);
+        padding-left: 12px;
+    }
+
+    .item-title {
+        overflow: hidden;
+        height: 1.5em;
+        line-height: 1.5em;
+        color: $text-color;
+        @extend %font-size-big;
+    }
+
+    .item-content {
+        height: 4.1em;
+        margin: convert-rem(5px) 0 convert-rem(10px);
+        line-height: 1.4em;
+        color: $text-color-secondary;
+        @extend %font-size-base;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+
+    .item-price {
+        line-height: 1.5em;
+        color: $energized;
+        @extend %font-size-base;
+    }
+
+    .cart-footer {
+        padding: 0;
+
+        label.checkbox {
+            width: auto;
+            padding: 0;
+            margin: 0 12px;
+            font-size: 16px;
+        }
+
+        input {
+            margin-right: 5px;
+        }
+
+        .cart-footer-price {
+            color: $text-color-quiet;
+            text-align: right;
+            font-size: 16px;
+
+            .price {
+                color: $energized;
+            }
+        }
+
+        .button {
+            width: convert-rem(100px);
+            height: 43px;
+            min-height: 43px;
+            margin: 0;
+            font-size: 16px;
+            border-radius: 0;
+        }
+    }
+
+    .cart-empty {
+        padding-top: convert-rem(110px);
+        text-align: center;
+
+        .img-cart {
+            margin: 0 auto;
+            width: convert-rem(80px);
+            height: convert-rem(80px);
+            background-image: url(#{$images-path}/icon-empty-cart@2x.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: convert-rem(80px) auto;
+        }
+
+        .text {
+            line-height: 1.2em;
+            font-size: 16px;
+            color: $text-color-secondary;
+            padding-top: convert-rem(20px);
+        }
+    }
+}

@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+.app-tabs  {
+    > .tab-nav {
+        overflow: visible;
+        transition-duration: 500ms;
+        transition-timing-function: cubic-bezier(0.36, 0.66, 0.04, 1);
+        transition-property: all;
+        transform: translate3d(0, 0, 0);
+        background-color: $light;
+    }
+
+    &.hide-tabs > .tab-nav {
+        transform: translate3d(0, 62px, 0);
+    }
+
+    .tab-item {
+        overflow: visible;
+        color: $text-color-quiet;
+        opacity: 1;
+
+        .iconfont {
+            height: 28px;
+            font-size: 26px;
+            line-height: 32px;
+        }
+    }
+
+    .tab-item-active {
+        color: $primary-color;
+    }
+
+    .tab-nav .cm-icon {
+        line-height: 32px;
+    }
+}
+
+.hide-tabs .scroll-content.has-tabs {
+    bottom: 0;
+}

@@ -1,0 +1,32 @@
+<ion-view title="详情" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            详情
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="adv-info-panel light-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="advInfo.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <div class="adv-info">
+            <div ng-if="advInfo.from == 'list'">
+                <div class="adv-title">{{advInfo.adv.label}}</div>
+                <div class="adv-date"><span class="date">{{advInfo.adv.publishTime}}</span>{{advInfo.adv.remark}}</div>
+            </div>
+            <div class="adv-main" ng-bind-html="advInfo.adv.content"></div>
+        </div>
+
+    </ion-content>
+
+</ion-view>

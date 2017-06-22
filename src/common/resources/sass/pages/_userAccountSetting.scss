@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+.user-account-setting-view {
+    padding-top: 12px;
+
+    .bar.bar-header {
+
+        .button.button-submit {
+            font-size: 17px;
+            color: $primary-color;
+        }
+    }
+
+    .setting-row {
+        padding: 8px 0 8px 10px;
+        margin: 0;
+        font-size: 14px;
+        background: superfine-border-bottom($line-color);
+        background-color: $light;
+
+        &:last-child {
+            background: none;
+            background-color: $light;
+        }
+    }
+
+    .setting-txt {
+        color: $text-color;
+        font-size: 13px;
+    }
+
+    .setting-input {
+        width: 100%;
+        padding: 8px 10px;
+        color: $text-color-secondary;
+        text-align: right;
+        font-size: 14px;
+    }
+
+    .setting-text {
+        margin: 15px 0 5px;
+        padding-left: 12px;
+        color: $text-color-secondary;
+        font-size: 13px;
+    }
+
+    .setting-info {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 12px;
+        line-height: 1.2em;
+        font-size: 14px;
+        background-color: $light;
+        resize: none;
+    }
+}

@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+.buy-now-modal-view {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    min-height: 200px;
+    max-height: 100%;
+    overflow: inherit;
+
+    .scroll-content {
+        overflow: inherit;
+    }
+    
+    .item-info {
+        position: relative;
+        height: 135px;
+        padding: 10px 15px 0 140px;
+    }
+    
+    .item-img {
+        position: absolute;
+        top: -20px;
+        left: 15px;
+        width: 110px;
+        height: 140px;
+
+        .img {
+            width: 100%;
+            height: 140px;
+            border-radius: 4px;
+        }
+    }
+
+    .item-name {
+        position: relative;
+        line-height: 1.5em;
+        font-size: 14px;
+        color: $text-color;
+
+        .name {
+            overflow: hidden;
+            height: 1.5em;
+            margin-right: 30px;
+        }
+
+        .iconfont {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 30px;
+            text-align: right;
+            color: $text-color-quiet;
+        }
+    }
+
+    .item-price {
+        padding: 5px 0;
+        font-size: 14px;
+        color: $text-color-quiet;
+
+        .price {
+            color: $primary-color;
+        }
+    }
+
+    .item-describe {
+        max-height: 3.6em;
+        line-height: 1.2em;
+        font-size: 13px;
+        color: $text-color-secondary;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+
+    .item-btn {
+        padding: 15px 15px 0;
+
+        .button {
+            height: 38px;
+            min-height: 38px;
+            margin: 0;
+            padding: 0;
+            line-height: 36px;
+            font-size: 16px;
+        }
+    }
+}

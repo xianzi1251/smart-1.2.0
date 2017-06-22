@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.tabSlideBox-container {
+
+
+    .tabSlideBox-wrap {
+
+        &.initComplete {
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+
+    // .tabSlideBox-item {
+    //
+    //     &.active {
+    //         transition: color 0.3s ease-in-out;
+    //     }
+    // }
+}

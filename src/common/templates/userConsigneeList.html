@@ -1,0 +1,52 @@
+<ion-view title="收货地址" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            收货地址
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="consignee-list-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="userConsigneeList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="userConsigneeList.finishLoading && userConsigneeList.list.length == 0">
+            <div class="img"></div>
+            <div class="text">您还没有收货地址</div>
+        </div>
+
+        <ul>
+            <li class="consignee-item" ng-repeat="consignee in userConsigneeList.list">
+                <div class="item-name row">
+                    <span class="col name">{{consignee.firstName}}</span>
+                    <span class="col col-adaptive">{{consignee.mobile}}</span>
+                </div>
+                <div class="item-info">
+                    {{consignee.districtLabel}}{{consignee.street}}
+                </div>
+                <div class="item-btn">
+                    <i class="icon ion-trash-a" 
+                        ng-click="userConsigneeList.deleteConsignee(consignee.entityAddressId)"><span>删除</span></i>
+                </div>
+            </li>
+        </ul>
+
+    </ion-content>
+
+    <ion-footer-bar class="consignee-footer">
+        <button class="button button-block button-primary" ng-click="userConsigneeList.goAddConsignee()">
+            新增收货地址
+        </button>
+    </ion-footer-bar>
+
+</ion-view>

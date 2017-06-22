@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.comments-info-panel {
+
+    .comment-level {
+        margin-top: 1px;
+        margin-left: 3px;
+    }
+
+    .comment-name {
+        display: inline-block;
+        max-width: 30%;
+        line-height: convert-rem(25px);
+        @include text-overflow-ellipsis;
+        @extend %font-size-base;
+    }
+
+    .comment-time {
+        line-height: convert-rem(25px);
+        color: $text-color-quiet;
+        white-space: nowrap;
+        @extend %font-size-mini;
+    }
+
+    .comment-content {
+        @extend %font-size-small;
+    }
+
+    .comment-img {
+        width: convert-rem(60px);
+        height: convert-rem(60px);
+        border-radius: 5px;
+    }
+
+    .comment-avatar {
+        width: convert-rem(25px);
+        height: convert-rem(25px);
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    .icon {
+        font-size: convert-rem(15px);
+        color: $text-color-quiet;
+    }
+
+    .icon-on {
+        color: $comment-color-active;
+    }
+}

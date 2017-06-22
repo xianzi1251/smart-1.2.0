@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+
+@each $name, $font-sizes in $font-size-map {
+
+    %font-size-#{$name} {
+        @each $breakpoint, $size in $font-sizes {
+            $breakpoint-value: map-get($font-size-breakpoints, $breakpoint);
+
+            @if $breakpoint-value == null {
+                font-size: $size;
+            }
+            @else {
+                @media screen and (min-width: $breakpoint-value) {
+                    font-size: $size;
+                }
+            }
+        }
+    }
+}

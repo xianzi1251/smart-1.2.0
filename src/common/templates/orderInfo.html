@@ -1,0 +1,92 @@
+<ion-view title="订单详情" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            订单详情
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="order-info-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="orderInfo.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+        
+        <div class="order-info-top">
+            <div class="order-status row">
+                <div class="col"><i class="iconfont icon-dingdanzhuangtai"></i>订单状态</div>
+                <div class="col col-adaptive status">{{orderInfo.info.orderStatusLabel}}</div>
+            </div>
+            <div class="order-info">
+                <!-- <p class="info">订单总计：<span class="txt">¥12.90</span></p> -->
+                <p class="info">订单编号：<span class="txt">{{orderInfo.info.orderNumber}}</span></p>
+            </div>
+        </div>
+
+        <!-- <div class="order-steps"></div> -->
+
+        <div class="order-consignee row" ng-if="!orderInfo.bytSwitch && orderInfo.consignee">
+            <i class="col col-adaptive col-top iconfont icon-dizhi"></i>
+            <div class="col">
+                <div class="consignee-name">
+                    <span class="name">{{orderInfo.consignee.firstName}}</span>{{orderInfo.consignee.mobile}}
+                </div>
+            <div class="consignee-address">{{orderInfo.consignee.districtLabel}}{{orderInfo.consignee.street}}</div>
+            </div>
+        </div>
+
+        <div class="order-items">
+            <div class="items-title">
+                <i class="iconfont icon-gouwu"></i> 商品清单
+            </div>
+            <ul>
+                <li class="order-item clearfix" 
+                    ng-repeat="item in orderInfo.items"
+                    ng-click="orderInfo.goProductInfo(item.entityName, item.genreName)">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-name">{{item.title}}</div>
+                        <div class="item-content">{{item.subtitle}}</div>
+                        <div class="item-price">{{item.price | currency: '¥'}}/年</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="order-row">
+            <p class="order-row-cont row">
+                <span class="col col-tit">支付方式</span>
+                <span class="col col-txt">{{orderInfo.info.paymentType}}</span>
+            </p>
+            <p class="order-row-amount">
+                <span>实付款：</span>
+                <span class="amount">{{orderInfo.info.payAmount | currency: '¥'}}</span>
+            </p>
+            <p class="order-date">下单时间：{{orderInfo.info.placedTime}}</p>
+        </div>
+        
+    </ion-content>
+
+    <ion-footer-bar class="order-info-footer" ng-show="orderInfo.info.orderStatus == 1">
+        <ul class="row">
+            <li class="footer-item col">
+                <button class="button button-block button-light" 
+                    ng-click="orderInfo.cancle()">取消订单</button>
+            </li>
+            <li class="footer-item col">
+                <button class="button button-block button-primary"
+                    ng-click="orderInfo.pay()">立即支付</button>
+            </li>
+        </ul>
+    </ion-footer-bar>
+
+</ion-view>

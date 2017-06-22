@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+@import "cm-switch/src/switch.scss";
+
+.ui-switch {
+    .slider-pager-page {
+        color: $light;
+    }
+
+    .ui-switch-nav {
+        bottom: 10px;
+        height: 2px;
+        line-height: 2px;
+    }
+
+    .ui-switch-nav-item {
+        width: 15px;
+        height: 2px;
+        margin: 0 3px;
+        font-size: 0;
+        transform: translateZ(0);
+        background-color: $light;
+        opacity: 0.4;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+}

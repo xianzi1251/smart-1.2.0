@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+.adv-info-panel {
+
+    .adv-info {
+        padding: 12px;
+    }
+    
+    .adv-title {
+        line-height: 1.2em;
+        color: $text-color;
+        @extend %font-size-huge;
+    }
+
+    .adv-date {
+        margin: 5px 0 10px;
+        line-height: 1.4em;
+        color: $text-color-secondary;
+        @extend %font-size-big;
+
+        .date {
+            margin-right: 20px;
+        }
+    }
+
+    .adv-info-scorll {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: visible;
+    }
+
+    .adv-main {
+        line-height: 2em;
+
+        p, span {
+            color: $text-color-secondary;
+            @extend %font-size-base;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+
+        img {
+            max-width: 100%;
+            margin-left: -2em;
+        }
+    }
+}

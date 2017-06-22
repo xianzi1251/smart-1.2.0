@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+.consignee-list-panel {
+    
+    .consignee-item {
+    	padding: 5px 12px 10px;
+    	margin-bottom: 8px;
+    	background-color: $light;
+    }
+
+    label.checkbox {
+        margin-right: 5px;
+        padding: 0;
+    }
+
+    .item-name {
+		line-height: 2em;
+		color: $text-color;
+    	@extend %font-size-base;
+
+    	.name {
+    		overflow: hidden;
+    		height: 2em;
+    	}
+    }
+
+    .item-info {
+    	line-height: 1.5em;
+    	color: $text-color-secondary;
+    	@extend %font-size-small;
+    }
+
+    .item-btn {
+        line-height: 1.5em;
+        text-align: right;
+        color: $text-color-quiet;
+        @extend %font-size-base;
+
+        .icon {
+            padding: 8px;
+            font-size: 18px;
+        }
+
+        span {
+            padding-left: 5px;
+            @extend %font-size-base;
+        }
+    }
+}
+
+// 收货人信息 - 底部新增
+.consignee-footer {
+    border-top: none;
+    background-image: none;
+
+    .button {
+        margin: 0;
+        font-size: 15px;
+    }
+}

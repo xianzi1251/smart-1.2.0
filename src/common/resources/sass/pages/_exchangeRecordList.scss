@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+.exchange-record-list-view {
+    
+    .record-list {
+    	padding: 20px 12px;
+    }
+
+    .record-item {
+    	padding: 20px 10px;
+    	margin-bottom: 12px;
+    	background-color: $light;
+    	border-radius: 3px;
+    }
+
+    .item-content-row {
+    	line-height: 1.25em;
+    	color: $text-color-quiet;
+    	@extend %font-size-base;
+
+    	&.content {
+    		margin-bottom: 8px;
+	    	color: $text-color;
+	    }
+
+	    .date {
+	    	@extend %font-size-mini;
+	    }
+    }
+}

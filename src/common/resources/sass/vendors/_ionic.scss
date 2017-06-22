@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+// ionic configs
+// =============================================================================
+
+$ionicons-font-path:              "../../libs/ionic/release/fonts";
+
+$font-family-base:                $font-family;
+$base-background-color:           $background-color;
+$base-color:                      $text-color;
+$link-hover-color:                $link-focus-color;
+$content-padding:                 10px;
+$padding-base-vertical:           map-get(map-get($element-box-maps, m), padding-vertical);
+$padding-base-horizontal:         map-get(map-get($element-box-maps, m), padding-horizontal);
+$padding-large-vertical:          map-get(map-get($element-box-maps, l), padding-vertical);
+$padding-large-horizontal:        map-get(map-get($element-box-maps, l), padding-horizontal);
+$padding-small-vertical:          map-get(map-get($element-box-maps, s), padding-vertical);
+$padding-small-horizontal:        map-get(map-get($element-box-maps, s), padding-horizontal);
+$border-radius-base:              map-get(map-get($element-box-maps, m), border-radius);
+$border-radius-large:             map-get(map-get($element-box-maps, l), border-radius);
+$border-radius-small:             map-get(map-get($element-box-maps, s), border-radius);
+
+$input-color-placeholder:         $placeholder-color;
+
+$item-padding:                    10px;
+
+$button-height:                   40px - 5px;
+$button-padding:                  10px;
+
+$button-small-height:             30px - 2px;
+$button-small-font-size:          $font-size-base;
+$button-small-padding:            10px / 2;
+
+$toast-text-color:                #f6f6f6;
+$toast-bg-color:                  rgba(0,0,0,0.5);
+$toast-padding:                   12px;
+$toast-border-radius:             5px;
+$toast-font-size:                 15px;
+
+$toast-backdrop-fadein-duration:  0.1s;
+$toast-backdrop-bg-color:         rgba(0,0,0,0.4);
+$z-index-toast:                   13;
+
+// 因为有一些 ionic 中提供的模块需要替换（比如栅格），因此这里没有引入 ionic 的主文件，而是分别引入 ionic 各个模块。
+@import
+  // Ionicons
+  "ionic/scss/ionicons/ionicons.scss",
+
+  // Variables
+  "ionic/scss/mixins",
+  "ionic/scss/variables",
+
+  // Base
+  "ionic/scss/reset",
+  "ionic/scss/scaffolding",
+  "ionic/scss/type",
+
+  // Components
+  "ionic/scss/action-sheet",
+  "ionic/scss/backdrop",
+  "ionic/scss/bar",
+  "ionic/scss/tabs",
+  "ionic/scss/menu",
+  "ionic/scss/modal",
+  "ionic/scss/popover",
+  "ionic/scss/popup",
+  "ionic/scss/loading",
+  "ionic/scss/items",
+  "ionic/scss/list",
+  "ionic/scss/badge",
+  "ionic/scss/slide-box",
+  "ionic/scss/slides",
+  "ionic/scss/refresher",
+  "ionic/scss/spinner",
+
+  // Forms
+  "ionic/scss/form",
+  /* "ionic/scss/checkbox", */
+  "ionic/scss/toggle",
+  "ionic/scss/radio",
+  "ionic/scss/range",
+  "ionic/scss/select",
+  "ionic/scss/progress",
+
+  // Buttons
+  "ionic/scss/button",
+  "ionic/scss/button-bar",
+
+  // Util
+  /* "grid", */
+  "ionic/scss/util",
+  "ionic/scss/platform",
+
+  // Animations
+  "ionic/scss/animations",
+  "ionic/scss/transitions";

@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+.payment-order-success-modal-view {
+
+    .success {
+        padding: convert-rem(35px) 0 convert-rem(20px);
+        background-color: $light;
+    }
+    
+    .success-icon {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+
+        .iconfont {
+            color: $balanced;
+            font-size: 55px;
+        }       
+    }
+
+    .success-text {
+        line-height: 2em;
+        text-align: center;
+        color: $text-color-secondary;
+        @extend %font-size-big;
+    }
+
+    .success-btn-row {
+        overflow: hidden;
+        padding: convert-rem(20px) convert-rem(15px);
+    }
+
+    .success-btn {
+        width: 45%;
+
+        .button {
+            min-height: 2em;
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5em;
+        }
+
+        .button-stable.button-outline {
+            color: $text-color-secondary;
+
+            &.activated {
+                color: $light;
+            }
+        }
+    }
+}

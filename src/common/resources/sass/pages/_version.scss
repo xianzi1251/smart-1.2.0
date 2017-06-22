@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.version-panel {
+
+    .version-box {
+        padding: 12px;
+        line-height: 2em;
+
+        p, span {
+            color: $text-color-secondary;
+            @extend %font-size-base;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+
+        img {
+            max-width: 100%;
+            margin-left: -2em;
+        }
+    }
+}

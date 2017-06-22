@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+.select-address-region-view {
+
+	.item-divider {
+		color: $primary-color;
+	}
+
+    .item {
+        line-height: 1.5em;
+        @extend %font-size-base;
+        background: superfine-border-bottom($line-color);
+        border: none;
+    }
+}

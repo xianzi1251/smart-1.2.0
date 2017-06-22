@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+$tab-height:   40px;    // tab切换条高度
+
+.dynamic-tabs {
+    position: relative;
+    display: block;
+    height: $tab-height;
+    background-color: $light;
+}
+
+.ionic-scroll.dynamic-tabs-scroll {
+    box-sizing: content-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    margin: 0;
+    height: $tab-height;
+    background-color: $light;
+
+    .tabs-container {
+        position: relative;
+        line-height: 0;
+        white-space: nowrap;
+
+        &.fill-mode {
+            display: flex;
+        }
+    }
+}
+
+.dynamic-tab-item {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
+    line-height: $tab-height;
+    height: $tab-height;
+    font-size: $font-size-small;
+    text-align: center;
+
+    .tab-item-text {
+
+         &:before {
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            bottom: 0;
+            z-index: 1;
+            height: 2px;
+            background-color: $line-color;
+            content: '';
+        }
+    }
+
+    &.activated {
+        .tab-item-text {
+            color: $primary-color;
+        }
+    }
+
+    &.active {
+        .tab-item-text {
+            color: $primary-color;
+
+            &:after {
+                position: absolute;
+                bottom: 0;
+                left: -5px;
+                right: -5px;
+                z-index: 10;
+                height: 2px;
+                background-color: $primary-color;
+                content: '';
+            }
+        }
+    }
+
+    .tab-item-text {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        white-space: nowrap;
+    }
+}

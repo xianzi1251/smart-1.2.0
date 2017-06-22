@@ -1,0 +1,43 @@
+<ion-modal-view title="收货地址">
+
+    <ion-header-bar class="bar-primary">
+        <button class="button button-clear left-btn" ng-click="modals.checkoutConsigneeList.close()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">收货地址</h1>
+    </ion-header-bar>
+
+    <ion-content class="consignee-list-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="checkoutConsigneeList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <ul>
+            <li class="consignee-item row" ng-repeat="consignee in checkoutConsigneeList.list"
+                ng-click="checkoutConsigneeList.selected(consignee, $event)">
+                <label class="checkbox col col-center col-adaptive">
+                    <input type="checkbox" ng-model="consignee.selected"
+                        ng-change="checkoutConsigneeList.selected(consignee, $event)" />
+                </label>
+                <div class="col col-center">
+                    <div class="item-name row">
+                        <span class="col name">{{consignee.firstName}}</span>
+                        <span class="col col-adaptive">{{consignee.mobile}}</span>
+                    </div>
+                    <div class="item-info">
+                        {{consignee.districtLabel}}{{consignee.street}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </ion-content>
+
+    <ion-footer-bar class="consignee-footer">
+        <button class="button button-block button-primary" ng-click="checkoutConsigneeList.goAddConsignee()">
+            新增收货地址
+        </button>
+    </ion-footer-bar>
+
+</ion-modal-view>

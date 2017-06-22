@@ -1,0 +1,28 @@
+<ion-view class="comment-view stable-bg" title="点评" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button button-clear" ng-click="goBack()">取消</button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            点评
+        </div>
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear" ng-click="comment.submit()">完成</button>
+            </span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="comment-panel" scroll="false">
+
+        <p class="comment-text">点击星星来评分</p>
+        <cm-comment-level ng-model="comment.score"></cm-comment-level>
+        <textarea class="comment-content" placeholder="写下你的点评" 
+            ng-model="comment.content" rows="8"></textarea>
+
+    </ion-content>
+
+</ion-view>

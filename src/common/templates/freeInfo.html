@@ -1,0 +1,60 @@
+<ion-view class="free-info-view" title="试读" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            试读
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="!freeInfo.sellAbled">
+            <div class="img"></div>
+            <div class="text">暂无商品信息</div>
+        </div>
+
+        <div class="light-bg pb" ng-if="freeInfo.sellAbled">
+            <!-- banner图 -->
+            <div class="banner stable-bg" ng-if="freeInfo.genreName != 'video'">
+                <img class="img" ng-src="{{freeInfo.baseData.picUrl}}" />
+            </div>
+
+            <!-- 视频 -->
+            <div class="video-info-container mb" id="video-container" 
+                ng-if="freeInfo.genreName == 'video'"
+                cm-video="freeInfo.videoUrl">
+            </div>
+
+            <!-- 音频 -->
+            <div ng-if="freeInfo.genreName == 'radio'">
+                <audio controls="controls" style="width: 100%">
+                    <source ng-src="{{freeInfo.videoUrl}}" type="video/webm" >
+                    <source ng-src="{{freeInfo.videoUrl}}" type="audio/ogg">
+                    <source ng-src="{{freeInfo.videoUrl}}" type="audio/mpeg">
+                    您的浏览器版本过低不能支持html5视频标签
+                </audio>
+            </div>
+
+            <!-- 商品title -->
+            <div class="free-info-title">{{freeInfo.baseData.title}}</div>
+
+            <!-- 简介 -->
+            <div class="free-content" ng-bind-html="freeInfo.baseData.content"></div>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

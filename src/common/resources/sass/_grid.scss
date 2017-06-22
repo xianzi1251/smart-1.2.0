@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+// 栅格列数
+$hina-column-number: 12 !default;
+
+// 槽宽；px，2 的倍数
+$hina-gutter-width:  10px !default;
+
+/// 创建栅格布局
+/// @param $column-number {Number} 列数
+/// @param $gutter-width {Number|px} 槽宽
+@mixin grid($column-number, $gutter-width) {
+
+    // 半槽宽
+    $half-gutter-width: $gutter-width / 2;
+
+    .container {
+        margin: {
+            left: auto;
+            right: auto;
+        }
+
+        padding: {
+            left: $half-gutter-width;
+            right: $half-gutter-width;
+        }
+    }
+
+    .row {
+        display: flex;
+
+        margin: {
+            left: -$half-gutter-width;
+            right: -$half-gutter-width;
+        }
+
+        // .row 元素作为一个容器元素，一般不会被应用在 flex 容器元素中，
+        // 不过若出现这种情况，则默认设置其扩展比例为 1。
+        flex: 1;
+    }
+
+    .row-top {
+        align-items: flex-start;
+    }
+
+    .row-bottom {
+        align-items: flex-end;
+    }
+
+    .row-center {
+        align-items: center;
+    }
+
+    .row-stretch {
+        align-items: stretch;
+    }
+
+    .row-baseline {
+        align-items: baseline;
+    }
+
+    .row-no-gutter {
+        margin: {
+            left: 0;
+            right: 0;
+        }
+
+        > .col {
+            padding: {
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+
+    .col {
+        display: block;
+        flex: 1;
+        width: 100%;
+
+        padding: {
+            left: $half-gutter-width;
+            right: $half-gutter-width;
+        }
+
+        @for $i from 1 through $column-number - 1 {
+            .col-#{$i} {
+                $width: 100% * ($i / $column-number);
+                flex: 0 0 $width;
+                max-width: $width;
+            }
+        }
+    }
+
+    .col-adaptive {
+        flex: 0 1 auto;
+        width: auto;
+    }
+
+    .col-top {
+        align-self: flex-start;
+    }
+
+    .col-bottom {
+        align-self: flex-end;
+    }
+
+    .col-center {
+        align-self: center;
+    }
+}
+
+@include grid($hina-column-number, $hina-gutter-width);

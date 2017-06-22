@@ -1,0 +1,25 @@
+<!-- 选择地区弹出层 -->
+<ion-modal-view class="select-address-region-view">
+
+    <ion-header-bar class="bar-primary">
+        <button class="button button-clear left-btn" ng-click="modals.selectAddressRegion.close()">取消</button>
+        <h1 class="title">收货地区</h1>
+    </ion-header-bar>
+
+    <ion-content delegate-handle="regionDelegate">
+
+        <ion-list class="select-region-list">
+            <div class="item item-divider" ng-if="selectAddressRegion.selectedRegions.length > 0" 
+                ng-click="selectAddressRegion.backspace()">
+                {{selectAddressRegion.selectedRegionsName}}
+                <span class="icon ion-close-circled"></span>
+            </div>
+            <ion-item ng-repeat="region in selectAddressRegion.regionItems"
+                      ng-click="selectAddressRegion.selectRegion(region)">
+                {{region.label}}
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+
+</ion-modal-view>

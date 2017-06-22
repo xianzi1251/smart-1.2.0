@@ -1,0 +1,62 @@
+<ion-view title="积分兑换" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            积分兑换
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="exchange-list-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="exchangeList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <div class="exchange-score">
+            <div class="score-tips">半月谈时政教育 VIP积分</div>
+            <div class="score-amount">{{exchangeList.amount}}</div>
+        </div>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="exchangeList.finishLoading && exchangeList.list.length == 0">
+            <div class="img"></div>
+            <div class="text">暂无兑换信息</div>
+        </div>
+
+        <ul class="exchange-list light-bg">
+            <li class="exchange-item clearfix" 
+                ng-repeat="item in exchangeList.list"
+                ng-click="exchangeList.goVideoList(item)">
+                <div class="item-img fl"></div>
+                <div class="item-info">
+                    <div class="item-name">{{item.refName}}</div>
+                    <div class="item-score row">
+                        <div class="score col">
+                            <span class="amount">{{item.quantity}}</span>积分
+                        </div>
+                        <div class="score-text col col-adaptive" ng-if="item.exchanged">
+                            已兑换
+                        </div>
+                        <div class="score-btn col col-adaptive" ng-if="!item.exchanged"
+                            ng-click="exchangeList.exchange(item)">
+                            <button class="button button-block button-energized">兑换</button>
+                        </div>
+                    </div>
+                    <div class="item-time">有效期：一年</div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="exchange-tips"
+            ng-if="exchangeList.list.length > 0">VIP使用方式: 可以在分类下免费使用该分类任何视频及图书</div>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+.login-panel {
+
+    .scroll {
+        height: 100%;
+    }
+    
+    .login-bottom-row {
+        margin-top: 20px;
+
+        .col:first-child {
+            position: relative;
+
+            &:after {
+                position: absolute;
+                top: 14px;
+                right: 0;
+                width: 1px;
+                height: 12px;
+                background-color: $line-color;
+                content: '';
+            }
+        }
+
+        .button {
+            padding: 0 10px;
+            font-size: 14px;
+
+            &.button-register {
+                color: $positive;
+            }
+
+            &.button-look {
+                color: $text-color-secondary;
+            }
+        }
+    }
+
+    .form-btn {
+        margin-top: 0;
+    }
+}

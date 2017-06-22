@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+.exchange-rule-panel {
+    
+    .rule-content {
+        padding: 25px 12px;
+        line-height: 1.5em;
+        color: $text-color-secondary;
+        @extend %font-size-small;
+
+        span {
+        	@extend %font-size-base;
+        }
+
+        .txt-right {
+        	text-align: right;
+        	@extend %font-size-base;
+        }
+    }
+}

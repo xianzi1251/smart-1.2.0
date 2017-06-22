@@ -1,0 +1,80 @@
+<ion-view class="shopping-cart-view stable-bg" title="购物车" cm-hide-tabs="false">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            购物车
+        </div>
+        <div class="buttons buttons-right" ng-if="cart.data.items.length > 0">
+            <span class="right-buttons">
+                <button class="button button-clear" ng-click="cart.toggleEditMode()">
+                    <span ng-show="cart.mode == 1">编辑</span>
+                    <span ng-show="cart.mode == 2">完成</span>
+                </button>
+            </span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="cart.refresh({showLoading: false, emptyData: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="cart-empty" ng-if="cart.data.items.length == 0">
+            <div class="img-cart"></div>
+            <div class="text">购物车空空如也<br />来挑几件好货吧</div>
+        </div>
+
+        <ul class="cart-list">
+            <li class="cart-item row" ng-repeat="item in cart.data.items">
+                <label class="checkbox col col-center col-adaptive">
+                    <input type="checkbox" ng-model="item.selected"
+                        ng-change="cart.changeItemSelected($index)" />
+                </label>
+                <div class="cart-content clearfix col"
+                    ng-click="cart.goProductInfo(item.sku.attributes.entityName, item.sku.attributes.genreName)">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.sku.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-title">{{item.sku.title}}</div>
+                        <div class="item-content">{{item.sku.attributes.subtitle}}</div>
+                        <div class="item-price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </ion-content>
+
+    <ion-footer-bar class="cart-footer stable-bg" ng-if="cart.data.items.length > 0">
+        <div class="row">
+            <label class="checkbox col col-center col-adaptive">
+                <input class="fl" type="checkbox" ng-model="cart.cartSelected"
+                    ng-change="cart.changeCartSelected()" />全部
+            </label>
+            <label class="cart-footer-price col col-center" ng-if="cart.mode == 1">
+                合计：<span class="price">{{cart.selectedPrice | currency: '¥'}}</span>
+            </label>
+            <div class="cart-footer-btn col col-adaptive" ng-if="cart.mode == 1">
+                <button class="button button-block button-primary"
+                    ng-click="cart.submit()"
+                    ng-disabled="!cart.selectedAmount">结算({{cart.selectedAmount}})</button>
+            </div>
+            <label class="cart-footer-price col col-center" ng-if="cart.mode == 2"></label>
+            <div class="cart-footer-btn col col-adaptive" ng-if="cart.mode == 2">
+                <button class="button button-block button-primary"
+                    ng-click="cart.deleteItem()">删除</button>
+            </div>
+        </div>
+    </ion-footer-bar>
+
+</ion-view>
