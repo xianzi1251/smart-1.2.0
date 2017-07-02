@@ -48,6 +48,12 @@ hooks/**
 # 过滤plugins文件
 plugins/**
 
+# 过滤dist文件
+dist/**
+
+# 过滤release文件
+release/**
+
 
 #-----------------------------
 # Windows

@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+.platform-ios.platform-cordova {
+    .title.logo-title {
+        top: 12px !important;
+    }
+}
+
 .bar {
 
     .logo-title {
@@ -10,6 +16,10 @@
         background-repeat: no-repeat;
         background-size: 140px 20px;
         background-position: center;
+    }
+
+    .title.logo-title {
+        top: 5px;
     }
 }
 
