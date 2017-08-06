@@ -85,6 +85,18 @@ angular.module('app.controllers').controller('userCtrl', function(
             $state.go('tabs.exchangeCode');
         },
 
+        // 离线中心
+        goDownloadVideoList: function() {
+            nativeTransition.forward();
+            $state.go('tabs.downloadVideoList');
+        },
+
+        // 观看记录
+        goViewVideoList: function() {
+            // nativeTransition.forward();
+            // $state.go('tabs.viewVideoList');
+        },
+
         // 收货地址
         goConsigneeList: function() {
             var stateName = stateUtils.getStateNameByCurrentTab('userConsigneeList');

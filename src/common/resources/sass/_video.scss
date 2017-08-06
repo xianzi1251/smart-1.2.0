@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+.videogular-container {
+    height: 320px;
+
+    .video-time {
+        font-size: 12px;
+    }
+
+    .overlay-play {
+
+        .play:before {
+            font-size: 30px;
+        }
+    }
+}
+

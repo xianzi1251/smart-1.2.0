@@ -7,7 +7,8 @@
         <meta name="format-detection" content="telephone=no">
         <title>半月谈教育</title>
 
-        <script src="cordova.js"></script>
+        <link rel="stylesheet" href="libs/videogular-themes-default/videogular.css">
+
         <!-- build:js rem.js -->
         <script src="rem.js"></script>
         <!-- endbuild -->
@@ -33,7 +34,13 @@
         <script src="libs/cm-switch/src/switch.js"></script>
         <script src="libs/ng-flow/dist/ng-flow-standalone.js"></script>
         <script src="libs/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+        <script src="libs/videogular/videogular.js"></script>
+        <script src="libs/videogular-controls/vg-controls.js"></script>
+        <script src="libs/videogular-overlay-play/vg-overlay-play.js"></script>
+        <script src="libs/ngCordova/dist/ng-cordova.js"></script>
         <!-- endbuild -->
+
+        <script src="cordova.js"></script>
 
         <!-- build:js app.js -->
 
@@ -44,6 +51,7 @@
         <script src="lang.en.js"></script>
         <script src="lang.zh-CN.js"></script>
         <script src="stateCode.js"></script>
+        <script src="mime.js"></script>
         <script src="TcPlayer.js"></script>
 
         <!-- mobile module's files -->
@@ -172,6 +180,7 @@
         <script src="controllers/userConsigneeList.js"></script>
         <script src="controllers/consigneeAdd.js"></script>
         <script src="controllers/selectAddressRegion.js"></script>
+        <script src="controllers/downloadVideoList.js"></script>
 
         <script src="controllers/login.js"></script>
         <script src="controllers/register.js"></script>
@@ -190,8 +199,8 @@
         <script src="controllers/sliderList.js"></script>
 
         <script src="controllers/upgrade.js"></script>
-
         <!-- endbuild -->
+
         <link rel="stylesheet" href="resources/css/main.css" />
 
     </head>
