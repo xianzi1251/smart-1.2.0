@@ -73,6 +73,26 @@
                 </div>
             </li>
 
+            <li class="user-item row" ng-click="user.goDownloadVideoList()">
+                <i class="icon ion-ios-cloud-download-outline icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">离线中心</span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <li class="user-item row" ng-click="user.goViewVideoList()">
+                <i class="icon ion-ios-film-outline icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">观看记录</span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
             <li class="user-item row" ng-click="user.goConsigneeList()"
                 ng-if="!user.bytSwitch">
                 <i class="iconfont icon-dizhi icon-left col col-adaptive"></i>

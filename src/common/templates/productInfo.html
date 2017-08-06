@@ -9,6 +9,14 @@
             </span>
         </div>
         <div class="title title-center header-item logo-title"></div>
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button back-button buttons button-clear button header-item" 
+                    ng-click="productInfo.downloadAttachment()">
+                    <i class="icon ion-ios-arrow-thin-down"></i>
+                </button>
+            </span>
+        </div>
     </ion-header-bar>
 
     <ion-content class="stable-bg" delegate-handle="infoScroll">
@@ -24,9 +32,30 @@
         </div>
 
         <div ng-if="productInfo.sellAbled">
+            <p>{{productInfo.downloadProgress}}</p>
             <!-- banner图 -->
             <div class="product-info-banner">
                 <img class="img" src="{{productInfo.baseData.picUrl}}" />
+            </div>
+
+            <div class="videogular-container">
+                <videogular vg-theme="productInfo.config.theme.url">
+                    <vg-media vg-src="productInfo.config.sources"
+                              vg-tracks="productInfo.config.tracks">
+                    </vg-media>
+
+                    <vg-controls>
+                        <vg-play-pause-button></vg-play-pause-button>
+                        <vg-time-display class="video-time">{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        </vg-scrub-bar>
+                        <vg-time-display class="video-time">{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+                        <vg-fullscreen-button></vg-fullscreen-button>
+                    </vg-controls>
+
+                    <vg-overlay-play class="overlay-play"></vg-overlay-play>
+                </videogular>
             </div>
 
             <!-- 商品基本信息 -->

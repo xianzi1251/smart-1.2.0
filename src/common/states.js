@@ -163,6 +163,26 @@ angular.module('app')
             }
         },
 
+        'tabs.downloadVideoList': {
+            url: '/downloadVideoList',
+            views: {
+                user: {
+                    templateUrl: 'templates/downloadVideoList.html',
+                    controller: 'downloadVideoListCtrl as downloadVideoList'
+                }
+            }
+        },
+
+        'tabs.viewVideoList': {
+            url: '/viewVideoList',
+            views: {
+                user: {
+                    templateUrl: 'templates/viewVideoList.html',
+                    controller: 'viewVideoListCtrl as viewVideoList'
+                }
+            }
+        },
+
         'tabs.shoppingCart': {
             url: '/shoppingCart',
             views: {

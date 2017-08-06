@@ -4,8 +4,8 @@
 _.assign(window.APP_CONFIG, {
     os: ionic.Platform.platform(),
     osVersion: ionic.Platform.version(),
-    // serviceAPI: 'http://byt.smartcloudcn.com'
-    serviceAPI: 'http://app.banyuetan.org:88'
+    serviceAPI: 'http://byt.smartcloudcn.com:81'
+    // serviceAPI: 'http://app.banyuetan.org:88'
 });
 
 
@@ -112,6 +112,73 @@ app.run(function($ionicPlatform, $rootScope, $ionicHistory, $translate, nativeTr
         };
         $ionicPlatform.registerBackButtonAction(backButtonHandler, 101);
     });
+});
+
+// 初始化app的下载目录
+app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
+    var deferred = $q.defer();
+    var folderName = 'bytDownload/cache';
+
+    /**
+     * cordova.file.dataDirectory 不同平台对应位置如下
+     *  android:'data/data/<app-id>/files/'
+     *  IOS:'/var/mobile/Applications/<UUID>/Library/NoCloud/'
+     */
+    
+    $ionicPlatform.ready(function() {
+        if (window.cordova) {
+
+            /**
+             * 因android平台,apk类型的文件放到cordova.file.dataDirectory下,将无法正常安装
+             */
+            if (ionic.Platform.isAndroid()) {
+                // 初始化android平台的下载目录
+                $rootScope.downloadPath = cordova.file.externalRootDirectory + folderName + '/';
+
+                createDir(cordova.file.externalRootDirectory, folderName)
+                    .then(function (success) {
+                        $rootScope.downloadPath = success.nativeURL;
+
+                        deferred.resolve(success);
+                    }, function (error) {
+                        console.log("[download] init android platform's download dir occurred error :" + angular.toJson(error));
+
+                        deferred.reject(error);
+                });
+            } else {
+                // 初始化IOS平台的下载目录
+                $rootScope.downloadPath = cordova.file.documentsDirectory + folderName + '/';
+
+                createDir(cordova.file.documentsDirectory, folderName)
+                    .then(function (success) {
+                        $rootScope.downloadPath = success.nativeURL;
+
+                        deferred.resolve(success);
+                    }, function (error) {
+                        console.log("[download] init IOS platform's download dir occurred error :" + angular.toJson(error));
+
+                        deferred.reject(error);
+                    });
+            }
+        }
+    });
+
+    // 创建下载视频的文件夹
+    function createDir(path, directory) {
+        var deferred = $q.defer();
+
+        $cordovaFile.createDir(path, directory, true)
+            .then(function (success) {
+                deferred.resolve(success);
+            }, function (error) {
+                console.log('[download] create dir occurred error :' + angular.toJson(error));
+
+                deferred.reject(error);
+        });
+
+      return deferred.promise;
+    }
+
 });
 
 // 平台相关的路由状态

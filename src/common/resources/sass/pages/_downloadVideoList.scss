@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+.download-video-list-panel {
+
+    .video-list {
+        padding: 0 12px;
+        background-color: #fff;
+    }
+
+    .video-item {
+        padding: 12px 0;
+        @extend %font-size-big;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+    }
+
+    .video-play {
+        font-size: 20px;
+        color: $primary-color;
+    }
+
+    .video-text {
+        line-height: 1.5em;
+        max-height: 3em;
+        margin: 0;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+}
