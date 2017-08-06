@@ -39,15 +39,32 @@
                     <input type="checkbox" ng-model="item.selected"
                         ng-change="cart.changeItemSelected($index)" />
                 </label>
-                <div class="cart-content clearfix col"
-                    ng-click="cart.goProductInfo(item.sku.attributes.entityName, item.sku.attributes.genreName)">
-                    <div class="item-img fl">
+                <div class="cart-content clearfix col">
+                    <div class="item-img fl" 
+                        ng-click="cart.goProductInfo(item.sku.attributes.entityName, item.sku.attributes.genreName)">
                         <img class="img" cm-lazyload="item.sku.picUrl" load-immediate="true" />
                     </div>
                     <div class="item-info">
-                        <div class="item-title">{{item.sku.title}}</div>
-                        <div class="item-content">{{item.sku.attributes.subtitle}}</div>
-                        <div class="item-price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</div>
+                        <div class="item-title" 
+                            ng-click="cart.goProductInfo(item.sku.attributes.entityName, item.sku.attributes.genreName)">{{item.sku.title}}
+                        </div>
+                        <div class="item-content" 
+                            ng-click="cart.goProductInfo(item.sku.attributes.entityName, item.sku.attributes.genreName)">{{item.sku.attributes.subtitle}}
+                        </div>
+                        <div class="item-price">
+                            <span class="price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</span>
+                            <div class="item-counter">
+                                <span ng-if="cart.mode == 1">x{{item.quantity}}</span>
+                                <cm-counter ng-if="cart.mode == 2"
+                                            ng-model="item.quantity"
+                                            data-max-num="999"
+                                            data-min-num="1"
+                                            data-input-readonly="true"
+                                            data-delay-trigger-change="true"
+                                            on-change="cart.changeNumber(item)">
+                                </cm-counter>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -55,7 +72,7 @@
 
     </ion-content>
 
-    <ion-footer-bar class="cart-footer stable-bg" ng-if="cart.data.items.length > 0">
+    <ion-footer-bar class="cart-footer stable-bg" ng-show="cart.data.items.length > 0">
         <div class="row">
             <label class="checkbox col col-center col-adaptive">
                 <input class="fl" type="checkbox" ng-model="cart.cartSelected"

@@ -91,6 +91,17 @@ angular.module('app.services').factory('cartService', function(
         },
 
         /**
+         * 修改购物车中商品数量
+         */
+        changeNumber: function(id, number) {
+            return api.post('/cosmos.json?domain=scommerce&command=SC_ORD_CART_UPDATE_ACTION', {
+                    proName: 'SC_ORD_CART_UPDATE_ACTION',
+                    orderItemId: id,
+                    nums: number
+                });
+        },
+
+        /**
          * 加入购物车
          */
         addToCart: function(sku) {

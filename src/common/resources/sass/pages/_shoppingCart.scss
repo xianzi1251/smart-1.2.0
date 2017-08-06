@@ -75,9 +75,41 @@
     }
 
     .item-price {
+        position: relative;
         line-height: 1.5em;
-        color: $energized;
         @extend %font-size-base;
+
+        .price {
+            color: $energized;
+        }
+    }
+
+    .item-counter {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .counter-dec,
+        .counter-inc,
+        .counter-num {
+            box-sizing: content-box;
+            padding: 0;
+            height: convert-rem(18px);
+            line-height: convert-rem(18px);
+            background-color: $light;
+            color: $dark;
+            font-size: $font-size-small-rem;
+        }
+
+        .counter-inc,
+        .counter-dec {
+            width: convert-rem(23px);
+            overflow: hidden;
+        }
+
+        .counter-num {
+            width: convert-rem(34px);
+        }
     }
 
     .cart-footer {

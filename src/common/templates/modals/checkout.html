@@ -41,7 +41,10 @@
                 <div class="item-info">
                     <div class="item-title">{{item.sku.title}}</div>
                     <div class="item-content">{{item.sku.attributes.subtitle}}</div>
-                    <div class="item-price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</div>
+                    <div class="item-price">
+                        <span class="price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</span>
+                        <span class="numbers">x{{item.quantity}}</span>
+                    </div>
                 </div>
             </li>
         </ul>
