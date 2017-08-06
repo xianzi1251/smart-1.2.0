@@ -92,7 +92,17 @@
     }
 
     .item-price {
-    	color: $energized;
+        position: relative;
+
+        .price {
+            color: $energized;
+        }
+
+    	.numbers {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
     }
 
     .checkout-amount {

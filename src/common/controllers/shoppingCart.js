@@ -38,6 +38,9 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
         // 是否全选
         cartSelected: true,
 
+        // 购物车项数量
+        cartItemNumber: 0,
+
         // 已选择的商品数量
         selectedAmount: 0,
 
@@ -57,10 +60,16 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
 
                     } else {
 
+                        // 总计的商品价格和数量
+                        var count = 0;
+                        var price = 0;
+
                         // 绝对路径图片
                         _.forEach(ctrl.data.items, function(item) {
                             item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
                             item.selected = true;
+                            count += item.quantity;
+                            price += (item.quantity * item.sku.prices.offerPrice.price);
                         });
 
                         ctrl.mode = 1;
@@ -68,11 +77,14 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
                         // 默认全选
                         ctrl.cartSelected = true;
 
+                        // 当前购物车项数量
+                        ctrl.cartItemNumber = ctrl.data.items.length;
+
                         // 已选择的商品数量
-                        ctrl.selectedAmount = ctrl.data.quantity;
+                        ctrl.selectedAmount = count;
 
                         // 已选择的商品价格
-                        ctrl.selectedPrice = ctrl.data.amount.contractedTotal.RMB;
+                        ctrl.selectedPrice = price;
                     }
 
                 });
@@ -104,19 +116,25 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
                 // TODO: 这里要返回到上一个模式
                 this.mode = 1;
 
+                // 总计的商品价格和数量
+                var count = 0;
+                var price = 0;
+
                 // 全选
                 _.forEach(ctrl.data.items, function(item) {
                     item.selected = true;
+                    count += item.quantity;
+                    price += (item.quantity * item.sku.prices.offerPrice.price);
                 });
 
                 // 全选
                 ctrl.cartSelected = true;
 
                 // 已选择的商品数量
-                ctrl.selectedAmount = ctrl.data.quantity;
+                ctrl.selectedAmount = count;
 
                 // 已选择的商品价格
-                ctrl.selectedPrice = ctrl.data.amount.contractedTotal.RMB;
+                ctrl.selectedPrice = price;
             }
         },
 
@@ -124,16 +142,23 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
         changeCartSelected: function() {
 
             if (ctrl.cartSelected) {
+
+                // 总计的商品价格和数量
+                var count = 0;
+                var price = 0;
+
                 // 全选
                 _.forEach(ctrl.data.items, function(item) {
                     item.selected = true;
+                    count += item.quantity;
+                    price += (item.quantity * item.sku.prices.offerPrice.price);
                 });
 
                 // 已选择的商品数量
-                ctrl.selectedAmount = ctrl.data.quantity;
+                ctrl.selectedAmount = count;
 
                 // 已选择的商品价格
-                ctrl.selectedPrice = ctrl.data.amount.contractedTotal.RMB;
+                ctrl.selectedPrice = price;
             } else {
                 // 全选
                 _.forEach(ctrl.data.items, function(item) {
@@ -151,26 +176,40 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
         /** 修改购物项的选中状态 */
         changeItemSelected: function(index) {
 
-            var num = 0,
-                amount = 0;
+            // 总计的商品价格／数量／当前选中的购物项数量
+            var price = 0;
+            var count = 0;
+            var selectedNumber = 0;
 
             // 查看已选择的商品数量 & 查看已选择的商品价格
             _.forEach(ctrl.data.items, function(item) {
                 if (item.selected) {
-                    num++;
-                    amount += item.sku.prices.offerPrice.price;
+                    selectedNumber++;
+                    count += item.quantity;
+                    price += (item.quantity * item.sku.prices.offerPrice.price);
                 }
             });
 
-            ctrl.selectedAmount = num;
-            ctrl.selectedPrice = amount;
+            ctrl.selectedAmount = count;
+            ctrl.selectedPrice = price;
 
             // 检验是否为全选
-            if (ctrl.data.quantity == ctrl.selectedAmount) {
+            if (ctrl.cartItemNumber == selectedNumber) {
                 ctrl.cartSelected = true;
             } else {
                 ctrl.cartSelected = false;
             }
+        },
+
+        // 修改商品数量
+        changeNumber: function(item) {
+            loading.open();
+
+            cartService.changeNumber(item.id, item.quantity)
+                .error(errorHandling)
+                .finally(function() {
+                    loading.close();
+                });
         },
 
         // 删除商品
@@ -220,7 +259,7 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
                     ordItemIds: itemsId
                 }
             });
-        },
+        }
 
 
 

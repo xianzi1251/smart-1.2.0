@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+/**
+ * 计数器，中间一个数字输入框，左右两个加减按钮
+ * --------------------------------------------------
+ */
+
+.counter {
+
+    display: inline-block;
+    border-radius: 3px;
+
+    .counter-dec,
+    .counter-inc {
+        width: 26px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px - 2px;
+        border: 1px solid #ddd;
+        background: #f7f7f7;
+        color: #777;
+        padding: 0;
+        font-weight: 700;
+        position: relative;
+
+        &.disabled {
+            background: #eee!important;
+            color: #ccc!important;
+        }
+
+        &:after {
+            @include position(absolute, -6px);
+            content: ' ';
+        }
+    }
+
+    .counter-dec,
+    .counter-inc,
+    .counter-num {
+        float: left;
+    }
+
+    .counter-dec {
+        border-radius: 3px 0 0 3px;
+    }
+
+    .counter-inc {
+        border-radius: 0 3px 3px 0;
+    }
+
+    .counter-num {
+        border: 1px solid #ddd;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        box-shadow: none;
+        width: 30px;
+        background: #fff;
+        height: 30px;
+        font-size: 12px;
+        line-height: 30px - 8px;
+        padding: 3px;
+        text-align: center;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        opacity: 1 !important;
+        font-family: "dongqing_num";
+    }
+}
