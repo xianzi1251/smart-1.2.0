@@ -21,7 +21,7 @@ angular.module('app.services').factory('checkoutService', function(
         /**
          * 提交订单
          */
-        creatOrder: function(ordItemIds, paymentName, addressId) {
+        creatOrder: function(ordItemIds, paymentName) {
             return api.post('/cosmos.json?domain=config', {
                     proName: 'creatOrder',
                     userId: window.APP_USER.id,
@@ -30,8 +30,7 @@ angular.module('app.services').factory('checkoutService', function(
                     command: 'order',
                     submit: true,
                     cart: false,
-                    submitEvent: 'submitOrder',
-                    addressId: addressId
+                    submitEvent: 'submitOrder'
                 })
                 .success(function() {
                     // 广播消息 生成订单后，刷新购物车数据

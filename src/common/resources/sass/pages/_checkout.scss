@@ -11,9 +11,10 @@
     overflow: inherit;
 
     .checkout-consignee {
-    	padding: 6px 12px;
+    	padding: 6px 12px 12px 12px;
     	color: $text-color;
-    	background-color: $light;
+        background: url(#{$images-path}/consignee-line-image.png) bottom left repeat-x $light;
+        background-size: 78px 3px;
 
         .icon-dizhi {
             color: $text-color-secondary;
@@ -22,11 +23,16 @@
         .icon-rightarrow {
             color: $text-color-quiet;
             font-weight: bold;
+            @extend %font-size-base;
         }
     }
 
     .checkout-add-consignee {
         padding: 12px 0;
+    }
+
+    .checkout-congignee-icon {
+        margin-top: 5px;
     }
 
     .consignee-info-name {
@@ -41,14 +47,33 @@
         @extend %font-size-base;
     }
 
-    .checkout-list {
-    	margin: 8px 0;
-    	background-color: $light;
+    .checkout-items {
+        margin: 8px 0;
+        background-color: $light;
+    }
+
+    .items-title {
+        padding: 8px 12px;
+    	line-height: 1.5em;
+        @extend %font-size-big;
+        background: superfine-border-bottom($line-color);
+
+        .icon {
+            margin-right: 10px;
+            font-size: 15px;
+            color: #4a4a4a;
+        }
     }
 
     .checkout-item {
         padding: 12px;
+        padding-left: 0;
+        margin-left: 12px;
         background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
     }
 
     .item-img {
@@ -102,26 +127,86 @@
             position: absolute;
             right: 0;
             top: 0;
+            color: $text-color-secondary;
         }
     }
 
-    .checkout-amount {
-    	padding-right: 15px;
-		line-height: 3em;
-    	color: $text-color;
-    	text-align: right;
-    	background: superfine-border-bottom($line-color);
-    	background-color: $light;
-    	@extend %font-size-base;
+    .checkout-rows {
+        margin-bottom: 8px;
+        background-color: $light;
+    }
 
-    	.amount {
-    		color: $energized;
-    	}
+    .checkout-row {
+        box-sizing: content-box;
+        position: relative;
+        padding: 8px 30px 8px 0px;
+        margin-left: 12px;
+        height: 2em;
+        line-height: 2em;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+    }
+
+    .checkout-row-title {
+        float: left;
+        @extend %font-size-big;
+    }
+
+    .checkout-row-content {
+        float: right;
+        color: $text-color-secondary;
+        @extend %font-size-base;
+    }
+
+    .checkout-row-icon {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        height: 16px;
+        line-height: 16px;
+        margin-top: -8px;
+        font-weight: bold;
+        color: $text-color-quiet;
+        @extend %font-size-base;
+    }
+
+    .checkout-amount {
+    	color: $energized;
+
+        .freight {
+            color: $text-color-quiet;
+            @extend %font-size-small;
+        }
+    }
+
+    .checkout-row-payment {
+        float: right;
+        padding-left: 28px;
+        background-repeat: no-repeat;
+        background-size: 24px auto;
+        background-position: left center;
+
+        .iconfont {
+            float: left;
+            margin-right: 3px;
+            font-size: 24px;
+        }
+
+        .icon-zhifubao {
+            color: #1296DB;
+        }
+
+        .icon-weixin {
+            color: #1aad19;
+        }
     }
 
    .payment-item {
    		margin: 0;
-        padding: 15px 8px 15px 15px;
+        padding: 15px 8px 15px 12px;
         background: superfine-border-bottom($line-color);
         background-color: $light;
 
@@ -148,6 +233,27 @@
             padding: 0;
             color: $text-color-quiet;
             font-weight: bold;
+            @extend %font-size-base;
         }
+    }
+}
+
+.checkout-info-footer {
+    padding: 0;
+
+    .footer-item {
+        margin-top: 1px;
+        padding: 0;
+    }
+
+    .button {
+        height: 43px;
+        min-height: 43px;
+        padding: 0;
+        margin: 0;
+        line-height: 43px;
+        font-size: 16px;
+        border: none;
+        border-radius: 0;
     }
 }

@@ -40,17 +40,17 @@ ion-scroll {
 }
 
 // 只有第一个弹出层的遮罩层显示
-.active {
+.modal-backdrop.active {
 
     .modal-backdrop-bg {
         opacity: 0.7;
     }
 
-    & ~ .active {
-        .modal-backdrop-bg {
-            opacity: 0
-        }
-    }
+    // & ~ .active {
+    //     .modal-backdrop-bg {
+    //         opacity: 0.7;
+    //     }
+    // }
 }
 
 

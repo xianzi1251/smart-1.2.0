@@ -11,8 +11,6 @@ angular.module('app.controllers').controller('consigneeAddCtrl', function(
         successCallback: _.noop
     });
 
-    console.log($params.source);
-
     _.assign(ctrl, loadDataMixin, {
         $scope: $scope,
 

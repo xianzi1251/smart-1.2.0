@@ -1,20 +1,14 @@
 @charset "utf-8";
 
-.choose-payment-modal-view {
+.choose-payment-modal-panel {
     
     .payment-content {
         background-color: $light;
     }
 
-    .payment-txt {
-        padding: 15px 0 5px 15px;
-        color: $text-color-quiet;
-        @extend %font-size-big;
-    }
-
     .payment-item {
-        margin: 0;
-        padding: 15px 8px 15px 15px;
+        margin: 0 0 0 12px;
+        padding: 5px 8px 5px 0;
         background: superfine-border-bottom($line-color);
         background-color: $light;
 
@@ -34,12 +28,13 @@
 
         .payment-text {
             @extend %font-size-big;
-            color: $text-color;
+            color: $text-color-secondary;
         }
 
         .icon-rightarrow {
             padding: 0;
             color: $text-color-quiet;
+            @extend %font-size-base;
             font-weight: bold;
         }
     }

@@ -1,0 +1,87 @@
+<ion-modal-view class="checkout-modal-panel">
+
+    <div class="bar-primary-modal" ng-click="modals.invoice.close()">
+        发票信息
+        <i class="icon-close-modal icon ion-ios-close-empty"></i>
+    </div>
+
+    <ion-content class="invoice-panel">
+
+        <!-- 选择发票 -->
+        <div class="invoice-row">
+            <div class="invoice-title">发票内容</div>
+            <div>
+                <label class="radio radio-label" ng-click="invoice.chooseNeedInvoice(0)">
+                    <input type="radio" value="0" name="invoice-needInvoice"
+                        ng-model="invoice.data.needInvoice" />
+                    不开具发票
+                </label>
+                <label class="radio radio-label" ng-click="invoice.chooseNeedInvoice(1)">
+                    <input type="radio" value="1" name="invoice-needInvoice"
+                        ng-model="invoice.data.needInvoice" />
+                    明细
+                </label>
+            </div>
+        </div>
+
+        <!-- 填写发票 -->
+        <div ng-show="invoice.data.needInvoice === 1">
+            <div class="invoice-row">
+                <div class="invoice-title">发票类型<span class="invoice-tips">(纸质发票，开具时间1-3天，发票到付)</span></div>
+                <div>
+                    <label class="radio radio-label" ng-click="invoice.chooseInvType(1)">
+                        <input type="radio" value="1" name="invoice-invType"
+                            ng-model="invoice.data.invType" />
+                        纸质发票
+                    </label>
+                    <label class="radio radio-label" ng-click="invoice.chooseInvType(2)">
+                        <input type="radio" value="2" name="invoice-invType"
+                            ng-model="invoice.data.invType" />
+                        电子发票
+                    </label>
+                </div>
+            </div>
+
+            <div class="invoice-row">
+                <div class="invoice-title">发票抬头</div>
+                <div>
+                    <label class="radio radio-label" ng-click="invoice.chooseTnvoiceType(1)">
+                        <input type="radio" value="1" name="invoice-invoiceType"
+                            ng-model="invoice.data.invoiceType" />
+                        个人
+                    </label>
+                    <label class="radio radio-label" ng-click="invoice.chooseTnvoiceType(2)">
+                        <input type="radio" value="2" name="invoice-invoiceType"
+                            ng-model="invoice.data.invoiceType" />
+                        单位
+                    </label>
+                </div>
+                <div class="invoice-input" ng-show="invoice.data.invoiceType === 1">
+                    <input type="text" placeholder="请填写个人名称（必填）"
+                        ng-model="invoice.data.invoiceTitle"/>
+                    <input type="text" placeholder="请填写您的邮箱（必填）"
+                        ng-model="invoice.data.invoiceEmail"
+                        ng-show="invoice.data.invType === 2" />
+                </div>
+                <div class="invoice-input" ng-show="invoice.data.invoiceType === 2">
+                    <input type="text" placeholder="请填写单位名称（必填）"
+                        ng-model="invoice.data.invoiceTitle"/>
+                    <input type="text" placeholder="请填写单位税号（必填）"
+                        ng-model="invoice.data.taxpayerNo"/>
+                    <input type="text" placeholder="请填写您的邮箱（必填）"
+                        ng-model="invoice.data.invoiceEmail"
+                        ng-show="invoice.data.invType === 2" />
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="hide-on-keyboard-open">
+        <button type="button" class="button button-block button-primary" ng-click="invoice.submit()">
+            确认
+        </button>
+    </ion-footer-bar>
+
+</ion-modal-view>
+

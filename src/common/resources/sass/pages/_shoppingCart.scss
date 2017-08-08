@@ -89,6 +89,10 @@
         top: 0;
         right: 0;
 
+        .numbers {
+            color: $text-color-secondary;
+        }
+
         .counter-dec,
         .counter-inc,
         .counter-num {

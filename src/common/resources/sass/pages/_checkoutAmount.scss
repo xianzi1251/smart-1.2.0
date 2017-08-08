@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+.checkout-amount-panel {
+
+    .amount-list {
+        padding-left: 12px;
+    }
+
+    .amount-item {
+        box-sizing: content-box;
+        padding: 8px 12px 8px 0px;
+        height: 2em;
+        line-height: 2em;
+        background: superfine-border-bottom($line-color);
+    }
+
+    .item-name {
+        float: left;
+        @extend %font-size-base;
+    }
+
+    .item-price {
+        float: right;
+        color: $text-color-secondary;
+        @extend %font-size-small;
+    }
+}
