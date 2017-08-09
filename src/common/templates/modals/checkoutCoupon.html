@@ -18,7 +18,7 @@
             </cm-dynamic-tab-item>
         </cm-dynamic-tabs>
 
-        <ion-content class="coupon-list-panel">
+        <ion-content class="coupon-list-panel" delegate-handle="selectCouponsScroll">
 
             <!--下拉刷新-->
             <ion-refresher on-refresh="checkoutCoupon.refresh({showLoading: false})" 

@@ -1,5 +1,6 @@
 angular.module('app.controllers').controller('checkoutCouponCtrl', function(
-    $scope, $state, $params, errorHandling, loadDataMixin, couponService, loading, modals, toast, checkoutService
+    $scope, $state, $params, errorHandling, loadDataMixin, couponService, loading, modals, toast, checkoutService,
+    $ionicHistory, $ionicScrollDelegate
 ) {
 
     var ctrl = this;
@@ -26,6 +27,7 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
         onSwitchType: function(type) {
             if (ctrl.type !== type) {
                 ctrl.type = type;
+                resetScrollPosition();
             }
         },
 
@@ -194,5 +196,13 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
     });
 
     ctrl.init();
+
+    // 重置高度
+    function resetScrollPosition() {
+        var oldHistoryId = $scope.$historyId;
+        $scope.$historyId = $ionicHistory.currentHistoryId();
+        $ionicScrollDelegate.$getByHandle('selectCouponsScroll').scrollTop(true);
+        $scope.$historyId = oldHistoryId;
+    }
 
 });
