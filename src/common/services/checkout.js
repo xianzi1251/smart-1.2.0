@@ -21,17 +21,23 @@ angular.module('app.services').factory('checkoutService', function(
         /**
          * 提交订单
          */
-        creatOrder: function(ordItemIds, paymentName, addressId) {
+        creatOrder: function(ordItemIds, payment, needInvoice, invType, invoiceType, invoiceTitle, taxpayerNo, invoiceEmail, invoiceContent) {
             return api.post('/cosmos.json?domain=config', {
                     proName: 'creatOrder',
                     userId: window.APP_USER.id,
-                    ordItemIds: ordItemIds,
-                    termsName: paymentName,
                     command: 'order',
                     submit: true,
                     cart: false,
                     submitEvent: 'submitOrder',
-                    addressId: addressId
+                    ordItemIds: ordItemIds,
+                    termsName: payment,
+                    needInvoice: needInvoice,
+                    invType: invType,
+                    invoiceType: invoiceType,
+                    invoiceTitle: invoiceTitle,
+                    taxpayerNo: taxpayerNo,
+                    invoiceEmail: invoiceEmail,
+                    invoiceContent: invoiceContent
                 })
                 .success(function() {
                     // 广播消息 生成订单后，刷新购物车数据

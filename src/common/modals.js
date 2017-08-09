@@ -90,7 +90,7 @@ angular.module('app').constant('modals', {
         animation: 'fade-out'
     },
 
-    // 新增收货地址
+    // 会员中心－新增收货地址
     consigneeAdd: {
         path: 'templates/modals/consigneeAdd.html',
         controller: 'consigneeAddCtrl',
@@ -107,12 +107,44 @@ angular.module('app').constant('modals', {
         title: '选择收货地区'
     },
 
-    // 结算中心收货地址列表
+    // 结算中心－收货地址列表
     checkoutConsigneeList: {
         path: 'templates/modals/checkoutConsigneeList.html',
         controller: 'checkoutConsigneeListCtrl',
         controllerAs: 'checkoutConsigneeList',
         animation: 'slide-in-up'
-    }
+    },
+
+    // 结算中心－新增收货地址
+    checkoutConsigneeAdd: {
+        path: 'templates/modals/checkoutConsigneeAdd.html',
+        controller: 'consigneeAddCtrl',
+        controllerAs: 'consigneeAdd',
+        animation: 'slide-in-up'
+    },
+
+    // 结算中心－发票信息
+    invoice: {
+        path: 'templates/modals/invoice.html',
+        controller: 'invoiceCtrl',
+        controllerAs: 'invoice',
+        animation: 'slide-in-up'
+    },
+
+    // 结算中心－金额
+    checkoutAmount: {
+        path: 'templates/modals/checkoutAmount.html',
+        controller: 'checkoutAmountCtrl',
+        controllerAs: 'checkoutAmount',
+        animation: 'slide-in-up'
+    },
+
+    // 结算中心－优惠券信息
+    checkoutCoupon: {
+        path: 'templates/modals/checkoutCoupon.html',
+        controller: 'checkoutCouponCtrl',
+        controllerAs: 'checkoutCoupon',
+        animation: 'slide-in-up'
+    },
 
 });

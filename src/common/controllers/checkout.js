@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('checkoutCtrl', function(
     $scope, toast, $params, modals, checkoutService, errorHandling, loading, payService, messageCenter,
-    consigneeService, localStorage, utils
+    consigneeService, couponService, utils
 ) {
 
     var ctrl = this;
@@ -11,64 +11,135 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
         // 需结算的商品
         ordItemIds: $params.ordItemIds,
 
+        // 需提交的内容
+        checkoutInfo: {
+            // 发票信息-默认不开发票
+            invoice: {
+                // 是否需要发票（0-否／1-是）
+                needInvoice: 0,
+
+                // 发票类型（1-纸质发票／2-电子发票）
+                invType: 1,
+
+                // 发票抬头类型（1-个人／2-单位）
+                invoiceType: 1,
+
+                // 发票抬头
+                invoiceTitle: '',
+
+                // 发票税号
+                taxpayerNo: '',
+
+                // 发票发送邮箱
+                invoiceEmail: ''
+            },
+            payment: 'AliPay'
+        },
+
+        // 默认的发票
+        invoiceInfo: '不开具发票',
+
+        // 默认的优惠券
+        couponInfo: '无优惠券信息',
+
+        // 优惠券金额
+        couponValue: 0,
+
+        // 选中的优惠券code
+        couponCode: '',
+
         // 初始化数据
         init: function() {
-            ctrl.finishLoading = false;
 
-            // 当前是否开启兑换／积分／收货地址[1: 关闭, 0: 开启]
-            ctrl.bytSwitch = localStorage.get('user').bytSwitch;
+            consigneeService.getCosigneeList()
+                .success(function(response) {
+                    if (response.list[0].length > 0) {
+                        ctrl.consigneeInfo = response.list[0][0];
+
+                        ctrl.updateConsigneeInfo();
+
+                    } else {
+                        ctrl.consigneeInfo = null;
+                    }
+                })
+                .error(errorHandling);
+        },
+
+        // 修改收货地址，重新计算运费且重新获取结算信息
+        updateConsigneeInfo: function() {
+
+            consigneeService.getFreight(ctrl.consigneeInfo.id, ctrl.consigneeInfo.districtId)
+                .success(function() {
+                    ctrl.getCheckoutInfo();
+                })
+                .error(errorHandling);
+        },
+
+        // 获取结算信息
+        getCheckoutInfo: function() {
 
             loading.open();
 
-            // 获取结算数据
-            checkoutService.getItems(ctrl.ordItemIds)
-                .success(function(response) {
-                    ctrl.data = response;
+            if (_.isEmpty(ctrl.couponCode)) {
 
-                    // 绝对路径图片
-                    _.forEach(ctrl.data.items, function(item) {
-                        item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
+                checkoutService.getItems(ctrl.ordItemIds)
+                    .success(function(response) {
+                        ctrl.data = response;
+
+                        // 绝对路径图片
+                        _.forEach(ctrl.data.items, function(item) {
+                            item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
+                        });
+
+                    })
+                    .finally(function() {
+                        loading.close();
                     });
 
-                    // 获取收货人信息
-                    consigneeService.getCosigneeList()
+            } else {
+
+                couponService.chooseCoupon(ctrl.ordItemIds, ctrl.couponCode)
                         .success(function(response) {
-                            if (response.list[0].length > 0) {
-                                ctrl.consigneeInfo = response.list[0][0];
-                            } else {
-                                ctrl.consigneeInfo = null;
-                            }
-                        })
-                        .error(errorHandling)
-                        .finally(function() {
-                            loading.close();
-                            ctrl.finishLoading = true;
+                        ctrl.data = response;
+
+                        // 绝对路径图片
+                        _.forEach(ctrl.data.items, function(item) {
+                            item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
                         });
-                });
+
+                    })
+                    .finally(function() {
+                        loading.close();
+                    });
+            }
         },
 
         // 提交订单
-        submit: function(paymentName) {
+        submit: function() {
+
+            var ordItemIds = ctrl.ordItemIds,
+                payment = ctrl.checkoutInfo.payment;
+
+            // 发票信息
+            var invoice = ctrl.checkoutInfo.invoice,
+                needInvoice = invoice.needInvoice,
+                invType = invoice.invType,
+                invoiceType = invoice.invoiceType,
+                invoiceTitle = invoice.invoiceTitle,
+                taxpayerNo = invoice.taxpayerNo,
+                invoiceEmail = invoice.invoiceEmail,
+                invoiceContent = '明细';
 
             // 需要判断是否必须有收货地址
-            if (!ctrl.bytSwitch) {
-                if (!ctrl.consigneeInfo) {
-                    toast.open('请填写收货地址');
-                    return;
-                }
+            if (!ctrl.consigneeInfo) {
+                toast.open('请填写收货地址');
+                return;
             }
 
             loading.open();
-            
-            var consigneeId;
-            if (ctrl.consigneeInfo) {
-                consigneeId = ctrl.consigneeInfo.id;
-            } else {
-                consigneeId = '';
-            }
 
             // 创建订单
-            checkoutService.creatOrder(ctrl.ordItemIds, paymentName, consigneeId)
+            checkoutService.creatOrder(ordItemIds, payment, needInvoice, invType, invoiceType, invoiceTitle, taxpayerNo, invoiceEmail, invoiceContent)
                 .success(function(response) {
 
                     // 生成的订单id
@@ -78,7 +149,7 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                     ctrl.close();
                     
                     // 去支付
-                    payService.pay(orderId, paymentName)
+                    payService.pay(orderId, payment)
                         .success(function() {
 
                             // 开启支付成功页面
@@ -137,8 +208,89 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
          */
         setSelectedConsignee: function(consignee) {
             ctrl.consigneeInfo = consignee;
-        }
 
+            ctrl.updateConsigneeInfo();
+        },
+
+        /**
+         * 进入编辑发票信息视图
+         */
+        goInvoice: function() {
+            modals.invoice.open({
+                params: {
+                    data: {
+                        invoice: ctrl.checkoutInfo.invoice
+                    },
+                    callback: function(invoice) {
+                        ctrl.checkoutInfo.invoice = invoice;
+                        if (invoice.needInvoice === 0) {
+                            ctrl.invoiceInfo = '不开具发票';
+                        } else {
+
+                            var invType = ['纸质', '电子'];
+                            var invoiceType = ['个人', '单位'];
+
+                            ctrl.invoiceInfo = '明细(' + invType[invoice.invType - 1] + ')-(' + invoiceType[invoice.invoiceType - 1] + ')';
+                        }
+                    }
+                }
+            });
+        },
+
+        /**
+         * 选择支付方式
+         */
+        goChoosePayment: function() {
+            modals.choosePayment.open({
+                params: {
+                    orderId: ctrl.data.id,
+                    source: 'checkout',
+                    payment: ctrl.checkoutInfo.payment,
+                    callback: function(payment) {
+                        ctrl.checkoutInfo.payment = payment;
+                    }
+                }
+            });
+        },
+
+        /**
+         * 查看金额信息
+         */
+        goCheckoutAmount: function() {
+            modals.checkoutAmount.open({
+                params: {
+                    data: {
+                        couponValue: ctrl.couponValue,
+                        shippingFee: ctrl.data.amount.feeItems.shippingFee.amount,
+                        orderAmount: ctrl.data.amount.feeItems.commodityFee.amount,
+                        orderPayAmount: ctrl.data.amount.contractedTotal.RMB
+                    }
+                }
+            });
+        },
+
+        /**
+         * 选择优惠券
+         */
+        goCheckoutCoupon: function() {
+            modals.checkoutCoupon.open({
+                params: {
+                    ordItemIds: ctrl.ordItemIds,
+                    couponCode: ctrl.couponCode,
+                    callback: function(couponInfo, value, code, data) {
+                        ctrl.couponInfo = couponInfo;
+                        ctrl.couponValue = value;
+                        ctrl.couponCode = code;
+
+                        // 此时选择了优惠券
+                        if (!_.isEmpty(data)) {
+                            ctrl.data = data;
+                        }
+
+                    }
+                }
+            });
+        }
     });
 
     ctrl.init();

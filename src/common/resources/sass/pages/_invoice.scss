@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+.invoice-panel {
+    
+    .invoice-row {
+        padding: 5px 0;
+        margin-left: 12px;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+
+        .invoice-title {
+            line-height: 2em;
+            @extend %font-size-base;
+        }
+
+        .invoice-tips {
+            @extend %font-size-small;
+            color: $text-color-quiet;
+        }
+
+        .radio-label {
+            padding: 0;
+            margin-right: 20px;
+            color: $text-color-secondary;
+            @extend %font-size-small;
+
+            input {
+                float: left;
+                margin-right: 3px;
+            }
+        }
+    }
+
+    .invoice-input {
+        margin-right: 12px;
+
+        input {
+            width: 100%;
+            margin-bottom: 8px;
+            padding: 10px;
+            line-height: 1.5em;
+            @extend %font-size-small;
+            background: #f1f2f6;
+            border-radius: 4px;
+        }
+    }
+}

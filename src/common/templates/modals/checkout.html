@@ -1,19 +1,19 @@
 <!-- 结算 -->
-<ion-modal-view title="确定订单" class="checkout-modal-view stable-bg">
+<ion-modal-view title="确认订单" class="checkout-modal-view stable-bg">
 
     <ion-header-bar class="bar-primary">
         <button class="button button-clear left-btn" ng-click="checkout.close()">
             <i class="icon ion-ios-arrow-left"></i>
         </button>
-        <h1 class="title">确定订单</h1>
+        <h1 class="title">确认订单</h1>
     </ion-header-bar>
 
     <ion-content>
 
-        <div class="checkout-consignee" ng-if="checkout.finishLoading && !checkout.bytSwitch" 
+        <div class="checkout-consignee"
             ng-click="checkout.goConsignee()">
             <div class="row" ng-if="checkout.consigneeInfo">
-                <i class="iconfont icon-dizhi col col-adaptive col-center"></i>
+                <i class="iconfont icon-dizhi col col-adaptive checkout-congignee-icon"></i>
                 <div class="col col-center">
                     <div class="consignee-info-name row">
                         <span class="col col-center name">{{checkout.consigneeInfo.firstName}}</span>
@@ -33,39 +33,77 @@
             </div>
         </div>
 
-        <ul class="checkout-list">
-            <li class="checkout-item clearfix" ng-repeat="item in checkout.data.items">
-                <div class="item-img fl">
-                    <img class="img" cm-lazyload="item.sku.picUrl" load-immediate="true" />
-                </div>
-                <div class="item-info">
-                    <div class="item-title">{{item.sku.title}}</div>
-                    <div class="item-content">{{item.sku.attributes.subtitle}}</div>
-                    <div class="item-price">
-                        <span class="price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</span>
-                        <span class="numbers">x{{item.quantity}}</span>
+        <div class="checkout-items">
+            <div class="items-title"><i class="icon ion-ios-list-outline"></i>商品清单</div>
+            <ul>
+                <li class="checkout-item clearfix" ng-repeat="item in checkout.data.items">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.sku.picUrl" load-immediate="true" />
                     </div>
-                </div>
-            </li>
-        </ul>
-
-        <div class="checkout-amount" ng-if="checkout.finishLoading">
-            合计：<span class="amount">{{checkout.data.amount.contractedTotal.RMB | currency: '¥'}}</span>
+                    <div class="item-info">
+                        <div class="item-title">{{item.sku.title}}</div>
+                        <div class="item-content">{{item.sku.attributes.subtitle}}</div>
+                        <div class="item-price">
+                            <span class="price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</span>
+                            <span class="numbers">x{{item.quantity}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-        <ul class="payment-list" ng-if="checkout.finishLoading">
-            <li class="payment-item row" ng-click="checkout.submit('AliPay')">
-                <i class="iconfont icon-zhifubao col col-adaptive"></i>
-                <div class="payment-text col">使用支付宝付款</div>
-                <i class="iconfont icon-rightarrow col col-adaptive"></i>
-            </li>
-            <li class="payment-item row" ng-click="checkout.submit('WeChat')">
-                <i class="iconfont icon-weixin col col-adaptive"></i>
-                <div class="payment-text col">使用微信付款</div>
-                <i class="iconfont icon-rightarrow col col-adaptive"></i>
-            </li>
-        </ul>
+        <div class="checkout-rows">
+            <div class="checkout-row clearfix">
+                <div class="checkout-row-title">配送方式</div>
+                <div class="checkout-row-content">快递</div>
+            </div>
+            <div class="checkout-row clearfix" ng-click="checkout.goCheckoutCoupon()">
+                <div class="checkout-row-title">优惠券</div>
+                <div class="checkout-row-content">{{checkout.couponInfo}}</div>
+                <i class="checkout-row-icon iconfont icon-rightarrow"></i>
+            </div>
+            <div class="checkout-row clearfix" ng-click="checkout.goInvoice()">
+                <div class="checkout-row-title">发票信息</div>
+                <div class="checkout-row-content">{{checkout.invoiceInfo}}</div>
+                <i class="checkout-row-icon iconfont icon-rightarrow"></i>
+            </div>
+            <div class="checkout-row clearfix" ng-click="checkout.goChoosePayment()">
+                <div class="checkout-row-title">支付方式</div>
+                <div class="checkout-row-payment"
+                    ng-if="checkout.checkoutInfo.payment === 'AliPay'">
+                    <i class="iconfont icon-zhifubao"></i>支付宝
+                </div>
+                <div class="checkout-row-payment"
+                    ng-if="checkout.checkoutInfo.payment === 'WeChat'">
+                    <i class="iconfont icon-weixin"></i>微信
+                </div>
+                <i class="checkout-row-icon iconfont icon-rightarrow"></i>
+            </div>
+            <div class="checkout-row clearfix" ng-click="checkout.goCheckoutAmount()">
+                <div class="checkout-row-title">应付金额</div>
+                <div class="checkout-row-content checkout-amount">
+                    {{checkout.data.amount.contractedTotal.RMB | currency: '¥'}}
+                    <span class="freight">
+                        (含运费：{{checkout.data.amount.feeItems.shippingFee.amount | currency: ''}})
+                    </span>
+                </div>
+                <i class="checkout-row-icon iconfont icon-rightarrow"></i>
+            </div>
+        </div>
 
     </ion-content>
+
+    <ion-footer-bar class="checkout-info-footer hide-on-keyboard-open">
+        <ul class="row">
+            <li class="footer-item col">
+                <button class="button button-block button-light" 
+                    ng-click="checkout.close()">取消订单</button>
+            </li>
+            <li class="footer-item col">
+                <button class="button button-block button-primary"
+                    ng-click="checkout.submit()">立即支付</button>
+            </li>
+        </ul>
+    </ion-footer-bar>
 
 </ion-modal-view>

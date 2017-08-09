@@ -1,11 +1,9 @@
-<ion-modal-view title="收货地址">
+<ion-modal-view class="checkout-modal-panel" cm-resize-height>
 
-    <ion-header-bar class="bar-primary">
-        <button class="button button-clear left-btn" ng-click="modals.checkoutConsigneeList.close()">
-            <i class="icon ion-ios-arrow-left"></i>
-        </button>
-        <h1 class="title">收货地址</h1>
-    </ion-header-bar>
+    <div class="bar-primary-modal" ng-click="modals.checkoutConsigneeList.close()">
+        收货地址
+        <i class="icon-close-modal icon ion-ios-close-empty"></i>
+    </div>
 
     <ion-content class="consignee-list-panel stable-bg">
 
@@ -13,8 +11,8 @@
         <ion-refresher on-refresh="checkoutConsigneeList.refresh({showLoading: false})" 
             pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
-        <ul>
-            <li class="consignee-item row" ng-repeat="consignee in checkoutConsigneeList.list"
+        <ul class="consignee-list">
+            <li class="consignee-item checkout-cosignee-item row" ng-repeat="consignee in checkoutConsigneeList.list"
                 ng-click="checkoutConsigneeList.selected(consignee, $event)">
                 <label class="checkbox col col-center col-adaptive">
                     <input type="checkbox" ng-model="consignee.selected"

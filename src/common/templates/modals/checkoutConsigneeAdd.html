@@ -1,0 +1,58 @@
+<form name="form" ng-submit="consigneeAdd.submit()" novalidate> 
+    <ion-modal-view class="checkout-modal-panel" cm-resize-height>
+
+        <div class="bar-primary-modal" ng-click="modals.checkoutConsigneeAdd.close()">
+            收货地址
+            <i class="icon-back-modal icon ion-ios-arrow-up"></i>
+        </div>
+
+        <ion-content class="consignee-add-panel light-bg" scroll="false">
+
+            <!-- 收货人 -->
+            <div class="consignee-row row">
+                <span class="consignee-name col col-adaptive col-center">收货人：</span>
+                <div class="consignee-info col col-center">
+                    <input class="consignee-input" name="firstName" 
+                        ng-model="consigneeAdd.firstName" required/>
+                </div>
+            </div>
+
+            <!-- 收货地区 -->
+            <div class="consignee-row row">
+                <span class="consignee-name col col-adaptive col-center">收货地区：</span>
+                <div class="consignee-info col col-center">
+                    <input class="consignee-input" name="districtId"
+                        ng-model="consigneeAdd.selectedRegion" cm-select-region
+                        ng-change="consigneeAdd.changeRegion()" required readonly />
+                </div>
+                <i class="iconfont icon-rightarrow col col-adaptive col-center"></i>
+            </div>
+
+            <!-- 详细地址 -->
+            <div class="consignee-row row">
+                <span class="consignee-name col col-adaptive col-center">详细地址：</span>
+                <div class="consignee-info col col-center">
+                    <input class="consignee-input" name="street" 
+                    ng-model="consigneeAdd.street" required/>
+                </div>
+            </div>
+
+            <!-- 收货人手机号 -->
+            <div class="consignee-row row">
+                <span class="consignee-name col col-adaptive col-center">手机号码：</span>
+                <div class="consignee-info col col-center">
+                    <input class="consignee-input" name="mobile" 
+                        ng-model="consigneeAdd.mobile" 
+                        ng-minlength="11" ng-maxlength="11" maxlength="11" required/>
+                </div>
+            </div>
+
+        </ion-content>
+
+        <ion-footer-bar class="hide-on-keyboard-open">
+            <button type="submit" class="button button-block button-primary" 
+                    ng-disabled="form.$invalid">保存</button>
+        </ion-footer-bar>
+
+    </ion-modal-view>
+</form>

@@ -106,6 +106,12 @@ angular.module('app.services').provider('api', function apiProvider() {
                             deferred.resolve(response);
                         }
 
+                    } else if (proName == 'getCouponList' || proName == 'chooseCoupon') {
+
+                        // 优惠券
+                        response.data = response.data.config.order.object.order;
+                        deferred.resolve(response);
+
                     } else if (proName == 'WECHAT_LOGIN' || proName == 'WECHAT_PAY' || proName == 'ALI_PAY') {
 
                         // 微信登录／微信支付／支付宝支付

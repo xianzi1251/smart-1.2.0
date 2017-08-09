@@ -1,0 +1,52 @@
+<ion-modal-view class="checkout-modal-panel">
+
+    <div class="bar-primary-modal" ng-click="modals.checkoutAmount.close()">
+        应付金额
+        <i class="icon-close-modal icon ion-ios-close-empty"></i>
+    </div>
+
+    <ion-content class="checkout-amount-panel light-bg" scroll="false">
+        <ul class="amount-list">
+            <li class="amount-item clearfix">
+                <span class="item-name">
+                    商品合计
+                </span>
+                <span class="item-price">
+                    {{checkoutAmount.data.orderAmount | currency: ''}}
+                </span>
+            </li>
+            <li class="amount-item clearfix">
+                <span class="item-name">
+                    运费
+                </span>
+                <span class="item-price">
+                    {{checkoutAmount.data.shippingFee | currency: ''}}
+                </span>
+            </li>
+            <li class="amount-item clearfix">
+                <span class="item-name">
+                    优惠金额
+                </span>
+                <span class="item-price">
+                    -{{checkoutAmount.data.couponValue | currency: ''}}
+                </span>
+            </li>
+            <li class="amount-item clearfix">
+                <span class="item-name">
+                    应付金额
+                </span>
+                <span class="item-price">
+                    {{checkoutAmount.data.orderPayAmount | currency: ''}}
+                </span>
+            </li>
+        </ul>
+    </ion-content>
+
+    <ion-footer-bar class="hide-on-keyboard-open">
+        <button class="button button-block button-primary" ng-click="modals.checkoutAmount.close()">
+            确认
+        </button>
+    </ion-footer-bar>
+
+</ion-modal-view>
+

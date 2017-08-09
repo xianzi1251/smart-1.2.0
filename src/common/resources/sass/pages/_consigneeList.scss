@@ -1,11 +1,27 @@
 @charset "utf-8";
 
 .consignee-list-panel {
+
+    .consignee-list {
+        background-color: $light;
+    }
     
     .consignee-item {
     	padding: 5px 12px 10px;
     	margin-bottom: 8px;
-    	background-color: $light;
+        background-color: $light;
+    }
+
+    .checkout-cosignee-item {
+        margin-bottom: 0;
+        margin-left: 12px;
+        padding-left: 0;
+        background: superfine-border-bottom($line-color);
+        background-color: none;
+
+        &:last-child {
+            background: none;
+        }
     }
 
     label.checkbox {

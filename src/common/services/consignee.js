@@ -18,6 +18,22 @@ angular.module('app.services').factory('consigneeService', ['api',function(api, 
         },
 
         /**
+         * 确定收货人信息后，需要计算运费
+         * @param addressId   [收货地址id]
+         * @param districtId  [最后一级地区的ID]
+         */
+        getFreight: function(addressId, districtId) {
+            return api.post('/cosmos.json?domain=scommerce&command=SC_ORD_ADDRESS_SAVE_ACTION', {
+                    proName: 'SC_ORD_ADDRESS_SAVE_ACTION',
+                    addressId: addressId,
+                    districtId: districtId,
+                    typeName: 'shipping',
+                    saveForUser: true,
+                    edit: false
+                });
+        },
+
+        /**
 		 * 新增收货地址
 	     * @param entity      [默认为'account']
 	     * @param entityId    [用户id]

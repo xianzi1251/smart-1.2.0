@@ -1,0 +1,88 @@
+<ion-modal-view class="checkout-modal-panel">
+
+    <div class="bar-primary-modal" ng-click="checkoutCoupon.close()">
+        优惠券
+        <i class="icon-close-modal icon ion-ios-close-empty"></i>
+    </div>
+
+    <ion-content class="stable-bg" scroll="false">
+
+        <cm-dynamic-tabs fill-mode="true">
+            <cm-dynamic-tab-item ng-click="checkoutCoupon.onSwitchType(1)"
+                ng-class="{'active': checkoutCoupon.type === 1}"
+                tab-text="checkoutCoupon.tabText[0] + ' (' + checkoutCoupon.availableCouponList.length + ')'">
+            </cm-dynamic-tab-item>
+            <cm-dynamic-tab-item ng-click="checkoutCoupon.onSwitchType(0)"
+                ng-class="{'active': checkoutCoupon.type === 0}"
+                tab-text="checkoutCoupon.tabText[1] + ' (' + checkoutCoupon.unAvailableCouponList.length + ')'">
+            </cm-dynamic-tab-item>
+        </cm-dynamic-tabs>
+
+        <ion-content class="coupon-list-panel" delegate-handle="selectCouponsScroll">
+
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="checkoutCoupon.refresh({showLoading: false})" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+            <!-- 可使用优惠券 -->
+            <div class="coupon-list-box" ng-show="checkoutCoupon.finishLoading && checkoutCoupon.type === 1">
+
+                <!-- 空警告，当页面内没有数据时，显示该信息 -->
+                <div class="list-empty" ng-if="checkoutCoupon.availableCouponList.length == 0">
+                    <div class="img"></div>
+                    <div class="text">暂无优惠券</div>
+                </div>
+
+                <ul class="coupon-list">
+                    <li class="coupon-item-checkout"
+                        ng-repeat="coupon in checkoutCoupon.availableCouponList"
+                        ng-click="checkoutCoupon.toggleSelect(coupon)">
+                        <div class="item-content">
+                            <span class="item-symbol">&yen;</span>
+                            <span class="item-num">{{coupon.parValue}}</span>
+                            <span class="item-tips">{{coupon.remark}}</span>
+                            <span class="item-title">优惠券</span>
+                            <span class="item-date">有效期:{{coupon.startDate}}-{{coupon.endDate}}</span>
+                            <span class="item-line"></span>
+                        </div>
+                        <label class="checkbox item-checkout">
+                            <input type="checkbox" ng-checked="coupon.selected" >
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 不可使用优惠券 -->
+            <div class="coupon-list-box" ng-show="checkoutCoupon.finishLoading && checkoutCoupon.type === 0">
+
+                <!-- 空警告，当页面内没有数据时，显示该信息 -->
+                <div class="list-empty" ng-if="checkoutCoupon.unAvailableCouponList.length == 0">
+                    <div class="img"></div>
+                    <div class="text">暂无优惠券</div>
+                </div>
+
+                <ul class="coupon-list">
+                    <li class="coupon-item"
+                        ng-repeat="coupon in checkoutCoupon.unAvailableCouponList">
+                        <span class="item-symbol">&yen;</span>
+                        <span class="item-num">{{coupon.parValue}}</span>
+                        <span class="item-tips">{{coupon.remark}}</span>
+                        <span class="item-title">优惠券</span>
+                        <span class="item-date">有效期:{{coupon.startDate}}-{{coupon.endDate}}</span>
+                        <span class="item-line"></span>
+                    </li>
+                </ul>
+            </div>
+
+        </ion-content>
+        
+    </ion-content>
+
+    <ion-footer-bar class="hide-on-keyboard-open">
+        <button class="button button-block button-primary" ng-click="checkoutCoupon.confirm()">
+            确认
+        </button>
+    </ion-footer-bar>
+
+</ion-modal-view>
+
