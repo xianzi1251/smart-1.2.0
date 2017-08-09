@@ -10,7 +10,7 @@
 
     <ion-content>
 
-        <div class="checkout-consignee" ng-if="checkout.finishLoading" 
+        <div class="checkout-consignee"
             ng-click="checkout.goConsignee()">
             <div class="row" ng-if="checkout.consigneeInfo">
                 <i class="iconfont icon-dizhi col col-adaptive checkout-congignee-icon"></i>
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div class="checkout-items" ng-if="checkout.finishLoading">
+        <div class="checkout-items">
             <div class="items-title"><i class="icon ion-ios-list-outline"></i>商品清单</div>
             <ul>
                 <li class="checkout-item clearfix" ng-repeat="item in checkout.data.items">
@@ -52,7 +52,7 @@
             </ul>
         </div>
 
-        <div class="checkout-rows" ng-if="checkout.finishLoading">
+        <div class="checkout-rows">
             <div class="checkout-row clearfix">
                 <div class="checkout-row-title">配送方式</div>
                 <div class="checkout-row-content">快递</div>
@@ -93,7 +93,7 @@
 
     </ion-content>
 
-    <ion-footer-bar class="checkout-info-footer hide-on-keyboard-open" ng-show="checkout.finishLoading">
+    <ion-footer-bar class="checkout-info-footer hide-on-keyboard-open">
         <ul class="row">
             <li class="footer-item col">
                 <button class="button button-block button-light" 

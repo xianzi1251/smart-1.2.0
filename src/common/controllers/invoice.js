@@ -10,23 +10,23 @@ angular.module('app.controllers').controller('invoiceCtrl', function(
         $scope: $scope,
 
         data: angular.extend({
-           // 是否需要发票（0-否／1-是）
-           needInvoice: 0,
+            // 是否需要发票（0-否／1-是）
+            needInvoice: 0,
 
-           // 发票类型（1-纸质发票／2-电子发票）
-           invType: 1,
+            // 发票类型（1-纸质发票／2-电子发票）
+            invType: 1,
 
-           // 发票抬头类型（1-个人／2-单位）
-           invoiceType: 1,
+            // 发票抬头类型（1-个人／2-单位）
+            invoiceType: 1,
 
-           // 发票抬头
-           invoiceTitle: '',
+            // 发票抬头
+            invoiceTitle: '',
 
-           // 发票税号
-           taxpayerNo: '',
+            // 发票税号
+            taxpayerNo: '',
 
-           // 发票发送邮箱
-           invoiceEmail: ''
+            // 发票发送邮箱
+            invoiceEmail: ''
         }, $params.data.invoice),
 
         // 选择是否开发票

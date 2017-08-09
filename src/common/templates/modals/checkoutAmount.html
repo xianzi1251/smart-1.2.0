@@ -12,8 +12,7 @@
                     商品合计
                 </span>
                 <span class="item-price">
-                    100.00
-                    <!-- {{info.payableAmount + info.cardAmount | currency:''}} -->
+                    {{checkoutAmount.data.orderAmount | currency: ''}}
                 </span>
             </li>
             <li class="amount-item clearfix">
@@ -21,7 +20,7 @@
                     运费
                 </span>
                 <span class="item-price">
-                    10.00
+                    {{checkoutAmount.data.shippingFee | currency: ''}}
                 </span>
             </li>
             <li class="amount-item clearfix">
@@ -29,7 +28,7 @@
                     优惠金额
                 </span>
                 <span class="item-price">
-                    -10.00
+                    -{{checkoutAmount.data.couponValue | currency: ''}}
                 </span>
             </li>
             <li class="amount-item clearfix">
@@ -37,7 +36,7 @@
                     应付金额
                 </span>
                 <span class="item-price">
-                    100.00
+                    {{checkoutAmount.data.orderPayAmount | currency: ''}}
                 </span>
             </li>
         </ul>

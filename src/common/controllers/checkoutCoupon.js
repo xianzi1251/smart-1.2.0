@@ -1,5 +1,5 @@
 angular.module('app.controllers').controller('checkoutCouponCtrl', function(
-    $scope, $state, $params, errorHandling, loadDataMixin, couponService, loading, modals, toast
+    $scope, $state, $params, errorHandling, loadDataMixin, couponService, loading, modals, toast, checkoutService
 ) {
 
     var ctrl = this;
@@ -19,6 +19,9 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
         // 选中的优惠券
         selectedCouponList: [],
 
+        // 默认选中的优惠券code
+        defaultCouponCode: $params.couponCode,
+
         // 切换可用／不可用优惠券
         onSwitchType: function(type) {
             if (ctrl.type !== type) {
@@ -35,10 +38,6 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
             // 不可用优惠券列表
             ctrl.unAvailableCouponList = [];
 
-            // 选中的优惠券
-            ctrl.selectedCouponList = [];
-
-            loading.open();
             ctrl.finishLoading = false;
 
             return couponService.getAllCouponList()
@@ -87,16 +86,19 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
 
                                 // 默认未选择优惠券
                                 _.forEach(ctrl.availableCouponList, function(coupon) {
-                                    coupon.selected = false;
+
+                                    if (coupon.code === ctrl.defaultCouponCode) {
+                                        coupon.selected = true;
+                                    } else {
+                                        coupon.selected = false;
+                                    }
                                 });
                             })
                             .error(errorHandling)
                             .finally(function() {
-                                loading.close();
                                 ctrl.finishLoading = true;
                             });
                     } else {
-                        loading.close();
                         ctrl.finishLoading = true;
                     }
                 })
@@ -106,6 +108,11 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
         // 切换优惠券选择状态
         toggleSelect: function(coupon) {
             coupon.selected = !coupon.selected;
+        },
+
+        // 确定使用优惠券：不允许使用多张优惠券
+        confirm: function() {
+
             ctrl.selectedCouponList = [];
             
             // 筛选出已选中的优惠券
@@ -114,17 +121,28 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
                     ctrl.selectedCouponList.push(coupon);
                 }
             });
-        },
-
-        // 确定使用优惠券：不允许使用多张优惠券
-        confirm: function() {
 
             var selectedCoupon = ctrl.selectedCouponList;
 
             if (selectedCoupon.length === 0) {
 
-                $params.callback('无优惠券信息', {});
-                ctrl.close();
+                loading.open();
+
+                checkoutService.getItems(ctrl.ordItemIds)
+                    .success(function(response) {
+
+                        // 绝对路径图片
+                        _.forEach(response.items, function(item) {
+                            item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
+                        });
+
+                        $params.callback('无优惠券信息', 0, '', response);
+                        ctrl.close();
+                    })
+                    .error(errorHandling)
+                    .finally(function() {
+                        loading.close();
+                    });
 
             } else if (selectedCoupon.length > 1) {
 
@@ -133,13 +151,39 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
 
             } else {
 
-                couponService.chooseCoupon(ctrl.ordItemIds, selectedCoupon[0].code)
-                    .success(function(response) {
-                        $params.callback(selectedCoupon[0].label, response);
-                        ctrl.close();
-                    })
-                    .error(errorHandling);
-    
+                loading.open();
+
+                // 如果当前选中的code与之前选中的一致，则不需要访问接口，可直接关闭弹窗
+                if (selectedCoupon[0].code === ctrl.defaultCouponCode) {
+
+                    checkoutService.getItems(ctrl.ordItemIds)
+                        .success(function(response) {
+
+                            // 绝对路径图片
+                            _.forEach(response.items, function(item) {
+                                item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
+                            });
+
+                            $params.callback(selectedCoupon[0].label, selectedCoupon[0].parValue, selectedCoupon[0].code, response);
+                            ctrl.close();
+                        })
+                        .error(errorHandling)
+                        .finally(function() {
+                            loading.close();
+                        });
+
+                } else {
+
+                    couponService.chooseCoupon(ctrl.ordItemIds, selectedCoupon[0].code)
+                        .success(function(response) {
+                            $params.callback(selectedCoupon[0].label, selectedCoupon[0].parValue, selectedCoupon[0].code, response);
+                            ctrl.close();
+                        })
+                        .error(errorHandling)
+                        .finally(function() {
+                            loading.close();
+                        });
+                }
             }
         },
 

@@ -42,7 +42,7 @@
                             <span class="item-num">{{coupon.parValue}}</span>
                             <span class="item-tips">{{coupon.remark}}</span>
                             <span class="item-title">优惠券</span>
-                            <span class="item-date">有效期：{{coupon.startDate}}-{{coupon.endDate}}</span>
+                            <span class="item-date">有效期:{{coupon.startDate}}-{{coupon.endDate}}</span>
                             <span class="item-line"></span>
                         </div>
                         <label class="checkbox item-checkout">
@@ -62,13 +62,13 @@
                 </div>
 
                 <ul class="coupon-list">
-                    <li class="coupon-item disable"
+                    <li class="coupon-item"
                         ng-repeat="coupon in checkoutCoupon.unAvailableCouponList">
                         <span class="item-symbol">&yen;</span>
                         <span class="item-num">{{coupon.parValue}}</span>
                         <span class="item-tips">{{coupon.remark}}</span>
                         <span class="item-title">优惠券</span>
-                        <span class="item-date">有效期：{{coupon.startDate}}-{{coupon.endDate}}</span>
+                        <span class="item-date">有效期:{{coupon.startDate}}-{{coupon.endDate}}</span>
                         <span class="item-line"></span>
                     </li>
                 </ul>

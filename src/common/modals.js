@@ -134,6 +134,8 @@ angular.module('app').constant('modals', {
     // 结算中心－金额
     checkoutAmount: {
         path: 'templates/modals/checkoutAmount.html',
+        controller: 'checkoutAmountCtrl',
+        controllerAs: 'checkoutAmount',
         animation: 'slide-in-up'
     },
 
