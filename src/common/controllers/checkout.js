@@ -144,32 +144,38 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
 
                     // 生成的订单id
                     var orderId = response.config.order.object.order.id;
-
-                    // 关闭弹窗
-                    ctrl.close();
                     
-                    // 去支付
-                    payService.pay(orderId, payment)
+                    // 需要先修改该订单的支付方式
+                    checkoutService.choosePayment(orderId, payment)
                         .success(function() {
+                            // 广播消息 修改支付方式完成
+                            messageCenter.publishMessage('chooosepayment.success');
 
-                            // 开启支付成功页面
-                            modals.paymentOrderSuccess.open({
-                                params: {
-                                    orderId: orderId
-                                }
-                            });
+                            ctrl.close();
 
-                            // 广播消息 支付完成
-                            messageCenter.publishMessage('pay.success');
+                            payService.pay(orderId, payment)
+                                .success(function() {
 
+                                    // 开启支付成功页面
+                                    modals.paymentOrderSuccess.open({
+                                        params: {
+                                            orderId: orderId
+                                        }
+                                    });
+
+                                    // 广播消息 支付完成
+                                    messageCenter.publishMessage('pay.success');
+
+                                })
+                                .error(errorHandling);
                         })
-                        .error(errorHandling);
+                        .error(errorHandling); 
 
-                })
-                .error(errorHandling)
-                .finally(function() {
-                    loading.close();
-                });
+            })
+            .error(errorHandling)
+            .finally(function() {
+                loading.close();
+            });
         },
 
         // 关闭弹窗

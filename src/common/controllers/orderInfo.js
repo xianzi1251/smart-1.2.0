@@ -15,9 +15,17 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
         // 打开选择支付弹出层
         pay: function() {
+            var payment;
+            if (ctrl.info.paymentType == '支付宝') {
+                payment = 'AliPay';
+            } else if (ctrl.info.paymentType == '微信') {
+                payment = 'WeChat';
+            }
             modals.choosePayment.open({
                 params: {
-                    orderId: ctrl.orderId
+                    orderId: ctrl.orderId,
+                    payment: payment,
+                    source: 'order',
                 } 
             });
         },

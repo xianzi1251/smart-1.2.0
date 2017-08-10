@@ -90,10 +90,12 @@ angular.module('app.controllers').controller('orderListCtrl', function(
         },
 
         // 打开选择支付弹出层
-        pay: function(orderId) {
+        pay: function(orderId, payment) {
             modals.choosePayment.open({
                 params: {
-                    orderId: orderId
+                    orderId: orderId,
+                    payment: payment,
+                    source: 'order',
                 } 
             });
         }
@@ -106,8 +108,8 @@ angular.module('app.controllers').controller('orderListCtrl', function(
         deregistration();
     });
 
-    // 订阅提交[支付订单成功/评论商品成功]消息 刷新列表
-    messageCenter.subscribeMessage(['pay.success', 'order.cancel', 'order.comment'], function() {
+    // 订阅提交[支付订单成功/评论商品成功/修改支付方式]消息 刷新列表
+    messageCenter.subscribeMessage(['pay.success', 'order.cancel', 'order.comment', 'chooosepayment.success'], function() {
         ctrl.refresh({showLoading: false, emptyData: false});
     });
 
