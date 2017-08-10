@@ -35,6 +35,7 @@ angular.module('app.controllers').controller('userCtrl', function(
                     }
                     
                     ctrl.countAmount = data.object.itemNums;
+                    ctrl.countCoupon = data.object.cpnCodeNums;
                     ctrl.loyalty = data.object.loyalty;
                 })
                 .error(errorHandling)
