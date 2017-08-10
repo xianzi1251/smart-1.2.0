@@ -1,0 +1,62 @@
+<ion-view title="优惠券" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            优惠券
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="stable-bg" scroll="false">
+
+        <cm-dynamic-tabs fill-mode="true">
+            <cm-dynamic-tab-item ng-click="couponList.onSwitchType(0)"
+                ng-class="{'active': couponList.type === 0}"
+                tab-text="couponList.tabText[0] + ' (' + couponList.total.totalRecords0 + ')'">
+            </cm-dynamic-tab-item>
+            <cm-dynamic-tab-item ng-click="couponList.onSwitchType(1)"
+                ng-class="{'active': couponList.type === 1}"
+                tab-text="couponList.tabText[1] + ' (' + couponList.total.totalRecords1 + ')'">
+            </cm-dynamic-tab-item>
+            <cm-dynamic-tab-item ng-click="couponList.onSwitchType(2)"
+                ng-class="{'active': couponList.type === 2}"
+                tab-text="couponList.tabText[2] + ' (' + couponList.total.totalRecords2 + ')'">
+            </cm-dynamic-tab-item>
+        </cm-dynamic-tabs>
+
+        <ion-content class="coupon-list-panel" delegate-handle="selectCouponsScroll">
+
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="couponList.refresh({showLoading: false})" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+            <!-- 空警告，当页面内没有数据时，显示该信息 -->
+            <div class="list-empty" ng-if="couponList.finishLoading && couponList.coupons.length == 0">
+                <div class="img"></div>
+                <div class="text">暂无优惠券</div>
+            </div>
+
+            <ul class="coupon-list" ng-if="couponList.finishLoading">
+                <li class="coupon-item" ng-repeat="coupon in couponList.coupons"
+                    ng-class="{'disable coupon-used': couponList.type == 1, 'disable coupon-expired': couponList.type == 2}">
+                    <span class="item-icon"></span>
+                    <span class="item-symbol">&yen;</span>
+                    <span class="item-num">{{coupon.parValue}}</span>
+                    <span class="item-tips">{{coupon.remark}}</span>
+                    <span class="item-title">优惠券</span>
+                    <span class="item-date">有效期:{{coupon.startdate}}-{{coupon.enddate}}</span>
+                    <span class="item-line"></span>
+                </li>
+            </ul>
+
+        </ion-content>
+
+    </ion-content>
+
+</ion-view>

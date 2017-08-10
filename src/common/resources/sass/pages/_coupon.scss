@@ -131,14 +131,14 @@
 
         &.coupon-expired {
 
-            &:before {
+            .item-icon {
                 background-image: url(#{$images-path}/coupon-disable-expired.png);
             }
         }
 
         &.coupon-used {
 
-            &:before {
+            .item-icon {
                 background-image: url(#{$images-path}/coupon-disable-used.png);
             }
         }
@@ -146,6 +146,16 @@
         span {
             position: absolute;
             color: $light;
+        }
+
+        .item-icon {
+            top: 5px;
+            right: 0;
+            bottom: 5px;
+            width: 200px;
+            background-size: auto 100px;
+            background-repeat: no-repeat;
+            background-position: top right;
         }
 
         .item-symbol {

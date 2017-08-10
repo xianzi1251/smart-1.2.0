@@ -67,6 +67,12 @@ angular.module('app.controllers').controller('userCtrl', function(
             $state.go('tabs.orderList');
         },
 
+        // 优惠券
+        goCouponList: function() {
+            nativeTransition.forward();
+            $state.go('tabs.couponList');
+        },
+
         // 军人认证
         goAuthentication: function() {
             nativeTransition.forward();

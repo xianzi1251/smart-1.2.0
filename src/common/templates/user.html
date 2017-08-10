@@ -39,7 +39,18 @@
                 </div>
             </li>
 
-            <li class="user-item row" ng-click="user.goAuthentication()">
+            <li class="user-item row" ng-click="user.goCouponList()">
+                <i class="icon ion-ios-filing-outline icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">优惠券</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <!-- <li class="user-item row" ng-click="user.goAuthentication()">
                 <i class="iconfont icon-huizhang icon-left col col-adaptive"></i>
                 <div class="col">
                     <div class="item-row row">
@@ -47,7 +58,7 @@
                         <i class="iconfont icon-rightarrow col col-adaptive"></i>
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             <li class="user-item row" ng-click="user.goExchangeList()"
                 ng-if="user.bytSwitch">
