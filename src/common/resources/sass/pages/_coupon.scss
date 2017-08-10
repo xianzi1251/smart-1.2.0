@@ -21,6 +21,7 @@
             position: relative;
             height: 90px;
             margin-bottom: 8px;
+            border-radius: 4px;
             background-color: #ff681e;
 
             &:before {
@@ -98,6 +99,7 @@
         height: 110px;
         margin-bottom: 8px;
         background-color: #ff681e;
+        border-radius: 4px;
 
         &:before {
             position: absolute;

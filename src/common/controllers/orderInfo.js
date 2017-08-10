@@ -46,18 +46,51 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
                     // 当前是否开启兑换／积分／收货地址[1: 关闭, 0: 开启]
                     ctrl.bytSwitch = localStorage.get('user').bytSwitch;
                     
+                    // 订单信息
                     ctrl.info = response.list[0][0];
-                    ctrl.items = response.list[1];
-                    ctrl.consignee = response.list[2][0];
 
-                    // 订单商品图片
+                    // 订单快递信息
+                    ctrl.expressInfo = response.object;
+
+                    // 订单中的商品信息
+                    ctrl.items = response.list[1];
                     _.forEach(ctrl.items, function(item) {
                         item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
                     });
 
+                    // 订单收货人信息
+                    ctrl.consignee = response.list[2][0];
+
+                    // 订单发票信息
+                    ctrl.invoice = response.list[3];
+                    if (!_.isEmpty(ctrl.invoice)) {
+                        ctrl.invoiceName = ['个人', '企业'];
+                        ctrl.invName = ['纸质发票', '电子发票'];
+                        ctrl.invoiceInfo = ctrl.invoice[0];
+                    }
+
+                    // 订单优惠券信息
+                    ctrl.coupon = response.list[4];
+                    if (_.isEmpty(ctrl.coupon)) {
+                        ctrl.couponInfo = '未使用优惠券';
+                    } else {
+                        ctrl.couponInfo = ctrl.coupon[0].label;
+                    }
+
                 })
                 .error(errorHandling);
-        }
+        },
+
+        // 复制物流单号
+        copyExpressNumber: function() {
+            var expressNumber = ctrl.expressInfo.logisticsNumber;
+
+            if(window.cordova && window.cordova.plugins) {
+                cordova.plugins.clipboard.copy(expressNumber, function() {
+                    toast.open('复制成功');
+                }, angular.noop);
+            }
+        },
 
     });
 

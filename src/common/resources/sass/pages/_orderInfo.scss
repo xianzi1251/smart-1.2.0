@@ -25,17 +25,28 @@
     }
 
     .order-info {
-        padding: 5px 12px;
+        padding: 12px;
         line-height: 1.5em;
         color: $text-color-quiet;
-        @extend %font-size-base;
+        @extend %font-size-small;
 
         .info {
             margin: 0;
         }
 
-        .txt {
-            color: $text-color-secondary;
+        .order-info-copy {
+            position: relative;
+        }
+
+        .order-copy {
+            position: absolute;
+            right: 0;
+            top: -5px;
+            width: 30px;
+            height: 20px;
+            line-height: 18px;
+            min-height: 20px;
+            font-size: 12px;
         }
     }
 
@@ -143,11 +154,19 @@
         }
 
         .item-price {
+            position: relative;
             overflow: hidden;
             line-height: 1.5em;
             color: $text-color-quiet;
             color: $energized;
             @extend %font-size-small;
+
+            .numbers {
+                position: absolute;
+                top: 0;
+                right: 0;
+                color: $text-color-secondary;
+            }
         }
     }
 
@@ -160,9 +179,9 @@
         }
 
         .order-row-cont {
-            padding: 0 12px;
+            padding-right: 12px;
+            margin-left: 12px;
             line-height: 3em;
-            @extend %font-size-big;
             background: superfine-border-bottom($line-color);
 
             &:last-child {
@@ -171,12 +190,50 @@
         }
 
         .col-tit {
+            padding-left: 0;
+            @extend %font-size-big;
             color: $text-color-quiet;
+
+            &.refund-tips {
+                @extend %font-size-small;
+            }
         }
 
         .col-txt {
+            @extend %font-size-base;
             color: $text-color;
             text-align: right;
+
+            .icon {
+                color: $primary-color;
+                font-size: 20px;
+            }
+        }
+
+        .order-invoice-row-cont {
+            padding: 8px 12px 8px 0;
+            margin-left: 12px;
+            background: superfine-border-bottom($line-color);
+        }
+
+        .order-invoice-row {
+            overflow: hidden;
+            margin-bottom: 0;
+            line-height: 2em;
+        }
+
+        .col-invoice-tit {
+            float: left;
+            @extend %font-size-big;
+            color: $text-color-quiet;
+        }
+
+        .col-invoice-txt {
+            display: block;
+            margin-left: 5em;
+            @extend %font-size-base;
+            color: $text-color;
+            text-align: left;
         }
     }
 
@@ -199,6 +256,12 @@
         text-align: right;
         color: $text-color-quiet;
         @extend %font-size-small;
+    }
+
+    .order-receive-info {
+        padding: 8px 12px 16px;
+        @extend %font-size-base;
+        color: $text-color-quiet;
     }
 }
 
