@@ -183,6 +183,16 @@ angular.module('app')
             }
         },
 
+        'tabs.couponList': {
+            url: '/couponList',
+            views: {
+                user: {
+                    templateUrl: 'templates/couponList.html',
+                    controller: 'couponListCtrl as couponList'
+                }
+            }
+        },
+
         'tabs.shoppingCart': {
             url: '/shoppingCart',
             views: {

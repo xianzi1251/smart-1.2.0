@@ -79,9 +79,19 @@
         }
 
         .icon-left {
+            width: 20px;
             margin-right: 8px;
             @extend %font-size-huge;
             color: #435985;
+        }
+
+        .ion-ios-filing-outline {
+            font-size: 26px;
+        }
+
+        .ion-ios-cloud-download-outline,
+        .ion-ios-film-outline {
+            font-size: 24px;
         }
 
         .icon-rightarrow {
