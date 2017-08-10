@@ -1,0 +1,71 @@
+<ion-view title="观看记录" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            观看记录
+        </div>
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear" ng-click="viewVideoList.toggleEditMode()">
+                    <i ng-show="viewVideoList.mode == 1" class="iconfont icon-lajitong"></i>
+                    <span class="bar-button-text" ng-show="viewVideoList.mode == 2">取消</span>
+                </button>
+            </span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="view-video-list-panel stable-bg" delegate-handle="viewVideoListScroll"
+        ng-class="{'has-footer': viewVideoList.mode == 2}">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="viewVideoList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="viewVideoList.finishLoading && viewVideoList.list.length == 0">
+            <div class="img"></div>
+            <div class="text">暂无观看记录</div>
+        </div>
+
+        <ul class="view-list">
+            <li class="view-item row" 
+                ng-repeat="item in viewVideoList.list"
+                ng-click="viewVideoList.goVideoInfo(item)">
+                <label class="item-checkout checkbox col col-center col-adaptive" ng-if="viewVideoList.mode == 2">
+                    <input type="checkbox" ng-model="item.selected"
+                        ng-change="viewVideoList.changeItemSelected(item)" />
+                </label>
+                <div class="item-cont col clearfix">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-title">{{item.title}}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </ion-content>
+
+    <ion-footer-bar class="view-video-list-footer" ng-if="viewVideoList.mode == 2">
+        <ul class="row">
+            <li class="footer-item col">
+                <button class="button button-block button-light" 
+                    ng-click="viewVideoList.selectAll()">全选</button>
+            </li>
+            <li class="footer-item col">
+                <button class="button button-block button-primary"
+                    ng-click="viewVideoList.deleteVideo()">删除</button>
+            </li>
+        </ul>
+    </ion-footer-bar>
+
+</ion-view>

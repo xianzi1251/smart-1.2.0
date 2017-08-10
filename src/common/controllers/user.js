@@ -100,8 +100,8 @@ angular.module('app.controllers').controller('userCtrl', function(
 
         // 观看记录
         goViewVideoList: function() {
-            // nativeTransition.forward();
-            // $state.go('tabs.viewVideoList');
+            nativeTransition.forward();
+            $state.go('tabs.viewVideoList');
         },
 
         // 收货地址
