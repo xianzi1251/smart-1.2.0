@@ -11,31 +11,53 @@
         <div class="title title-center header-item">
             离线中心
         </div>
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear" ng-click="downloadVideoList.toggleEditMode()">
+                    <i ng-show="downloadVideoList.mode == 1" class="iconfont icon-lajitong"></i>
+                    <span ng-show="downloadVideoList.mode == 2" class="bar-button-text">取消</span>
+                </button>
+            </span>
+        </div>
     </ion-header-bar>
 
-    <ion-content class="download-video-list-panel stable-bg">
+    <ion-content class="download-video-list-panel stable-bg" delegate-handle="downloadVideoListScroll"
+        ng-class="{'has-footer': downloadVideoList.mode == 2}">
 
         <!--下拉刷新-->
-        <!-- <ion-refresher on-refresh="downloadVideoList.refresh({showLoading: false})" 
-            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher> -->
+        <ion-refresher on-refresh="downloadVideoList.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
         <!-- 空警告，当页面内没有数据时，显示该信息 -->
-        <!-- <div class="list-empty" ng-if="downloadVideoList.finishLoading && downloadVideoList.videos.length == 0">
+        <div class="list-empty" ng-if="downloadVideoList.finishLoading && downloadVideoList.list.length == 0">
             <div class="img"></div>
-            <div class="text">您还没有缓存课程</div>
-        </div> -->
+            <div class="text">暂无缓存课程</div>
+        </div>
 
         <ul class="video-list">
-            <li class="video-item row">
-                <i class="video-play icon ion-ios-play-outline col col-adaptive"></i>
-                <span class="video-text col">啦啦啦啦啦</span>
-            </li>
-            <li class="video-item row">
-                <i class="video-play icon ion-ios-play-outline col col-adaptive"></i>
-                <span class="video-text col">啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</span>
+            <li class="video-item row" 
+                ng-repeat="video in downloadVideoList.list"
+                ng-click="downloadVideoList.goVideoInfo(video)">
+                <label class="item-checkout checkbox col col-center col-adaptive" ng-if="downloadVideoList.mode == 2">
+                    <input type="checkbox" ng-model="video.selected" />
+                </label>
+                <i class="video-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
+                <span class="video-text col">{{video.commodityTitle}}</span>
             </li>
         </ul>
-
     </ion-content>
+
+    <ion-footer-bar class="download-video-list-footer" ng-if="downloadVideoList.mode == 2">
+        <ul class="row">
+            <li class="footer-item col">
+                <button class="button button-block button-light" 
+                    ng-click="downloadVideoList.selectAll()">{{downloadVideoList.selectedText}}</button>
+            </li>
+            <li class="footer-item col">
+                <button class="button button-block button-primary"
+                    ng-click="downloadVideoList.deleteVideo()">删除</button>
+            </li>
+        </ul>
+    </ion-footer-bar>
 
 </ion-view>

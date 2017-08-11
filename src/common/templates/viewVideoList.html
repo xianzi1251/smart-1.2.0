@@ -15,7 +15,7 @@
             <span class="right-buttons">
                 <button class="button button-clear" ng-click="viewVideoList.toggleEditMode()">
                     <i ng-show="viewVideoList.mode == 1" class="iconfont icon-lajitong"></i>
-                    <span class="bar-button-text" ng-show="viewVideoList.mode == 2">取消</span>
+                    <span ng-show="viewVideoList.mode == 2" class="bar-button-text">取消</span>
                 </button>
             </span>
         </div>
@@ -39,8 +39,7 @@
                 ng-repeat="item in viewVideoList.list"
                 ng-click="viewVideoList.goVideoInfo(item)">
                 <label class="item-checkout checkbox col col-center col-adaptive" ng-if="viewVideoList.mode == 2">
-                    <input type="checkbox" ng-model="item.selected"
-                        ng-change="viewVideoList.changeItemSelected(item)" />
+                    <input type="checkbox" ng-model="item.selected" />
                 </label>
                 <div class="item-cont col clearfix">
                     <div class="item-img fl">
@@ -59,7 +58,7 @@
         <ul class="row">
             <li class="footer-item col">
                 <button class="button button-block button-light" 
-                    ng-click="viewVideoList.selectAll()">全选</button>
+                    ng-click="viewVideoList.selectAll()">{{viewVideoList.selectedText}}</button>
             </li>
             <li class="footer-item col">
                 <button class="button button-block button-primary"

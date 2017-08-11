@@ -19,6 +19,8 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
             loading.open();
             ctrl.finishLoading = false;
 
+            ctrl.mode = 1;
+
             return videoService.getViewVideoList()
                 .success(function(response) {
                     ctrl.list = response.list[0];
@@ -41,7 +43,23 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
             // 如果当前处于编辑状态，则不能跳转
             if (ctrl.mode == 2) {
                 
+                // 当前选中方式取反
                 item.selected = !item.selected;
+
+                // 当前选中的数量
+                var active = 0;
+
+                _.forEach(ctrl.list, function(item) {
+                    if (item.selected) {
+                        active++;
+                    }
+                });
+
+                if (active == ctrl.list.length) {
+                    ctrl.selectedText = '取消全选';
+                } else {
+                    ctrl.selectedText = '全选';
+                }
 
             } else {    
 
@@ -69,6 +87,8 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
                 _.forEach(ctrl.list, function(item) {
                     item.selected = false;
                 });
+
+                ctrl.selectedText = '全选';
             }
             else {
                 ctrl.mode = 1;
@@ -77,12 +97,29 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
             }
         },
 
-        // 全选
+        // 全选/取消全选
         selectAll: function() {
 
+            // 当前选中的数量
+            var active = 0;
+
             _.forEach(ctrl.list, function(item) {
-                item.selected = true;
+                if (item.selected) {
+                    active++;
+                }
             });
+
+            if (active == ctrl.list.length) {
+                _.forEach(ctrl.list, function(item) {
+                    item.selected = false;
+                });
+                ctrl.selectedText = '全选';
+            } else {
+                _.forEach(ctrl.list, function(item) {
+                    item.selected = true;
+                });
+                ctrl.selectedText = '取消全选';
+            }
         },
 
         // 删除
@@ -101,7 +138,7 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
                 toast.open('请选择需要删除的内容');
             } else {
                 loading.open();
-                videoService.deleteVideo(summaryIds)
+                videoService.deleteViewVideo(summaryIds)
                     .success(function() {
                         toast.open('删除成功');
                         ctrl.refresh();
