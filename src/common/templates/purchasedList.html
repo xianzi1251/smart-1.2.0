@@ -13,35 +13,106 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="purchased-list-panel stable-bg">
+    <ion-content class="stable-bg" scroll="false">
 
-        <!--下拉刷新-->
-        <ion-refresher on-refresh="purchased.refresh({showLoading: false})" 
-            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+        <cm-dynamic-tabs fill-mode="true">
+            <cm-dynamic-tab-item ng-click="purchased.onSwitchType('course')"
+                ng-class="{'active': purchased.type === 'course'}"
+                tab-text="purchased.tabText[0]">
+            </cm-dynamic-tab-item>
+            <cm-dynamic-tab-item ng-click="purchased.onSwitchType('book')"
+                ng-class="{'active': purchased.type === 'book'}"
+                tab-text="purchased.tabText[1]">
+            </cm-dynamic-tab-item>
+        </cm-dynamic-tabs>
 
-        <!-- 空警告，当页面内没有数据时，显示该信息 -->
-        <div class="list-empty" ng-if="purchased.finishLoading && purchased.items.length == 0">
-            <div class="img"></div>
-            <div class="text">您还没有购买商品</div>
-        </div>
+        <ion-content class="purchased-list-panel" delegate-handle="purchasedListScroll">
 
-        <ul class="purchased-list light-bg">
-            <li class="purchased-item clearfix" ng-repeat="item in purchased.items"
-                ng-click="purchased.goVideoInfo(item.cdtName, item.videoUrl, item.isExpiry, item.genreName)">
-                <div class="item-img fl">
-                    <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="purchased.refresh({showLoading: false})" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+            <!-- 课程 -->
+            <div ng-show="purchased.finishLoading && purchased.type == 'course'">
+                <!-- 空警告，当页面内没有数据时，显示该信息 -->
+                <div class="list-empty" ng-if="purchased.courses.length == 0">
+                    <div class="img"></div>
+                    <div class="text">暂无已购课程</div>
                 </div>
-                <div class="item-info">
-                    <div class="item-name">{{item.title}}</div>
-                    <div class="item-content">{{item.subtitle}}</div>
-                    <div class="item-row clearfix">
-                        <div class="item-price fl">{{item.price | currency: '¥'}}/年</div>
-                        <div class="item-date fr">购买时间: {{item.placedTime}}</div>
-                    </div>
+
+                <ul class="purchased-list">
+                    <li class="purchased-item" ng-repeat="item in purchased.courses"
+                        ng-click="purchased.goVideoInfo(item.cdtName, item.videoUrl, item.isExpiry, item.genreName)">
+                        <div class="item-order-number">
+                            <span class="text">课程名称：</span>{{item.title}}
+                            <i class="order-source source-exchange" ng-if="item.source == 1">兑</i>
+                            <i class="order-source source-ticket" ng-if="item.source == 2">券</i>
+                        </div>
+                        <div class="item-cont clearfix">
+                            <div class="item-img fl">
+                                <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">{{item.title}}</div>
+                                <div class="item-content">{{item.subtitle}}</div>
+                                <div class="item-row clearfix">
+                                    <div class="item-price fl">{{item.price | currency: '¥'}}/年</div>
+                                    <div class="item-date fr">购买时间: {{item.placedTime}}</div>
+                                </div>
+                                <!-- 未评论 -->
+                                <div class="item-btn" ng-if="!item.isComment">
+                                    <button type="button" class="button button-outline button-energized"
+                                        ng-click="purchased.goComment(item, $event)">点评</button>
+                                </div>
+                                <!-- 已评论 -->
+                                <div class="item-btn" ng-if="item.isComment">已点评</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- 图书 -->
+            <div ng-show="purchased.finishLoading && purchased.type == 'book'">
+                <!-- 空警告，当页面内没有数据时，显示该信息 -->
+                <div class="list-empty" ng-if="purchased.books.length == 0">
+                    <div class="img"></div>
+                    <div class="text">暂无已购图书</div>
                 </div>
-            </li>
-        </ul>
-        
+
+                <ul class="purchased-list">
+                    <li class="purchased-item" ng-repeat="book in purchased.books">
+                        <div class="item-order-number">
+                            <span class="text">订单编号：</span>{{book.orderNumber}}
+                            <i class="order-source source-exchange" ng-if="book.source == 1">兑</i>
+                            <i class="order-source source-ticket" ng-if="book.source == 2">券</i>
+                        </div>
+                        <div class="item-cont clearfix" ng-repeat="item in book.books">
+                            <div class="item-img fl">
+                                <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                            </div>
+                            <div class="item-info">
+                                <div class="item-name">{{item.title}}</div>
+                                <div class="item-content">{{item.subtitle}}</div>
+                                <div class="item-row clearfix">
+                                    <div class="item-price fl">{{item.price | currency: '¥'}}</div>
+                                    <div class="item-date fr">购买时间: {{item.placedTime}}</div>
+                                </div>
+                                <!-- 未评论 -->
+                                <div class="item-btn" ng-if="!item.isComment">
+                                    <button type="button" class="button button-outline button-energized"
+                                        ng-click="purchased.goComment(item, $event)">点评</button>
+                                </div>
+                                <!-- 已评论 -->
+                                <div class="item-btn" ng-if="item.isComment">已点评</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </ion-content>
+            
     </ion-content>
 
 </ion-view>

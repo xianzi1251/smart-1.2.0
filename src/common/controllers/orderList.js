@@ -76,7 +76,8 @@ angular.module('app.controllers').controller('orderListCtrl', function(
             $state.go(stateName, {
                 id: item.id,
                 skuId: item.skuId,
-                title: item.title
+                title: item.title,
+                source: 'tabs.orderList'
             });
         },
 
