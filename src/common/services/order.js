@@ -58,12 +58,21 @@ angular.module('app.services').factory('orderService',function(
         },
 
         /**
-         * 获取已购商品列表
+         * 获取已购列表－课程
          */
-        getPurchasedList: function() {
+        getPurchasedCourseList: function() {
             return api.post('/cosmos.json?command=scommerce.BYT_ORD_ORDER_PURCHASE', {
                 proName: 'BYT_ORD_ORDER_PURCHASE',
                 userId: window.APP_USER.id
+            });
+        },
+
+        /**
+         * 获取已购列表－图书
+         */
+        getPurchasedBookList: function() {
+            return api.post('/cosmos.json?command=scommerce.BYT_ACC_ORDER_ITEMBOOK_LIST', {
+                proName: 'BYT_ACC_ORDER_ITEMBOOK_LIST'
             });
         }
     };

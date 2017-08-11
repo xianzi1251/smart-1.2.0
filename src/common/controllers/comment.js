@@ -11,6 +11,7 @@ angular.module('app.controllers').controller('commentCtrl', function(
         id: $stateParams.id,
         skuId: $stateParams.skuId,
         title: $stateParams.title,
+        source: $stateParams.source,
 
         // 默认分数位5分
         score: 5,
@@ -34,7 +35,7 @@ angular.module('app.controllers').controller('commentCtrl', function(
             commentService.submitComment(orderItemId, entityId, entity, dimensionScore, commentType, content, title)
                 .success(function() {
                     nativeTransition.forward();
-                    $state.go('tabs.orderList');
+                    $state.go(ctrl.source);
                 })
                 .error(errorHandling);
         }

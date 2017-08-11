@@ -1,13 +1,55 @@
 @charset "utf-8";
 
 .purchased-list-panel {
+    top: 40px;
 
     .purchased-list {
-        padding: 0 12px;
+        padding-top: 8px;
     }
 
     .purchased-item {
-        padding: 15px 0;
+        margin-bottom: 8px;
+        background-color: $light;
+    }
+
+    .item-order-number {
+        position: relative;
+        padding: 0 12px;
+        margin: 0;
+        line-height: convert-rem(40px);
+        background: superfine-border-bottom($line-color);
+        @extend %font-size-small;
+
+        .text {
+            color: $text-color-quiet;
+        }
+    }
+
+    .order-source {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        width: 16px;
+        height: 16px;
+        margin-top: -8px;
+        line-height: 16px;
+        text-align: center;
+        color: #ffffff;
+        font-size: 9px;
+        border-radius: 3px;
+
+        &.source-exchange {
+            background-color: #4bb168;
+        }
+
+        &.source-ticket {
+            background-color: $primary-color;
+        }
+    }
+
+    .item-cont {
+        padding: 12px 12px 12px 0;
+        margin-left: 12px;
         background: superfine-border-bottom($line-color);
 
         &:last-child {
@@ -40,14 +82,14 @@
     }
 
     .item-content {
-        height: 4.1em;
+        height: 2.7em;
         margin: convert-rem(5px) 0 convert-rem(10px);
         line-height: 1.4em;
         color: $text-color-secondary;
         @extend %font-size-small;
 
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
 
         overflow: hidden;
@@ -56,8 +98,21 @@
     }
 
     .item-row {
+        overflow: hidden;
         line-height: 1.5em;
         color: $text-color-quiet;
         @extend %font-size-small;
+    }
+
+    .item-btn {
+        margin-top: convert-rem(3px);
+        text-align: right;
+        color: $text-color-quiet;
+
+        .button {
+            min-height: 1.5em;
+            font-size: 13px;
+            line-height: 1.5em;
+        }
     }
 }

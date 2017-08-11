@@ -275,7 +275,7 @@ angular.module('app')
         },
 
         'comment': {
-            url: '/comment?id&skuId&title',
+            url: '/comment?id&skuId&title&source',
             templateUrl: 'templates/comment.html',
             controller: 'commentCtrl as comment'
         },
