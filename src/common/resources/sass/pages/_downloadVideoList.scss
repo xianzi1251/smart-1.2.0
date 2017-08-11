@@ -2,19 +2,28 @@
 
 .download-video-list-panel {
 
+    &.has-footer {
+        bottom: 44px;
+    }
+
     .video-list {
-        padding: 0 12px;
         background-color: #fff;
     }
 
     .video-item {
-        padding: 12px 0;
+        padding: 12px 12px 12px 0;
+        margin-left: 12px;
         @extend %font-size-big;
         background: superfine-border-bottom($line-color);
 
         &:last-child {
             background: none;
         }
+    }
+
+    .item-checkout {
+        padding-right: 0;
+        margin-right: 15px;
     }
 
     .video-play {
@@ -34,5 +43,25 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: normal;
+    }
+}
+
+.download-video-list-footer {
+    padding: 0;
+
+    .footer-item {
+        margin-top: 1px;
+        padding: 0;
+    }
+
+    .button {
+        height: 43px;
+        min-height: 43px;
+        padding: 0;
+        margin: 0;
+        line-height: 43px;
+        font-size: 16px;
+        border: none;
+        border-radius: 0;
     }
 }
