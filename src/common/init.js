@@ -113,6 +113,9 @@ app.run(function($rootScope, $state, userService, nativeTransition, modals, mess
     // 跳转购物车
     $rootScope.goShoppingCart = goAfterLogined('tabs.shoppingCart');
 
+    // 跳转商城首页
+    $rootScope.goMallIndex = goAfterLogined('tabs.mallIndex');
+
     // 跳转购买记录
     $rootScope.goPurchasedList = goAfterLogined('tabs.purchasedList');
 

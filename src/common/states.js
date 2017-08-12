@@ -222,6 +222,16 @@ angular.module('app')
                     controller: 'sliderListCtrl as sliderList'
                 }
             }
+        },
+
+        'tabs.mallIndex': {
+            url: '/mallIndex',
+            views: {
+                mall: {
+                    templateUrl: 'templates/mall/mallIndex.html',
+                    controller: 'mallIndexCtrl as mallIndex'
+                }
+            }
         }
  
     })

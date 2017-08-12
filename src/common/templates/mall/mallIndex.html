@@ -1,0 +1,101 @@
+<ion-view title="商城" cm-hide-tabs="false">
+
+    <ion-header-bar class="bar bar-header mall-index-bar bar-primary disable-user-behavior">
+        <div class="title title-center header-item">
+            商城
+        </div>
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear">
+                    <i class="iconfont icon-gouwuche"></i>
+                </button>
+            </span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="mall-index-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="mallIndex.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 轮播图 -->
+        <cm-switch class="mall-index-img-slider"
+            class-prefix="ui-switch" data-type="slider" auto-play="5000">
+            <cm-switch-content>
+                <cm-switch-panel ng-repeat="slider in mallIndex.sliderList">
+                    <img class="img" cm-lazyload="slider.picUrl" load-immediate="true" 
+                        ng-click="mallIndex.goAdvInfo(slider.id)"/>
+                </cm-switch-panel>
+            </cm-switch-content>
+            <cm-switch-nav class="ui-switch-nav" ng-class="{'nav-hide': (index.sliderList.length <= 1)}"></cm-switch-nav>
+        </cm-switch>
+
+        <!-- 分类 -->
+        <div class="mall-index-sort-list row light-bg">
+            <div class="sort-item col" 
+                ng-click="mallIndex.goCategoryList(0)" 
+                ng-repeat="sort in mallIndex.sortList">
+                <div class="item-icon">
+                    <!-- <i class="iconfont icon-gongkaopeixun"></i> -->
+                    <img class="img" cm-lazyload="sort.imageUrl" load-immediate="true" />
+                </div>
+                <div class="item-text">{{sort.label}}</div>
+            </div>
+            <!-- <div class="sort-item col" ng-click="mallIndex.goCategoryList(1)">
+                <div class="item-icon">
+                    <i class="iconfont icon-qikan1"></i>
+                </div>
+                <div class="item-text">期刊杂志</div>
+            </div>
+            <div class="sort-item col" ng-click="mallIndex.goCategoryList(2)">
+                <div class="item-icon">
+                    <i class="iconfont icon-dangzhengwenjian"></i>
+                </div>
+                <div class="item-text">党政读物</div>
+            </div>
+            <div class="sort-item col" ng-click="mallIndex.goCategoryList(3)">
+                <div class="item-icon">
+                    <i class="iconfont icon-qita1"></i>
+                </div>
+                <div class="item-text">其它</div>
+            </div> -->
+        </div>
+
+        <!-- 搜索 -->
+        <div class="mall-index-search">
+            <i class="icon ion-ios-search-strong"></i>
+            <input type="text" class="search-input" placeholder="搜索商品" />
+        </div>
+
+        <!-- 楼层 -->
+        <div class="mall-index-recommend" ng-repeat="floor in mallIndex.floorList">
+            <div class="recommend-title">
+                <i class="icon ion-arrow-down-b"></i>
+                <span class="title">{{floor.label}}</span>
+                <i class="icon ion-arrow-down-b"></i>
+            </div>
+            <ul class="mall-list clearfix">
+                <li class="mall-item" ng-repeat="item in floor.items">
+                    <div class="item-cont">
+                        <div class="item-img">
+                            <img class="img" cm-lazyload="item.newPicUrl" load-immediate="true" />
+                        </div>
+                        <div class="item-title">
+                            <!-- <span class="title-icon">预售</span> -->
+                            {{item.fullTitle}}
+                        </div>
+                        <div class="item-price">
+                            <span class="price fl">{{item.offerPrice | currency: '¥'}}</span>
+                            <button class="fr">
+                                <i class="iconfont icon-goumaichenggong"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </ion-content>
+
+</ion-view>
