@@ -1,0 +1,113 @@
+<ion-view title="分类" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            分类
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="mall-sort-list-panel stable-bg" scroll="false"
+         ng-class="{'content-active': mallSortList.showModal}">
+
+        <!-- tab -->
+        <ul class="mall-tab-list clearfix">
+            <li class="mall-tab-item" ng-click="mallSortList.showSortModalFun1()">
+                <div class="item-box">
+                    <span class="text" ng-class="{'active': mallSortList.activeSortItem1}">
+                        {{mallSortList.categoryLabel}}
+                        <i class="iconfont ion-ios-arrow-down"></i>
+                    </span>
+                </div>
+            </li>
+            <li class="mall-tab-item" ng-click="mallSortList.showSortModalFun2()">
+                <div class="item-box">
+                    <span class="text" ng-class="{'active': mallSortList.activeSortItem2}">
+                        {{mallSortList.sortLabel}}
+                        <i class="iconfont ion-ios-arrow-down"></i>
+                    </span>
+                </div>
+            </li>
+            <li class="mall-tab-item" ng-click="mallSortList.togglePrice()">
+                <span class="text" ng-class="{'active': mallSortList.activePriceItem}">
+                    价格
+                    <i class="icon ion-arrow-up-b" 
+                        ng-class="{'active': mallSortList.priceSortType == 'skuOfferPrice asc'}"></i>
+                    <i class="icon ion-arrow-down-b" 
+                        ng-class="{'active': mallSortList.priceSortType == 'skuOfferPrice desc'}"></i>
+                </span>
+            </li>
+        </ul>
+
+        <!-- 分类弹层 -->
+        <div class="item-content" 
+            ng-show="mallSortList.showSortModal1"
+            ng-click="mallSortList.hideMask()">
+            <ul class="clearfix">
+                <li class="sort-item fl" 
+                    ng-repeat="item in mallSortList.sortItems"
+                    ng-click="mallSortList.changeSort1(item)"
+                    ng-class="{'active': item.selected}">
+                    {{item.label}}</li>
+            </ul>
+        </div>
+
+        <!-- 分类弹层 -->
+        <div class="item-content" 
+            ng-show="mallSortList.showSortModal2"
+            ng-click="mallSortList.hideMask()">
+            <ul class="clearfix">
+                <li class="sort-item fl" 
+                    ng-repeat="item in mallSortList.sortItemsStatic"
+                    ng-click="mallSortList.changeSort2(item)"
+                    ng-class="{'active': item.selected}">
+                    {{item.label}}</li>
+            </ul>
+        </div>
+
+        <!-- 遮罩层 -->
+        <div class="mask" ng-click="mallSortList.hideMask()"></div>
+
+        <ion-content class="sort-cont">
+
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="mallSortList.refresh({showLoading: false})" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+            
+            <!-- 空警告，当页面内没有数据时，显示该信息 -->
+            <div class="list-empty" ng-if="mallSortList.finishLoading && mallSortList.productList.length == 0">
+                <div class="img"></div>
+                <div class="text">暂无商品</div>
+            </div>
+
+            <ul class="mall-list clearfix">
+                <li class="mall-item" ng-repeat="item in mallSortList.productList">
+                    <div class="item-cont">
+                        <div class="item-img">
+                            <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                        </div>
+                        <div class="item-title">
+                            <!-- <span class="title-icon">预售</span> -->
+                            {{item.title}}
+                        </div>
+                        <div class="item-price clearfix">
+                            <span class="price fl">{{item.skuOfferPrice | currency: '¥'}}</span>
+                            <button class="fr">
+                                <i class="iconfont icon-goumaichenggong"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </ion-content>
+
+    </ion-content>
+
+</ion-view>

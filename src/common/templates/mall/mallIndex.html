@@ -34,7 +34,7 @@
         <!-- 分类 -->
         <div class="mall-index-sort-list row light-bg">
             <div class="sort-item col" 
-                ng-click="mallIndex.goCategoryList(0)" 
+                ng-click="mallIndex.goMallSortList(sort.categoryName)" 
                 ng-repeat="sort in mallIndex.sortList">
                 <div class="item-icon">
                     <!-- <i class="iconfont icon-gongkaopeixun"></i> -->
@@ -85,7 +85,7 @@
                             <!-- <span class="title-icon">预售</span> -->
                             {{item.fullTitle}}
                         </div>
-                        <div class="item-price">
+                        <div class="item-price clearfix">
                             <span class="price fl">{{item.offerPrice | currency: '¥'}}</span>
                             <button class="fr">
                                 <i class="iconfont icon-goumaichenggong"></i>

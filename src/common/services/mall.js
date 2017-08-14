@@ -13,13 +13,13 @@ angular.module('app.services').factory('mallService', ['api',function(api, messa
         },
 
         /**
-         * 获取首页分类信息
+         * 获取分类信息
          */
-        getMallIndexSort: function() {
+        getMallSort: function(pageLimit) {
             return api.post('/cosmos.json?command=scommerce.BYT_CHILD_CATEGORY_GET', {
                     proName: 'BYT_CHILD_CATEGORY_GET',
                     categoryName: '1501745201586',
-                    pageLimit: 4
+                    pageLimit: pageLimit
                 });
         },
 		
@@ -39,6 +39,20 @@ angular.module('app.services').factory('mallService', ['api',function(api, messa
             return api.post('/cosmos.json?command=scommerce.BYT_SHOP_INDEX_BLOCK', {
                     proName: 'BYT_SHOP_INDEX_BLOCK'
                 });
-        }
+        },
+
+        /**
+         * 获取分类列表页／搜索列表页数据
+         */
+        getMallProductList: function(keyword, categoryName, sort) {
+            return api.post('/cosmos.json?command=config.querySku', {
+                    proName: 'getMallProductList',
+                    page: 1,
+                    pageLimit: 1000,
+                    q: keyword,
+                    fq: categoryName,
+                    sort: sort
+                });
+        },
 	};
 }]);
