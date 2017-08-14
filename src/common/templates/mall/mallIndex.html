@@ -25,7 +25,7 @@
             <cm-switch-content>
                 <cm-switch-panel ng-repeat="slider in mallIndex.sliderList">
                     <img class="img" cm-lazyload="slider.picUrl" load-immediate="true" 
-                        ng-click="mallIndex.goAdvInfo(slider.id)"/>
+                        ng-click="mallIndex.goSliderAdv(slider)" />
                 </cm-switch-panel>
             </cm-switch-content>
             <cm-switch-nav class="ui-switch-nav" ng-class="{'nav-hide': (index.sliderList.length <= 1)}"></cm-switch-nav>
