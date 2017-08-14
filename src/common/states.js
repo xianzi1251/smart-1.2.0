@@ -242,6 +242,16 @@ angular.module('app')
                     controller: 'mallSortListCtrl as mallSortList'
                 }
             }
+        },
+
+        'tabs.mallSearchList': {
+            url: '/mallSearchList',
+            views: {
+                mall: {
+                    templateUrl: 'templates/mall/mallSearchList.html',
+                    controller: 'mallSearchListCtrl as mallSearchList'
+                }
+            }
         }
  
     })
