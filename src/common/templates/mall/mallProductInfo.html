@@ -1,0 +1,99 @@
+<ion-view class="product-info-view" title="商品详情" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            商品详情
+        </div>
+        <div class="buttons buttons-right" ng-click="mallProductInfo.goShoppingCart()">
+            <span class="right-buttons">
+                <button class="button button-clear">
+                    <i class="iconfont icon-gouwuche"></i>
+                </button>
+            </span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="stable-bg" delegate-handle="mallProductInfoScroll">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="mallProductInfo.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <!-- 空警告，当页面内没有数据时，显示该信息 -->
+        <div class="list-empty" ng-if="!mallProductInfo.sellAbled">
+            <div class="img"></div>
+            <div class="text">暂无商品信息</div>
+        </div>
+
+        <div ng-if="mallProductInfo.sellAbled">
+
+            <!-- banner图 -->
+            <div class="product-info-banner">
+                <img class="img" src="{{mallProductInfo.baseData.picUrl}}" />
+            </div>
+
+            <!-- 商品基本信息 -->
+            <div class="product-info light-bg">
+                <div class="info-name">{{mallProductInfo.baseData.title}}</div>
+                <div class="info-price">
+                    <span class="price">{{mallProductInfo.baseData.listPrice | currency: ''}}</span>元
+                </div>
+                <div class="info-describe" ng-if="mallProductInfo.baseData.viceTitle">
+                    {{mallProductInfo.baseData.viceTitle}}
+                </div>
+            </div>
+
+            <!-- 图书简介 -->
+            <div class="product-info-describe light-bg" cm-scroll>
+                <div class="describe-title">课程简介</div>
+                <div class="describe-content" ng-bind-html="mallProductInfo.baseData.content"></div>
+                <div class="describe-btn"></div>
+            </div>
+
+            <!-- 点评 -->
+            <div class="product-info-comments light-bg" ng-if="mallProductInfo.commentsList">
+                <div class="comments-title">点评<span class="amount">({{mallProductInfo.commentsList.length}})</span></div>
+                <ul class="comments-list">
+                    <li class="comments-item clearfix" ng-repeat="comment in mallProductInfo.commentsList">
+                        <div class="comments-pic fl">
+                            <img class="img" cm-lazyload="comment.imagePath" load-immediate="true" 
+                                ng-if="comment.imagePath"/>
+                        </div>
+                        <div class="comments-right">
+                            <div class="comments-info clearfix">
+                                <span class="comments-name fl">{{comment.nickName | textFormat: true}}</span>
+                                <span class="comments-time fl">{{comment.createTime}}</span>
+                                <cm-comment-level class="fr" level="{{comment.score}}"></cm-comment-level>
+                            </div>
+                            <div class="comments-content">{{comment.content}}</div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- <div class="comments-more">查看全部评论 ></div> -->
+            </div>
+        </div>
+
+    </ion-content>
+
+    <!-- 可购买 -->
+    <ion-footer-bar class="product-info-footer" ng-show="mallProductInfo.sellAbled">
+        <ul class="row">
+            <li class="footer-item col">
+                <button class="button button-block button-light" 
+                    ng-click="mallProductInfo.addToCart()">加入购物车</button>
+            </li>
+            <li class="footer-item col">
+                <button class="button button-block button-primary"
+                    ng-click="mallProductInfo.buyNow()">购买<span ng-if="mallProductInfo.baseData.listPrice">({{mallProductInfo.baseData.listPrice | currency: '¥'}})</span></button>
+            </li>
+        </ul>
+    </ion-footer-bar>
+
+</ion-view>

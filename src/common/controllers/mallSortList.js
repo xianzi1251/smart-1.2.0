@@ -1,5 +1,6 @@
 angular.module('app.controllers').controller('mallSortListCtrl', function(
-    $scope, $state, $stateParams, errorHandling, loadDataMixin, mallService, loading, nativeTransition
+    $scope, $state, $stateParams, errorHandling, loadDataMixin, mallService, loading, nativeTransition,
+    stateUtils, userService, cartService, toast, modals, messageCenter
 ) {
 
     var ctrl = this;
@@ -47,6 +48,43 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
                 selected: false
             }
         ],
+
+        // 跳转商品详情
+        goMallProductInfo: stateUtils.goMallProductInfo,
+
+        // 去购物车
+        goShoppingCart: function() {
+            var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
+            nativeTransition.forward();
+            $state.go(stateName);
+        },
+
+        // 添加购物车
+        addToCart: function (item, $event) {
+
+            $event.stopPropagation();
+
+            userService.hasLogined()
+                .success(function() {
+
+                    cartService.addToCart(item.sku)
+                        .success(function() {
+                            toast.open('加入购物车成功')
+                        })
+                        .error(errorHandling);
+
+                })
+                .error(function() {
+
+                    modals.login.open()
+                        .then(function(e) {
+                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
+                                ctrl.init();
+                            }, e.scope);
+                        });
+
+                });
+        },
 
         // 获取数据
         loadData: function () {

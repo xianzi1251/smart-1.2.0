@@ -1,5 +1,6 @@
 angular.module('app.controllers').controller('mallSearchListCtrl', function(
-    $scope, $state, nativeTransition, errorHandling, loadDataMixin, mallService, loading, $ionicScrollDelegate
+    $scope, $state, nativeTransition, errorHandling, loadDataMixin, mallService, loading, 
+    $ionicScrollDelegate, stateUtils
 ) {
 
     var ctrl = this;
@@ -9,6 +10,16 @@ angular.module('app.controllers').controller('mallSearchListCtrl', function(
 
         // 搜索关键字
         keyword: '',
+
+        // 跳转商品详情
+        goMallProductInfo: stateUtils.goMallProductInfo,
+
+        // 去购物车
+        goShoppingCart: function() {
+            var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
+            nativeTransition.forward();
+            $state.go(stateName);
+        },
 
         // 搜索商品
         search: function() {

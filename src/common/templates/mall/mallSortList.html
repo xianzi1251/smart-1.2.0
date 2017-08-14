@@ -11,6 +11,13 @@
         <div class="title title-center header-item">
             分类
         </div>
+        <div class="buttons buttons-right" ng-click="mallSortList.goShoppingCart()">
+            <span class="right-buttons">
+                <button class="button button-clear">
+                    <i class="iconfont icon-gouwuche"></i>
+                </button>
+            </span>
+        </div>
     </ion-header-bar>
 
     <ion-content class="mall-sort-list-panel stable-bg" scroll="false"
@@ -87,7 +94,8 @@
             </div>
 
             <ul class="mall-list clearfix" ng-show="mallSortList.finishLoading">
-                <li class="mall-item" ng-repeat="item in mallSortList.productList">
+                <li class="mall-item" ng-repeat="item in mallSortList.productList"
+                    ng-click="mallSortList.goMallProductInfo(item.entityName)">
                     <div class="item-cont">
                         <div class="item-img">
                             <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
@@ -98,7 +106,7 @@
                         </div>
                         <div class="item-price clearfix">
                             <span class="price fl">{{item.skuOfferPrice | currency: '¥'}}</span>
-                            <button class="fr">
+                            <button class="fr" ng-click="mallSortList.addToCart(item, $event)">
                                 <i class="iconfont icon-goumaichenggong"></i>
                             </button>
                         </div>
