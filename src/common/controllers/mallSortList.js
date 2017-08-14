@@ -258,6 +258,14 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
 
     });
 
+    // 页面进入时重置搜索关键字
+    $scope.$on('$ionicView.beforeEnter', function() {
+        ctrl.priceSortType = '';
+
+        ctrl.sortName = 'weight desc';
+        ctrl.sortLabel = '排序';
+    });
+
     var deregistration = $scope.$on('$ionicView.afterEnter', function() {
         // 加载数据
         ctrl.init();

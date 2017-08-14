@@ -95,6 +95,10 @@
         border-radius: 3px;
         -webkit-appearance: none;
         border: $line-color 1px solid;
+
+        &.index-search {
+            opacity: 0.7;
+        }
     }
 }
 

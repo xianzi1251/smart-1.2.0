@@ -17,7 +17,7 @@
          ng-class="{'content-active': mallSortList.showModal}">
 
         <!-- tab -->
-        <ul class="mall-tab-list clearfix">
+        <ul class="mall-tab-list clearfix" ng-show="mallSortList.finishLoading">
             <li class="mall-tab-item" ng-click="mallSortList.showSortModalFun1()">
                 <div class="item-box">
                     <span class="text" ng-class="{'active': mallSortList.activeSortItem1}">
@@ -86,7 +86,7 @@
                 <div class="text">暂无商品</div>
             </div>
 
-            <ul class="mall-list clearfix">
+            <ul class="mall-list clearfix" ng-show="mallSortList.finishLoading">
                 <li class="mall-item" ng-repeat="item in mallSortList.productList">
                     <div class="item-cont">
                         <div class="item-img">
