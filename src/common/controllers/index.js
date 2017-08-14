@@ -48,6 +48,31 @@ angular.module('app.controllers').controller('indexCtrl', function(
         // 跳转套餐详情页
         goSuitInfo: stateUtils.goSuitInfo,
 
+        // 跳转商城－商品详情
+        goMallProductInfo: stateUtils.goMallProductInfo,
+
+        // 轮播图跳转
+        goSliderAdv: function(item) {
+            var type = item.advType;
+
+            if (type == 'html') {
+                // 跳转到广告详情页
+                ctrl.goAdvInfo(item.id);
+
+            } else if (type == 'entity') {
+                // 跳转至图书详情页
+                ctrl.goMallProductInfo(item.entityName);
+                
+            } else if (type == 'link' && item.linkUrl.indexOf('http') != -1) {
+                // 跳转至外部连接
+                if (window.cordova && window.cordova.InAppBrowser) {
+                    window.cordova.InAppBrowser.open(item.linkUrl, '_system');
+                } else {
+                    window.open(item.linkUrl);
+                }
+            }
+        },
+
         // 跳转分类
         goCategoryList: function($index) {
 
