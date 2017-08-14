@@ -112,6 +112,12 @@ angular.module('app.services').provider('api', function apiProvider() {
                         response.data = response.data.config.order.object.order;
                         deferred.resolve(response);
 
+                    } else if (proName == 'getMallProductList') {
+
+                        // 商城商品列表
+                        response.data = response.data.config.querySku.object.response;
+                        deferred.resolve(response);
+
                     } else if (proName == 'WECHAT_LOGIN' || proName == 'WECHAT_PAY' || proName == 'ALI_PAY') {
 
                         // 微信登录／微信支付／支付宝支付

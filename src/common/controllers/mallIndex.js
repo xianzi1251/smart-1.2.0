@@ -30,8 +30,9 @@ angular.module('app.controllers').controller('mallIndexCtrl', function(
                         slider.picUrl = window.APP_CONFIG.serviceAPI + slider.newPicUrl;
                     });
 
-                    // 获取分类信息
-                    mallService.getMallIndexSort()
+                    // 获取分类信息，首页取前4条数据
+                    var pageLimit = 4;
+                    mallService.getMallSort(pageLimit)
                         .success(function(response) {
                             ctrl.sortList = response.list[0];
 
@@ -81,9 +82,16 @@ angular.module('app.controllers').controller('mallIndexCtrl', function(
                         .error(errorHandling);
                 })
                 .error(errorHandling);       
+        },
+
+        // 去分类页
+        goMallSortList: function(categoryName) {
+            nativeTransition.forward();
+            $state.go('tabs.mallSortList', {
+                categoryName: categoryName
+            });
         }
 
-        
     });
 
     var deregistration = $scope.$on('$ionicView.afterEnter', function() {

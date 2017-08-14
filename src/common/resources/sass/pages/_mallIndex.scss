@@ -164,7 +164,6 @@
     }
 
     .item-price {
-        overflow: hidden;
 
         .price {
             color: $energized;
@@ -172,11 +171,13 @@
         }
 
         button {
-            margin-top: -8px;
+            margin-top: -12px;
+            padding: 0;
         }
 
         .iconfont {
-            color: $text-color-secondary;
+            color: $primary-color;
+            font-size: 22px;
         }
     }
 }

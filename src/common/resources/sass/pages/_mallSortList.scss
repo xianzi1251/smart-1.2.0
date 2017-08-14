@@ -1,0 +1,132 @@
+@charset "utf-8";
+
+.mall-sort-list-panel {
+    
+    .mall-tab-list {
+        position: relative;
+        z-index: 98;
+        height: 40px;
+        background-color: $light;
+        border-bottom: $line-color 2px solid;
+    }
+
+    .mall-tab-item {
+        position: relative;
+        float: left;
+        width: 31%;
+        padding: 0;
+        line-height: 38px;
+        font-size: 12px;
+        text-align: center;
+        color: $text-color-secondary;
+
+        &:after {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 1px;
+            height: 10px;
+            background-color: $line-color;
+            content: '';
+        }
+
+        &:first-child {
+            width: 38%;
+
+            &:after {
+                content: none;
+            }
+        }
+
+        .item-box {
+            height: 38px;
+            line-height: 38px;
+        }
+
+        .text {
+            position: relative;
+            white-space: nowrap;
+
+            &.active {
+                color: $primary-color;
+            }
+
+            .iconfont {
+                position: absolute;
+                top: -10px;
+                right: -15px;
+            }
+
+            .icon {
+                position: absolute;
+                right: -15px;
+                color: $text-color-secondary;
+            }
+
+            .ion-arrow-up-b {
+                top: -13px;
+
+                &.active {
+                    color: $primary-color;
+                }
+            }
+
+            .ion-arrow-down-b {
+                top: -6px;
+
+                &.active {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    .item-content {
+        display: none;
+    }
+
+    .mask {
+        display: none;
+    }
+
+    &.content-active {
+
+        .item-content {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            display: block;
+            padding: 20px 0;
+            background-color: $light;
+
+            .sort-item {
+                width: 33%;
+                font-size: 13px;
+                line-height: 2em;
+                color: $text-color-secondary;
+                text-align: center;
+
+                &.active {
+                    color: $primary-color;
+                }
+            }
+        }
+
+        .mask {
+            position: absolute;
+            top: 40px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: block;
+            background-color: rgba(0, 0, 0, .7);
+        }
+    }
+
+    .sort-cont {
+        top: 50px;
+    }
+}
