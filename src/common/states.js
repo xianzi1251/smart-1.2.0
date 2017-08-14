@@ -193,15 +193,15 @@ angular.module('app')
             }
         },
 
-        'tabs.shoppingCart': {
-            url: '/shoppingCart',
-            views: {
-                cart: {
-                    templateUrl: 'templates/shoppingCart.html',
-                    controller: 'shoppingCartCtrl as cart'
-                }
-            }
-        },
+        // 'tabs.shoppingCart': {
+        //     url: '/shoppingCart',
+        //     views: {
+        //         cart: {
+        //             templateUrl: 'templates/shoppingCart.html',
+        //             controller: 'shoppingCartCtrl as cart'
+        //         }
+        //     }
+        // },
 
         'tabs.purchasedList': {
             url: '/purchasedList',
@@ -350,6 +350,12 @@ angular.module('app')
             url: '/userConsigneeList',
             templateUrl: 'templates/userConsigneeList.html',
             controller: 'userConsigneeListCtrl as userConsigneeList'
+        },
+
+        'mallProductInfo': {
+            url: '/mallProductInfo?entityName',
+            templateUrl: 'templates/mall/mallProductInfo.html',
+            controller: 'mallProductInfoCtrl as mallProductInfo'
         }
 
     });

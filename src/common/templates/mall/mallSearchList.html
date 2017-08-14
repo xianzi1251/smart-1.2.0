@@ -11,6 +11,13 @@
         <div class="title title-center header-item">
             商品列表
         </div>
+        <div class="buttons buttons-right" ng-click="mallSearchList.goShoppingCart()">
+            <span class="right-buttons">
+                <button class="button button-clear">
+                    <i class="iconfont icon-gouwuche"></i>
+                </button>
+            </span>
+        </div>
     </ion-header-bar>
 
     <ion-content class="stable-bg" scroll="false">
@@ -35,7 +42,8 @@
 
              <ul class="search-list">
                 <li class="search-item clearfix" 
-                    ng-repeat="item in mallSearchList.items">
+                    ng-repeat="item in mallSearchList.items"
+                    ng-click="mallSearchList.goMallProductInfo(item.entityName)">
                     <div class="item-img fl">
                         <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
                     </div>

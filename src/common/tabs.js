@@ -23,10 +23,10 @@ angular.module('app').constant('tabs', [
         href: '#/tabs/purchasedList'
     },
     {
-        name: 'cart',
+        name: 'mall',
         iconOn: 'ion-ios7-cart',
         iconOff: 'ion-ios7-cart-outline',
-        href: '#/tabs/cart'
+        href: '#/tabs/mallIndex'
     },
     {
         name: 'user',

@@ -1,11 +1,49 @@
 angular.module('app.controllers').controller('mallIndexCtrl', function(
-    $scope, $state, loadDataMixin, nativeTransition, errorHandling, mallService, loading
+    $scope, $state, loadDataMixin, nativeTransition, errorHandling, mallService, loading,
+    stateUtils, userService, cartService, toast, modals, messageCenter
 ) {
 
     var ctrl = this;
 
     _.assign(ctrl, loadDataMixin, {
         $scope: $scope,
+
+        // 跳转商品详情
+        goMallProductInfo: stateUtils.goMallProductInfo,
+
+        // 去购物车
+        goShoppingCart: function() {
+            var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
+            nativeTransition.forward();
+            $state.go(stateName);
+        },
+
+        // 添加购物车
+        addToCart: function (item, $event) {
+
+            $event.stopPropagation();
+
+            userService.hasLogined()
+                .success(function() {
+
+                    cartService.addToCart(item.sku)
+                        .success(function() {
+                            toast.open('加入购物车成功')
+                        })
+                        .error(errorHandling);
+
+                })
+                .error(function() {
+
+                    modals.login.open()
+                        .then(function(e) {
+                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
+                                ctrl.init();
+                            }, e.scope);
+                        });
+
+                });
+        },
 
         // 获取数据
         loadData: function () {

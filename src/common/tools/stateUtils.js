@@ -113,6 +113,17 @@ angular.module('app.services').factory('stateUtils', function($state, tabs, stat
             $state.go(stateName, {
                 id: id
             });
+        },
+
+        // 商城－商品详情
+        goMallProductInfo: function(entityName) {
+            if (!entityName) return;
+
+            var stateName = getStateNameByCurrentTab('mallProductInfo');
+            nativeTransition.forward();
+            $state.go(stateName, {
+                entityName: entityName
+            });
         }
 
     };

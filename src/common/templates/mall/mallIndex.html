@@ -4,7 +4,7 @@
         <div class="title title-center header-item">
             商城
         </div>
-        <div class="buttons buttons-right">
+        <div class="buttons buttons-right" ng-click="mallIndex.goShoppingCart()">
             <span class="right-buttons">
                 <button class="button button-clear">
                     <i class="iconfont icon-gouwuche"></i>
@@ -37,29 +37,10 @@
                 ng-click="mallIndex.goMallSortList(sort.categoryName)" 
                 ng-repeat="sort in mallIndex.sortList">
                 <div class="item-icon">
-                    <!-- <i class="iconfont icon-gongkaopeixun"></i> -->
                     <img class="img" cm-lazyload="sort.imageUrl" load-immediate="true" />
                 </div>
                 <div class="item-text">{{sort.label}}</div>
             </div>
-            <!-- <div class="sort-item col" ng-click="mallIndex.goCategoryList(1)">
-                <div class="item-icon">
-                    <i class="iconfont icon-qikan1"></i>
-                </div>
-                <div class="item-text">期刊杂志</div>
-            </div>
-            <div class="sort-item col" ng-click="mallIndex.goCategoryList(2)">
-                <div class="item-icon">
-                    <i class="iconfont icon-dangzhengwenjian"></i>
-                </div>
-                <div class="item-text">党政读物</div>
-            </div>
-            <div class="sort-item col" ng-click="mallIndex.goCategoryList(3)">
-                <div class="item-icon">
-                    <i class="iconfont icon-qita1"></i>
-                </div>
-                <div class="item-text">其它</div>
-            </div> -->
         </div>
 
         <!-- 搜索 -->
@@ -76,7 +57,8 @@
                 <i class="icon ion-arrow-down-b"></i>
             </div>
             <ul class="mall-list clearfix">
-                <li class="mall-item" ng-repeat="item in floor.items">
+                <li class="mall-item" ng-repeat="item in floor.items"
+                    ng-click="mallIndex.goMallProductInfo(item.entityName)">
                     <div class="item-cont">
                         <div class="item-img">
                             <img class="img" cm-lazyload="item.newPicUrl" load-immediate="true" />
@@ -87,7 +69,7 @@
                         </div>
                         <div class="item-price clearfix">
                             <span class="price fl">{{item.offerPrice | currency: '¥'}}</span>
-                            <button class="fr">
+                            <button class="fr" ng-click="mallIndex.addToCart(item, $event)">
                                 <i class="iconfont icon-goumaichenggong"></i>
                             </button>
                         </div>
