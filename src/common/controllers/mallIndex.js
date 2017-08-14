@@ -90,6 +90,12 @@ angular.module('app.controllers').controller('mallIndexCtrl', function(
             $state.go('tabs.mallSortList', {
                 categoryName: categoryName
             });
+        },
+
+        // 去搜索页
+        goSearch: function() {
+            nativeTransition.forward();
+            $state.go('tabs.mallSearchList');
         }
 
     });

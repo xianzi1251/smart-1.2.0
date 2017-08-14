@@ -1,0 +1,56 @@
+<ion-view title="搜索结果" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            搜索结果
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="stable-bg" scroll="false">
+
+        <!-- 搜索 -->
+        <form class="mall-search" method="get" ng-submit="mallSearchList.search()">
+            <i class="icon ion-ios-search-strong"></i>
+            <input class="search-input" type="search" placeholder="搜索商品" ng-model="mallSearchList.keyword" />
+        </form>
+
+        <ion-content class="mall-search-list-panel" delegate-handle="mallSearchListScroll">
+            
+            <!--下拉刷新-->
+            <ion-refresher on-refresh="mallSearchList.refresh({showLoading: false})" 
+                pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+            <!-- 空警告，当页面内没有数据时，显示该信息 -->
+            <div class="list-empty" ng-if="mallSearchList.finishLoading && mallSearchList.items.length == 0">
+                <div class="img"></div>
+                <div class="text">暂无商品</div>
+            </div>
+
+             <ul class="search-list">
+                <li class="search-item clearfix" 
+                    ng-repeat="item in mallSearchList.items">
+                    <div class="item-img fl">
+                        <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                    </div>
+                    <div class="item-info">
+                        <div class="item-title">{{item.title}}</div>
+                        <div class="item-content">{{item.subtitle}}</div>
+                        <div class="item-row clearfix">
+                            <div class="item-price fl">{{item.skuOfferPrice | currency: '¥'}}</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </ion-content>
+
+    </ion-content>
+
+</ion-view>
