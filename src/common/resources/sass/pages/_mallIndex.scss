@@ -41,26 +41,6 @@
                 height: 100%;
             }
         }
-
-        // .iconfont {
-        //     font-size: convert-rem(32px);
-        // }
-
-        // .icon-gongkaopeixun {
-        //     color: #e35c50;
-        // }
-
-        // .icon-qikan1 {
-        //     color: #fc9d00;
-        // }
-
-        // .icon-dangzhengwenjian {
-        //     color: #4a90e2;
-        // }
-    
-        // .icon-qita1 {
-        //     color: #7dc81d;
-        // }
     }
 
     .item-text {
@@ -178,6 +158,8 @@
         button {
             margin-top: -12px;
             padding: 0;
+            border: none;
+            background-color: $light;
         }
 
         .iconfont {

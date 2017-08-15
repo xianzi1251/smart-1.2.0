@@ -16,7 +16,7 @@
     <ion-content class="package-video-list-panel stable-bg" delegate-handle="packageVideoListScroll">
 
         <!--下拉刷新-->
-        <ion-refresher on-refresh="package.refresh({showLoading: false})" 
+        <ion-refresher on-refresh="package.init()" 
             pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
         <div ng-if="package.finishLoading">

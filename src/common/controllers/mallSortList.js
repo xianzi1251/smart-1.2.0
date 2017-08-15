@@ -87,7 +87,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
         },
 
         // 获取数据
-        loadData: function () {
+        init: function () {
             ctrl.finishLoading = false;
             loading.open();
             ctrl.sortItems = [];
@@ -96,7 +96,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
 
             // 获取全部分类
             var pageLimit = 1000;
-            return mallService.getMallSort(pageLimit)
+            mallService.getMallSort(pageLimit)
                 .success(function(response) {
                     ctrl.sortItems = response.list[0];
 
@@ -119,6 +119,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
                             _.forEach(ctrl.productList, function(item) {
                                 item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
                             });
+                            
                         })
                         .error(errorHandling)
                         .finally(function() {
@@ -153,7 +154,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
                 ctrl.activePriceItem = false;
             }
 
-            ctrl.refresh();
+            ctrl.init();
         },
 
         // 显示全部分类弹层
@@ -256,7 +257,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
                 ctrl.categoryLabel = item.label;
                 ctrl.categoryName = item.categoryName;
 
-                ctrl.refresh();
+                ctrl.init();
             }
         },
 
@@ -278,7 +279,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
                 ctrl.sortLabel = item.label;
                 ctrl.sortName = item.sortName;
 
-                ctrl.refresh();
+                ctrl.init();
             }
         },
 

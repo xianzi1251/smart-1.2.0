@@ -43,7 +43,7 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
         },
 
         // 获取套装商品信息
-        loadData: function() {
+        init: function() {
             ctrl.finishLoading = false;
             loading.open();
 

@@ -84,7 +84,7 @@
         <ion-content class="sort-cont">
 
             <!--下拉刷新-->
-            <ion-refresher on-refresh="mallSortList.refresh({showLoading: false})" 
+            <ion-refresher on-refresh="mallSortList.init()" 
                 pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
             
             <!-- 空警告，当页面内没有数据时，显示该信息 -->
