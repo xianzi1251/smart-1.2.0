@@ -42,6 +42,21 @@ angular.module('app.services').factory('couponService', ['api',function(api) {
         },
 
         /**
+         * 结算中心－提交订单时，如当前有优惠券，则再次保存
+         */
+        saveCoupon: function(ordItemIds, code) {
+            return api.post('/cosmos.json?domain=config', {
+                    proName: 'chooseCoupon',
+                    command: 'order',
+                    action: 'applyCoupon',
+                    cart: false,
+                    submit: true,
+                    ordItemIds: ordItemIds,
+                    code: code
+                });
+        },
+
+        /**
          * 会员中心－优惠券列表
          * @param    c1State(0-未使用/1-已使用/2-已过期)
          */
