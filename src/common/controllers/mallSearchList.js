@@ -56,10 +56,6 @@ angular.module('app.controllers').controller('mallSearchListCtrl', function(
 
     });
 
-    // 页面进入时重置搜索关键字
-    $scope.$on('$ionicView.beforeEnter', function() {
-        ctrl.keyword = '';
-    });
 
     var deregistration = $scope.$on('$ionicView.afterEnter', function() {
         ctrl.init();
