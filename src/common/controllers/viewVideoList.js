@@ -1,5 +1,6 @@
 angular.module('app.controllers').controller('viewVideoListCtrl', function(
-    $scope, loadDataMixin, errorHandling, videoService, loading, stateUtils, toast, $ionicScrollDelegate
+    $scope, $state, loadDataMixin, errorHandling, videoService, loading, stateUtils, toast, 
+    $ionicScrollDelegate, nativeTransition
 ) {
 
     var ctrl = this;
@@ -70,8 +71,12 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
 
                 } else if (item.taocan == 1) {
 
-                    // 课程包视频播放页面
-                    // TODO...
+                    // 套餐视频
+                    var stateName = stateUtils.getStateNameByCurrentTab('packageVideoList');
+                    nativeTransition.forward();
+                    $state.go(stateName, {
+                        entityName: item.entityName
+                    });
 
                 }
             }

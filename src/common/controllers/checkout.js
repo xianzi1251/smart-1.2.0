@@ -117,6 +117,31 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
         // 提交订单
         submit: function() {
 
+            // 需要判断是否必须有收货地址
+            if (!ctrl.consigneeInfo) {
+                toast.open('请填写收货地址');
+                return;
+            }
+
+            if (_.isEmpty(ctrl.couponCode)) {
+
+                // 无优惠券时，直接提交订单
+                ctrl.submitOrder();
+            } else {
+
+                // 有优惠券时，需要先保存优惠券信息
+                couponService.saveCoupon(ctrl.ordItemIds, ctrl.couponCode)
+                        .success(function() {
+                        
+                            ctrl.submitOrder();
+                    })
+                    .error(errorHandling);
+            }
+        },
+
+        // 提交订单-仅提交订单，非保存优惠券
+        submitOrder: function() {
+
             var ordItemIds = ctrl.ordItemIds,
                 payment = ctrl.checkoutInfo.payment;
 
@@ -129,12 +154,6 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                 taxpayerNo = invoice.taxpayerNo,
                 invoiceEmail = invoice.invoiceEmail,
                 invoiceContent = '明细';
-
-            // 需要判断是否必须有收货地址
-            if (!ctrl.consigneeInfo) {
-                toast.open('请填写收货地址');
-                return;
-            }
 
             loading.open();
 
