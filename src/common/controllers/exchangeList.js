@@ -50,10 +50,10 @@ angular.module('app.controllers').controller('exchangeListCtrl', function(
         },
 
         // 已兑换过的可进入视频页面
-        goVideoList: function(item) {
+        goExchangeVideoList: function(item) {
             if (!item.exchanged) return;
             
-            var stateName = stateUtils.getStateNameByCurrentTab('videoList');
+            var stateName = stateUtils.getStateNameByCurrentTab('exchangeVideoList');
             nativeTransition.forward();
             $state.go(stateName, {
                 exchangeId: item.id,

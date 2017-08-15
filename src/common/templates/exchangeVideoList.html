@@ -25,8 +25,8 @@
             <div class="text">暂无视频</div>
         </div>
 
-        <ul class="purchased-list light-bg">
-            <li class="purchased-item clearfix" ng-repeat="item in videoList.items"
+        <ul class="purchased-list">
+            <li class="purchased-item video-list-item clearfix" ng-repeat="item in videoList.items"
                 ng-click="videoList.goVideoInfo(item.commodityName, item.videoUrl, item.isExpiry, item.genreName)">
                 <div class="item-img fl">
                     <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />

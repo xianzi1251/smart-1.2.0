@@ -80,12 +80,12 @@
             </ul>
         </div> -->
 
-        <div class="index-author" ng-if="index.suitList">
+        <div class="index-author" ng-if="index.teacherList">
             <div class="author-title">平台导师</div>
             <ul class="author-list">
                 <li class="author-item clearfix" 
-                    ng-repeat="suit in index.suitList"
-                    ng-click="index.goSuitInfo(suit.entityName)">
+                    ng-repeat="suit in index.teacherList"
+                    ng-click="index.goTeacherInfo(suit.entityName)">
                     <div class="author-img fl">
                         <img class="img" cm-lazyload="suit.picUrl" load-immediate="true" />
                     </div>

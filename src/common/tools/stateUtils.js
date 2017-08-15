@@ -53,10 +53,10 @@ angular.module('app.services').factory('stateUtils', function($state, tabs, stat
         },
 
         // 跳转套餐页
-        goSuitInfo: function(entityName) {
+        goTeacherInfo: function(entityName) {
             if (!entityName) return;
             
-            var stateName = getStateNameByCurrentTab('suitInfo');
+            var stateName = getStateNameByCurrentTab('teacherInfo');
             nativeTransition.forward();
             $state.go(stateName, {
                 entityName: entityName

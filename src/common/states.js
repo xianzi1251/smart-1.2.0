@@ -280,18 +280,21 @@ angular.module('app')
             controller: 'productInfoCtrl as productInfo'
         },
 
-        'suitInfo': {
-            url: '/suitInfo?entityName',
-            templateUrl: 'templates/suitInfo.html',
-            controller: 'suitInfoCtrl as info'
+        // 首页平台导师的详情页，有可试读部分
+        'teacherInfo': {
+            url: '/teacherInfo?entityName',
+            templateUrl: 'templates/teacherInfo.html',
+            controller: 'teacherInfoCtrl as info'
         },
 
+        // 试读列表页
         'freeList': {
             url: '/freeList?entityName',
             templateUrl: 'templates/freeList.html',
             controller: 'freeListCtrl as freeList'
         },
 
+        // 试读详情页
         'freeInfo': {
             url: '/freeInfo?entityName&genreName&videoUrl',
             templateUrl: 'templates/freeInfo.html',
@@ -316,12 +319,14 @@ angular.module('app')
             controller: 'shoppingCartCtrl as cart'
         },
 
-        'videoList': {
-            url: '/videoList?exchangeId&from',
-            templateUrl: 'templates/videoList.html',
-            controller: 'videoListCtrl as videoList'
+        // 积分兑换／兑换码中的视频列表
+        'exchangeVideoList': {
+            url: '/exchangeVideoList?exchangeId&from',
+            templateUrl: 'templates/exchangeVideoList.html',
+            controller: 'exchangeVideoListCtrl as videoList'
         },
 
+        // 积分兑换／兑换码中的视频详情
         'videoInfo': {
             url: '/videoInfo?entityName&videoUrl&genreName',
             templateUrl: 'templates/videoInfo.html',
@@ -356,6 +361,13 @@ angular.module('app')
             url: '/mallProductInfo?entityName',
             templateUrl: 'templates/mall/mallProductInfo.html',
             controller: 'mallProductInfoCtrl as mallProductInfo'
+        },
+
+        // 已购列表页虚拟－套餐视频页面
+        'packageVideoList': {
+            url: '/packageVideoList?entityName',
+            templateUrl: 'templates/packageVideoList.html',
+            controller: 'packageVideoListCtrl as package'
         }
 
     });

@@ -47,7 +47,7 @@ angular.module('app.services').factory('videoService', ['api',function(api, mess
         downloadVideo: function(commodityId) {
             return api.post('/cosmos.json?command=scommerce.BYT_VIDEO_CACHE_SAVE', {
                     proName: 'BYT_VIDEO_CACHE_SAVE',
-                    deviceId: localStorage.get('unique')
+                    deviceId: localStorage.get('unique'),
                     commodityId: commodityId,
                     videoPath: videoPath
                 });

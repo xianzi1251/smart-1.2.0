@@ -46,7 +46,7 @@ angular.module('app.controllers').controller('indexCtrl', function(
         goAdvInfo: stateUtils.goAdvInfo,
 
         // 跳转套餐详情页
-        goSuitInfo: stateUtils.goSuitInfo,
+        goTeacherInfo: stateUtils.goTeacherInfo,
 
         // 跳转商城－商品详情
         goMallProductInfo: stateUtils.goMallProductInfo,
@@ -88,7 +88,7 @@ angular.module('app.controllers').controller('indexCtrl', function(
             ctrl.getSliderList();
             ctrl.getRecommendList();
             ctrl.getAuthorList();
-            ctrl.getSuitList();
+            ctrl.getTeacherList();
             ctrl.getSupportWechat();
 
             $scope.$broadcast('scroll.refreshComplete');
@@ -123,13 +123,13 @@ angular.module('app.controllers').controller('indexCtrl', function(
         },
 
         // 套餐推荐数据
-        getSuitList: function() {
+        getTeacherList: function() {
 
             indexService.getIndexInfo(positionName.suit)
                         .success(function(response) {
-                            ctrl.suitList = response.list[0];
+                            ctrl.teacherList = response.list[0];
 
-                            _.forEach(ctrl.suitList, function(suit) {
+                            _.forEach(ctrl.teacherList, function(suit) {
                                 suit.picUrl = window.APP_CONFIG.serviceAPI + suit.picUrl;
                             });
                         })

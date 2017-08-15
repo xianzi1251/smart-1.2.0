@@ -1,4 +1,4 @@
-angular.module('app.controllers').controller('videoListCtrl', function(
+angular.module('app.controllers').controller('exchangeVideoListCtrl', function(
     $scope, exchangeService, loadDataMixin, stateUtils, $stateParams, errorHandling
 ) {
 
