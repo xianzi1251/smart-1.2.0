@@ -48,12 +48,12 @@
             <ion-refresher on-refresh="info.refresh({showLoading: false})" 
                 pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
-            <div class="pd tc" ng-if="!info.suitCourseList.length">
+            <div class="pd tc" ng-if="!info.teacherCourseList.length">
                 暂无课程信息
             </div>
 
-            <ul class="course-list" ng-if="info.suitCourseList.length">
-                <li class="course-item clearfix" ng-repeat="item in info.suitCourseList">
+            <ul class="course-list" ng-if="info.teacherCourseList.length">
+                <li class="course-item clearfix" ng-repeat="item in info.teacherCourseList">
                     <div class="item-img fl">
                         <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
                     </div>

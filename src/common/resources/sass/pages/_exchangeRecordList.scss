@@ -1,14 +1,18 @@
 @charset "utf-8";
 
 .exchange-record-list-view {
+
+    .scroll-content {
+        padding-top: 8px;
+    }
     
     .record-list {
-    	padding: 20px 12px;
+    	padding: 0 12px;
     }
 
     .record-item {
     	padding: 20px 10px;
-    	margin-bottom: 12px;
+    	margin-bottom: 8px;
     	background-color: $light;
     	border-radius: 3px;
     }

@@ -6,7 +6,8 @@ angular.module('app.directives').directive('cmScroll', function factory($ionicSc
     // 是否收起更多
     var hideMore = true;
 
-    var $content = $ionicScrollDelegate.$getByHandle('infoScroll');
+    var $content1 = $ionicScrollDelegate.$getByHandle('infoScroll'),
+        $content2 = $ionicScrollDelegate.$getByHandle('packageVideoListScroll');
 
     return {
         restrict: 'A',
@@ -45,7 +46,8 @@ angular.module('app.directives').directive('cmScroll', function factory($ionicSc
             $infolist.offset().top;
         }
 
-        $content.resize();
+        $content1.resize();
+        $content2.resize();
 
     }
 });

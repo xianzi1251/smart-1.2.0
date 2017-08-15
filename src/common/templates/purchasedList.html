@@ -42,7 +42,7 @@
 
                 <ul class="purchased-list">
                     <li class="purchased-item" ng-repeat="item in purchased.courses"
-                        ng-click="purchased.goVideoInfo(item.cdtName, item.videoUrl, item.isExpiry, item.genreName)">
+                        ng-click="purchased.goPurchasedInfo(item)">
                         <div class="item-order-number">
                             <span class="text">课程名称：</span>{{item.title}}
                             <i class="order-source source-exchange" ng-if="item.source == 1">兑</i>
@@ -81,7 +81,8 @@
                 </div>
 
                 <ul class="purchased-list">
-                    <li class="purchased-item" ng-repeat="book in purchased.books">
+                    <li class="purchased-item" ng-repeat="book in purchased.books"
+                        ng-click="purchased.goOrderInfo(book.orderId)">
                         <div class="item-order-number">
                             <span class="text">订单编号：</span>{{book.orderNumber}}
                             <i class="order-source source-exchange" ng-if="book.source == 1">兑</i>

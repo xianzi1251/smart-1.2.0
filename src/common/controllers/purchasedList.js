@@ -114,6 +114,37 @@ angular.module('app.controllers').controller('purchasedListCtrl', function(
                 title: item.title,
                 source: 'tabs.purchasedList'
             });
+        },
+
+        // 查看订单详情
+        goOrderInfo: function(orderId) {
+            var stateName = stateUtils.getStateNameByCurrentTab('orderInfo');
+            nativeTransition.forward();
+            $state.go(stateName, {
+                orderId: orderId
+            });
+        },
+
+        // 虚拟商品跳转［单个音频／单个视频／套餐视频］
+        goPurchasedInfo: function(item) {
+            var genreName = item.genreName,
+                taocan = item.taocan,
+                cdtName = item.cdtName;
+
+            if ((genreName == 'radio' || genreName == 'video') && taocan == 0) {
+
+                // 单个音频/单个视频
+                ctrl.goVideoInfo(cdtName, item.videoUrl, item.isExpiry, genreName);
+
+            } else if (genreName == 'video' && taocan == 1) {
+
+                // 套餐视频
+                var stateName = stateUtils.getStateNameByCurrentTab('packageVideoList');
+                nativeTransition.forward();
+                $state.go(stateName, {
+                    entityName: cdtName
+                });
+            }
         }
 
     });

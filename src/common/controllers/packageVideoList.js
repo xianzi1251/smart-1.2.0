@@ -1,6 +1,6 @@
-angular.module('app.controllers').controller('suitInfoCtrl', function(
-    $scope, $state, nativeTransition, errorHandling, stateUtils, loadDataMixin, $stateParams,
-    productService, toast, errorHandling, userService, modals, messageCenter
+angular.module('app.controllers').controller('packageVideoListCtrl', function(
+    $scope, $state, $stateParams, nativeTransition, errorHandling, commentService, loading, productService,
+    toast, loadDataMixin, $ionicScrollDelegate
 ) {
 
     var ctrl = this;
@@ -8,16 +8,21 @@ angular.module('app.controllers').controller('suitInfoCtrl', function(
     _.assign(ctrl, loadDataMixin, {
         $scope: $scope,
 
+        entityName: $stateParams.entityName,
+
+        // 默认可卖
+        sellAbled: true,
+
         tabAction: 0,
 
         // tab内容
         infoTabs: [
             {
-                label: '作者介绍',
+                label: '详情',
                 active: true
             },
             {
-                label: '相关课程',
+                label: '目录',
                 active: false
             }
         ],
@@ -31,20 +36,21 @@ angular.module('app.controllers').controller('suitInfoCtrl', function(
 
                 if (i == index) {
                     ctrl.infoTabs[i].active = true;
+                    $ionicScrollDelegate.$getByHandle('packageVideoListScroll').scrollTop(true);
+                    $ionicScrollDelegate.$getByHandle('packageVideoListScroll').resize();
                 }
             }
         },
 
-        entityName: $stateParams.entityName,
-
-        // 默认可卖
-        sellAbled: true,
-
-        // 跳转商品详情
-        goProductInfo: stateUtils.goProductInfo,
-
         // 获取套装商品信息
         loadData: function() {
+            ctrl.finishLoading = false;
+            loading.open();
+
+            ctrl.baseData = [];
+            ctrl.courseList = [];
+            ctrl.commentsList = [];
+
             return productService.getProductInfo(ctrl.entityName)
                 .success(function(response) {
 
@@ -72,50 +78,29 @@ angular.module('app.controllers').controller('suitInfoCtrl', function(
                     productService.getSuitCourses(ctrl.entityName)
                         .success(function(response) {
                             if (response.list[0].length) {
-                                ctrl.suitCourseList = response.list[0];
-                                _.forEach(ctrl.suitCourseList, function(item) {
+                                ctrl.courseList = response.list[0];
+
+                                _.forEach(ctrl.courseList, function(item) {
                                     item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
                                 });
                             }
+
+                            // 商品评论
+                            commentService.getComments(ctrl.entityName)
+                                .success(function(response) {
+                                    if (response.list[0].length) {
+                                        ctrl.commentsList = response.list[0];
+                                    }
+                                })
+                                .error(errorHandling)
+                                .finally(function() {
+                                    ctrl.finishLoading = true;
+                                    loading.close();
+                                });
                         })
                         .error(errorHandling);
-
                 })
                 .error(errorHandling);
-        },
-
-        // 购买
-        buyNow: function () {
-
-            userService.hasLogined()
-                .success(function() {
-
-                    modals.buyNow.open({
-                        params: {
-                            item: ctrl.baseData
-                        }
-                    });
-
-                })
-                .error(function() {
-                    
-                    modals.login.open()
-                        .then(function(e) {
-                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
-                                ctrl.init();
-                            }, e.scope);
-                        });
-
-                });
-        },
-
-        // 去试听列表页
-        goFreeList: function() {
-            var stateName = stateUtils.getStateNameByCurrentTab('freeList');
-            nativeTransition.forward();
-            $state.go(stateName, {
-                entityName: ctrl.entityName
-            });
         }
 
     });
