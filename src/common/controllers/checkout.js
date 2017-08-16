@@ -19,7 +19,7 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                 needInvoice: 0,
 
                 // 发票类型（1-纸质发票／2-电子发票）
-                invType: 1,
+                invType: 2,
 
                 // 发票抬头类型（1-个人／2-单位）
                 invoiceType: 1,

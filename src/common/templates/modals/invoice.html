@@ -3,6 +3,8 @@
     <div class="bar-primary-modal" ng-click="modals.invoice.close()">
         发票信息
         <i class="icon-close-modal icon ion-ios-close-empty"></i>
+        <i class="icon ion-ios-help-outline icon-checkout-invoice-info"
+            ng-click="invoice.showInvoiceInfo($event)"></i>
     </div>
 
     <ion-content class="invoice-panel">
@@ -29,15 +31,15 @@
             <div class="invoice-row">
                 <div class="invoice-title">发票类型<span class="invoice-tips">(纸质发票，开具时间1-3天，发票到付)</span></div>
                 <div>
-                    <label class="radio radio-label" ng-click="invoice.chooseInvType(1)">
-                        <input type="radio" value="1" name="invoice-invType"
-                            ng-model="invoice.data.invType" />
-                        纸质发票
-                    </label>
                     <label class="radio radio-label" ng-click="invoice.chooseInvType(2)">
                         <input type="radio" value="2" name="invoice-invType"
                             ng-model="invoice.data.invType" />
                         电子发票
+                    </label>
+                    <label class="radio radio-label" ng-click="invoice.chooseInvType(1)">
+                        <input type="radio" value="1" name="invoice-invType"
+                            ng-model="invoice.data.invType" />
+                        纸质发票
                     </label>
                 </div>
             </div>
