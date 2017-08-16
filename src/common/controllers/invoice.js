@@ -14,7 +14,7 @@ angular.module('app.controllers').controller('invoiceCtrl', function(
             needInvoice: 0,
 
             // 发票类型（1-纸质发票／2-电子发票）
-            invType: 1,
+            invType: 2,
 
             // 发票抬头类型（1-个人／2-单位）
             invoiceType: 1,
@@ -52,6 +52,12 @@ angular.module('app.controllers').controller('invoiceCtrl', function(
             ctrl.data.invoiceTitle = '';
             ctrl.data.taxpayerNo = '';
             ctrl.data.invoiceEmail = '';
+        },
+
+        // 显示发票说明
+        showInvoiceInfo: function($event) {
+            $event.stopPropagation();
+            modals.invoiceInfo.open();
         },
 
         // 提交发票

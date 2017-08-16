@@ -131,6 +131,12 @@ angular.module('app').constant('modals', {
         animation: 'slide-in-up'
     },
 
+    // 结算中心－发票说明信息
+    invoiceInfo: {
+        path: 'templates/modals/invoiceInfo.html',
+        animation: 'slide-in-up'
+    },
+
     // 结算中心－金额
     checkoutAmount: {
         path: 'templates/modals/checkoutAmount.html',
@@ -146,5 +152,11 @@ angular.module('app').constant('modals', {
         controllerAs: 'checkoutCoupon',
         animation: 'slide-in-up'
     },
+
+    // 订单中心－退换货说明
+    orderRefundInfo: {
+        path: 'templates/modals/orderRefundInfo.html',
+        animation: 'slide-in-up'
+    }
 
 });

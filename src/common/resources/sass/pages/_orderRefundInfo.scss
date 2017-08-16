@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.order-refund-info-panel {
+
+    .info {
+        padding: 12px;
+        line-height: 2em;
+        color: $text-color-secondary;
+        @extend %font-size-base;
+    }
+    
+    p {
+        text-indent: 2em;
+
+        &.info-line {
+            text-indent: 3em;
+        }
+    }
+}

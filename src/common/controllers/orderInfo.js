@@ -100,6 +100,11 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
             }
         },
 
+        // 打开退换货说明
+        shoRefundInfo: function() {
+            modals.orderRefundInfo.open();
+        }
+
     });
 
     var deregistration = $scope.$on('$ionicView.afterEnter', function() {
