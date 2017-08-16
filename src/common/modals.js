@@ -147,4 +147,10 @@ angular.module('app').constant('modals', {
         animation: 'slide-in-up'
     },
 
+    // 订单中心－退换货说明
+    orderRefundInfo: {
+        path: 'templates/modals/orderRefundInfo.html',
+        animation: 'slide-in-up'
+    }
+
 });
