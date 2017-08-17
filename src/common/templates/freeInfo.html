@@ -13,11 +13,11 @@
         </div>
     </ion-header-bar>
 
-    <ion-content>
+    <ion-content scroll="false">
 
         <!--下拉刷新-->
-        <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
-            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+        <!-- <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher> -->
 
         <!-- 空警告，当页面内没有数据时，显示该信息 -->
         <div class="list-empty" ng-if="!freeInfo.sellAbled">
@@ -32,7 +32,7 @@
             </div> -->
 
             <!-- 视频 -->
-            <div class="video-info-container mb" id="video-container" 
+            <div class="video-container mb" id="video-container" 
                 ng-if="freeInfo.genreName == 'video'"
                 cm-video="freeInfo.videoUrl">
             </div>
@@ -64,11 +64,15 @@
                 </div>
             </div>
 
-            <!-- 商品title -->
-            <div class="free-info-title">{{freeInfo.baseData.title}}</div>
+            <ion-content ng-class="{'video-content': (freeInfo.genreName == 'video'), 'audio-content': (freeInfo.genreName == 'radio')}">
 
-            <!-- 简介 -->
-            <div class="free-content" ng-bind-html="freeInfo.baseData.content"></div>
+                <!-- 商品title -->
+                <div class="free-info-title">{{freeInfo.baseData.title}}</div>
+
+                <!-- 简介 -->
+                <div class="free-content" ng-bind-html="freeInfo.baseData.content"></div>
+
+            </ion-content>
 
         </div>
 

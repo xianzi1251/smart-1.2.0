@@ -48,6 +48,5 @@ angular.module('app.directives').directive('cmScroll', function factory($ionicSc
 
         $content1.resize();
         $content2.resize();
-
     }
 });

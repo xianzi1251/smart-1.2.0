@@ -2,15 +2,14 @@
 
 .package-video-list-panel {
 
-    .package-video {
-        height: 80px;
-        background-color: green;
+    .package-content {
+        top: convert-rem(185px);
+        margin-top: 41px;
     }
     
     .tab-info-list {
         height: 40px;
-        margin-bottom: 8px;
-        background-color: #fff;
+        background-color: $light;
     }
 
     .tab-info-item {
@@ -212,6 +211,13 @@
             &:last-child {
                 background: none;
             }
+
+            &.active {
+
+                .item-play, .item-text {
+                    color: $primary-color;
+                }
+            }
         }
 
         .iconfont {
@@ -220,7 +226,6 @@
 
         .item-play {
             font-size: 20px;
-            color: $primary-color;
         }
 
         .item-download {

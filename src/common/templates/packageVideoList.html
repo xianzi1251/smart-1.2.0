@@ -13,15 +13,13 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="package-video-list-panel stable-bg" delegate-handle="packageVideoListScroll">
-
-        <!--下拉刷新-->
-        <ion-refresher on-refresh="package.init()" 
-            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+    <ion-content class="package-video-list-panel stable-bg" scroll="false">
 
         <div ng-if="package.finishLoading">
             <!-- 视频播放 -->
-            <div class="package-video"></div>
+            <div class="video-container" id="video-container" 
+                cm-video="package.videoUrl">
+            </div>
 
             <!-- tab -->
             <ul class="tab-info-list">
@@ -30,88 +28,96 @@
                     ng-click="package.changeTab($index)">{{tab.label}}</li>
             </ul>
 
-            <!-- 详情 -->
-            <div class="package-detail" ng-if="package.tabAction == 0">
-                <div class="detail-box">
-                    <div class="info-name">{{package.baseData.title}}</div>
-                    <div class="info-sales">购买人数：{{package.baseData.salesVolume}}</div>
-                    <div class="info-price">{{package.baseData.listPrice | currency: '¥'}}</div>
-                </div>
+            <ion-content class="package-content" delegate-handle="packageVideoListScroll">
 
-                <!-- 老师介绍 -->
-                <div class="detail-box">
-                    <div class="detail-title">老师介绍</div>
-                    <div class="author-info">
-                        <div class="author-box">
-                            <div class="author clearfix">
-                                <div class="author-img fl">
-                                    <img class="img" src="{{package.baseData.picUrl}}" />
-                                </div>
-                                <div class="author-right fr">
-                                    <div class="author-name">{{info.baseData.author}}</div>
-                                    <div class="author-score">
-                                        好评度：<cm-comment-level level="{{info.baseData.score}}"></cm-comment-level>
+                <!--下拉刷新-->
+                <ion-refresher on-refresh="package.init()" 
+                    pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+                <!-- 详情 -->
+                <div class="package-detail" ng-if="package.tabAction == 0">
+                    <div class="detail-box">
+                        <div class="info-name">{{package.baseData.title}}</div>
+                        <div class="info-sales">购买人数：{{package.baseData.salesVolume}}</div>
+                        <div class="info-price">{{package.baseData.listPrice | currency: '¥'}}</div>
+                    </div>
+
+                    <!-- 老师介绍 -->
+                    <div class="detail-box">
+                        <div class="detail-title">老师介绍</div>
+                        <div class="author-info">
+                            <div class="author-box">
+                                <div class="author clearfix">
+                                    <div class="author-img fl">
+                                        <img class="img" src="{{package.baseData.picUrl}}" />
                                     </div>
-                                    <div class="author-nums">
-                                        课程数：{{package.courseList.length}}
+                                    <div class="author-right fr">
+                                        <div class="author-name">{{info.baseData.author}}</div>
+                                        <div class="author-score">
+                                            好评度：<cm-comment-level level="{{info.baseData.score}}"></cm-comment-level>
+                                        </div>
+                                        <div class="author-nums">
+                                            课程数：{{package.courseList.length}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="author-summary">
+                                {{package.baseData.summary}}
+                            </div>
                         </div>
-                        <div class="author-summary">
-                            {{package.baseData.summary}}
-                        </div>
+                    </div>
+
+                    <!-- 课程详情 -->
+                    <div class="detail-box" cm-scroll>
+                        <div class="detail-title">课程详情</div>
+                        <div class="describe-content" ng-bind-html="package.baseData.content"></div>
+                        <div class="describe-btn"></div>
                     </div>
                 </div>
 
-                <!-- 课程详情 -->
-                <div class="detail-box" cm-scroll>
-                    <div class="detail-title">课程详情</div>
-                    <div class="describe-content" ng-bind-html="package.baseData.content"></div>
-                    <div class="describe-btn"></div>
+                <!-- 目录 -->
+                <div class="package-catalog" ng-if="package.tabAction == 1">
+                    <div class="catalog-title">视频课程({{package.courseList.length}})</div>
+                    <ul class="catalog-list">
+                        <li class="catalog-item row" ng-class="{'active': catalog.active}"
+                            ng-repeat="catalog in package.courseList"
+                            ng-click="package.changeVideo(catalog, $index)">
+                            <i class="item-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
+                            <span class="item-text col">{{catalog.title}}</span>
+                            <i class="item-download iconfont icon-huancun col col-center col-adaptive"></i>
+                        </li>
+                    </ul>
                 </div>
-            </div>
 
-            <!-- 目录 -->
-            <div class="package-catalog" ng-if="package.tabAction == 1">
-                <div class="catalog-title">视频课程({{package.courseList.length}})</div>
-                <ul class="catalog-list">
-                    <li class="catalog-item row" 
-                        ng-repeat="catalog in package.courseList">
-                        <i class="item-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
-                        <span class="item-text col">{{catalog.title}}</span>
-                        <i class="item-download iconfont icon-huancun col col-center col-adaptive"></i>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 有评论 -->
-            <div class="product-info-comments light-bg" ng-if="package.commentsList.length > 0">
-                <div class="comments-title">课程评论<span class="amount">({{package.commentsList.length}})</span></div>
-                <ul class="comments-list">
-                    <li class="comments-item clearfix" ng-repeat="comment in package.commentsList">
-                        <div class="comments-pic fl">
-                            <img class="img" cm-lazyload="comment.imagePath" load-immediate="true" 
-                                ng-if="comment.imagePath"/>
-                        </div>
-                        <div class="comments-right">
-                            <div class="comments-info clearfix">
-                                <span class="comments-name fl">{{comment.nickName | textFormat: true}}</span>
-                                <span class="comments-time fl">{{comment.createTime}}</span>
-                                <cm-comment-level class="fr" level="{{comment.score}}"></cm-comment-level>
+                <!-- 有评论 -->
+                <div class="product-info-comments light-bg" ng-if="package.commentsList.length > 0">
+                    <div class="comments-title">课程评论<span class="amount">({{package.commentsList.length}})</span></div>
+                    <ul class="comments-list">
+                        <li class="comments-item clearfix" ng-repeat="comment in package.commentsList">
+                            <div class="comments-pic fl">
+                                <img class="img" cm-lazyload="comment.imagePath" load-immediate="true" 
+                                    ng-if="comment.imagePath"/>
                             </div>
-                            <div class="comments-content">{{comment.content}}</div>
-                        </div>
-                    </li>
-                </ul>
-                <!-- <div class="comments-more">查看全部评论 ></div> -->
-            </div>
+                            <div class="comments-right">
+                                <div class="comments-info clearfix">
+                                    <span class="comments-name fl">{{comment.nickName | textFormat: true}}</span>
+                                    <span class="comments-time fl">{{comment.createTime}}</span>
+                                    <cm-comment-level class="fr" level="{{comment.score}}"></cm-comment-level>
+                                </div>
+                                <div class="comments-content">{{comment.content}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <div class="comments-more">查看全部评论 ></div> -->
+                </div>
 
-            <!-- 无评论 -->
-            <div class="product-info-comments light-bg" ng-if="package.commentsList.length == 0">
-                <div class="comments-title">课程评论<span class="amount">(0)</span></div>
-                <div class="comments-empty">暂无评论</div>
-            </div>
+                <!-- 无评论 -->
+                <div class="product-info-comments light-bg" ng-if="package.commentsList.length == 0">
+                    <div class="comments-title">课程评论<span class="amount">(0)</span></div>
+                    <div class="comments-empty">暂无评论</div>
+                </div>
+            </ion-content>
         </div>
 
     </ion-content>

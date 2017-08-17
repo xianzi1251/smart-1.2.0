@@ -51,6 +51,8 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
             ctrl.courseList = [];
             ctrl.commentsList = [];
 
+            ctrl.videoUrl = '';
+
             return productService.getProductInfo(ctrl.entityName)
                 .success(function(response) {
 
@@ -80,8 +82,15 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
                             if (response.list[0].length) {
                                 ctrl.courseList = response.list[0];
 
-                                _.forEach(ctrl.courseList, function(item) {
+                                _.forEach(ctrl.courseList, function(item, index) {
                                     item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
+                                    item.active = false;
+
+                                    // 默认显示第一个视频
+                                    if (index == 0) {
+                                        ctrl.videoUrl = item.videoUrl;
+                                        item.active = true;
+                                    }
                                 });
                             }
 
@@ -101,6 +110,23 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
                         .error(errorHandling);
                 })
                 .error(errorHandling);
+        },
+
+        // 切换观看视频，如当前播放的视频与选择播放的视频相同，则无操作
+        changeVideo: function(item, $index) {
+
+            if (item.videoUrl != ctrl.videoUrl) {
+                _.forEach(ctrl.courseList, function(item, index) {
+
+                    item.active = false;
+
+                    if (index == $index) {
+
+                        ctrl.videoUrl = item.videoUrl;
+                        item.active = true;
+                    }
+                });
+            }
         }
 
     });
