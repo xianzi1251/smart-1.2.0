@@ -4,6 +4,7 @@
 
     .package-content {
         top: convert-rem(185px);
+        z-index: 10;
         margin-top: 41px;
     }
     
@@ -230,8 +231,24 @@
 
         .item-download {
             margin-right: 10px;
-            font-size: 20px;
+            font-size: 18px;
             color: $text-color-quiet;
+
+            &.cached {
+                opacity: 0.3;
+            }
+        }
+
+        .spinner {
+            display: block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
         }
 
         .item-text {
@@ -247,8 +264,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: normal;
-
-            background: superfine-border-right($text-color-quiet);
         }
     }
 }

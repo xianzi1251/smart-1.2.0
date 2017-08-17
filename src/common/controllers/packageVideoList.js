@@ -51,7 +51,7 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
             ctrl.courseList = [];
             ctrl.commentsList = [];
 
-            ctrl.videoUrl = '';
+            ctrl.activeVideoItem = '';
 
             return productService.getProductInfo(ctrl.entityName)
                 .success(function(response) {
@@ -88,7 +88,7 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
 
                                     // 默认显示第一个视频
                                     if (index == 0) {
-                                        ctrl.videoUrl = item.videoUrl;
+                                        ctrl.activeVideoItem = item;
                                         item.active = true;
                                     }
                                 });
@@ -115,7 +115,7 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
         // 切换观看视频，如当前播放的视频与选择播放的视频相同，则无操作
         changeVideo: function(item, $index) {
 
-            if (item.videoUrl != ctrl.videoUrl) {
+            if (item.entityName != ctrl.activeVideoItem.entityName) {
                 _.forEach(ctrl.courseList, function(item, index) {
 
                     item.active = false;

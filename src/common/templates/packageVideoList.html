@@ -18,7 +18,7 @@
         <div ng-if="package.finishLoading">
             <!-- 视频播放 -->
             <div class="video-container" id="video-container" 
-                cm-video="package.videoUrl">
+                cm-video="package.activeVideoItem.videoUrl">
             </div>
 
             <!-- tab -->
@@ -85,7 +85,13 @@
                             ng-click="package.changeVideo(catalog, $index)">
                             <i class="item-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
                             <span class="item-text col">{{catalog.title}}</span>
-                            <i class="item-download iconfont icon-huancun col col-center col-adaptive"></i>
+                            <span class="col col-center col-adaptive">
+                                <i class="item-download iconfont icon-huancun"
+                                    ng-show="!catalog.downloading"
+                                    ng-class="{'cached': catalog.cached}"
+                                    ng-click="downloadAttachment(catalog, $event)"></i>
+                                <ion-spinner icon="circles" ng-show="catalog.downloading"></ion-spinner>
+                            </span>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('downloadVideoListCtrl', function(
     $scope, $state, nativeTransition, localStorage, errorHandling, loadDataMixin, videoService,
-    loading, $ionicScrollDelegate, toast
+    loading, $ionicScrollDelegate, toast, $rootScope, stateUtils
 ) {
 
     var ctrl = this;
@@ -63,9 +63,11 @@ angular.module('app.controllers').controller('downloadVideoListCtrl', function(
                     ctrl.selectedText = '全选';
                 }
 
-            } else {    
+            } else {
 
-                // 本地视频播放 TODO...
+                // 本地视频播放
+                stateUtils.goVideoInfo(item.commodityName, item.videoPath, false, 'video');
+                
             }
         },
 
@@ -117,11 +119,16 @@ angular.module('app.controllers').controller('downloadVideoListCtrl', function(
         // 删除
         deleteVideo: function() {
 
+            // 需要删除本地视频文件名称
+            var fileNames = [];
+
             // 记录所有已选中的视频
             var cacheIds = '';
+
             _.forEach(ctrl.list, function(item) {
                 if (item.selected) {
                     cacheIds += item.id + ',';
+                    fileNames.push(item.commodityTitle + item.commodityName + '.mp4');
                 }
             });
 
@@ -132,6 +139,10 @@ angular.module('app.controllers').controller('downloadVideoListCtrl', function(
                 loading.open();
                 videoService.deleteDownloadVideo(cacheIds)
                     .success(function() {
+                        // 删除本地缓存视频
+                        $rootScope.deleteCachedAttachment(fileNames);
+
+                        // 删除数据库中的视频
                         toast.open('删除成功');
                         ctrl.refresh();
                     })

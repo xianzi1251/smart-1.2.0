@@ -125,8 +125,9 @@ app.run(function($rootScope, $state, userService, nativeTransition, modals, mess
 });
 
 // 设置 unique
-app.run(function(unique) {
+app.run(function(unique, localStorage) {
     APP_CONFIG.unique = APP_CONFIG.unique || unique;
+    localStorage.set('unique', APP_CONFIG.unique);
 });
 
 // 设置用户信息
