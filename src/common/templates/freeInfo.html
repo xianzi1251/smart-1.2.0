@@ -13,7 +13,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="stable-bg">
+    <ion-content>
 
         <!--下拉刷新-->
         <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
@@ -25,7 +25,7 @@
             <div class="text">暂无商品信息</div>
         </div>
 
-        <div class="light-bg pb" ng-if="freeInfo.sellAbled">
+        <div class="pb" ng-if="freeInfo.sellAbled">
             <!-- banner图 -->
             <!-- <div class="banner stable-bg" ng-if="freeInfo.genreName != 'video'">
                 <img class="img" ng-src="{{freeInfo.baseData.picUrl}}" />
@@ -39,12 +39,29 @@
 
             <!-- 音频 -->
             <div ng-if="freeInfo.genreName == 'radio'">
-                <audio controls="controls" style="width: 100%">
-                    <source ng-src="{{freeInfo.videoUrl}}" type="video/webm" >
-                    <source ng-src="{{freeInfo.videoUrl}}" type="audio/ogg">
-                    <source ng-src="{{freeInfo.videoUrl}}" type="audio/mpeg">
-                    您的浏览器版本过低不能支持html5视频标签
-                </audio>
+                <div cm-audio>
+                    <audio id="audio">
+                        <source ng-src="{{freeInfo.videoUrl}}" type="video/webm" >
+                        <source ng-src="{{freeInfo.videoUrl}}" type="audio/ogg">
+                        <source ng-src="{{freeInfo.videoUrl}}" type="audio/mpeg">
+                        您的浏览器版本过低不能支持html5视频标签
+                    </audio>
+                    <div id="audio-main" class="audio-main clearfix">
+                        <div class="audio-left fl">
+                            <i class="icon ion-ios-pause"></i>
+                        </div>
+                        <div class="audio-right">
+                            <p class="audio-title">{{freeInfo.baseData.title}}</p>
+                            <div class="time-progress-line">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time-text-line clearfix">
+                                <span id="playedTime" class="time fl">00:00</span>
+                                <span id="totalTime" class="time fr"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- 商品title -->

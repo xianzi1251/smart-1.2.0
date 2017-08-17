@@ -1,4 +1,4 @@
-<ion-view class="video-info-view stable-bg" title="视频" cm-hide-tabs="true">
+<ion-view class="video-info-view" title="视频" cm-hide-tabs="true">
 
     <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
         <div class="buttons buttons-left">
@@ -38,12 +38,29 @@
 
             <!-- 音频 -->
             <div ng-if="videoInfo.genreName == 'radio'">
-                <audio controls="controls" style="width: 100%">
-                    <source ng-src="{{videoInfo.videoUrl}}" type="video/webm" >
-                    <source ng-src="{{videoInfo.videoUrl}}" type="audio/ogg">
-                    <source ng-src="{{videoInfo.videoUrl}}" type="audio/mpeg">
-                    您的浏览器版本过低不能支持html5视频标签
-                </audio>
+                <div cm-audio>
+                    <audio id="audio">
+                        <source ng-src="{{videoInfo.videoUrl}}" type="video/webm" >
+                        <source ng-src="{{videoInfo.videoUrl}}" type="audio/ogg">
+                        <source ng-src="{{videoInfo.videoUrl}}" type="audio/mpeg">
+                        您的浏览器版本过低不能支持html5视频标签
+                    </audio>
+                    <div id="audio-main" class="audio-main clearfix">
+                        <div class="audio-left fl">
+                            <i class="icon ion-ios-pause"></i>
+                        </div>
+                        <div class="audio-right">
+                            <p class="audio-title">{{videoInfo.baseData.title}}</p>
+                            <div class="time-progress-line">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="time-text-line clearfix">
+                                <span id="playedTime" class="time fl">00:00</span>
+                                <span id="totalTime" class="time fr"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- 商品基本信息 -->
