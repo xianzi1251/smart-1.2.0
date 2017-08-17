@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+.audio-main {
+    margin: 20px 12px;
+    padding: 12px;
+    background-color: $stable;
+    border: $line-color 1px solid;
+
+    .audio-left {
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        background-color: $primary-color;
+        border-radius: 50%;
+
+        .icon {
+            margin-left: 2px;
+            color: $light;
+            font-size: 18px;
+        }
+    }
+
+    .audio-right {
+        margin-left: 60px;
+
+        .audio-title {
+            overflow: hidden;
+            height: 1.5em;
+            margin-bottom: 5px;
+            line-height: 1.5em;
+            color: $text-color-secondary;
+            font-size: 13px;
+        }
+
+        .time-progress-line {
+            position: relative;
+            height: 2px;
+            background-color: $line-color;
+
+            .progress {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 2px;
+                background-color: $energized;
+            }
+        }
+
+        .time-text-line {
+            color: $text-color-quiet;
+            font-size: 10px;
+        }
+    }
+}
