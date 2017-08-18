@@ -6,7 +6,7 @@ angular.module('app.controllers').controller('indexCtrl', function(
     var ctrl = this;
 
     var positionName = {
-        slider: '1500975764881',
+        slider: '1479108028003',
         recommend: '1482333476320',
         author: '1482333642009',
         suit: '1494125330508',
@@ -185,6 +185,12 @@ angular.module('app.controllers').controller('indexCtrl', function(
             // 专栏作家列表视图
             nativeTransition.forward();
             $state.go('tabs.authorList');
+        },
+
+        // 去商城首页
+        goMallIndex: function() {
+            nativeTransition.forward();
+            $state.go('tabs.mallIndex');
         }
     });
 

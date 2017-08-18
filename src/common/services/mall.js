@@ -18,7 +18,7 @@ angular.module('app.services').factory('mallService', ['api',function(api, messa
         getMallSort: function(pageLimit) {
             return api.post('/cosmos.json?command=scommerce.BYT_CHILD_CATEGORY_GET', {
                     proName: 'BYT_CHILD_CATEGORY_GET',
-                    categoryName: '1501745201586',
+                    categoryName: 'book',
                     pageLimit: pageLimit
                 });
         },
@@ -50,7 +50,7 @@ angular.module('app.services').factory('mallService', ['api',function(api, messa
                     page: 1,
                     pageLimit: 1000,
                     q: keyword,
-                    fq: categoryName,
+                    fq: 'parentCategoryName:' + categoryName,
                     sort: sort
                 });
         },
@@ -58,13 +58,22 @@ angular.module('app.services').factory('mallService', ['api',function(api, messa
         /**
          * 获取商品详情
          */
-        getMallProductInfo: function(id, genrename) {
+        getMallProductInfo: function(entityName) {
             return api.post('/cosmos.json?command=scommerce.BYT_CDT_COMMODITY_GET_BLOCK4MVVM', {
                     proName: 'BYT_CDT_COMMODITY_GET_BLOCK4MVVM',
                     historyLogEnabled: true,
-                    commodityName: id,
-                    genrename: genrename
+                    commodityName: entityName
                 });
         },
+
+        /**
+         * 获取商品详情中的图片轮播
+         */
+        getMallProductInfoSliders: function(entityName) {
+            return api.post('/cosmos.json?domain=scommerce&command=NB_SKU_ASSET_BLOCK', {
+                    proName: 'NB_SKU_ASSET_BLOCK',
+                    entityName: entityName
+                });
+        }
 	};
 }]);

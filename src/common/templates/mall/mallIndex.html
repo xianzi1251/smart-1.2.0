@@ -28,7 +28,8 @@
                         ng-click="mallIndex.goSliderAdv(slider)" />
                 </cm-switch-panel>
             </cm-switch-content>
-            <cm-switch-nav class="ui-switch-nav" ng-class="{'nav-hide': (index.sliderList.length <= 1)}"></cm-switch-nav>
+            <cm-switch-nav class="ui-switch-nav" 
+                ng-class="{'nav-hide': (mallIndex.sliderList.length <= 1)}"></cm-switch-nav>
         </cm-switch>
 
         <!-- 分类 -->
@@ -61,7 +62,7 @@
                     ng-click="mallIndex.goMallProductInfo(item.entityName)">
                     <div class="item-cont">
                         <div class="item-img">
-                            <img class="img" cm-lazyload="item.newPicUrl" load-immediate="true" />
+                            <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
                         </div>
                         <div class="item-title">
                             <!-- <span class="title-icon">预售</span> -->

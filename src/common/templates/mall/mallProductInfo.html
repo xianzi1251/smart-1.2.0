@@ -20,7 +20,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="stable-bg" delegate-handle="mallProductInfoScroll">
+    <ion-content class="mall-product-info-panel stable-bg" delegate-handle="mallProductInfoScroll">
 
         <!--下拉刷新-->
         <ion-refresher on-refresh="mallProductInfo.refresh({showLoading: false})" 
@@ -34,9 +34,18 @@
 
         <div ng-if="mallProductInfo.sellAbled">
 
-            <!-- banner图 -->
+            <!-- 轮播图 -->
             <div class="product-info-banner">
-                <img class="img" src="{{mallProductInfo.baseData.picUrl}}" />
+                <cm-switch class="slider-box"
+                    class-prefix="ui-switch" data-type="slider" auto-play="5000">
+                    <cm-switch-content>
+                        <cm-switch-panel ng-repeat="slider in mallProductInfo.sliderList">
+                            <img class="img" cm-lazyload="slider.picUrl" load-immediate="true" />
+                        </cm-switch-panel>
+                    </cm-switch-content>
+                    <cm-switch-nav class="ui-switch-nav" 
+                        ng-class="{'nav-hide': (mallProductInfo.sliderList.length <= 1)}"></cm-switch-nav>
+                </cm-switch>
             </div>
 
             <!-- 商品基本信息 -->

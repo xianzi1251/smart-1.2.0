@@ -12,9 +12,25 @@ angular.module('app.controllers').controller('mallProductInfoCtrl', function(
 
         // 去购物车
         goShoppingCart: function() {
-            var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
-            nativeTransition.forward();
-            $state.go(stateName);
+
+            userService.hasLogined()
+                .success(function() {
+
+                    var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
+                    nativeTransition.forward();
+                    $state.go(stateName);
+
+                })
+                .error(function() {
+
+                    modals.login.open()
+                        .then(function(e) {
+                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
+                                ctrl.init();
+                            }, e.scope);
+                        });
+
+                });
         },
 
         // 默认可卖
@@ -22,6 +38,7 @@ angular.module('app.controllers').controller('mallProductInfoCtrl', function(
 
         // 获取商品信息
         loadData: function() {
+            ctrl.sliderList = [];
             return mallService.getMallProductInfo(ctrl.entityName)
                 .success(function(response) {
 
@@ -38,6 +55,18 @@ angular.module('app.controllers').controller('mallProductInfoCtrl', function(
 
                         // 商品可卖
                         ctrl.sellAbled = true;
+
+                        // 获取商品详情轮播图
+                        mallService.getMallProductInfoSliders(ctrl.entityName)
+                            .success(function(response) {
+                                ctrl.sliderList = response.list[0];
+
+                                _.forEach(ctrl.sliderList, function(slider) {
+                                    slider.picUrl = window.APP_CONFIG.serviceAPI + slider.picUrl;
+                                });
+                            })
+                            .error(errorHandling);
+
                     } else {
                         toast.open('商品已下架');
 

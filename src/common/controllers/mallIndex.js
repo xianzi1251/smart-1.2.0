@@ -38,9 +38,25 @@ angular.module('app.controllers').controller('mallIndexCtrl', function(
 
         // 去购物车
         goShoppingCart: function() {
-            var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
-            nativeTransition.forward();
-            $state.go(stateName);
+
+            userService.hasLogined()
+                .success(function() {
+
+                    var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
+                    nativeTransition.forward();
+                    $state.go(stateName);
+
+                })
+                .error(function() {
+
+                    modals.login.open()
+                        .then(function(e) {
+                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
+                                ctrl.init();
+                            }, e.scope);
+                        });
+
+                });
         },
 
         // 添加购物车
@@ -128,7 +144,7 @@ angular.module('app.controllers').controller('mallIndexCtrl', function(
                                         floor.items = floorItems[index];
 
                                         _.forEach(floorItems[index], function(item) {
-                                            item.newPicUrl = window.APP_CONFIG.serviceAPI + item.newPicUrl;
+                                            item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
                                         });
 
                                     });
