@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('mallSearchListCtrl', function(
     $scope, $state, nativeTransition, errorHandling, loadDataMixin, mallService, loading, 
-    $ionicScrollDelegate, stateUtils
+    $ionicScrollDelegate, stateUtils, userService, modals, messageCenter
 ) {
 
     var ctrl = this;
@@ -16,9 +16,25 @@ angular.module('app.controllers').controller('mallSearchListCtrl', function(
 
         // 去购物车
         goShoppingCart: function() {
-            var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
-            nativeTransition.forward();
-            $state.go(stateName);
+
+            userService.hasLogined()
+                .success(function() {
+
+                    var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
+                    nativeTransition.forward();
+                    $state.go(stateName);
+
+                })
+                .error(function() {
+
+                    modals.login.open()
+                        .then(function(e) {
+                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
+                                ctrl.init();
+                            }, e.scope);
+                        });
+
+                });
         },
 
         // 搜索商品
