@@ -185,6 +185,12 @@ angular.module('app.controllers').controller('indexCtrl', function(
             // 专栏作家列表视图
             nativeTransition.forward();
             $state.go('tabs.authorList');
+        },
+
+        // 去商城首页
+        goMallIndex: function() {
+            nativeTransition.forward();
+            $state.go('tabs.mallIndex');
         }
     });
 
