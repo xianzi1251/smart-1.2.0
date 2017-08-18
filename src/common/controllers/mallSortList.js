@@ -44,7 +44,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
             },
             {
                 label: '销量最高',
-                sortName: 'salesVolume',
+                sortName: 'salesVolume desc',
                 selected: false
             }
         ],
@@ -102,7 +102,7 @@ angular.module('app.controllers').controller('mallSortListCtrl', function(
 
                     ctrl.sortItems.unshift({
                         label: '全部',
-                        categoryName: ''
+                        categoryName: 'book'
                     });
 
                     _.forEach(ctrl.sortItems, function(item) {

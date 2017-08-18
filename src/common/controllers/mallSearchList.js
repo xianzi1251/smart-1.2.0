@@ -39,7 +39,7 @@ angular.module('app.controllers').controller('mallSearchListCtrl', function(
 
             ctrl.items = [];
 
-            return mallService.getMallProductList(ctrl.keyword, '', '')
+            return mallService.getMallProductList(ctrl.keyword, 'book', '')
                 .success(function(response) {
                     ctrl.items = response.results.list;
 

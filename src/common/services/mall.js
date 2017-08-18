@@ -18,7 +18,7 @@ angular.module('app.services').factory('mallService', ['api',function(api, messa
         getMallSort: function(pageLimit) {
             return api.post('/cosmos.json?command=scommerce.BYT_CHILD_CATEGORY_GET', {
                     proName: 'BYT_CHILD_CATEGORY_GET',
-                    categoryName: '1501745201586',
+                    categoryName: 'book',
                     pageLimit: pageLimit
                 });
         },
@@ -50,7 +50,7 @@ angular.module('app.services').factory('mallService', ['api',function(api, messa
                     page: 1,
                     pageLimit: 1000,
                     q: keyword,
-                    fq: categoryName,
+                    fq: 'parentCategoryName:' + categoryName,
                     sort: sort
                 });
         },
