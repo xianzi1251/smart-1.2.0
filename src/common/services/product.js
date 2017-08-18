@@ -1,5 +1,5 @@
-angular.module('app.services').factory('productService', ["api", function(
-    api
+angular.module('app.services').factory('productService', ['api', function(
+    api, localStorage
 ) {
 	var productService = {
         
@@ -21,7 +21,8 @@ angular.module('app.services').factory('productService', ["api", function(
         getSuitCourses: function(id) {
             return api.post('/cosmos.json?command=scommerce.BYT_CDT_COMMODITY_TAOCAN_BLOCK', {
                     proName: 'BYT_CDT_COMMODITY_TAOCAN_BLOCK',
-                    commodityName: id
+                    commodityName: id,
+                    deviceId: localStorage.get('unique') || APP_CONFIG.unique
                 });
         },
 

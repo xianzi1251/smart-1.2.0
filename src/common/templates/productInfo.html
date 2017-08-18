@@ -9,17 +9,9 @@
             </span>
         </div>
         <div class="title title-center header-item logo-title"></div>
-        <div class="buttons buttons-right">
-            <span class="right-buttons">
-                <button class="button back-button buttons button-clear button header-item" 
-                    ng-click="productInfo.downloadAttachment()">
-                    <i class="icon ion-ios-arrow-thin-down"></i>
-                </button>
-            </span>
-        </div>
     </ion-header-bar>
 
-    <ion-content class="stable-bg" delegate-handle="infoScroll">
+    <ion-content class="stable-bg" delegate-handle="productInfoScroll">
 
         <!--下拉刷新-->
         <ion-refresher on-refresh="productInfo.refresh({showLoading: false})" 
@@ -32,7 +24,7 @@
         </div>
 
         <div ng-if="productInfo.sellAbled">
-            <p>{{productInfo.downloadProgress}}</p>
+
             <!-- banner图 -->
             <div class="product-info-banner">
                 <img class="img" src="{{productInfo.baseData.picUrl}}" />

@@ -11,11 +11,7 @@
         <div class="title title-center header-item logo-title"></div>
     </ion-header-bar>
 
-    <ion-content delegate-handle="infoScroll">
-
-        <!--下拉刷新-->
-        <ion-refresher on-refresh="videoInfo.refresh({showLoading: false})" 
-            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+    <ion-content scroll="false">
 
         <!-- 空警告，当页面内没有数据时，显示该信息 -->
         <div class="list-empty" ng-if="!videoInfo.sellAbled">
@@ -31,7 +27,7 @@
             </div> -->
 
             <!-- 视频 -->
-            <div class="video-info-container mb" id="video-container" 
+            <div class="video-container" id="video-container" 
                 ng-if="videoInfo.genreName == 'video'"
                 cm-video="videoInfo.videoUrl">
             </div>
@@ -63,41 +59,47 @@
                 </div>
             </div>
 
-            <!-- 商品基本信息 -->
-            <div class="video-info light-bg">
-                <div class="info-name">{{videoInfo.baseData.title}}</div>
-                <div class="info-describe" ng-if="videoInfo.baseData.subtitle">
-                    {{videoInfo.baseData.subtitle}}
+            <ion-content ng-class="{'video-content': (videoInfo.genreName == 'video'), 'audio-content': (videoInfo.genreName == 'radio')}">
+
+                <!--下拉刷新-->
+                <!-- <ion-refresher on-refresh="videoInfo.refresh({showLoading: false})" 
+                    pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher> -->
+
+                <!-- 商品基本信息 -->
+                <div class="video-info light-bg">
+                    <div class="info-name">{{videoInfo.baseData.title}}</div>
+                    <div class="info-describe" ng-if="videoInfo.baseData.subtitle">
+                        {{videoInfo.baseData.subtitle}}
+                    </div>
                 </div>
-            </div>
 
-            <!-- 视频介绍 -->
-            <div class="video-info-describe light-bg" cm-scroll>
-                <div class="describe-title">内容介绍</div>
-                <div class="describe-content" ng-bind-html="videoInfo.baseData.content"></div>
-                <div class="describe-btn"></div>
-            </div>
+                <!-- 视频介绍 -->
+                <div class="video-info-describe light-bg">
+                    <div class="describe-title">内容介绍</div>
+                    <div class="describe-content" ng-bind-html="videoInfo.baseData.content"></div>
+                </div>
 
-            <!-- 点评 -->
-            <!-- <div class="video-info-comments light-bg" ng-if="videoInfo.commentsList">
-                <div class="comments-title">点评<span class="amount">({{videoInfo.commentsList.length}})</span></div>
-                <ul class="comments-list">
-                    <li class="comments-item clearfix" ng-repeat="comment in videoInfo.commentsList">
-                        <div class="comments-pic fl">
-                            <img class="img" cm-lazyload="comment.imagePath" load-immediate="true" 
-                                ng-if="comment.imagePath"/>
-                        </div>
-                        <div class="comments-right">
-                            <div class="comments-info clearfix">
-                                <span class="comments-name fl">{{comment.nickName | textFormat: true}}</span>
-                                <span class="comments-time fl">{{comment.createTime}}</span>
-                                <cm-comment-level class="fr" level="{{comment.score}}"></cm-comment-level>
+                <!-- 点评 -->
+                <!-- <div class="video-info-comments light-bg" ng-if="videoInfo.commentsList">
+                    <div class="comments-title">点评<span class="amount">({{videoInfo.commentsList.length}})</span></div>
+                    <ul class="comments-list">
+                        <li class="comments-item clearfix" ng-repeat="comment in videoInfo.commentsList">
+                            <div class="comments-pic fl">
+                                <img class="img" cm-lazyload="comment.imagePath" load-immediate="true" 
+                                    ng-if="comment.imagePath"/>
                             </div>
-                            <div class="comments-content">{{comment.content}}</div>
-                        </div>
-                    </li>
-                </ul>
-            </div> -->
+                            <div class="comments-right">
+                                <div class="comments-info clearfix">
+                                    <span class="comments-name fl">{{comment.nickName | textFormat: true}}</span>
+                                    <span class="comments-time fl">{{comment.createTime}}</span>
+                                    <cm-comment-level class="fr" level="{{comment.score}}"></cm-comment-level>
+                                </div>
+                                <div class="comments-content">{{comment.content}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div> -->
+            </ion-content>
         </div>
 
     </ion-content>

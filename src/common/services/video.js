@@ -42,12 +42,22 @@ angular.module('app.services').factory('videoService', ['api',function(api, mess
         },
 
         /**
+         * 根据deviceId删除视频下载全部记录
+         */
+        deleteAllCachedVideo: function() {
+            return api.post('/cosmos.json?command=scommerce.BYT_VIDEO_CACHE_DELETEBYDEVICEID', {
+                    proName: 'BYT_VIDEO_CACHE_DELETEBYDEVICEID',
+                    deviceId: localStorage.get('unique') || APP_CONFIG.unique
+                });
+        },
+
+        /**
          * 下载视频
          */
-        downloadVideo: function(commodityId) {
+        downloadVideo: function(commodityId, videoPath) {
             return api.post('/cosmos.json?command=scommerce.BYT_VIDEO_CACHE_SAVE', {
                     proName: 'BYT_VIDEO_CACHE_SAVE',
-                    deviceId: localStorage.get('unique'),
+                    deviceId: localStorage.get('unique') || APP_CONFIG.unique,
                     commodityId: commodityId,
                     videoPath: videoPath
                 });
