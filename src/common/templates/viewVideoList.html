@@ -11,7 +11,7 @@
         <div class="title title-center header-item">
             观看记录
         </div>
-        <div class="buttons buttons-right">
+        <div class="buttons buttons-right" ng-show="viewVideoList.list.length > 0">
             <span class="right-buttons">
                 <button class="button button-clear" ng-click="viewVideoList.toggleEditMode()">
                     <i ng-show="viewVideoList.mode == 1" class="iconfont icon-lajitong"></i>

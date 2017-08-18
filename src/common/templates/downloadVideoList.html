@@ -11,7 +11,7 @@
         <div class="title title-center header-item">
             离线中心
         </div>
-        <div class="buttons buttons-right">
+        <div class="buttons buttons-right" ng-show="downloadVideoList.list.length > 0">
             <span class="right-buttons">
                 <button class="button button-clear" ng-click="downloadVideoList.toggleEditMode()">
                     <i ng-show="downloadVideoList.mode == 1" class="iconfont icon-lajitong"></i>
