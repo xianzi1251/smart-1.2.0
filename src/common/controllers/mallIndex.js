@@ -128,7 +128,7 @@ angular.module('app.controllers').controller('mallIndexCtrl', function(
                                         floor.items = floorItems[index];
 
                                         _.forEach(floorItems[index], function(item) {
-                                            item.newPicUrl = window.APP_CONFIG.serviceAPI + item.newPicUrl;
+                                            item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
                                         });
 
                                     });
