@@ -368,6 +368,13 @@ angular.module('app')
             url: '/packageVideoList?entityName',
             templateUrl: 'templates/packageVideoList.html',
             controller: 'packageVideoListCtrl as package'
+        },
+
+        // 已购列表页虚拟－套餐音频页面
+        'courseAudio': {
+            url: '/courseAudio?entityName',
+            templateUrl: 'templates/courseAudio.html',
+            controller: 'courseAudioCtrl as audio'
         }
 
     });

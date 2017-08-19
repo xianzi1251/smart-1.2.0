@@ -125,7 +125,7 @@ angular.module('app.controllers').controller('purchasedListCtrl', function(
             });
         },
 
-        // 虚拟商品跳转［单个音频／单个视频／套餐视频］
+        // 虚拟商品跳转［单个音频／套餐音频／单个视频／套餐视频］
         goPurchasedInfo: function(item) {
             var genreName = item.genreName,
                 taocan = item.taocan,
@@ -135,6 +135,15 @@ angular.module('app.controllers').controller('purchasedListCtrl', function(
 
                 // 单个音频
                 ctrl.goVideoInfo(cdtName, item.videoUrl, item.isExpiry, genreName);
+
+            } else if (genreName == 'radio' && taocan == 1) {
+
+                // 套餐音频
+                var stateName = stateUtils.getStateNameByCurrentTab('courseAudio');
+                nativeTransition.forward();
+                $state.go(stateName, {
+                    entityName: cdtName
+                });
 
             } else if (genreName == 'video') {
 

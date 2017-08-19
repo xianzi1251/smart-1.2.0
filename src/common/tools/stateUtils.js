@@ -65,7 +65,7 @@ angular.module('app.services').factory('stateUtils', function($state, tabs, stat
 
         // 跳转视频详情，如视频时间过期，则不能去播放页面；如无videoUrl，则不能播放
         goVideoInfo: function(entityName, videoUrl, isExpiry, genreName) {
-            // if (!videoUrl) return;
+            if (!videoUrl) return;
 
             if (!isExpiry) {
                 var stateName = getStateNameByCurrentTab('videoInfo');
