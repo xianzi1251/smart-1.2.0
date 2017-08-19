@@ -363,11 +363,11 @@ angular.module('app')
             controller: 'mallProductInfoCtrl as mallProductInfo'
         },
 
-        // 已购列表页虚拟－套餐视频页面
-        'packageVideoList': {
-            url: '/packageVideoList?entityName',
-            templateUrl: 'templates/packageVideoList.html',
-            controller: 'packageVideoListCtrl as package'
+        // 已购列表页虚拟－单个／套餐视频页面
+        'courseVideo': {
+            url: '/courseVideo?entityName',
+            templateUrl: 'templates/courseVideo.html',
+            controller: 'courseVideoCtrl as video'
         },
 
         // 已购列表页虚拟－套餐音频页面

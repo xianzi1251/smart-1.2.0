@@ -1,4 +1,4 @@
-angular.module('app.controllers').controller('packageVideoListCtrl', function(
+angular.module('app.controllers').controller('courseVideoCtrl', function(
     $scope, $state, $stateParams, nativeTransition, errorHandling, commentService, loading, productService,
     toast, loadDataMixin, $ionicScrollDelegate, $rootScope, messageCenter
 ) {
@@ -36,8 +36,8 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
 
                 if (i == index) {
                     ctrl.infoTabs[i].active = true;
-                    $ionicScrollDelegate.$getByHandle('packageVideoListScroll').scrollTop(true);
-                    $ionicScrollDelegate.$getByHandle('packageVideoListScroll').resize();
+                    $ionicScrollDelegate.$getByHandle('courseVideoScroll').scrollTop(true);
+                    $ionicScrollDelegate.$getByHandle('courseVideoScroll').resize();
                 }
             }
         },

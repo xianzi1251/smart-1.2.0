@@ -13,33 +13,33 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="package-video-list-panel stable-bg" scroll="false">
+    <ion-content class="course-video-panel stable-bg" scroll="false">
 
-        <div ng-if="package.finishLoading">
+        <div ng-if="video.finishLoading">
             <!-- 视频播放 -->
             <div class="video-container" id="video-container" 
-                cm-video="package.activeVideoItem.videoUrl">
+                cm-video="video.activeVideoItem.videoUrl">
             </div>
 
             <!-- tab -->
             <ul class="tab-info-list">
                 <li class="tab-info-item" ng-class="{'active': tab.active}" 
-                    ng-repeat="tab in package.infoTabs"
-                    ng-click="package.changeTab($index)">{{tab.label}}</li>
+                    ng-repeat="tab in video.infoTabs"
+                    ng-click="video.changeTab($index)">{{tab.label}}</li>
             </ul>
 
-            <ion-content class="package-content" delegate-handle="packageVideoListScroll">
+            <ion-content class="course-content" delegate-handle="courseVideoScroll">
 
                 <!--下拉刷新-->
-                <ion-refresher on-refresh="package.init()" 
+                <ion-refresher on-refresh="video.init()" 
                     pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
                 <!-- 详情 -->
-                <div class="package-detail" ng-if="package.tabAction == 0">
+                <div class="course-detail" ng-if="video.tabAction == 0">
                     <div class="detail-box">
-                        <div class="info-name">{{package.baseData.title}}</div>
-                        <div class="info-sales">购买人数：{{package.baseData.salesVolume}}</div>
-                        <div class="info-price">{{package.baseData.listPrice | currency: '¥'}}</div>
+                        <div class="info-name">{{video.baseData.title}}</div>
+                        <div class="info-sales">购买人数：{{video.baseData.salesVolume}}</div>
+                        <div class="info-price">{{video.baseData.listPrice | currency: '¥'}}</div>
                     </div>
 
                     <!-- 老师介绍 -->
@@ -49,7 +49,7 @@
                             <div class="author-box">
                                 <div class="author clearfix">
                                     <div class="author-img fl">
-                                        <img class="img" src="{{package.baseData.picUrl}}" />
+                                        <img class="img" src="{{video.baseData.picUrl}}" />
                                     </div>
                                     <div class="author-right fr">
                                         <div class="author-name">{{info.baseData.author}}</div>
@@ -57,13 +57,13 @@
                                             好评度：<cm-comment-level level="{{info.baseData.score}}"></cm-comment-level>
                                         </div>
                                         <div class="author-nums">
-                                            课程数：{{package.courseList.length}}
+                                            课程数：{{video.courseList.length}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="author-summary">
-                                {{package.baseData.summary}}
+                                {{video.baseData.summary}}
                             </div>
                         </div>
                     </div>
@@ -71,22 +71,22 @@
                     <!-- 课程详情 -->
                     <div class="detail-box" cm-scroll>
                         <div class="detail-title">课程详情</div>
-                        <div class="describe-content" ng-bind-html="package.baseData.content"></div>
+                        <div class="describe-content" ng-bind-html="video.baseData.content"></div>
                         <div class="describe-btn"></div>
                     </div>
                 </div>
 
                 <!-- 目录 -->
-                <div class="package-catalog" ng-if="package.tabAction == 1">
-                    <div class="catalog-title">视频课程({{package.courseList.length}})</div>
+                <div class="course-catalog" ng-if="video.tabAction == 1">
+                    <div class="catalog-title">视频课程({{video.courseList.length}})</div>
                     <ul class="catalog-list">
                         <li class="catalog-item row" ng-class="{'active': catalog.active}"
-                            ng-repeat="catalog in package.courseList"
-                            ng-click="package.changeVideo(catalog, $index)">
+                            ng-repeat="catalog in video.courseList"
+                            ng-click="video.changeVideo(catalog, $index)">
                             <i class="item-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
                             <span class="item-text col">{{catalog.title}}</span>
                             <span class="col col-center col-adaptive"
-                                ng-click="package.downloadVideo(catalog, $event)">
+                                ng-click="video.downloadVideo(catalog, $event)">
                                 <i class="item-download iconfont icon-huancun"
                                     ng-show="!catalog.downloading"
                                     ng-class="{'cached': catalog.cached}"></i>
@@ -97,10 +97,10 @@
                 </div>
 
                 <!-- 有评论 -->
-                <div class="product-info-comments light-bg" ng-if="package.commentsList.length > 0">
-                    <div class="comments-title">课程评论<span class="amount">({{package.commentsList.length}})</span></div>
+                <div class="product-info-comments light-bg" ng-if="video.commentsList.length > 0">
+                    <div class="comments-title">课程评论<span class="amount">({{video.commentsList.length}})</span></div>
                     <ul class="comments-list">
-                        <li class="comments-item clearfix" ng-repeat="comment in package.commentsList">
+                        <li class="comments-item clearfix" ng-repeat="comment in video.commentsList">
                             <div class="comments-pic fl">
                                 <img class="img" cm-lazyload="comment.imagePath" load-immediate="true" 
                                     ng-if="comment.imagePath"/>
@@ -119,7 +119,7 @@
                 </div>
 
                 <!-- 无评论 -->
-                <div class="product-info-comments light-bg" ng-if="package.commentsList.length == 0">
+                <div class="product-info-comments light-bg" ng-if="video.commentsList.length == 0">
                     <div class="comments-title">课程评论<span class="amount">(0)</span></div>
                     <div class="comments-empty">暂无评论</div>
                 </div>

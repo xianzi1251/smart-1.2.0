@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-.package-video-list-panel {
+.course-video-panel {
 
-    .package-content {
+    .course-content {
         top: convert-rem(185px);
         z-index: 10;
         margin-top: 41px;
@@ -42,7 +42,7 @@
         }
     }
 
-    .package-detail {
+    .course-detail {
         margin-bottom: 8px;
 
         .detail-box {
@@ -186,7 +186,7 @@
         }
     }
 
-    .package-catalog {
+    .course-catalog {
         margin-bottom: 8px;
         background-color: $light;
 

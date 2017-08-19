@@ -65,7 +65,7 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
             } else {
 
                 // 单个视频／套餐视频
-                var stateName = stateUtils.getStateNameByCurrentTab('packageVideoList');
+                var stateName = stateUtils.getStateNameByCurrentTab('courseVideo');
                 nativeTransition.forward();
                 $state.go(stateName, {
                     entityName: item.entityName
