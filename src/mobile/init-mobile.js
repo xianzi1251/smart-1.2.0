@@ -187,7 +187,7 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
 });
 
 app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordovaFileTransfer, 
-    $q, $ionicLoading, MIME_MapTable, toast, videoService, errorHandling) {
+    $q, $ionicLoading, MIME_MapTable, toast, videoService, errorHandling, messageCenter) {
 
     $rootScope.needDownloadList = [];
 
@@ -260,7 +260,9 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
                                         return rootItem.id == item.id;
                                     });
 
-                                    messageCenter.publishMessage('cached.success', item);
+                                    messageCenter.publishMessage('cached.success', {
+                                        item: item
+                                    });
                                 })
                                 .error(errorHandling);
                         }, function (error) {
