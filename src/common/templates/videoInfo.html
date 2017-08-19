@@ -41,15 +41,15 @@
                         <source ng-src="{{videoInfo.videoUrl}}" type="audio/mpeg">
                         您的浏览器版本过低不能支持html5视频标签
                     </audio>
-                    <div id="audio-main" class="audio-main clearfix">
+                    <div class="audio-main clearfix">
                         <div class="audio-left fl">
-                            <i class="icon ion-ios-pause"></i>
+                            <i class="icon ion-ios-play"></i>
                         </div>
                         <div class="audio-right">
                             <p class="audio-title">{{videoInfo.baseData.title}}</p>
-                            <div class="time-progress-line">
-                                <div class="progress"></div>
-                            </div>
+                            <div class="audio-rang">
+                                <input class="range" type="range" min=0 max=100 value=0>
+                            </div>    
                             <div class="time-text-line clearfix">
                                 <span id="playedTime" class="time fl">00:00</span>
                                 <span id="totalTime" class="time fr"></span>

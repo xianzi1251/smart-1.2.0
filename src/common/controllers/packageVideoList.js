@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('packageVideoListCtrl', function(
     $scope, $state, $stateParams, nativeTransition, errorHandling, commentService, loading, productService,
-    toast, loadDataMixin, $ionicScrollDelegate
+    toast, loadDataMixin, $ionicScrollDelegate, $rootScope, messageCenter
 ) {
 
     var ctrl = this;
@@ -44,6 +44,7 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
 
         // 获取套装商品信息
         init: function() {
+
             ctrl.finishLoading = false;
             loading.open();
 
@@ -91,6 +92,13 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
                                         ctrl.activeVideoItem = item;
                                         item.active = true;
                                     }
+
+                                    _.forEach($rootScope.needDownloadList, function(rootItem) {
+
+                                        if (item.id == rootItem.id) {
+                                            item.downloading = rootItem.downloading;
+                                        }
+                                    });
                                 });
                             }
 
@@ -127,8 +135,46 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
                     }
                 });
             }
+        },
+
+        // 下载视频
+        downloadVideo: function(item, $event) {
+
+            $event.stopPropagation();
+
+            if (item.cached) {
+                toast.open('该视频已缓存成功，请到离线中心查看');
+                return;
+             } else if (item.downloading) {
+                toast.open('该视频正在缓存，请稍等');
+                return;
+             }
+
+            // 当前正在下载
+            item.downloading = true;
+
+            $rootScope.needDownloadList.push(item);
+
+            $rootScope.downloadAttachment(item);
+
         }
 
+    });
+
+    // 订阅某个视频缓存成功
+    messageCenter.subscribeMessage(['cached.success'], function(cachedItem) {
+
+        _.forEach(ctrl.courseList, function(item) {
+
+            if (item.id == cachedItem.id) {
+                // 暂时修改缓存状态，不调用接口
+                item.cached = 1;
+
+                // 下载完成，非下载状态
+                item.downloading = false;
+            }
+        });
+  
     });
 
     var deregistration = $scope.$on('$ionicView.afterEnter', function() {

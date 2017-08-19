@@ -19,8 +19,9 @@
         <ion-refresher on-refresh="freeList.refresh({showLoading: false})" 
             pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
-        <div class="pd tc" ng-if="!freeList.courseList.length">
-            暂无免费试读信息
+        <div class="list-empty" ng-if="freeList.finishLoading && !freeList.courseList.length">
+            <div class="img"></div>
+            <div class="text">暂无免费试读信息</div>
         </div>
 
         <ul class="free-list" ng-if="freeList.courseList.length">

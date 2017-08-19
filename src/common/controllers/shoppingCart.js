@@ -49,6 +49,7 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
 
         // 加载购物车数据
         loadData: function() {
+            ctrl.data = {};
             return cartService.info()
                 .success(function(response) {
 
@@ -291,7 +292,8 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
 
     // 订阅提交[订单成功/加入购物车／删除购物车/登录]消息 刷新列表
     messageCenter.subscribeMessage(['checkout.success', 'cart.add', 'cart.delete', 'login'], function() {
-        ctrl.refresh({showLoading: false, emptyData: false});
+        // ctrl.refresh({showLoading: false, emptyData: false});
+        ctrl.init();
     });
 
 });
