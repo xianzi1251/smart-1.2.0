@@ -131,14 +131,14 @@ angular.module('app.controllers').controller('purchasedListCtrl', function(
                 taocan = item.taocan,
                 cdtName = item.cdtName;
 
-            if ((genreName == 'radio' || genreName == 'video') && taocan == 0) {
+            if (genreName == 'radio' && taocan == 0) {
 
-                // 单个音频/单个视频
+                // 单个音频
                 ctrl.goVideoInfo(cdtName, item.videoUrl, item.isExpiry, genreName);
 
-            } else if (genreName == 'video' && taocan == 1) {
+            } else if (genreName == 'video') {
 
-                // 套餐视频
+                // 单个视频／套餐视频
                 var stateName = stateUtils.getStateNameByCurrentTab('packageVideoList');
                 nativeTransition.forward();
                 $state.go(stateName, {

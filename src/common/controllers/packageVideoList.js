@@ -162,11 +162,11 @@ angular.module('app.controllers').controller('packageVideoListCtrl', function(
     });
 
     // 订阅某个视频缓存成功
-    messageCenter.subscribeMessage(['cached.success'], function(cachedItem) {
+    messageCenter.subscribeMessage('cached.success', function(event, data) {
 
         _.forEach(ctrl.courseList, function(item) {
 
-            if (item.id == cachedItem.id) {
+            if (item.id == data.item.id) {
                 // 暂时修改缓存状态，不调用接口
                 item.cached = 1;
 

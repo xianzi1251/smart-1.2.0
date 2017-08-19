@@ -62,23 +62,14 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
                     ctrl.selectedText = '全选';
                 }
 
-            } else {    
+            } else {
 
-                if (item.taocan == 0) {
-
-                    // 单节课播放页面
-                    stateUtils.goVideoInfo(item.entityName, item.videoUrl, false, item.genreName);
-
-                } else if (item.taocan == 1) {
-
-                    // 套餐视频
-                    var stateName = stateUtils.getStateNameByCurrentTab('packageVideoList');
-                    nativeTransition.forward();
-                    $state.go(stateName, {
-                        entityName: item.entityName
-                    });
-
-                }
+                // 单个视频／套餐视频
+                var stateName = stateUtils.getStateNameByCurrentTab('packageVideoList');
+                nativeTransition.forward();
+                $state.go(stateName, {
+                    entityName: item.entityName
+                });
             }
         },
 
