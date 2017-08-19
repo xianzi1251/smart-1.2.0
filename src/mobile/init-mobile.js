@@ -56,8 +56,6 @@ app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService,
             }
         }
     } else {
-
-        // 有更新
         isUpgrade = true;
     }
 
@@ -80,38 +78,6 @@ app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService,
         setTimeout(function() {
             $ionicPlatform.ready(function() {
                 if (navigator.splashscreen) navigator.splashscreen.hide();
-
-                    if (!localVersion) {
-
-                        // 当前应用被重新安装，则需要删除数据库的本地缓存数据
-                        videoService.deleteAllCachedVideo()
-                            .success(function() {c
-
-                                // 删除本地当前文件夹中的所有缓存视频
-                                /* 删除文件报错
-                                if (window.cordova) {
-                                    var cachedDirectory = $rootScope.downloadPath.split('bytDownload/cache/')[0];
-
-                                    console.log(999, $rootScope.downloadPath, cachedDirectory);
-
-                                    // $cordovaFile.removeDir(cachedDirectory, "bytDownload")
-                                    //     .then(function (success) {
-                                    //         console.log('啦啦，文件夹删除了。。。');
-                                    //     }, function (error) {
-                                    //         console.log('呜呜，文件夹删除报错了。。。');
-                                    //         console.log('removeDir occurred error :' + angular.toJson(error));
-                                    //     });
-
-                                    // $cordovaFile.removeRecursively($rootScope.downloadPath, '')
-                                    //     .then(function (success) {
-                                    //         console.log('啦啦，全部删除了。。。');
-                                    //     }, function (error) {
-                                    //         console.log('呜呜，全部删除报错了。。。');
-                                    //         console.log('removeRecursively occurred error :' + angular.toJson(error));
-                                    //     });
-                                }*/
-                            });
-                    }
             });
         }, 500);
 
@@ -218,6 +184,8 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
 app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordovaFileTransfer, 
     $q, $ionicLoading, MIME_MapTable, toast, videoService, errorHandling) {
 
+    $rootScope.needDownloadList = [];
+
     // 定义全局删除本地视频方法
     $rootScope.deleteCachedAttachment = function(fileNames) {
 
@@ -236,18 +204,9 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
     };
 
     // 定义全局下载视频方法
-    $rootScope.downloadAttachment = function(item, $event) {
-         $event.stopPropagation();
-
-         if (item.cached) {
-            toast.open('该视频已缓存成功，请到离线中心查看');
-            return;
-         }
+    $rootScope.downloadAttachment = function(item) {
 
         if (window.cordova) {
-
-            // 当前正在下载
-            item.downloading = true;
 
             // 下载信息
             var url = item.mp4Url,   // 视频url
@@ -291,6 +250,12 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
 
                                     // 下载完成，非下载状态
                                     item.downloading = false;
+
+                                    _.remove($rootScope.needDownloadList, function(rootItem) {
+                                        return rootItem.id == item.id;
+                                    });
+
+                                    messageCenter.publishMessage('cached.success', item);
                                 })
                                 .error(errorHandling);
                         }, function (error) {

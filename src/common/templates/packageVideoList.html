@@ -85,11 +85,11 @@
                             ng-click="package.changeVideo(catalog, $index)">
                             <i class="item-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
                             <span class="item-text col">{{catalog.title}}</span>
-                            <span class="col col-center col-adaptive">
+                            <span class="col col-center col-adaptive"
+                                ng-click="package.downloadVideo(catalog, $event)">
                                 <i class="item-download iconfont icon-huancun"
                                     ng-show="!catalog.downloading"
-                                    ng-class="{'cached': catalog.cached}"
-                                    ng-click="downloadAttachment(catalog, $event)"></i>
+                                    ng-class="{'cached': catalog.cached}"></i>
                                 <ion-spinner icon="circles" ng-show="catalog.downloading"></ion-spinner>
                             </span>
                         </li>
