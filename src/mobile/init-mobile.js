@@ -270,6 +270,7 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
                     });
 
                 }, function (error) {
+                    toast.open('手机内存不足');
                     console.log('error, 剩余空间为---', error);
             });
 
