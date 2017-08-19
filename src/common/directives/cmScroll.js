@@ -7,7 +7,7 @@ angular.module('app.directives').directive('cmScroll', function factory($ionicSc
     var hideMore = true;
 
     var $content1 = $ionicScrollDelegate.$getByHandle('productInfoScroll'),
-        $content2 = $ionicScrollDelegate.$getByHandle('packageVideoListScroll');
+        $content2 = $ionicScrollDelegate.$getByHandle('courseVideoScroll');
 
     return {
         restrict: 'A',

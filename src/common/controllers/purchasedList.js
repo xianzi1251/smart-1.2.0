@@ -148,7 +148,7 @@ angular.module('app.controllers').controller('purchasedListCtrl', function(
             } else if (genreName == 'video') {
 
                 // 单个视频／套餐视频
-                var stateName = stateUtils.getStateNameByCurrentTab('packageVideoList');
+                var stateName = stateUtils.getStateNameByCurrentTab('courseVideo');
                 nativeTransition.forward();
                 $state.go(stateName, {
                     entityName: cdtName
