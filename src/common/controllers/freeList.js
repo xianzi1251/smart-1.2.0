@@ -12,6 +12,7 @@ angular.module('app.controllers').controller('freeListCtrl', function(
 
         // 获取套装商品信息
         loadData: function() {
+            ctrl.finishLoading = false;
             return productService.getSuitFreeCourses(ctrl.entityName)
                 .success(function(response) {
 
@@ -27,7 +28,10 @@ angular.module('app.controllers').controller('freeListCtrl', function(
 
                     }
                 })
-                .error(errorHandling);
+                .error(errorHandling)
+                .finally(function() {
+                    ctrl.finishLoading = true;
+                });
         },
 
         // 去免费试读详情页
