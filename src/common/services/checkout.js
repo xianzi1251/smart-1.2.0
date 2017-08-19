@@ -21,7 +21,7 @@ angular.module('app.services').factory('checkoutService', function(
         /**
          * 提交订单
          */
-        creatOrder: function(ordItemIds, payment, needInvoice, invType, invoiceType, invoiceTitle, taxpayerNo, invoiceEmail, invoiceContent) {
+        creatOrder: function(ordItemIds, payment, payableAmount, needInvoice, invType, invoiceType, invoiceTitle, taxpayerNo, invoiceEmail, invoiceContent) {
             return api.post('/cosmos.json?domain=config', {
                     proName: 'creatOrder',
                     userId: window.APP_USER.id,
@@ -41,7 +41,9 @@ angular.module('app.services').factory('checkoutService', function(
                 })
                 .success(function() {
                     // 广播消息 生成订单后，刷新购物车数据
-                    messageCenter.publishMessage('checkout.success');
+                    messageCenter.publishMessage('checkout.success', {
+                        payableAmount: payableAmount
+                    });
                 });
         },
 

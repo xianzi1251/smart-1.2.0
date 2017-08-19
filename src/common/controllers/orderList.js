@@ -91,12 +91,13 @@ angular.module('app.controllers').controller('orderListCtrl', function(
         },
 
         // 打开选择支付弹出层
-        pay: function(orderId, payment) {
+        pay: function(order) {
             modals.choosePayment.open({
                 params: {
-                    orderId: orderId,
-                    payment: payment,
+                    orderId: order.orderId,
+                    payment: order.payName,
                     source: 'order',
+                    payableAmount: order.totalAmount
                 } 
             });
         }

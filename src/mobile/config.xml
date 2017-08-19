@@ -48,13 +48,13 @@
     <splash src="resources/android/splash/drawable-port-xhdpi-screen.png" density="port-xhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
-    <!-- <preference name="APP_SIGNATURE" value="B5F4LfZnbWbs3mq1m8j3GtZZpZ4="/> -->
   </platform>
   <platform name="ios">
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <preference name="target-device" value="handset" />
     <preference name="deployment-target" value="7.0" />
+    <preference name="UMENG_APPKEY" value="5997a7ea8630f563fa001c77"/>
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="resources/ios/icon/icon-40.png" width="40" height="40"/>
@@ -82,11 +82,6 @@
   <preference name="WECHAT_APPKEY" value="wx3fc05c955a155a9b"/>
   <preference name="WECHAT_APPSECRET" value="d44f61ccd46e642f5273570780bb3971"/>
 
-  <!-- <preference name="QQ_APPKEY" value="1104756866"/>
-  <preference name="QQ_APPSECRET" value="jTcZJDN6NSi85aJe"/>
-  <preference name="SINA_APPKEY" value="1573930227"/>
-  <preference name="SINA_APPSECRET" value="aafe46518e4c90562bbd616b4fe4fbab"/>
-  <preference name="TAOBAO_OPEN_PLATFORM_APPKEY" value="23278768" /> -->
   <preference name="xwalkVersion" value="15+" />
   <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
   <preference name="xwalkMode" value="embedded" />
@@ -96,26 +91,12 @@
   <plugin name="cordova-plugin-comall-wechat" spec="../plugins/cordova-plugin-comall-wechat">
       <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
   </plugin>
-  <!-- <plugin name="cordova-plugin-comall-wechat-pay" spec="../plugins/cordova-plugin-comall-wechat-pay">
-      <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
-  </plugin> -->
   <plugin name="cordova-plugin-comall-alipay" spec="../plugins/cordova-plugin-comall-alipay">
       <variable name="ALIPAY_URL_SCHEME" value="alisdkbanyuetan" />
   </plugin>
-<!--   <plugin name="cn.jpush.phonegap.JPushPlugin" spec="../plugins/cn.jpush.phonegap.JPushPlugin">
-      <variable name="API_KEY" value="336fa6c7430cdc841c26b601" />
-  </plugin>
-  <plugin name="cordova-plugin-datepicker" spec="../plugins/cordova-plugin-datepicker" />
-  <plugin name="cordova-plugin-comall-addresspicker" spec="../plugins/cordova-plugin-comall-addresspicker" /> -->
-  <!-- <plugin name="com.comall.barcodescanner" spec="../plugins/com.comall.barcodescanner" /> -->
   <plugin name="com.comall.preference" spec="../plugins/com.comall.preference" />
- <!--  <plugin name="cordova-plugin-comall-deploy" spec="../plugins/cordova-plugin-comall-deploy" /> -->
   <plugin name="com.verso.cordova.clipboard" spec="../plugins/com.verso.cordova.clipboard" />
-  <!-- <plugin name="cordova-plugin-comall-taobao-open-platform" spec="../plugins/cordova-plugin-comall-taobao-open-platform" /> -->
-  <!-- <plugin name="cordova-plugin-comall-launch-navigator" spec="../plugins/cordova-plugin-comall-launch-navigator" /> -->
-  <!-- <plugin name="cordova.plugins.diagnostic" spec="../plugins/cordova.plugins.diagnostic" /> -->
-  <!-- <plugin name="cordova-plugin-comall-sensors-analytics" spec="../plugins/cordova-plugin-comall-sensors-analytics" />
-  <plugin name="cordova-plugin-comall-localization" spec="../plugins/cordova-plugin-comall-localization" /> -->
+  <!-- <plugin name="cordova-plugin-comall-localization" spec="../plugins/cordova-plugin-comall-localization" /> -->
 
   <plugin name="cordova-plugin-device" spec="~1.1.2" />
   <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
@@ -130,8 +111,12 @@
   <!-- <plugin name="cordova-plugin-camera" spec="../plugins/cordova-plugin-camera" />
   <plugin name="cordova-plugin-geolocation" spec="~2.2.0" />
   <plugin name="cordova-plugin-customurlscheme" spec="~4.2.0">
-      <variable name="URL_SCHEME" value="songshuhaigou" />
+      <variable name="URL_SCHEME" value="" />
   </plugin> -->
+  <plugin name="cordova-plugin-comall-umeng-analytics" spec="../plugins/cordova-plugin-comall-umeng-analytics">
+      <variable name="UMENG_APPKEY_ANDROID" value="5997a75275ca3527dc0006d7" />
+      <variable name="UMENG_CHANNEL" value="<<< channel >>>" />
+  </plugin>
   <plugin name="cordova-plugin-crosswalk-webview" spec="~1.6.1" />
   <plugin name="cordova-plugin-app-name" spec="~1.0.1">
       <variable name="APP_NAME" value="<<< displayName >>>" />

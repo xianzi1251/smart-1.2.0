@@ -54,6 +54,9 @@ angular.module('app.controllers').controller('choosePaymentCtrl', function(
         // 去支付
         goPay: function (orderId, payment) {
 
+            // 需要支付的金额
+            var payableAmount = $params.payableAmount;
+
             // 需要先修改该订单的支付方式
             checkoutService.choosePayment(orderId, payment)
                 .success(function() {
@@ -73,7 +76,9 @@ angular.module('app.controllers').controller('choosePaymentCtrl', function(
                             });
 
                             // 广播消息 支付完成
-                            messageCenter.publishMessage('pay.success');
+                            messageCenter.publishMessage('pay.success', {
+                                payableAmount: payableAmount
+                            });
 
                         })
                         .error(errorHandling);

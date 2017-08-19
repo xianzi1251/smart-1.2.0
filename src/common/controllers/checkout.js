@@ -143,7 +143,8 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
         submitOrder: function() {
 
             var ordItemIds = ctrl.ordItemIds,
-                payment = ctrl.checkoutInfo.payment;
+                payment = ctrl.checkoutInfo.payment,
+                payableAmount = ctrl.data.amount.contractedTotal.RMB;
 
             // 发票信息
             var invoice = ctrl.checkoutInfo.invoice,
@@ -158,7 +159,7 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
             loading.open();
 
             // 创建订单
-            checkoutService.creatOrder(ordItemIds, payment, needInvoice, invType, invoiceType, invoiceTitle, taxpayerNo, invoiceEmail, invoiceContent)
+            checkoutService.creatOrder(ordItemIds, payment, payableAmount, needInvoice, invType, invoiceType, invoiceTitle, taxpayerNo, invoiceEmail, invoiceContent)
                 .success(function(response) {
 
                     // 生成的订单id
@@ -183,7 +184,9 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                                     });
 
                                     // 广播消息 支付完成
-                                    messageCenter.publishMessage('pay.success');
+                                    messageCenter.publishMessage('pay.success', {
+                                        payableAmount: payableAmount
+                                    });
 
                                 })
                                 .error(errorHandling);

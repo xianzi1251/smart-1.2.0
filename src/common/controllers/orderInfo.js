@@ -26,6 +26,7 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
                     orderId: ctrl.orderId,
                     payment: payment,
                     source: 'order',
+                    payableAmount: ctrl.info.payAmount
                 } 
             });
         },

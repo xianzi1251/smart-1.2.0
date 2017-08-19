@@ -36,7 +36,7 @@
                     <div class="item-pay col col-center col-adaptive" 
                         ng-if="order.paymentStatus == 0 && order.orderStatus == 1">
                         <button type="button" class="button button-outline button-energized"
-                            ng-click="orderList.pay(order.orderId, order.payName)">去支付</button>
+                            ng-click="orderList.pay(order)">去支付</button>
                     </div>
                     <div class="item-cancle col col-center col-adaptive" 
                         ng-if="order.orderStatus == 5">已取消</div>

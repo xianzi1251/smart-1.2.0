@@ -36,6 +36,11 @@ app.run(function($ionicPlatform, modals) {
     });
 });
 
+// 初始化数据统计
+app.run(function(analytics) {
+    analytics.init();
+});
+
 // 版本检测
 app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService, $cordovaFile) {
 
