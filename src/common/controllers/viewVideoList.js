@@ -64,12 +64,33 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
 
             } else {
 
-                // 单个视频／套餐视频
-                var stateName = stateUtils.getStateNameByCurrentTab('courseVideo');
-                nativeTransition.forward();
-                $state.go(stateName, {
-                    entityName: item.entityName
-                });
+                var genreName = item.genreName,
+                    taocan = item.taocan,
+                    entityName = item.entityName;
+
+                if (genreName == 'radio' && taocan == 0) {
+
+                    // 单个音频
+                    ctrl.goVideoInfo(entityName, item.videoUrl, item.isExpiry, genreName);
+
+                } else if (genreName == 'radio' && taocan == 1) {
+
+                    // 套餐音频
+                    var stateName = stateUtils.getStateNameByCurrentTab('courseAudio');
+                    nativeTransition.forward();
+                    $state.go(stateName, {
+                        entityName: entityName
+                    });
+
+                } else if (genreName == 'video') {
+
+                    // 单个视频／套餐视频
+                    var stateName = stateUtils.getStateNameByCurrentTab('courseVideo');
+                    nativeTransition.forward();
+                    $state.go(stateName, {
+                        entityName: entityName
+                    });
+                }
             }
         },
 
