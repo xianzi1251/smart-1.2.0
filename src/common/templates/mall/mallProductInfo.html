@@ -1,4 +1,4 @@
-<ion-view class="product-info-view" title="商城商品详情" cm-hide-tabs="true">
+<ion-view class="product-info-view" title="图书详情" cm-hide-tabs="true">
 
     <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
         <div class="buttons buttons-left">
@@ -9,7 +9,7 @@
             </span>
         </div>
         <div class="title title-center header-item">
-            商品详情
+            图书详情
         </div>
         <div class="buttons buttons-right" ng-click="mallProductInfo.goShoppingCart()">
             <span class="right-buttons">
@@ -29,7 +29,7 @@
         <!-- 空警告，当页面内没有数据时，显示该信息 -->
         <div class="list-empty" ng-if="!mallProductInfo.sellAbled">
             <div class="img"></div>
-            <div class="text">暂无商品信息</div>
+            <div class="text">暂无图书信息</div>
         </div>
 
         <div ng-if="mallProductInfo.sellAbled">
@@ -61,7 +61,7 @@
 
             <!-- 图书简介 -->
             <div class="product-info-describe light-bg" cm-scroll>
-                <div class="describe-title">课程简介</div>
+                <div class="describe-title">图书简介</div>
                 <div class="describe-content" ng-bind-html="mallProductInfo.baseData.content"></div>
                 <div class="describe-btn"></div>
             </div>
