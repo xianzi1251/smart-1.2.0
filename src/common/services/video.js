@@ -27,7 +27,8 @@ angular.module('app.services').factory('videoService', ['api',function(api, mess
          */
         getDownloadVideoList: function() {
             return api.post('/cosmos.json?command=scommerce.BYT_VIDEO_CACHE_LISTBLOCK', {
-                    proName: 'BYT_VIDEO_CACHE_LISTBLOCK'
+                    proName: 'BYT_VIDEO_CACHE_LISTBLOCK',
+                    deviceId: localStorage.get('unique') || APP_CONFIG.unique
                 });
         },
 
