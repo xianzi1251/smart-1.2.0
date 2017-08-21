@@ -57,7 +57,7 @@
                                 <span class="numbers" ng-if="cart.mode == 1">x{{item.quantity}}</span>
                                 <cm-counter ng-if="cart.mode == 2"
                                             ng-model="item.quantity"
-                                            data-max-num="999"
+                                            data-max-num="item.sku.attributes.inventory ? item.sku.attributes.inventory : 1"
                                             data-min-num="1"
                                             data-input-readonly="true"
                                             data-delay-trigger-change="true"
