@@ -113,7 +113,7 @@
   <plugin name="cordova-plugin-customurlscheme" spec="~4.2.0">
       <variable name="URL_SCHEME" value="" />
   </plugin> -->
-  <plugin name="cordova-plugin-comall-umeng-analytics" spec="../plugins/cordova-plugin-comall-umeng-analytics">
+  <plugin name="cordova-plugin-comall-umanalytics" spec="../plugins/cordova-plugin-comall-umanalytics">
       <variable name="UMENG_APPKEY_ANDROID" value="5997a75275ca3527dc0006d7" />
       <variable name="UMENG_CHANNEL" value="<<< channel >>>" />
   </plugin>

@@ -12,7 +12,7 @@ angular.module('app.services').factory('analytics', function(
 
     return {
         init: function() {
-            umeng = window.umeng && window.umeng.analytics;
+            umeng = window.UMAnalytics;
 
             if (!umeng) return;
 
@@ -59,14 +59,14 @@ angular.module('app.services').factory('analytics', function(
                 umeng.onEvent('register');
             });
 
-            // 监听提交订单成功
+            // 监听提交订单成功，金额取整，友盟统计仅支持整数
             messageCenter.subscribeMessage('checkout.success', function(event, data) {
-                umeng.onEventValue('submit_order', parseInt(data.payableAmount * 100));
+                umeng.onEventValue('submit_order', parseInt(data.payableAmount));
             });
 
-            // 监听支付成功
+            // 监听支付成功，金额取整，友盟统计仅支持整数
             messageCenter.subscribeMessage('pay.success', function(event, data) {
-                umeng.onEventValue('pay_success', parseInt(data.payableAmount * 100));
+                umeng.onEventValue('pay_success', parseInt(data.payableAmount));
             });
         }
     };
