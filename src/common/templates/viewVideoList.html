@@ -35,20 +35,22 @@
         </div>
 
         <ul class="view-list">
-            <li class="view-item row" 
+            <li class="view-item" 
                 ng-repeat="item in viewVideoList.list"
                 ng-click="viewVideoList.goVideoInfo(item)">
-                <label class="item-checkout checkbox col col-center col-adaptive" ng-if="viewVideoList.mode == 2">
-                    <input type="checkbox" ng-model="item.selected" />
+                <label class="item-checkout checkbox row">
+                    <input class="col col-center col-adaptive" type="checkbox" ng-checked="item.selected" 
+                        ng-if="viewVideoList.mode == 2" />
+                
+                    <div class="item-cont col clearfix">
+                        <div class="item-img fl">
+                            <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
+                        </div>
+                        <div class="item-info">
+                            <div class="item-title">{{item.title}}</div>
+                        </div>
+                    </div>
                 </label>
-                <div class="item-cont col clearfix">
-                    <div class="item-img fl">
-                        <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
-                    </div>
-                    <div class="item-info">
-                        <div class="item-title">{{item.title}}</div>
-                    </div>
-                </div>
             </li>
         </ul>
 
