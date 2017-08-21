@@ -12,8 +12,6 @@
     }
 
     .view-item {
-        padding: 12px 12px 12px 0;
-        margin: 0;
         background: superfine-border-bottom($line-color);
 
         &:last-child {
@@ -22,8 +20,16 @@
     }
 
     .item-checkout {
-        padding-right: 0;
-        margin-right: 15px;
+        display: flex;
+        width: auto;
+        height: auto;
+        padding: 12px 12px 12px 0;
+        margin: 0;
+
+        input {
+            padding: 0;
+            margin: 0 10px 0 5px;
+        }
     }
 
     .item-cont {

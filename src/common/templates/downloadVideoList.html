@@ -35,14 +35,16 @@
         </div>
 
         <ul class="video-list">
-            <li class="video-item row" 
+            <li class="video-item" 
                 ng-repeat="video in downloadVideoList.list"
                 ng-click="downloadVideoList.goVideoInfo(video)">
-                <label class="item-checkout checkbox col col-center col-adaptive" ng-if="downloadVideoList.mode == 2">
-                    <input type="checkbox" ng-model="video.selected" />
+                <label class="item-checkout checkbox row">
+                    <input type="checkbox" class="col col-center col-adaptive" ng-checked="video.selected" 
+                        ng-if="downloadVideoList.mode == 2"/>
+                
+                    <i class="video-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
+                    <div class="video-text col col-center">{{video.commodityTitle}}</div>
                 </label>
-                <i class="video-play iconfont icon-shipinbofangyingpian col col-center col-adaptive"></i>
-                <span class="video-text col">{{video.commodityTitle}}</span>
             </li>
         </ul>
     </ion-content>

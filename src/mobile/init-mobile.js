@@ -265,7 +265,12 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
                                         item: item
                                     });
                                 })
-                                .error(errorHandling);
+                                .error(errorHandling)
+                                .error(function() {
+                                    messageCenter.publishMessage('cached.failed', {
+                                        item: item
+                                    });
+                                });
                         }, function (error) {
                             deferred.reject(error);
                     });
