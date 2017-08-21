@@ -87,6 +87,12 @@
                 </ul>
                 <!-- <div class="comments-more">查看全部评论 ></div> -->
             </div>
+
+            <!-- 无评论 -->
+            <div class="product-info-comments light-bg" ng-if="!mallProductInfo.commentsList">
+                <div class="comments-title">点评<span class="amount">(0)</span></div>
+                <div class="comments-empty">暂无点评</div>
+            </div>
         </div>
 
     </ion-content>
