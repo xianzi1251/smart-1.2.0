@@ -189,6 +189,7 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
 app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordovaFileTransfer, 
     $q, $ionicLoading, MIME_MapTable, toast, videoService, errorHandling, messageCenter) {
 
+    // 需要下载的列表
     $rootScope.needDownloadList = [];
 
     // 定义全局删除本地视频方法
@@ -241,7 +242,7 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
                     console.log('success, 剩余空间为---', success);
 
                     // 下载
-                    download(url, targetPath, fileName, isOpen)
+                    download(url, targetPath, fileName, isOpen, item)
                         .then(function (success) {
                             deferred.resolve(success);
 
@@ -286,7 +287,7 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
      * @param isOpen 下载完成后是否打开
      * @returns {Promise}
      */
-    function download(url, targetPath, fileName, isOpen) {
+    function download(url, targetPath, fileName, isOpen, item) {
         var deferred = $q.defer();
 
         var trustAllHosts = true;
@@ -324,6 +325,10 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
             }, function (error) {
                 // $ionicLoading.hide();
                 console.log('[download] download file occurred error :' + angular.toJson(error));
+
+                messageCenter.publishMessage('cached.failed', {
+                    item: item
+                });
 
                 deferred.reject();
 

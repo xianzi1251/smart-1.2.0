@@ -93,6 +93,7 @@ angular.module('app.controllers').controller('courseVideoCtrl', function(
                                         item.active = true;
                                     }
 
+                                    // 获取当前还处于缓存状态的video，修改状态为下载中
                                     _.forEach($rootScope.needDownloadList, function(rootItem) {
 
                                         if (item.id == rootItem.id) {
@@ -172,6 +173,25 @@ angular.module('app.controllers').controller('courseVideoCtrl', function(
 
                 // 下载完成，非下载状态
                 item.downloading = false;
+            }
+        });
+  
+    });
+
+    // 订阅某个视频缓存失败
+    messageCenter.subscribeMessage('cached.failed', function(event, data) {
+
+        _.forEach(ctrl.courseList, function(item) {
+
+            if (item.id == data.item.id) {
+                toast.open(item.title + ' 缓存失败');
+
+                // 下载失败，非下载状态
+                item.downloading = false;
+
+                _.remove($rootScope.needDownloadList, function(rootItem) {
+                    return rootItem.id == item.id;
+                });
             }
         });
   
