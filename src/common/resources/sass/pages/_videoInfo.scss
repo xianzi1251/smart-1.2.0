@@ -22,19 +22,11 @@
     }
 
     .video-content {
-        top: convert-rem(195px);
+        top: convert-rem(190px);
     }
 
     .audio-content {
         top: 110px;
-    }
-}
-
-.video-container {
-    height: convert-rem(185px);
-
-    .vcp-error-tips {
-        display: none !important;
     }
 }
 
