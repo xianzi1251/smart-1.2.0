@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('productInfoCtrl', function(
     $scope, toast, modals, $stateParams, loadDataMixin, commentService,
-    productService, errorHandling, userService, messageCenter, cartService, $sce
+    productService, errorHandling, userService, messageCenter, cartService
 ) {
 
     var ctrl = this;
@@ -98,28 +98,6 @@ angular.module('app.controllers').controller('productInfoCtrl', function(
                         });
 
                 });
-        },
-
-        // 视频配置信息
-        config: {
-            preload: 'none',
-            sources: [
-                {src: $sce.trustAsResourceUrl('http://static.videogular.com/assets/videos/videogular.mp4'), type: 'video/mp4'},
-                {src: $sce.trustAsResourceUrl('http://static.videogular.com/assets/videos/videogular.webm'), type: 'video/webm'},
-                {src: $sce.trustAsResourceUrl('http://static.videogular.com/assets/videos/videogular.ogg'), type: 'video/ogg'}
-            ],
-            tracks: [
-                {
-                    src: 'http://www.videogular.com/assets/subs/pale-blue-dot.vtt',
-                    kind: 'subtitles',
-                    srclang: 'en',
-                    label: 'English',
-                    default: ''
-                }
-            ],
-            theme: {
-                url: 'https://unpkg.com/videogular@2.1.2/dist/themes/default/videogular.css'
-            }
         }
 
     });

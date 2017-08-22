@@ -1,4 +1,4 @@
-<ion-view class="video-info-view" title="视频" cm-hide-tabs="true">
+<ion-view class="video-info-view" title="播放" cm-hide-tabs="true">
 
     <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
         <div class="buttons buttons-left">
@@ -8,7 +8,9 @@
                 </button>
             </span>
         </div>
-        <div class="title title-center header-item logo-title"></div>
+        <div class="title title-center header-item">
+            播放
+        </div>
     </ion-header-bar>
 
     <ion-content scroll="false">
@@ -27,9 +29,8 @@
             </div> -->
 
             <!-- 视频 -->
-            <div class="video-container" id="video-container" 
-                ng-if="videoInfo.genreName == 'video'"
-                cm-video="videoInfo.videoUrl">
+            <div class="video-container" cm-video="videoInfo.videoUrl" ng-if="videoInfo.genreName == 'video'">
+                <video id="video" ishivideo="true" isrotate="true"></video>
             </div>
 
             <!-- 音频 -->

@@ -32,9 +32,8 @@
             </div> -->
 
             <!-- 视频 -->
-            <div class="video-container mb" id="video-container" 
-                ng-if="freeInfo.genreName == 'video'"
-                cm-video="freeInfo.videoUrl">
+            <div class="video-container mb" cm-video="freeInfo.videoUrl" ng-if="freeInfo.genreName == 'video'">
+                <video id="video" ishivideo="true" isrotate="true"></video>
             </div>
 
             <!-- 音频 -->

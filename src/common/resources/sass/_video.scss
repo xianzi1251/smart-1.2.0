@@ -1,17 +1,291 @@
 @charset "utf-8";
 
-.videogular-container {
-    height: 320px;
+.video-container {
+    height: convert-rem(180px);
+    background-color: #000;
 
-    .video-time {
-        font-size: 12px;
+    video {
+        width: 100%;
     }
 
-    .overlay-play {
+    // 视频播放样式
+    .none {
+        display: none;
+    }
 
-        .play:before {
-            font-size: 30px;
-        }
+    .hi-video-wrapper {
+        position: relative;
+        height: convert-rem(180px);
+    }
+
+    .hi-video-wrapper * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    video[ishivideo="true"]::-webkit-media-controls {
+        display:none !important;
+    }
+
+    video[ishivideo="true"]::-moz-media-controls {
+        display:none !important;
+    }
+
+    video[ishivideo="true"]::-o-media-controls {
+        display:none !important;
+    }
+
+    video[ishivideo="true"]::media-controls {
+        display:none !important;
+    }
+
+    .hi-video {
+        width: 100%;
+        height: 100%;
+    }
+
+    .hi-video-playIcon {
+        position: absolute;
+        z-index: 10000;
+        top: 0;
+        bottom: 30px;
+        left: 0;
+        right: 0;
+        
+        background-image: url(#{$images-path}/hivideo/play-big.png);
+        background-repeat: no-repeat;
+        background-size: convert-rem(60px) convert-rem(60px);
+        background-position: center;
+        background-color: rgba(0, 0, 0, 0.01);
+        cursor: pointer;
+    }
+
+    .hi-video-playIcon.onBtn {
+        background-image: url(#{$images-path}/hivideo/play-big.png);
+     }
+
+    .hi-video-playIcon.offBtn {
+        background-image: none;
+    }
+
+    .hi-video-controlbar {
+        background: rgba(0, 0, 0, 0.75);
+        color: #fff;
+        min-height: 30px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 10000;
+        padding: 5px 10px;
+    }
+
+    .hi-video-controlbar button {
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        vertical-align: middle;
+    }
+
+    .hi-video-controlbar input:active, .hi-video-controlbar input:hover, .hi-video-controlbar input:focus
+    .hi-video-controlbar button:active, .hi-video-controlbar button:hover, .hi-video-controlbar button:focus {
+        border: none;
+        outline: none;
+    }
+
+    .hi-video-controlbar .video-play {
+        width: 5%;
+        min-width: 5px;
+        text-align: center;
+        cursor: pointer;
+        vertical-align: middle;
+    }
+
+    .hi-video-controlbar .video-play .onBtn {
+        background: url(#{$images-path}/hivideo/play.png) no-repeat;
+    }
+
+    .hi-video-controlbar .video-play .offBtn {
+        background: url(#{$images-path}/hivideo/pause.png) no-repeat;
+    }
+
+    .hi-video-controlbar .progressbar {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hi-video-controlbar .progressbar::-moz-progress-bar, .bufferbar::-moz-progress-bar  {
+        background: #c0392b;
+    }
+    .hi-video-controlbar .progressbar::-webkit-progress-bar, .bufferbar::-webkit-progress-bar  {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    .hi-video-controlbar .progressbar::-webkit-progress-value, .bufferbar::-webkit-progress-value  {
+        background: #c0392b;
+    }
+
+    .hi-video-controlbar .video-slider {
+        width: 60%;
+        min-width: 10px;
+        position: relative;
+        z-index: 0;
+        display: inline-block;
+        margin: 0 10px 0 5px;
+    }
+
+    .rotate90 .hi-video-controlbar .video-slider {
+        width: 70%;
+    }
+
+    .hi-video-controlbar .seekbar  {
+        z-index: 3;
+        position: relative;
+        width: 100%;
+        background-color: transparent !important;
+    }
+
+    .hi-video-controlbar .video-slider .progressbar {
+        position: absolute;
+        left: 0;
+        top: -5px;
+        width: 100%;
+        pointer-events: none;
+        height: 1px;
+        z-index: 2;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #c0392b;
+    }
+
+    .hi-video-controlbar input[type=range] {
+        -webkit-border-radius:2px;
+        -moz-border-radius:2px;
+        border-radius:2px;
+        vertical-align: middle;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: rgba(255, 255, 255, 0.7);
+        height: 1px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .hi-video-controlbar input[type=range]::-moz-range-track  {
+        vertical-align: middle;
+        border-radius: 2px;
+        background-color: rgba(255, 255, 255, 0.7);
+        -moz-appearance: none;
+        background-color: white;
+        height: 1px;
+        cursor: pointer;
+    }
+
+    .hi-video-controlbar input[type=range]::-moz-range-thumb  {
+        border-radius: 50%;
+        height: 9px;
+        width: 9px;
+        background-color: white;
+        border: 0;
+    }
+
+    .hi-video-controlbar input[type=range].light::-moz-range-thumb  {
+        box-shadow: 0 0 8px 2px white;
+    }
+
+    .hi-video-controlbar input[type=range]::-webkit-slider-thumb  {
+        -webkit-appearance: none;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+        background-color: white;
+        border: 0;
+    }
+
+    .hi-video-controlbar input[type=range].light::-webkit-slider-thumb  {
+        box-shadow: 0 0 8px 2px white;
+    }
+
+    .custom-video-controlbar input[type=range]:active::-moz-range-track  {
+        background: orange;
+    }
+
+    .hi-video-controlbar .video-time {
+        min-width: 65px;
+        font-size: 10px;
+        color: #e0dfdf;
+        text-align: left;
+        line-height: 20px;
+    }
+
+    .hi-video-controlbar .volumebar {
+        display: inline-block;
+        width: 96%;
+    }
+
+    .hi-video-controlbar .video-mute {
+        display: none;
+        width: 5%;
+        min-width: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .hi-video-controlbar .video-mute .onBtn {
+        background: url(#{$images-path}/hivideo/volume.png);
+    }
+
+    .hi-video-controlbar .video-mute .offBtn {
+        background: url(#{$images-path}/hivideo/mute.png) no-repeat;
+    }
+
+    .hi-video-controlbar .video-volume {
+        display: none;
+        width: 15%;
+        min-width: 10px;
+        overflow: hidden;
+        margin: 0 5px;
+    }
+
+    .hi-video-controlbar .video-fullscreen {
+        float: right;
+        width: 5%;
+        min-width: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .hi-video-controlbar .video-fullscreen .onBtn {
+        background: url(#{$images-path}/hivideo/fullscreen.png) no-repeat;
+    }
+
+    .hi-video-controlbar .video-fullscreen .offBtn {
+        background: url(#{$images-path}/hivideo/fullscreen_off.png) no-repeat;
+    }
+
+    .rotate90 {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .hi-video-wrapper .fl {
+        float: left;
+    }
+
+    .hi-video-wrapper .fr {
+        float: right;
     }
 }
-
