@@ -1,5 +1,26 @@
 @charset "utf-8";
 
+.platform-ios.platform-cordova {
+
+    .hi-video-playIcon {
+        background-image: none !important;
+    }
+
+    .video-play, .video-fullscreen {
+        display: none;
+    }
+
+    .video-slider {
+        width: 72% !important;
+        margin: 0 !important;
+    }
+
+    .video-time {
+        float: right !important;
+        text-align: right !important;
+    }
+}
+
 .video-container {
     height: convert-rem(180px);
     background-color: #000;
