@@ -139,9 +139,9 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
              */
             if (ionic.Platform.isAndroid()) {
                 // 初始化android平台的下载目录
-                $rootScope.downloadPath = cordova.file.externalRootDirectory + folderName + '/';
+                $rootScope.downloadPath = cordova.file.externalApplicationStorageDirectory + folderName + '/';
 
-                createDir(cordova.file.externalRootDirectory, folderName)
+                createDir(cordova.file.externalApplicationStorageDirectory, folderName)
                     .then(function (success) {
                         $rootScope.downloadPath = success.nativeURL;
 
