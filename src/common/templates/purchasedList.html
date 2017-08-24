@@ -50,7 +50,7 @@
                                 <div class="item-content">{{item.subtitle}}</div>
                                 <div class="item-row clearfix">
                                     <div class="item-price fl">{{item.price | currency: '¥'}}/年</div>
-                                    <div class="item-date fr">购买时间: {{item.placedTime}}</div>
+                                    <div class="item-date fr">到期日期: {{item.expiryTime}}</div>
                                 </div>
                                 <!-- 未评论 -->
                                 <div class="item-btn" ng-if="!item.isComment">

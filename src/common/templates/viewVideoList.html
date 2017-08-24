@@ -40,7 +40,7 @@
                 ng-click="viewVideoList.goVideoInfo(item)">
                 <label class="item-checkout checkbox row">
                     <input class="col col-center col-adaptive" type="checkbox" ng-checked="item.selected" 
-                        ng-if="viewVideoList.mode == 2" />
+                        ng-show="viewVideoList.mode == 2" />
                 
                     <div class="item-cont col clearfix">
                         <div class="item-img fl">
@@ -56,7 +56,7 @@
 
     </ion-content>
 
-    <ion-footer-bar class="view-video-list-footer" ng-if="viewVideoList.mode == 2">
+    <ion-footer-bar class="view-video-list-footer" ng-show="viewVideoList.mode == 2">
         <ul class="row">
             <li class="footer-item col">
                 <button class="button button-block button-light" 
