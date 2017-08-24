@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('purchasedListCtrl', function(
     $scope, $state, orderService, loadDataMixin, stateUtils, messageCenter, $ionicScrollDelegate, 
-    nativeTransition, errorHandling
+    nativeTransition, errorHandling, toast
 ) {
 
     var ctrl = this;
@@ -131,28 +131,35 @@ angular.module('app.controllers').controller('purchasedListCtrl', function(
                 taocan = item.taocan,
                 cdtName = item.cdtName;
 
-            if (genreName == 'radio' && taocan == 0) {
+            if (item.isExpiry) {
 
-                // 单个音频
-                ctrl.goVideoInfo(cdtName, item.videoUrl, item.isExpiry, genreName);
+                toast.open('抱歉，视频已过期，请重新购买');
 
-            } else if (genreName == 'radio' && taocan == 1) {
+            } else {
 
-                // 套餐音频
-                var stateName = stateUtils.getStateNameByCurrentTab('courseAudio');
-                nativeTransition.forward();
-                $state.go(stateName, {
-                    entityName: cdtName
-                });
+                if (genreName == 'radio' && taocan == 0) {
 
-            } else if (genreName == 'video') {
+                    // 单个音频
+                    ctrl.goVideoInfo(cdtName, item.videoUrl, item.isExpiry, genreName);
 
-                // 单个视频／套餐视频
-                var stateName = stateUtils.getStateNameByCurrentTab('courseVideo');
-                nativeTransition.forward();
-                $state.go(stateName, {
-                    entityName: cdtName
-                });
+                } else if (genreName == 'radio' && taocan == 1) {
+
+                    // 套餐音频
+                    var stateName = stateUtils.getStateNameByCurrentTab('courseAudio');
+                    nativeTransition.forward();
+                    $state.go(stateName, {
+                        entityName: cdtName
+                    });
+
+                } else if (genreName == 'video') {
+
+                    // 单个视频／套餐视频
+                    var stateName = stateUtils.getStateNameByCurrentTab('courseVideo');
+                    nativeTransition.forward();
+                    $state.go(stateName, {
+                        entityName: cdtName
+                    });
+                }
             }
         }
 

@@ -71,7 +71,7 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
                 if (genreName == 'radio' && taocan == 0) {
 
                     // 单个音频
-                    ctrl.goVideoInfo(entityName, item.videoUrl, item.isExpiry, genreName);
+                    ctrl.goVideoInfo(entityName, item.videoUrl, false, genreName);
 
                 } else if (genreName == 'radio' && taocan == 1) {
 
