@@ -2,22 +2,25 @@
 
 .platform-ios.platform-cordova {
 
-    .hi-video-playIcon {
-        background-image: none !important;
-    }
+    .video-container {
 
-    .video-play, .video-fullscreen {
-        display: none;
-    }
+        .hi-video-playIcon {
+            background-image: none !important;
+        }
 
-    .video-slider {
-        width: 72% !important;
-        margin: 0 !important;
-    }
+        .video-play, .video-fullscreen {
+            display: none;
+        }
 
-    .video-time {
-        float: right !important;
-        text-align: right !important;
+        .video-slider {
+            width: 72% !important;
+            margin: 0 !important;
+        }
+
+        .video-time {
+            float: right !important;
+            text-align: right !important;
+        }
     }
 }
 
