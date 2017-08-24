@@ -46,24 +46,24 @@
 
             var videoBar = document.createElement("div");
             videoBar.setAttribute("hivideoId", "videoBar");
-            videoBar.setAttribute("class", "hi-video-controlbar");
-            videoBar.innerHTML = '<div class="video-play fl"> \
+            videoBar.setAttribute("class", "hi-video-controlbar row");
+            videoBar.innerHTML = '<div class="video-play col col-adaptive"> \
             <button hivideoId="playBtn" class="onBtn"></button> \
             </div> \
-            <div class="video-slider fl"> \
+            <div class="video-slider col"> \
             <progress hivideoId="progressbar" class="progressbar" value="0" max="100" ></progress> \
             <input type="range" hivideoId="seekbar" value="0" class="seekbar"> \
             </div> \
-            <div class="video-time fl">\
+            <div class="video-time col col-adaptive">\
             <span class="video-time-current">00:00</span><span>/</span><span class="video-time-total">00:00</span>\
             </div>\
-            <div class="video-fullscreen fr"> \
+            <div class="video-fullscreen col col-adaptive"> \
             <button hivideoId="fullBtn" class="onBtn"></button> \
             </div> \
-            <div class="video-volume fr"> \
+            <div class="video-volume col"> \
             <input type="range" hivideoId="volumebar" class="volumebar" value="100" min="0" max="100" step="0.1"> \
             </div> \
-            <div class="video-mute fr"> \
+            <div class="video-mute col"> \
             <button hivideoId="muteBtn" class="onBtn"></button> \
             </div> ';
             videoWrapper.appendChild(videoBar);

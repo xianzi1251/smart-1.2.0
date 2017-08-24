@@ -4,6 +4,10 @@
 
     .video-container {
 
+        .hi-video-controlbar {
+            padding: 5px 10px;
+        }
+
         .hi-video-playIcon {
             background-image: none !important;
         }
@@ -12,13 +16,7 @@
             display: none;
         }
 
-        .video-slider {
-            width: 72% !important;
-            margin: 0 !important;
-        }
-
         .video-time {
-            float: right !important;
             text-align: right !important;
         }
     }
@@ -104,7 +102,8 @@
         left: 0;
         bottom: 0;
         z-index: 10000;
-        padding: 5px 10px;
+        padding: 5px 2px;
+        margin: 0;
     }
 
     .hi-video-controlbar button {
@@ -124,8 +123,6 @@
     }
 
     .hi-video-controlbar .video-play {
-        width: 5%;
-        min-width: 5px;
         text-align: center;
         cursor: pointer;
         vertical-align: middle;
@@ -149,23 +146,18 @@
         background: #c0392b;
     }
     .hi-video-controlbar .progressbar::-webkit-progress-bar, .bufferbar::-webkit-progress-bar  {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.01);
     }
     .hi-video-controlbar .progressbar::-webkit-progress-value, .bufferbar::-webkit-progress-value  {
         background: #c0392b;
     }
 
     .hi-video-controlbar .video-slider {
-        width: 60%;
-        min-width: 10px;
         position: relative;
         z-index: 0;
         display: inline-block;
-        margin: 0 10px 0 5px;
-    }
-
-    .rotate90 .hi-video-controlbar .video-slider {
-        width: 70%;
+        margin-right: 10px;
+        padding: 0;
     }
 
     .hi-video-controlbar .seekbar  {
@@ -246,6 +238,7 @@
 
     .hi-video-controlbar .video-time {
         min-width: 65px;
+        padding: 0;
         font-size: 10px;
         color: #e0dfdf;
         text-align: left;
@@ -282,9 +275,6 @@
     }
 
     .hi-video-controlbar .video-fullscreen {
-        float: right;
-        width: 5%;
-        min-width: 5px;
         text-align: center;
         cursor: pointer;
     }
