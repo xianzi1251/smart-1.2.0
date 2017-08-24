@@ -2,28 +2,34 @@ angular.module('app.services').factory('unique',function(
     localStorage
 ) {
 
-    if (window.device) {
-        return window.device.platform.toLowerCase() + '-' + window.device.uuid;
-    }
-    else {
-        var unique = localStorage.get('unique');
+    var device = '';
 
-        if (unique) {
-            return unique;
-        }
-        else {
-            unique = createUnique();
-            localStorage.set('unique', unique);
-            return unique;
-        }
+    if (ionic.Platform.isAndroid()) {
+        device = 'android';
+    } else if (ionic.Platform.isIOS()) {
+        device = 'ios';
+    } else {
+        divice = 'web';
+    }
+
+    var unique = localStorage.get('unique');
+
+    if (unique) {
+        localStorage.set('unique', unique);
+
+        return unique;
+    } else {
+        unique = createUnique();
+        localStorage.set('unique', unique);
+
+        return device + '-' + unique;
     }
 
     // 创建一个标识码
     function createUnique() {
         var now = new Date();
 
-        return 'custom-'
-            + now.getFullYear()
+        return now.getFullYear()
             + fill((now.getMonth() + 1), 2)
             + fill(now.getDate(), 2)
             + fill(now.getHours(), 2)
