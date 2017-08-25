@@ -1,33 +1,15 @@
 @charset "utf-8";
 
-.platform-ios.platform-cordova {
-
-    .video-container {
-
-        .hi-video-controlbar {
-            padding: 5px 10px;
-        }
-
-        .hi-video-playIcon {
-            background-image: none !important;
-        }
-
-        .video-play, .video-fullscreen {
-            display: none;
-        }
-
-        .video-time {
-            text-align: right !important;
-        }
-    }
-}
-
 .video-container {
     height: convert-rem(180px);
     background-color: #000;
 
     video {
         width: 100%;
+    }
+
+    video::-webkit-media-controls-start-playback-button {
+        display: none;
     }
 
     // 视频播放样式
@@ -123,17 +105,35 @@
     }
 
     .hi-video-controlbar .video-play {
+        padding: 0;
         text-align: center;
         cursor: pointer;
         vertical-align: middle;
+
+        button {
+            position: relative;
+            width: 26px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: transparent;
+
+            &:before {
+                position: absolute;
+                top: -5px;
+                bottom: -5px;
+                left: 0;
+                right: 0;
+                content: '';
+            }
+        }
     }
 
     .hi-video-controlbar .video-play .onBtn {
-        background: url(#{$images-path}/hivideo/play.png) no-repeat;
+        background-image: url(#{$images-path}/hivideo/play.png);
     }
 
     .hi-video-controlbar .video-play .offBtn {
-        background: url(#{$images-path}/hivideo/pause.png) no-repeat;
+        background-image: url(#{$images-path}/hivideo/pause.png);
     }
 
     .hi-video-controlbar .progressbar {
@@ -275,16 +275,34 @@
     }
 
     .hi-video-controlbar .video-fullscreen {
+        padding: 0;
         text-align: center;
         cursor: pointer;
     }
 
+    .hi-video-controlbar .video-fullscreen button {
+        position: relative;
+        width: 26px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+
+        &:before {
+            position: absolute;
+            top: -5px;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            content: '';
+        }
+    }
+
     .hi-video-controlbar .video-fullscreen .onBtn {
-        background: url(#{$images-path}/hivideo/fullscreen.png) no-repeat;
+        background-image: url(#{$images-path}/hivideo/fullscreen.png);
     }
 
     .hi-video-controlbar .video-fullscreen .offBtn {
-        background: url(#{$images-path}/hivideo/fullscreen_off.png) no-repeat;
+        background-image: url(#{$images-path}/hivideo/fullscreen_off.png);
     }
 
     .rotate90 {

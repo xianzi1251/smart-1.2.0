@@ -237,34 +237,40 @@
         });
 
         self.fullBtn && self.fullBtn.addEventListener("click", function(){
-            if(!self.isFullScreen()){
-                document.body.setAttribute("curfullHivideo", self.videoId_);
-                origWidth = self.videoParent.offsetWidth;
-                origHeight = self.videoParent.offsetHeight;
-                // go full-screen
-                if (self.videoParent.requestFullscreen) {
-                    self.videoParent.requestFullscreen();
-                } else if (self.videoParent.webkitRequestFullscreen) {
-                    self.videoParent.webkitRequestFullscreen();
-                } else if (self.videoParent.mozRequestFullScreen) {
-                    self.videoParent.mozRequestFullScreen();
-                } else if (self.videoParent.msRequestFullscreen) {
-                    self.videoParent.msRequestFullscreen();
-                }
-                self.exchangeBtnStatus(this, false);
-            }else{
-                // exit full-screen
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
 
-                self.exchangeBtnStatus(this, true);
+            if (ionic.Platform.isAndroid()) {
+
+                if(!self.isFullScreen()){
+                    document.body.setAttribute("curfullHivideo", self.videoId_);
+                    origWidth = self.videoParent.offsetWidth;
+                    origHeight = self.videoParent.offsetHeight;
+                    // go full-screen
+                    if (self.videoParent.requestFullscreen) {
+                        self.videoParent.requestFullscreen();
+                    } else if (self.videoParent.webkitRequestFullscreen) {
+                        self.videoParent.webkitRequestFullscreen();
+                    } else if (self.videoParent.mozRequestFullScreen) {
+                        self.videoParent.mozRequestFullScreen();
+                    } else if (self.videoParent.msRequestFullscreen) {
+                        self.videoParent.msRequestFullscreen();
+                    }
+                    self.exchangeBtnStatus(this, false);
+                }else{
+                    // exit full-screen
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+
+                    self.exchangeBtnStatus(this, true);
+                }
+            } else {
+                self.playBtn.click();
             }
         });
 
@@ -284,8 +290,10 @@
                 if(!self.video) return;
                 if(self.video.paused){
                     self.video.play();
-                    self.videoPlayIcon && self.exchangeBtnStatus(self.videoPlayIcon, false);
-                    self.playBtn && self.exchangeBtnStatus(self.playBtn, false);
+                    if (ionic.Platform.isAndroid()) {
+                        self.videoPlayIcon && self.exchangeBtnStatus(self.videoPlayIcon, false);
+                        self.playBtn && self.exchangeBtnStatus(self.playBtn, false);
+                    }
                 }else{
                     self.video.pause();
                     self.videoPlayIcon && self.exchangeBtnStatus(self.videoPlayIcon, true);
