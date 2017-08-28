@@ -94,8 +94,8 @@ angular.module('app.services').factory('cartService', function(
          * 修改购物车中商品数量
          */
         changeNumber: function(id, number) {
-            return api.post('/cosmos.json?domain=scommerce&command=SC_ORD_CART_UPDATE_ACTION', {
-                    proName: 'SC_ORD_CART_UPDATE_ACTION',
+            return api.post('/cosmos.json?domain=scommerce&command=SC_ORD_CART_UPDATE_ACTION21', {
+                    proName: 'SC_ORD_CART_UPDATE_ACTION21',
                     orderItemId: id,
                     nums: number
                 });
@@ -105,8 +105,8 @@ angular.module('app.services').factory('cartService', function(
          * 加入购物车
          */
         addToCart: function(sku) {
-            return api.post('/cosmos.json?command=scommerce.BYT_ORD_CART_ADD_ACTION', {
-                    proName: 'BYT_ORD_CART_ADD_ACTION',
+            return api.post('/cosmos.json?command=scommerce.BYT_ORD_CART_ADD_ACTION21', {
+                    proName: 'BYT_ORD_CART_ADD_ACTION21',
                     userId: window.APP_USER.id,
                     sku: sku,
                     nums: 1

@@ -25,6 +25,7 @@ angular.module('app.services').factory('checkoutService', function(
             return api.post('/cosmos.json?domain=config', {
                     proName: 'creatOrder',
                     userId: window.APP_USER.id,
+                    appversion: '2.1',
                     command: 'order',
                     submit: true,
                     cart: false,
