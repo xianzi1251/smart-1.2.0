@@ -61,8 +61,8 @@ angular.module('app.services').factory('orderService',function(
          * 获取已购列表－课程
          */
         getPurchasedCourseList: function() {
-            return api.post('/cosmos.json?command=scommerce.BYT_ORD_ORDER_PURCHASE', {
-                proName: 'BYT_ORD_ORDER_PURCHASE',
+            return api.post('/cosmos.json?command=scommerce.BYT_ORD_ORDER_PURCHASE21', {
+                proName: 'BYT_ORD_ORDER_PURCHASE21',
                 userId: window.APP_USER.id
             });
         },
