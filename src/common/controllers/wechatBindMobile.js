@@ -1,15 +1,12 @@
-angular.module('app.controllers').controller('modifyPwdCtrl', function(
-    $scope, api, modals, toast, validator, userService, messageCenter, $state, 
-    $interval, nativeTransition, errorHandling, $stateParams
+angular.module('app.controllers').controller('wechatBindMobileCtrl', function(
+    $scope, $stateParams, api, modals, toast, validator, userService, messageCenter, $state, 
+    $interval, nativeTransition, errorHandling
 ) {
 
     var ctrl = this;
 
     _.assign(ctrl, {
         $scope: $scope,
-
-        // 手机号
-        loginName: $stateParams.mobile,
 
         // 短信发送状态
         sendStatus: 0,
@@ -29,11 +26,8 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
         // 验证码
         smsVerifyCode: '',
 
-        // 旧密码
-        originalPassword: '',
-
         // 新密码
-        newPassword: '',
+        password: '',
 
         /**
          * 发送短信验证码
@@ -41,10 +35,16 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
         sendSMSVerifyCode: function() {
 
             // 用户手机号
-            var phoneNumber = ctrl.loginName;
+            var phoneNumber = ctrl.mobile;
+
+            // 检测手机号码是否合法
+            if (!validator.isMobile(phoneNumber)) {
+                toast.open('请输入有效的手机号码');
+                return;
+            }
 
             // 上次和本次手机号不一样 且有倒计时则取消计时器
-            if (ctrl.backMobile != ctrl.loginName && ctrl.interval != 0) {
+            if (ctrl.backMobile != phoneNumber && ctrl.interval != 0) {
                 // 重置
                 resetSendSMS();
             }
@@ -62,30 +62,36 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
             ctrl.lockSend = true;
 
             // 记录手机号
-            if (ctrl.backMobile != ctrl.loginName) {
-                ctrl.backMobile = ctrl.loginName;
+            if (ctrl.backMobile != phoneNumber) {
+                ctrl.backMobile = phoneNumber;
             }
 
             // 发送验证码参数
             var sendSMSParam = {
-                phoneNumber: ctrl.loginName,
-                content: "尊敬的用户，您在进行半月谈时政教育修改密码，验证码：<vcode>，请妥善保管。",
-                event: 'modifyLoginPwd'
+                phoneNumber: phoneNumber,
+                content: "尊敬的用户，您在进行半月谈时政教育绑定手机号，验证码：<vcode>，请妥善保管。",
+                event: 'bindPhone'
             }
 
-            // 发送验证码
-            userService.sendSMSVerifyCode(sendSMSParam)
-                .success(function(data) {
+            // 未注册过的手机号可以发送短信验证码
+            userService.verifyUniqueUser(phoneNumber)
+                .success(function(response) {
 
-                    ctrl.sendVerifyCodeText = '重新获取';
-                    // 发送状态
-                    ctrl.sendStatus = 1;
+                // 发送验证码
+                userService.sendSMSVerifyCode(sendSMSParam)
+                    .success(function(data) {
 
-                    // 初始倒计时60秒
-                    ctrl.timeDown = 60;
+                        ctrl.sendVerifyCodeText = '重新获取';
+                        // 发送状态
+                        ctrl.sendStatus = 1;
 
-                    // 重新获取验证码倒计时
-                    checkSendTime();
+                        // 初始倒计时60秒
+                        ctrl.timeDown = 60;
+
+                        // 重新获取验证码倒计时
+                        checkSendTime();
+                    })
+                    .error(errorHandling);
                 })
                 .error(errorHandling)
                 .finally(function() {
@@ -96,25 +102,26 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
 
         // 提交
         submit: function() {
-        	if (ctrl.newPassword != ctrl.newRePassword) {
-                toast.open('新密码和确认密码不一致');
+        	if (ctrl.password != ctrl.rePassword) {
+                toast.open('密码和确认密码不一致');
                 return;
             }
 
-            if (ctrl.originalPassword == ctrl.newPassword) {
-                toast.open('新密码和旧密码不能一致');
-                return;
-            }
+            // 用户手机号
+            var phoneNumber = ctrl.mobile;
 
-            userService.modifyPassword(ctrl.loginName, ctrl.originalPassword, ctrl.newPassword, ctrl.smsVerifyCode, 'modifyLoginPwd')
-                .success(function() {
-                    toast.open('修改密码成功');
-                    userService.logout()
-                        .finally(function() {
-                            $state.go('tabs.index');
-                        });
-                })
-                .error(errorHandling);
+            // 未注册过的手机号可以发送短信验证码
+            userService.verifyUniqueUser(phoneNumber)
+                .success(function(response) {
+
+                userService.wechatBindMobile(phoneNumber, ctrl.password, ctrl.smsVerifyCode)
+                    .success(function() {
+                        toast.open('绑定手机号成功');
+                        $state.go('tabs.user');
+                    })
+                    .error(errorHandling);
+            })
+            .error(errorHandling);
         }
 
     });

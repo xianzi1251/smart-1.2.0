@@ -44,6 +44,10 @@
             padding: 8px 5px;
             font-size: 14px;
         }
+
+        input[disabled] {
+            background-color: #fff;
+        }
     }
 
     .form-forget-pwd {
