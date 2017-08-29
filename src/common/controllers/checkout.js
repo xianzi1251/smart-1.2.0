@@ -60,6 +60,7 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
 
                     } else {
                         ctrl.consigneeInfo = null;
+                        ctrl.getCheckoutInfo();
                     }
                 })
                 .error(errorHandling);
