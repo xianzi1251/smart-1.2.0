@@ -160,15 +160,33 @@ angular.module('app.services').factory('userService',function(
          * - smsVerifyCode    短信验证码
          * - validateEvent    短信验证码类型
          */
-        modifyPassword: function(oldPassdword, newPassword, smsVerifyCode, validateEvent) {
+        modifyPassword: function(userName, oldPassdword, newPassword, smsVerifyCode, validateEvent) {
             return api.post('/cosmos.json?command=scommerce.BYT_ACCOUNT_MODIFYPASSWORD_ACTION', {
                 proName: 'BYT_ACCOUNT_MODIFYPASSWORD_ACTION',
                 userId: window.APP_USER.id,
-                userName: window.APP_USER.loginName,
+                userName: userName,
                 oldPassdword: oldPassdword,
                 newPassword: newPassword,
                 validateCode: smsVerifyCode,
                 validateEvent: validateEvent,
+                validateType: 'mobile'
+            });
+        },
+
+        /**
+         * 绑定手机号
+         * - userName         需要绑定的手机号
+         * - password         新密码
+         * - smsVerifyCode    短信验证码
+         */
+        wechatBindMobile: function(mobile, password, smsVerifyCode) {
+            return api.post('/cosmos.json?command=scommerce.BYT_ACCOUNT_BINDPHONE_ACTION', {
+                proName: 'BYT_ACCOUNT_BINDPHONE_ACTION',
+                userId: window.APP_USER.id,
+                userName: mobile,
+                newPassword: password,
+                validateCode: smsVerifyCode,
+                validateEvent: 'bindPhone',
                 validateType: 'mobile'
             });
         },

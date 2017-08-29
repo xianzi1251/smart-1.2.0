@@ -223,7 +223,7 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                 // 进入添加提货人信息视图
                 modals.consigneeAdd.open({
                     params: {
-                        orderId: ctrl.data.id,
+                        orderId: '',
                         source: 'checkout',
                         successCallback: utils.proxy(ctrl, 'setSelectedConsignee')
                     }

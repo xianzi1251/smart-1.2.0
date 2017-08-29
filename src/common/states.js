@@ -124,7 +124,7 @@ angular.module('app')
         },
 
         'tabs.modifyPwd': {
-            url: '/modifyPwd',
+            url: '/modifyPwd?mobile',
             cache: false,
             views: {
                 user: {
@@ -189,6 +189,16 @@ angular.module('app')
                 user: {
                     templateUrl: 'templates/couponList.html',
                     controller: 'couponListCtrl as couponList'
+                }
+            }
+        },
+
+        'tabs.wechatBindMobile': {
+            url: '/wechatBindMobile',
+            views: {
+                user: {
+                    templateUrl: 'templates/wechatBindMobile.html',
+                    controller: 'wechatBindMobileCtrl as wechatBindMobile'
                 }
             }
         },

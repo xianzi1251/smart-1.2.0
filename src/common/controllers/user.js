@@ -17,10 +17,10 @@ angular.module('app.controllers').controller('userCtrl', function(
         init: function() {
             ctrl.data = {};
 
-            // 如当前为第三方登录，则隐藏 ‘修改密码’ 条目
+            // 如当前为第三方登录，则隐藏 ‘修改密码’ 条目，显示 ‘绑定手机号’ 条目
             ctrl.thirdPartylogin = localStorage.get('user').thirdPartylogin;
 
-            // 当前是否开启兑换／积分／收货地址[1: 关闭, 0: 开启]
+            // 当前是否开启兑换／积分[1: 关闭, 0: 开启]
             ctrl.bytSwitch = localStorage.get('user').bytSwitch;
 
             userService.info()
@@ -37,6 +37,10 @@ angular.module('app.controllers').controller('userCtrl', function(
                     ctrl.countAmount = data.object.itemNums;
                     ctrl.countCoupon = data.object.cpnCodeNums;
                     ctrl.loyalty = data.object.loyalty;
+
+                    // 微信相关
+                    ctrl.wechatBinded = data.object.binded;
+                    ctrl.wechatBindPhone = data.object.bindPhone;
                 })
                 .error(errorHandling)
                 .finally(function() {
@@ -114,7 +118,22 @@ angular.module('app.controllers').controller('userCtrl', function(
         // 修改密码
         goModifyPwd: function() {
             nativeTransition.forward();
-            $state.go('tabs.modifyPwd');
+            $state.go('tabs.modifyPwd', {
+                mobile: window.APP_USER.loginName
+            });
+        },
+
+        // 绑定手机号，绑定手机号可修改
+        goWechatBindMobile: function() {
+            if (ctrl.wechatBinded == '0') {
+                nativeTransition.forward();
+                $state.go('tabs.wechatBindMobile');
+            } else {
+                nativeTransition.forward();
+                $state.go('tabs.modifyPwd', {
+                    mobile: ctrl.wechatBindPhone
+                });
+            }
         },
 
         // 意见反馈
