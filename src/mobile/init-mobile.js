@@ -124,7 +124,7 @@ app.run(function($ionicPlatform, $rootScope, $ionicHistory, $translate, nativeTr
 app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
     var deferred = $q.defer();
     var folderName = 'bytDownload/cache';
-    console.log('初始化下载目录');
+    // console.log('初始化下载目录');
     /**
      * cordova.file.dataDirectory 不同平台对应位置如下
      *  android:'data/data/<app-id>/files/'
@@ -147,7 +147,7 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
 
                         deferred.resolve(success);
                     }, function (error) {
-                        console.log("[download] init android platform's download dir occurred error :" + angular.toJson(error));
+                        // console.log("[download] init android platform's download dir occurred error :" + angular.toJson(error));
 
                         deferred.reject(error);
                 });
@@ -161,7 +161,7 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
 
                         deferred.resolve(success);
                     }, function (error) {
-                        console.log("[download] init IOS platform's download dir occurred error :" + angular.toJson(error));
+                        // console.log("[download] init IOS platform's download dir occurred error :" + angular.toJson(error));
 
                         deferred.reject(error);
                     });
@@ -177,7 +177,7 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
             .then(function (success) {
                 deferred.resolve(success);
             }, function (error) {
-                console.log('[download] create dir occurred error :' + angular.toJson(error));
+                // console.log('[download] create dir occurred error :' + angular.toJson(error));
 
                 deferred.reject(error);
         });
@@ -200,10 +200,10 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
             _.forEach(fileNames, function(fileName) {
                 $cordovaFile.removeFile($rootScope.downloadPath, fileName)
                     .then(function (success) {
-                        console.log(fileName, '删除了。。。');
+                        // console.log(fileName, '删除了。。。');
                     }, function (error) {
-                        console.log(fileName, '删除报错了。。。');
-                        console.log('removeFile occurred error :' + angular.toJson(error));
+                        // console.log(fileName, '删除报错了。。。');
+                        // console.log('removeFile occurred error :' + angular.toJson(error));
                     });
             });
         }
@@ -234,12 +234,12 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
                 targetPath += fileName;
             }
 
-            console.log('存储路径' + targetPath);
+            // console.log('存储路径' + targetPath);
 
             // 检验剩余内存是否可下载
             $cordovaFile.getFreeDiskSpace()
                 .then(function (success) {
-                    console.log('success, 剩余空间为---', success);
+                    // console.log('success, 剩余空间为---', success);
 
                     // 下载
                     download(url, targetPath, fileName, isOpen, item)
@@ -277,7 +277,7 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
 
                 }, function (error) {
                     toast.open('手机内存不足');
-                    console.log('error, 剩余空间为---', error);
+                    // console.log('error, 剩余空间为---', error);
             });
 
             return deferred.promise;
@@ -320,16 +320,16 @@ app.run(function($rootScope, $timeout, $cordovaFile, $cordovaFileOpener2, $cordo
                         .then(function (success) {
                             deferred.resolve(success);
                         }, function (error) {
-                            console.log('[download] open file occurred error :' + angular.toJson(error));
+                            // console.log('[download] open file occurred error :' + angular.toJson(error));
                             deferred.reject();
                         });
                 } else {
                     deferred.resolve(success);
-                    console.log(2222, success);
+                    // console.log(2222, success);
                 }
             }, function (error) {
                 // $ionicLoading.hide();
-                console.log('[download] download file occurred error :' + angular.toJson(error));
+                // console.log('[download] download file occurred error :' + angular.toJson(error));
 
                 messageCenter.publishMessage('cached.failed', {
                     item: item

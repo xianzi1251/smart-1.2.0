@@ -3,9 +3,7 @@
  * 视频播放
  */
 
-angular.module('app.directives').directive('cmVideo', function(
-    
-) {
+angular.module('app.directives').directive('cmVideo', function() {
     return {
             restrict: 'A',
             scope: false,
@@ -16,13 +14,16 @@ angular.module('app.directives').directive('cmVideo', function(
                 // 刷新状态
                 function initVideo() {
 
+                    // 清除之前的播放视频
+                    $el.html('');
+
                     // 视频url
                     var videoUrl = $scope.$eval($attrs.cmVideo);
 
-                    var $video = document.getElementById('video');
-                    $video.setAttribute('src', videoUrl);
+                    var $video = $('<video ishivideo="true" isrotate="true" src="' + videoUrl + '"></video>').appendTo($el);
 
-                    hivideo($video);
+                    hivideo($video[0]);
+                    
                 }
             }
         };

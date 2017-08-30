@@ -125,14 +125,21 @@ angular.module('app.controllers').controller('courseVideoCtrl', function(
         changeVideo: function(item, $index) {
 
             if (item.entityName != ctrl.activeVideoItem.entityName) {
+
+                loading.open();
+
                 _.forEach(ctrl.courseList, function(item, index) {
 
                     item.active = false;
 
                     if (index == $index) {
 
-                        ctrl.videoUrl = item.videoUrl;
+                        ctrl.activeVideoItem = item;
                         item.active = true;
+
+                        setTimeout(function() {
+                            loading.close();
+                        }, 1000);
                     }
                 });
             }
