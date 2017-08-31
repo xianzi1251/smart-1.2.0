@@ -139,7 +139,7 @@ angular.module('app.controllers').controller('courseVideoCtrl', function(
 
                         setTimeout(function() {
                             loading.close();
-                        }, 1000);
+                        }, 2000);
                     }
                 });
             }

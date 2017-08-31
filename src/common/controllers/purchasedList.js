@@ -173,7 +173,8 @@ angular.module('app.controllers').controller('purchasedListCtrl', function(
 
     // 订阅提交[支付订单成功/登录/评论商品成功]消息 刷新列表
     messageCenter.subscribeMessage(['pay.success', 'login', 'order.comment'], function() {
-        ctrl.refresh({showLoading: false, emptyData: false});
+        // ctrl.refresh({showLoading: false, emptyData: false});
+        ctrl.init();
     });
 
 });

@@ -116,7 +116,8 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
     // 订阅提交[支付订单成功/取消订单]消息 刷新列表
     messageCenter.subscribeMessage(['pay.success', 'order.cancel', 'chooosepayment.success'], function() {
-        ctrl.refresh({showLoading: false, emptyData: false});
+        // ctrl.refresh({showLoading: false, emptyData: false});
+        ctrl.init();
     });
 
 });
