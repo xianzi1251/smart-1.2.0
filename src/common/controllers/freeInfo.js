@@ -29,7 +29,7 @@ angular.module('app.controllers').controller('freeInfoCtrl', function(
                         ctrl.baseData = response.list[0][0];
 
                         // 图片
-                        ctrl.baseData.picUrl = window.APP_CONFIG.serviceAPI + ctrl.baseData.picUrl;
+                        ctrl.baseData.picUrl = window.APP_CONFIG.serviceAPI + ctrl.baseData.transversePicUrl;
 
                         // 商品可卖
                         ctrl.sellAbled = true;

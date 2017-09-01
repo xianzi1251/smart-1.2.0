@@ -28,7 +28,7 @@ angular.module('app.controllers').controller('videoInfoCtrl', function(
                         ctrl.baseData = response.list[0][0];
 
                         // 图片
-                        ctrl.baseData.picUrl = window.APP_CONFIG.serviceAPI + ctrl.baseData.picUrl;
+                        ctrl.baseData.picUrl = window.APP_CONFIG.serviceAPI + ctrl.baseData.transversePicUrl;
 
                         // 转义返回的文描html
                         ctrl.baseData.content = _.unescape(ctrl.baseData.content);
