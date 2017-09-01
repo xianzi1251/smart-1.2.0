@@ -1,4 +1,4 @@
-<ion-view title="课程详情" cm-hide-tabs="true">
+<ion-view class="free-list-view stable-bg" title="课程详情" cm-hide-tabs="true">
 
     <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
         <div class="buttons buttons-left">
@@ -13,7 +13,7 @@
         </div>
     </ion-header-bar>
 
-    <ion-content class="purchased-list-panel stable-bg">
+    <ion-content>
 
        <!--下拉刷新-->
         <ion-refresher on-refresh="audio.refresh({showLoading: false})" 
@@ -25,16 +25,15 @@
             <div class="text">暂无课程</div>
         </div>
 
-        <ul class="purchased-list">
-            <li class="purchased-item video-list-item clearfix" ng-repeat="item in audio.courseList"
+        <ul class="free-list">
+            <li class="free-item" ng-repeat="item in audio.courseList"
                 ng-click="audio.goVideoInfo(item.entityName, item.videoUrl, false, item.genreName)">
-                <div class="item-img fl">
+    
+                <div class="item-title mb">{{item.title}}</div>
+                <div class="item-image">
                     <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
                 </div>
-                <div class="item-info">
-                    <div class="item-name">{{item.title}}</div>
-                    <div class="item-content">{{item.subtitle}}</div>
-                </div>
+                <div class="item-text">{{item.subtitle}}</div>
             </li>
         </ul>
 
