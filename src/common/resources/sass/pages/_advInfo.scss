@@ -42,11 +42,14 @@
 
         p {
             text-indent: 2em;
+
+            img {
+                margin-left: -2em;
+            }
         }
 
         img {
             max-width: 100%;
-            margin-left: -2em;
         }
     }
 }
