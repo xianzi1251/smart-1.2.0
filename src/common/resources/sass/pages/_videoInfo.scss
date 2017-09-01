@@ -10,14 +10,11 @@
     }
 
     .banner {
-        overflow: hidden;
-        padding: 15px 0;
-        margin-bottom: 5px;
-        text-align: center;
 
         .img {
-            width: convert-rem(150px);
-            height: convert-rem(220px);
+            display: block;
+            width: 100%;
+            height: convert-rem(150px);
         }
     }
 
@@ -26,7 +23,9 @@
     }
 
     .audio-content {
-        top: 110px;
+        top: convert-rem(150px);
+        margin-top: 100px;
+        padding: 0;
     }
 }
 
@@ -36,7 +35,7 @@
     .info-name {
         height: 1.5em;
         line-height: 1.5em;
-        font-size: 18px;
+        font-size: 16px;
         color: $text-color;
         @include text-overflow-ellipsis;
     }
@@ -81,7 +80,7 @@
     .describe-content {
         overflow: auto;
         max-height: none;
-        line-height: 1.5em;
+        line-height: 2em;
         font-size: 13px;
         color: $text-color-secondary;
 

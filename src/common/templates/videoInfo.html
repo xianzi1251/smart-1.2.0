@@ -24,9 +24,9 @@
         <div ng-if="videoInfo.sellAbled">
 
             <!-- banner图 -->
-            <!-- <div class="banner stable-bg" ng-if="videoInfo.genreName != 'video'">
+            <div class="banner stable-bg" ng-if="videoInfo.genreName == 'radio'">
                 <img class="img" ng-src="{{videoInfo.baseData.picUrl}}" />
-            </div> -->
+            </div>
 
             <!-- 视频 -->
             <div class="video-container" cm-video="videoInfo.videoUrl" ng-if="videoInfo.genreName == 'video'"></div>
@@ -58,11 +58,11 @@
                 </div>
             </div>
 
-            <ion-content ng-class="{'video-content': (videoInfo.genreName == 'video'), 'audio-content': (videoInfo.genreName == 'radio')}">
+            <ion-content class="stable-bg" ng-class="{'video-content': (videoInfo.genreName == 'video'), 'audio-content': (videoInfo.genreName == 'radio')}">
 
                 <!--下拉刷新-->
-                <!-- <ion-refresher on-refresh="videoInfo.refresh({showLoading: false})" 
-                    pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher> -->
+                <ion-refresher on-refresh="videoInfo.refresh({showLoading: false})" 
+                    pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
                 <!-- 商品基本信息 -->
                 <div class="video-info light-bg">

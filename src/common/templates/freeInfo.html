@@ -27,9 +27,9 @@
 
         <div class="pb" ng-if="freeInfo.sellAbled">
             <!-- banner图 -->
-            <!-- <div class="banner stable-bg" ng-if="freeInfo.genreName != 'video'">
+            <div class="banner stable-bg" ng-if="freeInfo.genreName == 'radio'">
                 <img class="img" ng-src="{{freeInfo.baseData.picUrl}}" />
-            </div> -->
+            </div>
 
             <!-- 视频 -->
             <div class="video-container mb" cm-video="freeInfo.videoUrl" ng-if="freeInfo.genreName == 'video'"></div>
@@ -61,7 +61,11 @@
                 </div>
             </div>
 
-            <ion-content ng-class="{'video-content': (freeInfo.genreName == 'video'), 'audio-content': (freeInfo.genreName == 'radio')}">
+            <ion-content class="stable-bg" ng-class="{'video-content': (freeInfo.genreName == 'video'), 'audio-content': (freeInfo.genreName == 'radio')}">
+
+                <!--下拉刷新-->
+                <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
+                    pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
                 <!-- 商品title -->
                 <div class="free-info-title">{{freeInfo.baseData.title}}</div>
