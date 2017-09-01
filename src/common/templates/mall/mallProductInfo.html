@@ -35,18 +35,16 @@
         <div ng-if="mallProductInfo.sellAbled">
 
             <!-- 轮播图 -->
-            <div class="product-info-banner">
-                <cm-switch class="slider-box"
-                    class-prefix="ui-switch" data-type="slider" auto-play="5000">
-                    <cm-switch-content>
-                        <cm-switch-panel ng-repeat="slider in mallProductInfo.sliderList">
-                            <img class="img" cm-lazyload="slider.picUrl" load-immediate="true" />
-                        </cm-switch-panel>
-                    </cm-switch-content>
-                    <cm-switch-nav class="ui-switch-nav" 
-                        ng-class="{'nav-hide': (mallProductInfo.sliderList.length <= 1)}"></cm-switch-nav>
-                </cm-switch>
-            </div>
+            <cm-switch class="product-info-slider"
+                class-prefix="ui-switch" data-type="slider" auto-play="5000">
+                <cm-switch-content>
+                    <cm-switch-panel ng-repeat="slider in mallProductInfo.sliderList">
+                        <img class="img" cm-lazyload="slider.picUrl" load-immediate="true" />
+                    </cm-switch-panel>
+                </cm-switch-content>
+                <cm-switch-nav class="ui-switch-nav" 
+                    ng-class="{'nav-hide': (mallProductInfo.sliderList.length <= 1)}"></cm-switch-nav>
+            </cm-switch>
 
             <!-- 商品基本信息 -->
             <div class="product-info light-bg">

@@ -239,33 +239,18 @@
 // 商城商品详情页style
 .mall-product-info-panel {
 
-    .slider-box {
-        width: convert-rem(150px);
-        height: convert-rem(220px);
-        margin: 0 auto;
+    .product-info-slider {
+        width: 100%;
+        height: convert-rem(150px);
+        padding: 0;
+
+        .img {
+            width: 100%;
+            height: convert-rem(150px);
+        }
 
         .nav-hide {
             display: none;
-        }
-    }
-
-    .ui-switch {
-        overflow: visible;
-
-        .ui-switch-nav {
-            bottom: -5px;
-            left: 50%;
-            right: auto;
-            width: 300px;
-            margin-left: -150px;
-        }
-
-        .ui-switch-nav-item {
-            background-color: #ccc;
-
-            &.active {
-                background-color: $primary-color;
-            }
         }
     }
 }
