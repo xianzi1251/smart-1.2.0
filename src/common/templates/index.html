@@ -24,17 +24,17 @@
 
         <!-- 分类 -->
         <div class="index-sort-list row light-bg">
-            <div class="sort-item item-1 col" ng-click="index.goCategoryList(0)">
-                <div class="item-icon">
-                    <i class="iconfont icon-shizheng"></i>
-                </div>
-                <div class="item-text">时政大家谈</div>
-            </div>
             <div class="sort-item item-2 col" ng-click="index.goCategoryList(1)">
                 <div class="item-icon">
                     <i class="iconfont icon-gongkaopeixun"></i>
                 </div>
                 <div class="item-text">公考培训</div>
+            </div>
+            <div class="sort-item item-1 col" ng-click="index.goCategoryList(0)">
+                <div class="item-icon">
+                    <i class="iconfont icon-shizheng"></i>
+                </div>
+                <div class="item-text">时政大家谈</div>
             </div>
             <div class="sort-item item-3 col" ng-click="index.goCategoryList(2)">
                 <div class="item-icon">
@@ -81,7 +81,7 @@
         </div> -->
 
         <div class="index-author" ng-if="index.teacherList">
-            <div class="author-title">平台导师</div>
+            <div class="author-title">专栏订阅</div>
             <ul class="author-list">
                 <li class="author-item clearfix" 
                     ng-repeat="suit in index.teacherList"
