@@ -119,7 +119,17 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
         // 确认收货
         confirmReceipt: function() {
-
+            popup.confirm('提示', '您要确认收货吗？')
+                .then(function(res) {
+                    if(res) {
+                        orderService.confirmReceipt(ctrl.orderId)
+                            .success(function() {
+                                toast.open('确认订单成功');
+                                ctrl.init();
+                            })
+                            .error(errorHandling);
+                    }
+                });        
         },
 
         // 打开退换货说明
