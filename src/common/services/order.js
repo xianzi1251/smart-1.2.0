@@ -74,6 +74,16 @@ angular.module('app.services').factory('orderService',function(
             return api.post('/cosmos.json?command=scommerce.BYT_ACC_ORDER_ITEMBOOK_LIST', {
                 proName: 'BYT_ACC_ORDER_ITEMBOOK_LIST'
             });
+        },
+
+        /**
+         * 确认收货
+         */
+        confirmReceipt: function (orderId) {
+            return api.post('/cosmos.json?command=scommerce.BYT_ORD_SIGNIN', {
+                proName: 'BYT_ORD_SIGNIN',
+                orderId: orderId
+            });
         }
     };
 });

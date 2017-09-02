@@ -48,12 +48,10 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
         // 获取订单信息
         loadData: function() {
+            ctrl.finishLoading = false;
 
             return orderService.getOrderInfo(ctrl.orderId)
                 .success(function(response) {
-
-                    // 当前是否开启兑换／积分／收货地址[1: 关闭, 0: 开启]
-                    ctrl.bytSwitch = localStorage.get('user').bytSwitch;
                     
                     // 订单信息
                     ctrl.info = response.list[0][0];
@@ -86,8 +84,29 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
                         ctrl.couponInfo = ctrl.coupon[0].label;
                     }
 
+                    // 当前步骤
+                    var orderStatus = ctrl.info.orderStatus;
+                    var paymentStatus = ctrl.info.paymentStatus;
+                    if (orderStatus == 1 && paymentStatus == 0) {
+                        ctrl.activeStep = 1;
+                    } else if (orderStatus == 1 && paymentStatus == 1 ) {
+                        ctrl.activeStep = 2;
+                    } else if ((orderStatus == 2 || orderStatus == 4) && paymentStatus == 1) {
+                        ctrl.activeStep = 3;
+                    } else if (orderStatus == 3) {
+                        ctrl.activeStep = 4;
+                    } else if (orderStatus == 8 || orderStatus == 9) {
+                        ctrl.activeStep = 5;
+                    } else if (orderStatus == 5) {
+                        // 已取消
+                        ctrl.activeStep = 2;
+                    }
+
                 })
-                .error(errorHandling);
+                .error(errorHandling)
+                .finally(function() {
+                    ctrl.finishLoading = true;
+                });
         },
 
         // 复制物流单号
@@ -99,6 +118,21 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
                     toast.open('复制成功');
                 }, angular.noop);
             }
+        },
+
+        // 确认收货
+        confirmReceipt: function() {
+            popup.confirm('提示', '确定要确认收货吗？')
+                .then(function(res) {
+                    if(res) {
+                        orderService.confirmReceipt(ctrl.orderId)
+                            .success(function() {
+                                toast.open('确认订单成功');
+                                ctrl.init();
+                            })
+                            .error(errorHandling);
+                    }
+                });        
         },
 
         // 打开退换货说明
