@@ -45,7 +45,8 @@
                 </div>
             </div>
 
-            <div class="order-steps">
+            <!-- 正常订单 5个步骤 -->
+            <div class="order-steps normal-steps" ng-if="orderInfo.info.orderStatus != 5">
                 <ul class="steps-list clearfix">
                     <li class="steps-item">
                         <p class="item-name">提交订单</p>
@@ -75,6 +76,27 @@
                     <li class="steps-item">
                         <p class="item-name">完成订单</p>
                         <p class="item-node" ng-class="{'node-finished': orderInfo.activeStep == 5}">
+                            <span class="step-active"></span>
+                        </p>
+                    </li>
+                </ul>
+                <div class="steps-line-bg"></div>
+                <div class="steps-line-bg-active step-{{orderInfo.activeStep}}-active"></div>
+            </div>
+
+            <!-- 已取消订单 2个步骤 -->
+            <div class="order-steps cancel-steps" ng-if="orderInfo.info.orderStatus == 5">
+                <ul class="steps-list clearfix">
+                    <li class="steps-item">
+                        <p class="item-name">提交订单</p>
+                        <p class="item-node" ng-class="{'node-finished': orderInfo.activeStep >= 1}">
+                            <span class="step-active"></span>
+                        </p>
+                        <p class="item-time" ng-bind-html="orderInfo.info.placedTime | timeFormat"></p>
+                    </li>
+                    <li class="steps-item">
+                        <p class="item-name">已取消</p>
+                        <p class="item-node" ng-class="{'node-finished': orderInfo.activeStep == 2}">
                             <span class="step-active"></span>
                         </p>
                     </li>

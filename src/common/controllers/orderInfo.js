@@ -97,6 +97,9 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
                         ctrl.activeStep = 4;
                     } else if (orderStatus == 8 || orderStatus == 9) {
                         ctrl.activeStep = 5;
+                    } else if (orderStatus == 5) {
+                        // 已取消
+                        ctrl.activeStep = 2;
                     }
 
                 })
@@ -119,7 +122,7 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
         // 确认收货
         confirmReceipt: function() {
-            popup.confirm('提示', '您要确认收货吗？')
+            popup.confirm('提示', '确定要确认收货吗？')
                 .then(function(res) {
                     if(res) {
                         orderService.confirmReceipt(ctrl.orderId)

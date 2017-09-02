@@ -58,9 +58,7 @@
         .steps-line-bg {
             position: absolute;
             top: 39px;
-            left: 10%;
             z-index: 1;
-            width: 80%;
             height: 4px;
             background-color: #ddd;
         }
@@ -68,30 +66,9 @@
         .steps-line-bg-active {
             position: absolute;
             top: 39px;
-            left: 10%;
             z-index: 10;
             height: 4px;
             background-color: $energized;
-
-            &.step-1-active {
-                width: 0;
-            }
-
-            &.step-2-active {
-                width: 20%;
-            }
-
-            &.step-3-active {
-                width: 40%;
-            }
-
-            &.step-4-active {
-                width: 60%;
-            }
-
-            &.step-5-active {
-                width: 80%;
-            }
         }
 
         .steps-list {
@@ -101,7 +78,6 @@
 
         .steps-item {
             float: left;
-            width: 20%;
             text-align: center;
             color: $text-color-quiet;
 
@@ -138,6 +114,66 @@
                 @extend %font-size-nano;
                 line-height: 1.25em;
             }
+        }
+    }
+
+    .normal-steps {
+
+        .steps-line-bg {
+            left: 10%;
+            width: 80%;
+        }
+
+        .steps-line-bg-active {
+            left: 10%;
+
+            &.step-1-active {
+                width: 0;
+            }
+
+            &.step-2-active {
+                width: 20%;
+            }
+
+            &.step-3-active {
+                width: 40%;
+            }
+
+            &.step-4-active {
+                width: 60%;
+            }
+
+            &.step-5-active {
+                width: 80%;
+            }
+        }
+
+        .steps-item {
+            width: 20%;
+        }
+    }
+
+    .cancel-steps {
+
+        .steps-line-bg {
+            left: 25%;
+            width: 50%;
+        }
+
+        .steps-line-bg-active {
+            left: 25%;
+
+            &.step-1-active {
+                width: 0;
+            }
+
+            &.step-2-active {
+                width: 50%;
+            }
+        }
+
+        .steps-item {
+            width: 50%;
         }
     }
 
