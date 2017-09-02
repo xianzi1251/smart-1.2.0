@@ -51,9 +51,6 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
             return orderService.getOrderInfo(ctrl.orderId)
                 .success(function(response) {
-
-                    // 当前是否开启兑换／积分／收货地址[1: 关闭, 0: 开启]
-                    ctrl.bytSwitch = localStorage.get('user').bytSwitch;
                     
                     // 订单信息
                     ctrl.info = response.list[0][0];
