@@ -48,6 +48,7 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
         // 获取订单信息
         loadData: function() {
+            ctrl.finishLoading = false;
 
             return orderService.getOrderInfo(ctrl.orderId)
                 .success(function(response) {
@@ -83,8 +84,26 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
                         ctrl.couponInfo = ctrl.coupon[0].label;
                     }
 
+                    // 当前步骤
+                    var orderStatus = ctrl.info.orderStatus;
+                    var paymentStatus = ctrl.info.paymentStatus;
+                    if (orderStatus == 1 && paymentStatus == 0) {
+                        ctrl.activeStep = 1;
+                    } else if (orderStatus == 1 && paymentStatus == 1 ) {
+                        ctrl.activeStep = 2;
+                    } else if ((orderStatus == 2 || orderStatus == 4) && paymentStatus == 1) {
+                        ctrl.activeStep = 3;
+                    } else if (orderStatus == 3) {
+                        ctrl.activeStep = 4;
+                    } else if (orderStatus == 8 || orderStatus == 9) {
+                        ctrl.activeStep = 5;
+                    }
+
                 })
-                .error(errorHandling);
+                .error(errorHandling)
+                .finally(function() {
+                    ctrl.finishLoading = true;
+                });
         },
 
         // 复制物流单号
@@ -96,6 +115,11 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
                     toast.open('复制成功');
                 }, angular.noop);
             }
+        },
+
+        // 确认收货
+        confirmReceipt: function() {
+
         },
 
         // 打开退换货说明
