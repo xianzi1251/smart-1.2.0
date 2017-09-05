@@ -15,27 +15,26 @@
 
     <ion-content scroll="false">
 
-        <!--下拉刷新-->
-        <!-- <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
-            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher> -->
-
         <!-- 空警告，当页面内没有数据时，显示该信息 -->
         <div class="list-empty" ng-if="!freeInfo.sellAbled">
             <div class="img"></div>
             <div class="text">暂无商品信息</div>
         </div>
 
-        <div class="pb" ng-if="freeInfo.sellAbled">
-            <!-- banner图 -->
-            <div class="banner stable-bg" ng-if="freeInfo.genreName == 'radio'">
-                <img class="img" ng-src="{{freeInfo.baseData.picUrl}}" />
-            </div>
+        <!-- 音频 -->
+        <div class="pb" ng-if="freeInfo.sellAbled && freeInfo.genreName == 'radio'">
 
-            <!-- 视频 -->
-            <div class="video-container mb" cm-video="freeInfo.videoUrl" ng-if="freeInfo.genreName == 'video'"></div>
+            <ion-content>
 
-            <!-- 音频 -->
-            <div ng-if="freeInfo.genreName == 'radio'">
+                <!--下拉刷新-->
+                <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
+                    pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+                <!-- banner图 -->
+                <div class="banner">
+                    <img class="img" ng-src="{{freeInfo.baseData.picUrl}}" />
+                </div>
+
                 <div cm-audio>
                     <audio id="audio">
                         <source ng-src="{{freeInfo.videoUrl}}" type="video/webm" >
@@ -59,9 +58,22 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <ion-content class="stable-bg" ng-class="{'video-content': (freeInfo.genreName == 'video'), 'audio-content': (freeInfo.genreName == 'radio')}">
+                <!-- 商品title -->
+                <div class="free-info-title">{{freeInfo.baseData.title}}</div>
+
+                <!-- 简介 -->
+                <div class="free-content" ng-bind-html="freeInfo.baseData.content"></div>
+
+            </ion-content>
+        </div>
+
+        <!-- 视频 -->
+        <div class="pb" ng-if="freeInfo.sellAbled && freeInfo.genreName == 'video'">
+
+            <div class="video-container mb" cm-video="freeInfo.videoUrl"></div>
+
+            <ion-content class="video-content">
 
                 <!--下拉刷新-->
                 <ion-refresher on-refresh="freeInfo.refresh({showLoading: false})" 
