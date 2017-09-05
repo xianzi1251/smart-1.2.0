@@ -59,6 +59,9 @@
             </div>
             <div class="checkout-row clearfix" ng-click="checkout.goCheckoutCoupon()">
                 <div class="checkout-row-title">优惠券</div>
+                <div class="coupon-count" ng-if="checkout.availableCouponList.length > 0">
+                    <span>{{checkout.availableCouponList.length}}张可用</span>
+                </div>
                 <div class="checkout-row-content">{{checkout.couponInfo}}</div>
                 <i class="checkout-row-icon iconfont icon-rightarrow"></i>
             </div>

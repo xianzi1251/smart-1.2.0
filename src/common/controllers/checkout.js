@@ -39,9 +39,6 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
         // 默认的发票
         invoiceInfo: '不开具发票',
 
-        // 默认的优惠券
-        couponInfo: '无优惠券信息',
-
         // 优惠券金额
         couponValue: 0,
 
@@ -62,6 +59,67 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                         ctrl.consigneeInfo = null;
                         ctrl.getCheckoutInfo();
                     }
+
+                    ctrl.getCheckoutCouponCount();
+                })
+                .error(errorHandling);
+        },
+
+        // 获取优惠券数量
+        getCheckoutCouponCount: function() {
+
+            // 可用优惠券列表
+            ctrl.availableCouponList = [];
+
+            couponService.getAllCouponList()
+                .success(function(response) {
+                    var allCoupons = response.list[0];
+                    var allCouponCodes = [];
+                    var codes = '';
+
+                    if (allCoupons.length > 0) {
+
+                        _.forEach(allCoupons, function(coupon) {
+                            codes += coupon.code + ',';
+                            allCouponCodes.push(coupon.code);
+                        });
+
+                        allCouponCodes = _.uniq(allCouponCodes);
+
+                        couponService.getCheckoutCouponList(ctrl.ordItemIds, codes)
+                            .success(function(list) {
+                                var checkoutCoupons = list.coupons;
+                                var checkoutCouponCodes = [],
+                                    unCheckoutCouponCodes = [];
+
+                                _.forEach(checkoutCoupons, function(checkoutCoupon) {
+                                    checkoutCouponCodes.push(checkoutCoupon.code);
+                                });
+
+                                checkoutCouponCodes = _.uniq(checkoutCouponCodes);
+
+                                unCheckoutCouponCodes = _.difference(allCouponCodes, checkoutCouponCodes);
+
+                                _.forEach(allCoupons, function(allCoupon) {
+                                    
+                                    _.forEach(checkoutCouponCodes, function(code) {
+                                        if (allCoupon.code === code) {
+                                            ctrl.availableCouponList.push(allCoupon);
+                                        }
+                                    });
+                                });
+
+                                if (ctrl.availableCouponList.length > 0) {
+                                    ctrl.couponInfo = '未使用';
+                                } else {
+                                    ctrl.couponInfo = '无可用';
+                                }
+                            })
+                            .error(errorHandling);
+                    } else {
+                        ctrl.couponInfo = '无可用';
+                    }
+                                
                 })
                 .error(errorHandling);
         },
