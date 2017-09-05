@@ -24,8 +24,11 @@
                         <span class="col col-adaptive">{{consignee.mobile}}</span>
                     </div>
                     <div class="item-info">
-                        {{consignee.districtLabel}}{{consignee.street}}
+                        {{consignee.districtLabel}} {{consignee.street}}
                     </div>
+                </div>
+                <div class="col col-center col-adaptive item-edit" ng-click="checkoutConsigneeList.modifyConsignee(consignee, $event)">
+                    <i class="icon ion-edit"></i>
                 </div>
             </li>
         </ul>

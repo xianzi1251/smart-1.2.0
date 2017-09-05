@@ -59,6 +59,44 @@ angular.module('app.services').factory('consigneeService', ['api',function(api, 
         },
 
         /**
+         * 编辑收货地址
+         * @param entity      [默认为'account']
+         * @param entityId    [用户id]
+         * @param addressId   [收货地址id]
+         * @param firstName   [收货人]
+         * @param typeName    [默认为'shipping']
+         * @param street      [详细地址]
+         * @param districtId  [最后一级地区的ID]
+         * @param postCode    [邮编]
+         * @param mobile      [电话]
+         */
+        editCosigneeInfo: function(addressId, firstName, street, districtId, postCode, mobile) {
+            return api.post('/cosmos.json?command=scommerce.BYT_ADR_ADDRESS_SAVE_ACTION', {
+                    proName: 'BYT_ADR_ADDRESS_SAVE_ACTION',
+                    entity: 'account',
+                    entityId: window.APP_USER.id,
+                    addressId: addressId,
+                    firstName: firstName,
+                    typeName: 'shipping',
+                    street: street,
+                    districtId: districtId,
+                    postCode: postCode,
+                    mobile: mobile
+                });
+        },
+
+        /**
+         * 编辑时获取地区，选择收货地区事
+         * @param districtId     [末级地区id]
+         */
+        getEditRegin: function(districtId) {
+            return api.post('/cosmos.json?command=scommerce.BYT_ADR_DISTRICT_GET_BLOCK', {
+                    proName: 'BYT_ADR_DISTRICT_GET_BLOCK',
+                    districtId: districtId
+                });
+        },
+
+        /**
          * 删除收货地址
          * @param entityAddressId      [收获地址id]
          */
@@ -73,7 +111,7 @@ angular.module('app.services').factory('consigneeService', ['api',function(api, 
         },
 
         /**
-		 * 获取地区
+		 * 获取地区，选择收货地区事，根据父级地区id，查询子集
 		 * @param districtCode     [父级地区id]
 		 */
         getRegin: function(districtCode) {

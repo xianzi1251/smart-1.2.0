@@ -110,6 +110,15 @@ angular.module('app').constant('modals', {
         title: '新增收货地址'
     },
 
+    // 会员中心－编辑收货地址
+    consigneeEdit: {
+        path: 'templates/modals/consigneeEdit.html',
+        controller: 'consigneeEditCtrl',
+        controllerAs: 'consigneeEdit',
+        animation: 'slide-in-up',
+        title: '编辑收货地址'
+    },
+
     // 选择收货地区
     selectAddressRegion: {
         path: 'templates/modals/selectAddressRegion.html',

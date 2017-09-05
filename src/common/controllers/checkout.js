@@ -283,6 +283,7 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                 modals.consigneeAdd.open({
                     params: {
                         orderId: '',
+                        btnText: '保存并使用',
                         source: 'checkout',
                         successCallback: utils.proxy(ctrl, 'setSelectedConsignee')
                     }

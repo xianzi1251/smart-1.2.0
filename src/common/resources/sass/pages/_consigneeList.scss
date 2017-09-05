@@ -41,6 +41,7 @@
     }
 
     .item-info {
+        margin-bottom: 3px;
     	line-height: 1.5em;
     	color: $text-color-secondary;
     	@extend %font-size-small;
@@ -54,12 +55,21 @@
 
         .icon {
             padding: 8px;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         span {
             padding-left: 5px;
             @extend %font-size-base;
+        }
+    }
+
+    .item-edit {
+        padding: 10px;
+
+        .icon {
+            font-size: 16px;
+            color: $text-color-secondary;
         }
     }
 }
