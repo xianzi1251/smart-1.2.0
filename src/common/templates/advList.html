@@ -37,7 +37,7 @@
 
         <ul class="adv-list" ng-if="advList.title == '电子书'">
             <li class="adv-item clearfix" ng-repeat="item in advList.advList"
-                ng-click="advList.goEBookInfo(item)">
+                ng-click="advList.goEBookInfo(item.id)">
                 <div class="item-img fl">
                     <img class="img" cm-lazyload="item.picUrl" load-immediate="true" />
                 </div>

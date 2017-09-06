@@ -14,14 +14,17 @@ angular.module('app.controllers').controller('advListCtrl', function(
         // 跳转广告详情页
         goAdvInfo: stateUtils.goAdvInfo,
 
+        // 跳转电子书详情页
+        goEBookInfo: stateUtils.goEBookInfo,
+
         // 打开pdf文件
-        goEBookInfo: function(item) {
-            if (window.cordova && window.cordova.InAppBrowser) {
-                window.cordova.InAppBrowser.open(item.pdfUrl, '_system');
-            } else {
-                window.open(item.pdfUrl);
-            }
-        },
+        // goEBookInfo: function(item) {
+        //     if (window.cordova && window.cordova.InAppBrowser) {
+        //         window.cordova.InAppBrowser.open(item.pdfUrl, '_system');
+        //     } else {
+        //         window.open(item.pdfUrl);
+        //     }
+        // },
 
         // 获取列表数据
         loadData: function () {
@@ -43,7 +46,7 @@ angular.module('app.controllers').controller('advListCtrl', function(
 
                     _.forEach(orderList, function(item) {
                         item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
-                        item.pdfUrl = window.APP_CONFIG.serviceAPI + item.pdfUrl;
+                        // item.pdfUrl = window.APP_CONFIG.serviceAPI + item.pdfUrl;
                     });
 
                     ctrl.advList = orderList;
