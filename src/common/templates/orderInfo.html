@@ -183,6 +183,25 @@
                 </p>
             </div>
 
+            <div class="order-row">
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">商品金额</span>
+                    <span class="col col-txt">{{orderInfo.info.commodityFee | currency: '¥'}}</span>
+                </p>
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">运费</span>
+                    <span class="col col-txt">{{orderInfo.info.contractedShippingFee | currency: '¥'}}</span>
+                </p>
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">优惠金额</span>
+                    <span class="col col-txt">-{{orderInfo.info.promotionAmount | currency: '¥'}}</span>
+                </p>
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">应付金额</span>
+                    <span class="col col-txt">{{orderInfo.info.payAmount | currency: '¥'}}</span>
+                </p>
+            </div>
+
             <div class="order-receive-info" ng-if="orderInfo.info.paymentStatus == 1 && orderInfo.info.orderStatus == 3">
                 距离自动确认签收还有{{orderInfo.expressInfo.countDownTime}}天时间
             </div>
