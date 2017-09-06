@@ -22,6 +22,15 @@ angular.module('app.services').factory('globalService',function(
             return api.post('/cosmos.json?command=scommerce.SC_SYS_SITE_SETTINGS_GET_VERSION', {
                     proName: 'SC_SYS_SITE_SETTINGS_GET_VERSION'
                 });
+        },
+
+        /**
+         * 获取应用更新内容
+         */
+        checkUpdate: function() {
+            return api.post('/cosmos.json?command=scommerce.BYT_APP_VERSION_GET', {
+                    proName: 'BYT_APP_VERSION_GET'
+                });
         }
     };
 });
