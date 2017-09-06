@@ -83,8 +83,8 @@
   <preference name="WECHAT_APPKEY" value="wx3fc05c955a155a9b"/>
   <preference name="WECHAT_APPSECRET" value="d44f61ccd46e642f5273570780bb3971"/>
 
-  <!-- <preference name="xwalkVersion" value="15+" /> -->
-  <preference name="xwalkVersion" value="xwalk_core_library:23.53.589.4" />
+  <preference name="xwalkVersion" value="15+" />
+  <!-- <preference name="xwalkVersion" value="xwalk_core_library:23.53.589.4" /> -->
   <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
   <preference name="xwalkMode" value="embedded" />
   <preference name="xwalkMultipleApk" value="true" />
