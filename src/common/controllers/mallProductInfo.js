@@ -45,6 +45,9 @@ angular.module('app.controllers').controller('mallProductInfoCtrl', function(
                     // 获取商品信息
                     if (response.list[0].length) {
 
+                        // 快递公司
+                        ctrl.expressCompany = response.object.expressCompany;
+
                         ctrl.baseData = response.list[0][0];
 
                         // 图片
