@@ -130,7 +130,7 @@
                             <div class="item-name">{{item.title}}</div>
                             <div class="item-content">{{item.subtitle}}</div>
                             <div class="item-price">
-                                {{item.price | currency: '¥'}}/年
+                                {{item.price | currency: '¥'}}<span ng-if="item.genreName != 'book'">/年</span>
                                 <span class="numbers">x{{item.nums}}</span>
                             </div>
                         </div>

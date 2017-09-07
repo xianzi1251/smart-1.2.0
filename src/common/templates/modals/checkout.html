@@ -44,7 +44,9 @@
                         <div class="item-title">{{item.sku.title}}</div>
                         <div class="item-content">{{item.sku.attributes.subtitle}}</div>
                         <div class="item-price">
-                            <span class="price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</span>
+                            <div class="price">
+                                {{item.sku.prices.offerPrice.price | currency: '¥'}}<span ng-if="item.sku.attributes.genreName != 'book'">/年<span>
+                            </div>
                             <span class="numbers">x{{item.quantity}}</span>
                         </div>
                     </div>
