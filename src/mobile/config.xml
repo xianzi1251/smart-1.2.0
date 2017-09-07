@@ -80,16 +80,26 @@
   </platform>
   <preference name="CHANNEL" value="<<< channel >>>"/>
   <preference name="ALIPAY_URL_SCHEME" value="alisdkbanyuetan"/>
+
+  <!-- 友盟微信/朋友圈分享 -->
   <preference name="WECHAT_APPKEY" value="wx3fc05c955a155a9b"/>
   <preference name="WECHAT_APPSECRET" value="d44f61ccd46e642f5273570780bb3971"/>
 
+  <!-- 友盟qq/qq空间分享 -->
+  <preference name="QQ_APPKEY" value="1105858769"/>
+  <preference name="QQ_APPSECRET" value="3oApZNePlc0J4dPb"/>
+
+  <!-- 友盟新浪微博分享 -->
+  <preference name="SINA_APPKEY" value="1573930227"/>
+  <preference name="SINA_APPSECRET" value="aafe46518e4c90562bbd616b4fe4fbab"/>
+
+  <!-- crosswalk -->
   <preference name="xwalkVersion" value="15+" />
   <!-- <preference name="xwalkVersion" value="xwalk_core_library:23.53.589.4" /> -->
   <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
   <preference name="xwalkMode" value="embedded" />
   <preference name="xwalkMultipleApk" value="true" />
 
-  <!-- <plugin name="de.appplant.cordova.plugin.local-notification" spec="../plugins/de.appplant.cordova.plugin.local-notification" /> -->
   <plugin name="cordova-plugin-comall-wechat" spec="../plugins/cordova-plugin-comall-wechat">
       <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
   </plugin>
@@ -98,7 +108,6 @@
   </plugin>
   <plugin name="com.comall.preference" spec="../plugins/com.comall.preference" />
   <plugin name="com.verso.cordova.clipboard" spec="../plugins/com.verso.cordova.clipboard" />
-  <!-- <plugin name="cordova-plugin-comall-localization" spec="../plugins/cordova-plugin-comall-localization" /> -->
 
   <plugin name="cordova-plugin-device" spec="~1.1.2" />
   <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
@@ -110,11 +119,7 @@
   <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0" />
   <plugin name="cordova-plugin-splashscreen" spec="~3.2.2" />
   <plugin name="cordova-plugin-network-information" spec="~1.2.1" />
-  <!-- <plugin name="cordova-plugin-camera" spec="../plugins/cordova-plugin-camera" />
-  <plugin name="cordova-plugin-geolocation" spec="~2.2.0" />
-  <plugin name="cordova-plugin-customurlscheme" spec="~4.2.0">
-      <variable name="URL_SCHEME" value="" />
-  </plugin> -->
+
   <plugin name="cordova-plugin-comall-umanalytics" spec="../plugins/cordova-plugin-comall-umanalytics">
       <variable name="UMENG_APPKEY_ANDROID" value="5997a75275ca3527dc0006d7" />
       <variable name="UMENG_CHANNEL" value="<<< channel >>>" />
@@ -122,8 +127,8 @@
   <plugin name="cordova-plugin-comall-umeng" spec="../plugins/cordova-plugin-comall-umeng">
       <variable name="UMENG_APPKEY_ANDROID" value="5997a75275ca3527dc0006d7" />
       <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
-      <variable name="QQ_URL_SCHEME" value="QQ41D94082" />
-      <variable name="TENCENT_URL_SCHEME" value="tencent1104756866" />
+      <variable name="QQ_URL_SCHEME" value="QQ41ea10d1" />
+      <variable name="TENCENT_URL_SCHEME" value="tencent1105858769" />
       <variable name="WEIBO_URL_SCHEME" value="wb1573930227" />
   </plugin>
   <plugin name="cordova-plugin-crosswalk-webview" spec="~1.6.1" />
