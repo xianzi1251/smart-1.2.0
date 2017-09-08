@@ -57,10 +57,10 @@ angular.module('app.controllers').controller('advInfoCtrl', function(
             if (window.umeng && window.umeng.share) {
                 ctrl.share(shareData).then(function(platform) {
                     // 分享成功回调,可根据不同平台做相应处理
-                    toast.open('分享成功');
+                    // toast.open('分享成功');
                 }).error(function() {
                     // 分享失败回调
-                    toast.open('分享失败');
+                    // toast.open('分享失败');
                 });
             }
         },

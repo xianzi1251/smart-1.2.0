@@ -90,8 +90,8 @@
   <preference name="QQ_APPSECRET" value="3oApZNePlc0J4dPb"/>
 
   <!-- 友盟新浪微博分享 -->
-  <preference name="SINA_APPKEY" value="1573930227"/>
-  <preference name="SINA_APPSECRET" value="aafe46518e4c90562bbd616b4fe4fbab"/>
+  <preference name="SINA_APPKEY" value="3496596274"/>
+  <preference name="SINA_APPSECRET" value="a6ed919efd9d930976c7da57887ff8ad"/>
 
   <!-- crosswalk -->
   <preference name="xwalkVersion" value="15+" />
@@ -129,7 +129,7 @@
       <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
       <variable name="QQ_URL_SCHEME" value="QQ41ea10d1" />
       <variable name="TENCENT_URL_SCHEME" value="tencent1105858769" />
-      <variable name="WEIBO_URL_SCHEME" value="wb1573930227" />
+      <variable name="WEIBO_URL_SCHEME" value="wb3496596274" />
   </plugin>
   <plugin name="cordova-plugin-crosswalk-webview" spec="~1.6.1" />
   <plugin name="cordova-plugin-app-name" spec="~1.0.1">
