@@ -14,9 +14,9 @@ angular.module('app.services').factory('payService', function(
             WeChat: function(payInfo) {
                 var apiDeferred = api.defer();
 
-                window.wechat.checkAppInstalled(function(isInstallWechatApp) {
+                window.wechatPay.checkAppInstalled(function(isInstallWechatApp) {
                     if (isInstallWechatApp === 'true') {
-                        window.wechat.pay(
+                        window.wechatPay.pay(
                             payInfo,
 
                             function sucess() {

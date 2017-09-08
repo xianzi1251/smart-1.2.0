@@ -138,7 +138,7 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
                             item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
                         });
 
-                        $params.callback('无优惠券信息', 0, '', response);
+                        $params.callback('未使用', 0, '', response);
                         ctrl.close();
                     })
                     .error(errorHandling)

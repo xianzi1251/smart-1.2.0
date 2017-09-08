@@ -111,7 +111,7 @@
                     <div class="consignee-name">
                         <span class="name">{{orderInfo.consignee.firstName}}</span>{{orderInfo.consignee.mobile}}
                     </div>
-                <div class="consignee-address">{{orderInfo.consignee.districtLabel}}{{orderInfo.consignee.street}}</div>
+                <div class="consignee-address">{{orderInfo.consignee.districtLabel}} {{orderInfo.consignee.street}}</div>
                 </div>
             </div>
 
@@ -130,7 +130,7 @@
                             <div class="item-name">{{item.title}}</div>
                             <div class="item-content">{{item.subtitle}}</div>
                             <div class="item-price">
-                                {{item.price | currency: '¥'}}/年
+                                {{item.price | currency: '¥'}}<span ng-if="item.genreName != 'book'">/年</span>
                                 <span class="numbers">x{{item.nums}}</span>
                             </div>
                         </div>
@@ -180,6 +180,25 @@
                 <p class="order-row-cont row" ng-click="orderInfo.shoRefundInfo()">
                     <span class="col col-adaptive col-tit refund-tips">退换货说明</span>
                     <span class="col col-txt col-center"><i class="icon ion-ios-help-outline"></i></span>
+                </p>
+            </div>
+
+            <div class="order-row">
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">商品金额</span>
+                    <span class="col col-txt">{{orderInfo.info.commodityFee | currency: '¥'}}</span>
+                </p>
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">运费</span>
+                    <span class="col col-txt">{{orderInfo.info.contractedShippingFee | currency: '¥'}}</span>
+                </p>
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">优惠金额</span>
+                    <span class="col col-txt">-{{orderInfo.info.promotionAmount | currency: '¥'}}</span>
+                </p>
+                <p class="order-row-cont row">
+                    <span class="col col-adaptive col-tit">应付金额</span>
+                    <span class="col col-txt">{{orderInfo.info.payAmount | currency: '¥'}}</span>
                 </p>
             </div>
 

@@ -32,9 +32,11 @@
                     <span class="col col-adaptive">{{consignee.mobile}}</span>
                 </div>
                 <div class="item-info">
-                    {{consignee.districtLabel}}{{consignee.street}}
+                    {{consignee.districtLabel}} {{consignee.street}}
                 </div>
                 <div class="item-btn">
+                    <i class="icon ion-edit" 
+                        ng-click="userConsigneeList.modifyConsignee(consignee)"><span>编辑</span></i>
                     <i class="icon ion-trash-a" 
                         ng-click="userConsigneeList.deleteConsignee(consignee.entityAddressId)"><span>删除</span></i>
                 </div>

@@ -14,6 +14,9 @@ angular.module('app.controllers').controller('consigneeAddCtrl', function(
     _.assign(ctrl, loadDataMixin, {
         $scope: $scope,
 
+        // 按钮文本：结算时‘保存并使用’，会员中心时‘保存’
+        btnText: $params.btnText,
+
         // 提交新增收货地址
         submit: function() {
 
@@ -28,12 +31,11 @@ angular.module('app.controllers').controller('consigneeAddCtrl', function(
             consigneeService.addCosigneeInfo(ctrl.firstName, ctrl.street, ctrl.districtId, '', ctrl.mobile)
                 .success(function(data) {
 
-                    toast.open('新增收货地址成功');
-
-                    // 如是来自结算页，则需要收货地址绑定订单
+                    // 结算页中保存收货地址后，直接就使用了
                     if ($params.source == 'checkout') {
                         $params.successCallback(data.list[0][0]);
                     } else {
+                        toast.open('新增收货地址成功');
                         messageCenter.publishMessage('addCosignee.success');
                     }
 

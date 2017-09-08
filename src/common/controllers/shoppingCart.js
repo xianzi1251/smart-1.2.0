@@ -25,8 +25,14 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
     _.assign(ctrl, loadDataMixin, {
         $scope: $scope,
 
-        // 跳转商品详情
-        goProductInfo: stateUtils.goProductInfo,
+        // 跳转课程商品详情／图书商品详情页
+        goProductInfo: function(entityName, genreName) {
+            if (genreName == 'book') {
+                stateUtils.goMallProductInfo(entityName);
+            } else {
+                stateUtils.goProductInfo(entityName, genreName);
+            }
+        },
 
         /**
          * 操作模式：

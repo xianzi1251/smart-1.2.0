@@ -1,5 +1,5 @@
 <!-- 结算 -->
-<ion-modal-view title="确认订单" class="checkout-modal-view stable-bg">
+<ion-modal-view title="确认订单" class="checkout-modal-view stable-bg" cm-resize-height>
 
     <ion-header-bar class="bar-primary">
         <button class="button button-clear left-btn" ng-click="checkout.close()">
@@ -20,7 +20,7 @@
                         <span class="col col-adaptive col-center">{{checkout.consigneeInfo.mobile}}</span>
                     </div>
                     <div class="consignee-info-street">
-                        {{checkout.consigneeInfo.districtLabel}}{{checkout.consigneeInfo.street}}
+                        {{checkout.consigneeInfo.districtLabel}} {{checkout.consigneeInfo.street}}
                     </div>
                 </div>
                 <i class="iconfont icon-rightarrow col col-adaptive col-center"></i>
@@ -44,7 +44,9 @@
                         <div class="item-title">{{item.sku.title}}</div>
                         <div class="item-content">{{item.sku.attributes.subtitle}}</div>
                         <div class="item-price">
-                            <span class="price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</span>
+                            <div class="price">
+                                {{item.sku.prices.offerPrice.price | currency: '¥'}}<span ng-if="item.sku.attributes.genreName != 'book'">/年<span>
+                            </div>
                             <span class="numbers">x{{item.quantity}}</span>
                         </div>
                     </div>
@@ -59,6 +61,9 @@
             </div>
             <div class="checkout-row clearfix" ng-click="checkout.goCheckoutCoupon()">
                 <div class="checkout-row-title">优惠券</div>
+                <div class="coupon-count" ng-if="checkout.availableCouponList.length > 0">
+                    <span>{{checkout.availableCouponList.length}}张可用</span>
+                </div>
                 <div class="checkout-row-content">{{checkout.couponInfo}}</div>
                 <i class="checkout-row-icon iconfont icon-rightarrow"></i>
             </div>

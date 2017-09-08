@@ -96,7 +96,7 @@ angular.module('app.services').factory('userService',function(
         wechatLogin: function() {
             var deferred = api.defer();
 
-            window.wechat.login(function(res) {
+            window.wechatPay.login(function(res) {
                 deferred.resolve({data:res});
             }, function(error) {
                 deferred.reject(error);

@@ -10,8 +10,14 @@ angular.module('app.controllers').controller('orderInfoCtrl', function(
 
         orderId: $stateParams.orderId,
 
-        // 跳转商品详情
-        goProductInfo: stateUtils.goProductInfo,
+        // 跳转课程商品详情／图书商品详情页
+        goProductInfo: function(entityName, genreName) {
+            if (genreName == 'book') {
+                stateUtils.goMallProductInfo(entityName);
+            } else {
+                stateUtils.goProductInfo(entityName, genreName);
+            }
+        },
 
         // 打开选择支付弹出层
         pay: function() {

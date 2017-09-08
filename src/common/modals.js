@@ -101,6 +101,15 @@ angular.module('app').constant('modals', {
         title: '引导图'
     },
 
+    // 领取优惠券
+    startEvent: {
+        path: 'templates/modals/startEvent.html',
+        controller: 'startEventCtrl',
+        controllerAs: 'startEvent',
+        animation: 'fade-out',
+        title: '领取优惠券'
+    },
+
     // 会员中心－新增收货地址
     consigneeAdd: {
         path: 'templates/modals/consigneeAdd.html',
@@ -108,6 +117,15 @@ angular.module('app').constant('modals', {
         controllerAs: 'consigneeAdd',
         animation: 'slide-in-up',
         title: '新增收货地址'
+    },
+
+    // 会员中心－编辑收货地址
+    consigneeEdit: {
+        path: 'templates/modals/consigneeEdit.html',
+        controller: 'consigneeEditCtrl',
+        controllerAs: 'consigneeEdit',
+        animation: 'slide-in-up',
+        title: '编辑收货地址'
     },
 
     // 选择收货地区

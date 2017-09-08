@@ -24,7 +24,21 @@ angular.module('app.controllers').controller('userConsigneeListCtrl', function(
 
         // 新增收货地址
         goAddConsignee: function() {
-            modals.consigneeAdd.open();
+            modals.consigneeAdd.open({
+                params: {
+                    btnText: '保存'
+                }
+            });
+        },
+
+        // 编辑收货地址
+        modifyConsignee: function(consignee) {
+            modals.consigneeEdit.open({
+                params: {
+                    consignee: consignee,
+                    btnText: '保存'
+                }
+            });
         },
 
         // 删除收货地址

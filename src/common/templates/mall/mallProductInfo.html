@@ -49,11 +49,15 @@
             <!-- 商品基本信息 -->
             <div class="product-info light-bg">
                 <div class="info-name">{{mallProductInfo.baseData.title}}</div>
-                <div class="info-price">
-                    <span class="price">{{mallProductInfo.baseData.listPrice | currency: ''}}</span>元
-                </div>
                 <div class="info-describe" ng-if="mallProductInfo.baseData.viceTitle">
                     {{mallProductInfo.baseData.viceTitle}}
+                </div>
+                <div class="info-price">
+                    <span class="price">{{mallProductInfo.baseData.listPrice | currency: '¥'}}</span>
+                </div>
+                <div class="info-express">
+                    <span class="fr">发货地：北京</span>
+                    快递：{{mallProductInfo.expressCompany}}
                 </div>
             </div>
 

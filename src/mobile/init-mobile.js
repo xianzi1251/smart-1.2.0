@@ -42,7 +42,7 @@ app.run(function(analytics) {
 });
 
 // 版本检测
-app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService, $cordovaFile) {
+app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService, $cordovaFile, globalService, popup) {
 
     // 当前是否新版本
     var isUpgrade = false;
@@ -78,7 +78,52 @@ app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService,
                 localStorage.set('appVersion', window.APP_CONFIG.appVersion);
 
             });
-        } 
+        }
+
+        // 检测是否有新版本
+        globalService.checkUpdate().success(function(response) {
+            var data = response.list[0][0];
+
+            if (!data || !data.version) {
+                return;
+            }
+
+            // 根据version判断是否需要更新
+            var version = data.version.split('.');
+            var isUpdate = false;
+            for (var i in currentVersion) {
+                if (currentVersion[i] < version[i]) {
+                    isUpdate = true;
+                    break;
+                }
+            }
+
+            // url地址
+            var url = '';
+            if (ionic.Platform.isAndroid()) {
+                url = data.androidUrl;
+            } else {
+                url = data.iosUrl;
+            }
+
+            // 有新版本更新
+            if (isUpdate) {
+                if (data.force) {
+                    //强制更新时 屏蔽所有操作
+                    $ionicPlatform.registerBackButtonAction(function(event) {
+                        event.preventDefault();
+                    }, 600);
+                }
+
+                // 判断是否强制更新
+                var promise = data.force ? popup.updateAlert(data.description, url) : popup.updateConfirm(data.description);
+                promise.then(function(res) {
+                    if (res) {
+                        cordova.InAppBrowser.open(url, '_system');
+                    }
+                });
+            }
+        });
 
         setTimeout(function() {
             $ionicPlatform.ready(function() {

@@ -52,7 +52,9 @@
                             ng-click="cart.goProductInfo(item.sku.attributes.entityName, item.sku.attributes.genreName)">{{item.sku.attributes.subtitle}}
                         </div>
                         <div class="item-price">
-                            <span class="price">{{item.sku.prices.offerPrice.price | currency: '¥'}}/年</span>
+                            <div class="price">
+                                {{item.sku.prices.offerPrice.price | currency: '¥'}}<span ng-if="item.sku.attributes.genreName != 'book'">/年<span>
+                            </div>
                             <div class="item-counter">
                                 <span class="numbers" ng-if="cart.mode == 1">x{{item.quantity}}</span>
                                 <cm-counter ng-if="cart.mode == 2"

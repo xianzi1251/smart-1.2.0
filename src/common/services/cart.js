@@ -110,9 +110,6 @@ angular.module('app.services').factory('cartService', function(
                     userId: window.APP_USER.id,
                     sku: sku,
                     nums: 1
-                })
-                .success(function() {
-                    messageCenter.publishMessage('cart.add');
                 });
         },
 

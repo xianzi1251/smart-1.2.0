@@ -166,8 +166,8 @@ angular.module('app.controllers').controller('indexCtrl', function(
 
         // 判断是否支持微信
         getSupportWechat: function() {
-            if (window.wechat) {
-                window.wechat.checkAppInstalled(function(res) {
+            if (window.wechatPay) {
+                window.wechatPay.checkAppInstalled(function(res) {
                     if (res === 'true') {
                         localStorage.set('supportWechat', true);
                     }

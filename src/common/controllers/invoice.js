@@ -106,4 +106,18 @@ angular.module('app.controllers').controller('invoiceCtrl', function(
         }
         
     });
+
+    //解决IOS键盘弹出前快速点击背景modal满屏
+    if (window.cordova && ionic.Platform.isIOS()) {
+        angular.element('body').removeClass('keyboard-open');
+        $scope.$on('modal.hidden', function() {
+            cordova.plugins.Keyboard.close();
+            setTimeout(function() {
+                angular.element('body').removeClass('keyboard-open');
+            }, 1000);
+        });
+        window.addEventListener('native.Keyboardhide', function() {
+            cordova.plugins.Keyboard.close();
+        });
+    }
 });

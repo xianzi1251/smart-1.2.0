@@ -155,6 +155,19 @@
         @extend %font-size-big;
     }
 
+    .coupon-count {
+        float: left;
+        margin-left: 5px;
+
+        span {
+            padding: 0 3px;
+            color: $energized;
+            @extend %font-size-nano;
+            border: lighten($energized, 40) 1px solid;
+            border-radius: 2px;
+        }
+    }
+
     .checkout-row-content {
         float: right;
         color: $text-color-secondary;

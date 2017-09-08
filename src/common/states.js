@@ -183,16 +183,6 @@ angular.module('app')
             }
         },
 
-        'tabs.couponList': {
-            url: '/couponList',
-            views: {
-                user: {
-                    templateUrl: 'templates/couponList.html',
-                    controller: 'couponListCtrl as couponList'
-                }
-            }
-        },
-
         'tabs.wechatBindMobile': {
             url: '/wechatBindMobile',
             views: {
@@ -334,6 +324,13 @@ angular.module('app')
             url: '/exchangeVideoList?exchangeId&from',
             templateUrl: 'templates/exchangeVideoList.html',
             controller: 'exchangeVideoListCtrl as videoList'
+        },
+
+        // 优惠券列表
+        'couponList': {
+            url: '/couponList',
+            templateUrl: 'templates/couponList.html',
+            controller: 'couponListCtrl as couponList'
         },
 
         // 积分兑换／兑换码中的视频详情

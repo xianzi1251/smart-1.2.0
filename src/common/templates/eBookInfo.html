@@ -1,4 +1,4 @@
-<ion-view title="详情" cm-hide-tabs="true">
+<ion-view title="电子书详情" cm-hide-tabs="true">
 
     <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
         <div class="buttons buttons-left">
@@ -9,7 +9,14 @@
             </span>
         </div>
         <div class="title title-center header-item">
-            详情
+            电子书详情
+        </div>
+        <div class="buttons buttons-right" ng-click="advInfo.shareInfo()" ng-if="advInfo.showShareBtn">
+            <span class="right-buttons">
+                <button class="button button-clear">
+                    <i class="iconfont icon-fenxiang"></i>
+                </button>
+            </span>
         </div>
     </ion-header-bar>
 

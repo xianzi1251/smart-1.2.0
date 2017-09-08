@@ -57,7 +57,9 @@
                         <div ng-if="order.paymentStatus == 0">
                             <div class="item-content pay-not">{{item.subtitle}}</div>
                             <div class="item-row clearfix">
-                                <div class="item-price fl">{{item.price | currency: '¥'}}/年</div>
+                                <div class="item-price fl">
+                                    {{item.price | currency: '¥'}}<span ng-if="item.genreName != 'book'">/年</span>
+                                </div>
                                 <div class="item-date fr">下单时间: {{order.placedTime}}</div>
                             </div>
                         </div>
@@ -66,7 +68,9 @@
                         <div ng-if="order.paymentStatus == 1">
                             <div class="item-content pay-has">{{item.subtitle}}</div>
                             <div class="item-row clearfix">
-                                <div class="fl">{{item.price | currency: '¥'}}/年</div>
+                                <div class="fl">
+                                    {{item.price | currency: '¥'}}<span ng-if="item.genreName != 'book'">/年</span>
+                                </div>
                                 <div class="item-date fr">购买时间: {{order.payTime}}</div>
                             </div>
                             <!-- 未评论 -->

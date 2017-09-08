@@ -245,16 +245,43 @@
 
     .product-info-slider {
         width: 100%;
-        height: convert-rem(150px);
+        height: convert-rem(320px);
         padding: 0;
 
         .img {
             width: 100%;
-            height: convert-rem(150px);
+            height: convert-rem(320px);
         }
 
         .nav-hide {
             display: none;
         }
+    }
+
+    .info-name {
+        overflow: visible;
+        height: auto;
+        margin: 5px 0 10px;
+        line-height: 1.3em;
+        white-space: normal;
+        font-size: 15px;
+    }
+
+    .info-describe {
+        font-size: 12px;
+        margin: 0 0 10px 0;
+        color: $text-color-quiet;
+    }
+
+    .info-price {
+
+        .price {
+            font-size: 20px;
+        }
+    }
+
+    .info-express {
+        font-size: 12px;
+        color: $text-color-secondary;
     }
 }

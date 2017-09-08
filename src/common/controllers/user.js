@@ -74,8 +74,9 @@ angular.module('app.controllers').controller('userCtrl', function(
 
         // 优惠券
         goCouponList: function() {
+            var stateName = stateUtils.getStateNameByCurrentTab('couponList');
             nativeTransition.forward();
-            $state.go('tabs.couponList');
+            $state.go(stateName);
         },
 
         // 军人认证

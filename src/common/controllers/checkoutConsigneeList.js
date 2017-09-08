@@ -64,7 +64,34 @@ angular.module('app.controllers').controller('checkoutConsigneeListCtrl', functi
 
         // 新增收货地址
         goAddConsignee: function() {
-            modals.consigneeAdd.open();
+            modals.consigneeAdd.open({
+                params: {
+                    btnText: '保存并使用',
+                    source: 'checkout',
+                    successCallback: function(response) {
+                        ctrl.selectedConsignee = response;
+                        ctrl.confirmselected();
+                    }
+                }
+            });
+        },
+
+        // 编辑收货地址
+        modifyConsignee: function(consignee, $event) {
+
+            $event.stopPropagation();
+
+            modals.consigneeEdit.open({
+                params: {
+                    consignee: consignee,
+                    btnText: '保存并使用',
+                    source: 'checkout',
+                    successCallback: function(response) {
+                        ctrl.selectedConsignee = response;
+                        ctrl.confirmselected();
+                    }
+                }
+            });
         }
 
     });

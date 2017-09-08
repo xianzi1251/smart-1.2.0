@@ -1,5 +1,5 @@
 angular.module('app.controllers').controller('buyNowCtrl', function(
-    $scope, api, toast, $params, modals, cartService, errorHandling
+    $scope, api, toast, $params, modals, cartService, errorHandling, messageCenter
 ) {
 
     var ctrl = this;
@@ -22,6 +22,9 @@ angular.module('app.controllers').controller('buyNowCtrl', function(
             // 加入购物车
             cartService.addToCart(ctrl.item.sku)
                 .success(function(response) {
+
+                    messageCenter.publishMessage('cart.add');
+
                     var orderItemId = response.object.orderItemId;
 
                     // 打开结算页
