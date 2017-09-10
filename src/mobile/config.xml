@@ -124,13 +124,13 @@
       <variable name="UMENG_APPKEY_ANDROID" value="5997a75275ca3527dc0006d7" />
       <variable name="UMENG_CHANNEL" value="<<< channel >>>" />
   </plugin>
-  <plugin name="cordova-plugin-comall-umeng" spec="../plugins/cordova-plugin-comall-umeng">
+  <!-- <plugin name="cordova-plugin-comall-umeng" spec="../plugins/cordova-plugin-comall-umeng">
       <variable name="UMENG_APPKEY_ANDROID" value="5997a75275ca3527dc0006d7" />
       <variable name="WECHAT_APP_ID" value="wx3fc05c955a155a9b" />
       <variable name="QQ_URL_SCHEME" value="QQ41ea10d1" />
       <variable name="TENCENT_URL_SCHEME" value="tencent1105858769" />
       <variable name="WEIBO_URL_SCHEME" value="wb3496596274" />
-  </plugin>
+  </plugin> -->
   <plugin name="cordova-plugin-crosswalk-webview" spec="~1.6.1" />
   <plugin name="cordova-plugin-app-name" spec="~1.0.1">
       <variable name="APP_NAME" value="<<< displayName >>>" />

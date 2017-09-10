@@ -1,5 +1,5 @@
 angular.module('app.controllers').controller('advInfoCtrl', function(
-    $scope, $stateParams, loadDataMixin, errorHandling, advService, api, toast
+    $scope, $stateParams, loadDataMixin, errorHandling, advService, api, toast, modals
 ) {
 
     var ctrl = this;
@@ -54,30 +54,36 @@ angular.module('app.controllers').controller('advInfoCtrl', function(
                 url: window.APP_CONFIG.serviceAPI + ctrl.adv.linkUrl
             };
 
-            if (window.umeng && window.umeng.share) {
-                ctrl.share(shareData).then(function(platform) {
-                    // 分享成功回调,可根据不同平台做相应处理
-                    // toast.open('分享成功');
-                }).error(function() {
-                    // 分享失败回调
-                    // toast.open('分享失败');
-                });
-            }
+            modals.shareEvent.open({
+                params: {
+                    shareData: shareData
+                }
+            });
+
+            // if (window.umeng && window.umeng.share) {
+            //     ctrl.share(shareData).then(function(platform) {
+            //         // 分享成功回调,可根据不同平台做相应处理
+            //         // toast.open('分享成功');
+            //     }).error(function() {
+            //         // 分享失败回调
+            //         // toast.open('分享失败');
+            //     });
+            // }
         },
 
         // 插件实现分享分享
-        share: function(data) {
+        // share: function(data) {
 
-            var deferred = api.defer();
+        //     var deferred = api.defer();
 
-            window.umeng.share(data.title, data.content, data.pic, data.url, function(platform) {
-                deferred.resolve(platform);
-            }, function() {
-                deferred.reject();
-            });
+        //     window.umeng.share(data.title, data.content, data.pic, data.url, function(platform) {
+        //         deferred.resolve(platform);
+        //     }, function() {
+        //         deferred.reject();
+        //     });
 
-            return deferred.promise;
-        }
+        //     return deferred.promise;
+        // }
     });
 
     var deregistration = $scope.$on('$ionicView.afterEnter', function() {

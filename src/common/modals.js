@@ -110,6 +110,15 @@ angular.module('app').constant('modals', {
         title: '领取优惠券'
     },
 
+    // 分享功能
+    shareEvent: {
+        path: 'templates/modals/shareEvent.html',
+        controller: 'shareEventCtrl',
+        controllerAs: 'shareEvent',
+        animation: 'slide-in-up',
+        title: '分享'
+    },
+
     // 会员中心－新增收货地址
     consigneeAdd: {
         path: 'templates/modals/consigneeAdd.html',

@@ -17,18 +17,18 @@
 
     .free-info-title {
         padding: 0 12px;
-        line-height: 2em;
-        font-size: 16px;
+        line-height: 1.2em;
         color: $text-color;
         background-color: #fff;
+        @extend %font-size-huge;
     }
 
     .free-content {
-        padding: 0 12px;
+        padding: 12px;
         line-height: 2em;
-        font-size: 13px;
         color: $text-color-secondary;
         background-color: #fff;
+        @extend %font-size-base;
 
         p {
             margin-bottom: 0;

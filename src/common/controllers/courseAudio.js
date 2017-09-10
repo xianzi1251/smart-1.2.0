@@ -24,7 +24,7 @@ angular.module('app.controllers').controller('courseAudioCtrl', function(
                         ctrl.courseList = response.list[0];
 
                         _.forEach(ctrl.courseList, function(item) {
-                            item.picUrl = window.APP_CONFIG.serviceAPI + item.picUrl;
+                            item.picUrl = window.APP_CONFIG.serviceAPI + item.hpicUrl;
                         });
                     }
                 })

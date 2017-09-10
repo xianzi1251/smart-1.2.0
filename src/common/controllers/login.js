@@ -14,7 +14,20 @@ angular.module('app.controllers').controller('loginCtrl', function(
         password: '',
 
         // 是否支持微信
-        isSupportWechat: localStorage.get('supportWechat'),
+        isSupportWechat: false,
+
+        // 确定当前是否可分享
+        init: function() {
+            if (window.wechatPay) {
+                window.wechatPay.checkAppInstalled(function(res) {
+                    if (res === 'true') {
+                        ctrl.isSupportWechat = true;
+                    }
+                }, function(error) {
+
+                });
+            }
+        },
 
         // 微信登录
         wechatLogin: function() {
@@ -67,5 +80,7 @@ angular.module('app.controllers').controller('loginCtrl', function(
         }
 
     });
+
+    ctrl.init();
 
 });

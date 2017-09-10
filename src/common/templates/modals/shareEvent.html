@@ -1,0 +1,23 @@
+<!-- 分享 -->
+<ion-modal-view class="share-event-modal-view">
+
+    <ion-content scroll="true">
+        <div class="share-title">请选择分享平台</div>
+        <div class="share-row row">
+            <div class="share-col col" ng-click="shareEvent.shareToWechat()">
+                <div class="share-icon wechat-icon"></div>
+                <div class="share-text">微信</div>
+            </div>
+            <div class="share-col col" ng-click="shareEvent.shareToWechatTimeline()">
+                <div class="share-icon wechat-timeline-icon"></div>
+                <div class="share-text">微信朋友圈</div>
+            </div>
+            <div class="share-col col" ng-click="shareEvent.copyLink()">
+                <div class="share-icon copy-line-icon"></div>
+                <div class="share-text">复制链接</div>
+            </div>
+        </div>
+        <div class="share-btn" ng-click="shareEvent.close()">取消分享</div>
+    </ion-content>
+
+</ion-modal-view>
