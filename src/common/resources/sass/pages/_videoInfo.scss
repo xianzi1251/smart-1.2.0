@@ -27,11 +27,9 @@
     padding: 5px 12px 0;
 
     .info-name {
-        height: 1.5em;
-        line-height: 1.5em;
-        font-size: 16px;
+        line-height: 1.2em;
         color: $text-color;
-        @include text-overflow-ellipsis;
+        @extend %font-size-huge;
     }
 
     .info-price {
@@ -49,7 +47,7 @@
         margin-top: 10px;
         line-height: 1.2em;
         color: $text-color-secondary;
-        font-size: 15px;
+        @extend %font-size-big;
 
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -75,7 +73,7 @@
         overflow: auto;
         max-height: none;
         line-height: 2em;
-        font-size: 13px;
+        @extend %font-size-base;
         color: $text-color-secondary;
 
         &.max-list {
