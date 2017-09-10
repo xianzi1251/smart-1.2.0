@@ -5,23 +5,27 @@
     right: 0;
     top: auto;
     bottom: 0;
-    height: 130px;
+    height: convert-rem(150px);
     min-height: 0;
     max-height: 100%;
     background-color: $light;
 
-    > .scroll-content {
-        top: 34px;
+    .share-title {
+        height: convert-rem(40px);
+        line-height: convert-rem(40px);
+        text-align: center;
+        color: $text-color-secondary;
+        @extend %font-size-big;
     }
 
     .share-row {
-        height: 80px;
+        height: convert-rem(75px);
     }
 
     .share-icon {
-        height: 40px;
-        margin: 12px 0 8px;
-        background-size: 40px auto;
+        height: convert-rem(40px);
+        margin-bottom: convert-rem(8px);
+        background-size: convert-rem(40px) convert-rem(40px);
         background-position: center center;
         background-repeat: no-repeat;
 
@@ -39,9 +43,19 @@
     }
 
     .share-text {
-        line-height: 20px;
+        height: convert-rem(20px);
+        line-height: convert-rem(20px);
         text-align: center;
         color: $text-color-secondary;
         @extend %font-size-small;
+    }
+
+    .share-btn {
+        height: convert-rem(35px);
+        line-height: convert-rem(35px);
+        text-align: center;
+        color: $text-color-secondary;
+        @extend %font-size-base;
+        background-color: $stable;
     }
 }
