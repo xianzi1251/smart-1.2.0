@@ -159,6 +159,12 @@ angular.module('app.controllers').controller('userCtrl', function(
 
     });
 
+    // 每次进入视图前强制清除数据
+    $scope.$on('$ionicView.beforeEnter',function() {
+        // 页面滚动到顶部
+        $ionicScrollDelegate.$getByHandle('userContentScroll').scrollTop();
+    });
+
     var deregistration = $scope.$on('$ionicView.afterEnter', function() {
         ctrl.init();
         deregistration();
