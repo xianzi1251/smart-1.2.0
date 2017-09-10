@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+.share-event-modal-view {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    height: 130px;
+    min-height: 0;
+    max-height: 100%;
+    background-color: $light;
+
+    > .scroll-content {
+        top: 34px;
+    }
+
+    .share-row {
+        height: 80px;
+    }
+
+    .share-icon {
+        height: 40px;
+        margin: 12px 0 8px;
+        background-size: 40px auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        &.wechat-icon {
+            background-image: url(#{$images-path}/icon-wechat@2x.png);
+        }
+
+        &.wechat-timeline-icon {
+            background-image: url(#{$images-path}/icon-wechat-timeline@2x.png);
+        }
+
+        &.copy-line-icon {
+            background-image: url(#{$images-path}/icon-copy-link@2x.png);
+        }
+    }
+
+    .share-text {
+        line-height: 20px;
+        text-align: center;
+        color: $text-color-secondary;
+        @extend %font-size-small;
+    }
+}
