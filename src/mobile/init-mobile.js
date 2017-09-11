@@ -4,8 +4,8 @@
 _.assign(window.APP_CONFIG, {
     os: ionic.Platform.platform(),
     osVersion: ionic.Platform.version(),
-    serviceAPI: 'http://byt.smartcloudcn.com:81'
-    // serviceAPI: 'http://app.banyuetan.org:88'
+    // serviceAPI: 'http://byt.smartcloudcn.com:81'
+    serviceAPI: 'http://app.banyuetan.org:88'
 });
 
 
