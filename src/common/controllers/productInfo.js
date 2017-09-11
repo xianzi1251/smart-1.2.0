@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('productInfoCtrl', function(
-    $scope, toast, modals, $stateParams, loadDataMixin, commentService,
-    productService, errorHandling, userService, messageCenter, cartService
+    $scope, toast, modals, $stateParams, loadDataMixin, commentService, stateUtils, nativeTransition,
+    productService, errorHandling, userService, messageCenter, cartService, $state
 ) {
 
     var ctrl = this;
@@ -12,6 +12,29 @@ angular.module('app.controllers').controller('productInfoCtrl', function(
 
         // 默认可卖
         sellAbled: true,
+
+        // 去购物车
+        goShoppingCart: function() {
+
+            userService.hasLogined()
+                .success(function() {
+
+                    var stateName = stateUtils.getStateNameByCurrentTab('shoppingCart');
+                    nativeTransition.forward();
+                    $state.go(stateName);
+
+                })
+                .error(function() {
+
+                    modals.login.open()
+                        .then(function(e) {
+                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
+                                ctrl.init();
+                            }, e.scope);
+                        });
+
+                });
+        },
 
         // 获取商品信息
         loadData: function() {
