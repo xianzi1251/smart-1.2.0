@@ -373,6 +373,11 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                         // 此时选择了优惠券
                         if (!_.isEmpty(data)) {
                             ctrl.data = data;
+
+                            // 绝对路径图片
+                            _.forEach(ctrl.data.items, function(item) {
+                                item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
+                            });
                         }
 
                     }
