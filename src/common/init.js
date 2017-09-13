@@ -141,7 +141,8 @@ app.run(function($ionicPlatform, localStorage, messageCenter, $rootScope) {
             nickName: userInfo.object.nickName,
             thirdPartylogin: false,
             cosmosPassportId: userInfo.object.cosmosPassportId4session,
-            bytSwitch: userInfo.object.bytSwitch
+            bytSwitch: userInfo.object.bytSwitch,
+            bytSwitch21: userInfo.object.bytSwitch21
         };
         _.assign(APP_USER, user);
 
@@ -158,7 +159,8 @@ app.run(function($ionicPlatform, localStorage, messageCenter, $rootScope) {
             nickName: userInfo.name,
             thirdPartylogin: true,
             cosmosPassportId: userInfo.userId,
-            bytSwitch: userInfo.bytSwitch
+            bytSwitch: userInfo.bytSwitch,
+            bytSwitch21: userInfo.bytSwitch21
         };
         _.assign(APP_USER, user);
 

@@ -63,9 +63,11 @@ angular.module('app.services').factory('userService',function(
             })
             .success(function(response) {
                 var bytSwitch = response.object.bytSwitch;
+                var bytSwitch21 = response.object.bytSwitch21;
 
                 var user = {
-                    bytSwitch: bytSwitch
+                    bytSwitch: bytSwitch,
+                    bytSwitch21: bytSwitch21
                 };
 
                 _.assign(APP_USER, user);

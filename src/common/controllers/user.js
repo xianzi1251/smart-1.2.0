@@ -23,6 +23,9 @@ angular.module('app.controllers').controller('userCtrl', function(
             // 当前是否开启兑换／积分[1: 关闭, 0: 开启]
             ctrl.bytSwitch = localStorage.get('user').bytSwitch;
 
+            // V2.1.0开关字段
+            ctrl.bytSwitch21 = localStorage.get('user').bytSwitch21;
+
             userService.info()
                 .success(function(data) {
                     ctrl.data = data;
