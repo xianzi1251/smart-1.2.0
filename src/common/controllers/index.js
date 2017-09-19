@@ -36,9 +36,6 @@ angular.module('app.controllers').controller('indexCtrl', function(
     _.assign(ctrl, {
         $scope: $scope,
 
-        // 跳转商品详情
-        goProductInfo: stateUtils.goProductInfo,
-
         // 跳转广告列表
         goAdvList: stateUtils.goAdvList,
 
@@ -50,6 +47,15 @@ angular.module('app.controllers').controller('indexCtrl', function(
 
         // 跳转商城－商品详情
         goMallProductInfo: stateUtils.goMallProductInfo,
+
+        // 跳转课程商品详情／图书商品详情页
+        goProductInfo: function(entityName, genreName) {
+            if (genreName == 'book') {
+                ctrl.goMallProductInfo(entityName);
+            } else {
+                stateUtils.goProductInfo(entityName, genreName);
+            }
+        },
 
         // 轮播图跳转
         goSliderAdv: function(item) {
