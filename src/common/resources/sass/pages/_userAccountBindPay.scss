@@ -1,0 +1,165 @@
+@charset "utf-8";
+
+.user-account-bind-pay-panel {
+    
+    .banner-image {
+        position: relative;
+        height: convert-rem(185px);
+        margin-bottom: 20px;
+        background-size: 100% convert-rem(185px);
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &.alipay-banner {
+            background-image: url(#{$images-path}/alipay/image-banner.jpg);
+        }
+
+        &.wechat-banner {
+            background-image: url(#{$images-path}/wechat/image-banner.jpg);
+        }
+
+        &.card-banner {
+            background-image: url(#{$images-path}/card/image-banner.jpg);
+        }
+
+        .banner-btn {
+            position: absolute;
+            top: convert-rem(125px);
+            left: 50%;
+            width: convert-rem(160px);
+            height: convert-rem(40px);
+            margin-left: convert-rem(-80px);
+        }
+    }
+
+    .bind-main {
+        padding: 0 20px 15px;
+    }
+
+    .bind-text {
+        margin-bottom: 20px;
+        line-height: 2em;
+        color: #1da8ed;
+        @extend %font-size-nano;
+
+        .iconfont {
+            margin-right: 5px;
+            @extend %font-size-nano;
+        }
+    }
+
+    .bind-title {
+        margin-bottom: 20px;
+        @extend %font-size-big;
+    }
+
+    .step-title {
+        margin-bottom: 20px;
+        line-height: 1.3em;
+        color: $text-color-secondary;
+        @extend %font-size-small;
+    }
+
+    .step-image {
+        width: convert-rem(195px);
+        margin: 0 auto 20px;
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: 100% auto;
+
+        &.alipay-step-image-1 {
+            height: convert-rem(60px);
+            background-image: url(#{$images-path}/alipay/image-1.jpg);
+        }
+
+        &.alipay-step-image-2 {
+            height: convert-rem(170px);
+            background-image: url(#{$images-path}/alipay/image-2.jpg);
+        }
+
+        &.alipay-step-image-3 {
+            height: convert-rem(285px);
+            background-image: url(#{$images-path}/alipay/image-3.jpg);
+        }
+
+        &.alipay-step-image-4 {
+            height: convert-rem(190px);
+            background-image: url(#{$images-path}/alipay/image-4.jpg);
+        }
+
+        &.alipay-step-image-5 {
+            height: convert-rem(180px);
+            background-image: url(#{$images-path}/alipay/image-5.jpg);
+        }
+
+        &.wechat-step-image-1 {
+            height: convert-rem(60px);
+            background-image: url(#{$images-path}/wechat/image-1.jpg);
+        }
+
+        &.wechat-step-image-2 {
+            height: convert-rem(200px);
+            background-image: url(#{$images-path}/wechat/image-2.jpg);
+        }
+
+        &.wechat-step-image-3 {
+            height: convert-rem(220px);
+            background-image: url(#{$images-path}/wechat/image-3.jpg);
+        }
+
+        &.wechat-step-image-4 {
+            height: convert-rem(200px);
+            background-image: url(#{$images-path}/wechat/image-4.jpg);
+        }
+
+        &.wechat-step-image-5 {
+            height: convert-rem(200px);
+            background-image: url(#{$images-path}/wechat/image-5.jpg);
+        }
+
+        &.wechat-step-image-6 {
+            height: convert-rem(180px);
+            background-image: url(#{$images-path}/wechat/image-6.jpg);
+        }
+
+        &.card-step-image-1 {
+            height: convert-rem(60px);
+            background-image: url(#{$images-path}/card/image-1.jpg);
+        }
+
+        &.card-step-image-2 {
+            height: convert-rem(170px);
+            background-image: url(#{$images-path}/card/image-2.jpg);
+        }
+
+        &.card-step-image-3 {
+            height: convert-rem(185px);
+            background-image: url(#{$images-path}/card/image-3.jpg);
+        }
+
+        &.card-step-image-4 {
+            height: convert-rem(190px);
+            background-image: url(#{$images-path}/card/image-4.jpg);
+        }
+
+        &.card-step-image-5 {
+            height: convert-rem(160px);
+            background-image: url(#{$images-path}/card/image-5.jpg);
+        }
+    }
+
+    .bind-tips-title {
+        padding-top: 25px;
+        margin: 30px 0 20px;
+        line-height: 1.5em;
+        @extend %font-size-big;
+        background: superfine-border-top($line-color);
+    }
+
+    .bind-tips-text {
+        margin-bottom: 16px;
+        line-height: 1.3em;
+        color: $text-color-secondary;
+        @extend %font-size-small;
+    }
+}

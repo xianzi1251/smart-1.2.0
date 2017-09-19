@@ -153,16 +153,6 @@ angular.module('app')
             }
         },
 
-        'tabs.orderList': {
-            url: '/orderList',
-            views: {
-                user: {
-                    templateUrl: 'templates/orderList.html',
-                    controller: 'orderListCtrl as orderList'
-                }
-            }
-        },
-
         'tabs.downloadVideoList': {
             url: '/downloadVideoList',
             views: {
@@ -301,6 +291,12 @@ angular.module('app')
             controller: 'freeInfoCtrl as freeInfo'
         },
 
+        'orderList': {
+            url: '/orderList',
+            templateUrl: 'templates/orderList.html',
+            controller: 'orderListCtrl as orderList'
+        },
+
         'orderInfo': {
             url: '/orderInfo?orderId',
             templateUrl: 'templates/orderInfo.html',
@@ -331,6 +327,41 @@ angular.module('app')
             url: '/couponList',
             templateUrl: 'templates/couponList.html',
             controller: 'couponListCtrl as couponList'
+        },
+
+        // 我的帐户
+        'userAccount': {
+            url: '/userAccount',
+            templateUrl: 'templates/userAccount.html',
+            controller: 'userAccountCtrl as account'
+        },
+
+        // 绑定支付宝
+        'userAccountBindAlipay': {
+            url: '/userAccountBindAlipay',
+            templateUrl: 'templates/userAccountBindAlipay.html',
+            controller: 'userAccountBindPayCtrl as bind'
+        },
+
+        // 绑定微信
+        'userAccountBindWechat': {
+            url: '/userAccountBindWechat',
+            templateUrl: 'templates/userAccountBindWechat.html',
+            controller: 'userAccountBindPayCtrl as bind'
+        },
+
+        // 绑定银行卡
+        'userAccountBindBankCard': {
+            url: '/userAccountBindBankCard',
+            templateUrl: 'templates/userAccountBindBankCard.html',
+            controller: 'userAccountBindPayCtrl as bind'
+        },
+
+        // 购买记录
+        'userAccountPurchasedList': {
+            url: '/userAccountPurchasedList',
+            templateUrl: 'templates/userAccountPurchasedList.html',
+            controller: 'userAccountPurchasedListCtrl as purchasedList'
         },
 
         // 积分兑换／兑换码中的视频详情
