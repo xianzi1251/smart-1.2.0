@@ -25,7 +25,7 @@ angular.module('app.services').factory('popup', ["$ionicPopup", function(
                 template: $translate.instant(content),
                 okText: '更新',
                 okType: 'button-primary',
-                cancelText: '取消'
+                cancelText: '以后再说'
             });
         },
 

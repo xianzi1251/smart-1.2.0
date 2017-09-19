@@ -106,6 +106,8 @@ app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService,
                 url = data.iosUrl;
             }
 
+            var description =  _.unescape(data.description).replace(/;/g, ';<br />');
+
             // 有新版本更新
             if (isUpdate) {
                 if (data.force) {
@@ -116,7 +118,7 @@ app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService,
                 }
 
                 // 判断是否强制更新
-                var promise = data.force ? popup.updateAlert(data.description, url) : popup.updateConfirm(data.description);
+                var promise = data.force ? popup.updateAlert(description, url) : popup.updateConfirm(description);
                 promise.then(function(res) {
                     if (res) {
                         cordova.InAppBrowser.open(url, '_system');
