@@ -29,12 +29,12 @@ angular.module('app.controllers').controller('exchangeRecordListCtrl', function(
 
         // 已兑换过的可进入视频页面
         goExchangeVideoList: function(item) {
-            // var stateName = stateUtils.getStateNameByCurrentTab('exchangeVideoList');
-            // nativeTransition.forward();
-            // $state.go(stateName, {
-            //     exchangeId: item.id,
-            //     from: 'exchangeCode'
-            // });
+            var stateName = stateUtils.getStateNameByCurrentTab('exchangeVideoList');
+            nativeTransition.forward();
+            $state.go(stateName, {
+                exchangeId: item.id,
+                from: 'exchangeCode'
+            });
         }
 
     });
