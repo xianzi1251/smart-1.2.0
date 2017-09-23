@@ -215,7 +215,8 @@ angular.module('app.services').factory('userService',function(
          * 发送手机短信验证码
          */
         sendSMSVerifyCode: function(obj) {
-            var mobile = obj.phoneNumber,
+            var kaptcha = obj.imageVerifyCode,
+                mobile = obj.phoneNumber,
                 content = obj.content,
                 validateEvent = obj.event;
 
@@ -225,7 +226,7 @@ angular.module('app.services').factory('userService',function(
                 Content: content,
                 validateEvent: validateEvent,
                 validateType: 'mobile',
-                kaptcha: 'byt'
+                kaptcha: kaptcha
             });
         },
 

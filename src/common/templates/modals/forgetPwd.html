@@ -22,6 +22,17 @@
                 </div>
                 <div class="form-content-row row">
                     <div class="col row-input col-center">
+                        <input type="text" placeholder="请输入图片验证码"
+                           name="imageVerifyCode" ng-model="forgetPwd.imageVerifyCode"
+                           required />
+                    </div>
+                    <div class="col col-adaptive form-image-code">
+                        <img class="image-verity-code" ng-src="{{forgetPwd.imageVerifyCodeUrl}}"
+                            ng-click="forgetPwd.getImageVerifyCodeUrl()" />
+                    </div>
+                </div>
+                <div class="form-content-row row">
+                    <div class="col row-input col-center">
                         <input type="text" placeholder="请输入验证码"
                            name="smsVerifyCode" ng-model="forgetPwd.smsVerifyCode"
                            ng-minlength="6" maxlength="6" 

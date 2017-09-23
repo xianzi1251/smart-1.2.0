@@ -40,6 +40,11 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
          */
         sendSMSVerifyCode: function() {
 
+            if (!ctrl.imageVerifyCode) {
+                toast.open('请输入图片验证码');
+                return;
+            }
+
             // 用户手机号
             var phoneNumber = ctrl.loginName;
 
@@ -68,6 +73,7 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
 
             // 发送验证码参数
             var sendSMSParam = {
+                imageVerifyCode: ctrl.imageVerifyCode,
                 phoneNumber: ctrl.loginName,
                 content: "尊敬的用户，您在进行半月谈时政教育修改密码，验证码：<vcode>，请妥善保管。",
                 event: 'modifyLoginPwd'
@@ -91,7 +97,16 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
                 .finally(function() {
                     // 解锁
                     ctrl.lockSend = false;
+
+                    // 重新获取图片校验码
+                    ctrl.getImageVerifyCodeUrl();
                 });
+        },
+
+        // 获取图片校验码
+        getImageVerifyCodeUrl: function() {
+            var url = window.APP_CONFIG.serviceAPI + '/cosmos.json?command=scommerce.captcha&timestamp=' + new Date().getTime();
+            ctrl.imageVerifyCodeUrl = url;
         },
 
         // 提交
@@ -157,5 +172,11 @@ angular.module('app.controllers').controller('modifyPwdCtrl', function(
         }, 1000);
 
     }
+
+    var deregistration = $scope.$on('$ionicView.afterEnter', function() {
+        // 获取图片校验码
+        ctrl.getImageVerifyCodeUrl();
+        deregistration();
+    });
 
 });

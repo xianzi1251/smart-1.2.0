@@ -50,6 +50,11 @@ angular.module('app.controllers').controller('registerCtrl', function(
                 return;
             }
 
+            if (!ctrl.imageVerifyCode) {
+                toast.open('请输入图片验证码');
+                return;
+            }
+
             // 未注册过的手机号可以发送短信验证码
             userService.verifyUniqueUser(phoneNumber)
                 .success(function(response) {
@@ -79,6 +84,7 @@ angular.module('app.controllers').controller('registerCtrl', function(
 
                     // 发送验证码参数
                     var sendSMSParam = {
+                        imageVerifyCode: ctrl.imageVerifyCode,
                         phoneNumber: ctrl.loginName,
                         content: "尊敬的用户，您在进行半月谈时政教育注册，验证码：<vcode>，请妥善保管。",
                         event: 'register'
@@ -102,9 +108,18 @@ angular.module('app.controllers').controller('registerCtrl', function(
                         .finally(function() {
                             // 解锁
                             ctrl.lockSend = false;
+
+                            // 重新获取图片校验码
+                            ctrl.getImageVerifyCodeUrl();
                         });
                 })
                 .error(errorHandling);
+        },
+
+        // 获取图片校验码
+        getImageVerifyCodeUrl: function() {
+            var url = window.APP_CONFIG.serviceAPI + '/cosmos.json?command=scommerce.captcha&timestamp=' + new Date().getTime();
+            ctrl.imageVerifyCodeUrl = url;
         },
 
         // 提交
@@ -169,5 +184,8 @@ angular.module('app.controllers').controller('registerCtrl', function(
         }, 1000);
 
     }
+
+    // 获取图片校验码
+    ctrl.getImageVerifyCodeUrl();
 
 });

@@ -43,6 +43,11 @@ angular.module('app.controllers').controller('wechatBindMobileCtrl', function(
                 return;
             }
 
+            if (!ctrl.imageVerifyCode) {
+                toast.open('请输入图片验证码');
+                return;
+            }
+
             // 上次和本次手机号不一样 且有倒计时则取消计时器
             if (ctrl.backMobile != phoneNumber && ctrl.interval != 0) {
                 // 重置
@@ -68,6 +73,7 @@ angular.module('app.controllers').controller('wechatBindMobileCtrl', function(
 
             // 发送验证码参数
             var sendSMSParam = {
+                imageVerifyCode: ctrl.imageVerifyCode,
                 phoneNumber: phoneNumber,
                 content: "尊敬的用户，您在进行半月谈时政教育绑定手机号，验证码：<vcode>，请妥善保管。",
                 event: 'bindPhone'
@@ -97,7 +103,16 @@ angular.module('app.controllers').controller('wechatBindMobileCtrl', function(
                 .finally(function() {
                     // 解锁
                     ctrl.lockSend = false;
+
+                    // 重新获取图片校验码
+                    ctrl.getImageVerifyCodeUrl();
                 });
+        },
+
+        // 获取图片校验码
+        getImageVerifyCodeUrl: function() {
+            var url = window.APP_CONFIG.serviceAPI + '/cosmos.json?command=scommerce.captcha&timestamp=' + new Date().getTime();
+            ctrl.imageVerifyCodeUrl = url;
         },
 
         // 提交
@@ -164,5 +179,11 @@ angular.module('app.controllers').controller('wechatBindMobileCtrl', function(
         }, 1000);
 
     }
+
+    var deregistration = $scope.$on('$ionicView.afterEnter', function() {
+        // 获取图片校验码
+        ctrl.getImageVerifyCodeUrl();
+        deregistration();
+    });
 
 });
