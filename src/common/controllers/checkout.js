@@ -277,8 +277,7 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
 
                             ctrl.close();
 
-                            // 实物订单，需要使用支付宝／微信支付
-                            if (ctrl.orderType == 1) {
+                            if (ctrl.orderType == 1) {  // 实物订单，需要使用支付宝／微信支付
                                 
                                 payService.pay(orderId, payment)
                                     .success(function() {
@@ -297,6 +296,14 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
 
                                     })
                                     .error(errorHandling);
+
+                            } else if (ctrl.orderType == 0) {  // 虚拟订单，直接支付成功
+                                // 开启支付成功页面
+                                modals.paymentOrderSuccess.open({
+                                    params: {
+                                        orderId: orderId
+                                    }
+                                });
                             }
                         })
                         .error(errorHandling); 
