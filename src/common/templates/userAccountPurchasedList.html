@@ -28,10 +28,10 @@
         <ul class="account-list">
             <li class="account-item row" ng-repeat="item in purchasedList.list">
                 <div class="col">
-                    <div class="item-title">{{item.detail}}</div>
+                    <div class="item-title" ng-bind-html="item.detail"></div>
                     <div class="item-date">{{item.placedTime}}</div>
                 </div>
-                <span class="col col-adaptive col-center item-number">{{item.transactionAmount | currency: ''}}</span>
+                <span class="col col-adaptive col-center item-number">{{item.symbol}}{{item.transactionAmount | currency: ''}}</span>
             </li>
         </ul>
 

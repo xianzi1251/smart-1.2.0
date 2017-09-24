@@ -74,15 +74,29 @@
             </div>
             <div class="checkout-row clearfix" ng-click="checkout.goChoosePayment()">
                 <div class="checkout-row-title">支付方式</div>
-                <div class="checkout-row-payment"
-                    ng-if="checkout.checkoutInfo.payment === 'AliPay'">
-                    <i class="iconfont icon-zhifubao"></i>支付宝
+
+                <!-- 虚拟订单 支付方式 -->
+                <div ng-show="checkout.orderType == 0">
+                    <div class="coupon-count">
+                        <span>帐户余额：{{checkout.accountBalance | currency: ''}}元</span>
+                    </div>
+                    <div class="checkout-row-payment">
+                        <i class="icon-account"></i>余额支付
+                    </div>
                 </div>
-                <div class="checkout-row-payment"
-                    ng-if="checkout.checkoutInfo.payment === 'WeChat'">
-                    <i class="iconfont icon-weixin"></i>微信
+
+                <!-- 实物订单 支付方式 -->
+                <div ng-show="checkout.orderType == 1">
+                    <div class="checkout-row-payment"
+                        ng-if="checkout.checkoutInfo.payment === 'AliPay'">
+                        <i class="iconfont icon-zhifubao"></i>支付宝
+                    </div>
+                    <div class="checkout-row-payment"
+                        ng-if="checkout.checkoutInfo.payment === 'WeChat'">
+                        <i class="iconfont icon-weixin"></i>微信
+                    </div>
+                    <i class="checkout-row-icon iconfont icon-rightarrow"></i>
                 </div>
-                <i class="checkout-row-icon iconfont icon-rightarrow"></i>
             </div>
             <div class="checkout-row clearfix" ng-click="checkout.goCheckoutAmount()">
                 <div class="checkout-row-title">应付金额</div>
@@ -106,7 +120,7 @@
             </li>
             <li class="footer-item col">
                 <button class="button button-block button-primary"
-                    ng-click="checkout.submit()">立即支付</button>
+                    ng-click="checkout.submit()">{{checkout.btnText}}</button>
             </li>
         </ul>
     </ion-footer-bar>

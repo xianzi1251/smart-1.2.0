@@ -124,6 +124,18 @@ angular.module('app.services').factory('cartService', function(
                 .success(function() {
                     messageCenter.publishMessage('cart.delete');
                 });
+        },
+
+        /**
+         * 校验是否可下单
+         * ios不可混合下单
+         */
+        validateCheckout: function(itemIds) {
+            return api.post('/cosmos.json?command=scommerce.CL_ORD_ITEM_GET_UNBUYABLE', {
+                    proName: 'CL_ORD_ITEM_GET_UNBUYABLE',
+                    itemIds: itemIds,
+                    device: ionic.Platform.isAndroid() ? 'android' : 'ios'
+                });
         }
 
     };

@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('checkoutCtrl', function(
     $scope, toast, $params, modals, checkoutService, errorHandling, loading, payService, messageCenter,
-    consigneeService, couponService, utils
+    consigneeService, couponService, utils, stateUtils, nativeTransition, $state
 ) {
 
     var ctrl = this;
@@ -48,6 +48,20 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
         // 初始化数据
         init: function() {
 
+            // 判断当前为虚拟订单还是实物订单
+            checkoutService.getOrderType(ctrl.ordItemIds)
+                .success(function(response) {
+                    ctrl.orderType = response.object.physical;
+
+                    // 虚拟订单时默认支付方式
+                    if (ctrl.orderType == 0) {
+                        ctrl.checkoutInfo.payment = 'balance';
+                        ctrl.accountBalance = response.object.balance;
+                    }
+                })
+                .error(errorHandling);
+
+            // 获取收货信息，默认取第一个
             consigneeService.getCosigneeList()
                 .success(function(response) {
                     if (response.list[0].length > 0) {
@@ -83,6 +97,9 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                             codes += coupon.code + ',';
                             allCouponCodes.push(coupon.code);
                         });
+
+                        // 去除最后一个逗号
+                        codes = codes.substring(0, codes.length - 1);
 
                         allCouponCodes = _.uniq(allCouponCodes);
 
@@ -150,6 +167,15 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                             item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
                         });
 
+                        // 如当前为虚拟订单，且金额不足，按钮文本修改
+                        if (ctrl.orderType == 0 && ctrl.data.amount.contractedTotal.RMB > ctrl.accountBalance) {
+                            ctrl.btnText = '余额不足，去充值';
+                        } else {
+                            ctrl.btnText = '立即支付';
+                        }
+
+                        console.log(ctrl.data.amount.contractedTotal.RMB, ctrl.accountBalance);
+
                     })
                     .finally(function() {
                         loading.close();
@@ -165,6 +191,13 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                         _.forEach(ctrl.data.items, function(item) {
                             item.sku.picUrl = window.APP_CONFIG.serviceAPI + item.sku.picUrl;
                         });
+
+                        // 如当前为虚拟商品，且金额不足，按钮文本修改
+                        if (ctrl.orderType == 0 && ctrl.data.amount.contractedTotal.RMB > ctrl.accountBalance) {
+                            ctrl.btnText = '余额不足，去充值';
+                        } else {
+                            ctrl.btnText = '立即支付';
+                        }
 
                     })
                     .finally(function() {
@@ -182,19 +215,31 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
                 return;
             }
 
-            if (_.isEmpty(ctrl.couponCode)) {
+            // 如当前为虚拟商品，且金额不足，跳转至充值页面
+            if (ctrl.orderType == 0 && ctrl.data.amount.contractedTotal.RMB > ctrl.accountBalance) {
+                ctrl.close();
 
-                // 无优惠券时，直接提交订单
-                ctrl.submitOrder();
+                setTimeout(function() {
+                    var stateName = stateUtils.getStateNameByCurrentTab('userAccount');
+                    nativeTransition.forward();
+                    $state.go(stateName);
+                });
             } else {
 
-                // 有优惠券时，需要先保存优惠券信息
-                couponService.saveCoupon(ctrl.ordItemIds, ctrl.couponCode)
-                        .success(function() {
-                        
-                            ctrl.submitOrder();
-                    })
-                    .error(errorHandling);
+                if (_.isEmpty(ctrl.couponCode)) {
+
+                    // 无优惠券时，直接提交订单
+                    ctrl.submitOrder();
+                } else {
+
+                    // 有优惠券时，需要先保存优惠券信息
+                    couponService.saveCoupon(ctrl.ordItemIds, ctrl.couponCode)
+                            .success(function() {
+                            
+                                ctrl.submitOrder();
+                        })
+                        .error(errorHandling);
+                }
             }
         },
 
@@ -232,23 +277,27 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
 
                             ctrl.close();
 
-                            payService.pay(orderId, payment)
-                                .success(function() {
+                            // 实物订单，需要使用支付宝／微信支付
+                            if (ctrl.orderType == 1) {
+                                
+                                payService.pay(orderId, payment)
+                                    .success(function() {
 
-                                    // 开启支付成功页面
-                                    modals.paymentOrderSuccess.open({
-                                        params: {
-                                            orderId: orderId
-                                        }
-                                    });
+                                        // 开启支付成功页面
+                                        modals.paymentOrderSuccess.open({
+                                            params: {
+                                                orderId: orderId
+                                            }
+                                        });
 
-                                    // 广播消息 支付完成
-                                    messageCenter.publishMessage('pay.success', {
-                                        payableAmount: payableAmount
-                                    });
+                                        // 广播消息 支付完成
+                                        messageCenter.publishMessage('pay.success', {
+                                            payableAmount: payableAmount
+                                        });
 
-                                })
-                                .error(errorHandling);
+                                    })
+                                    .error(errorHandling);
+                            }
                         })
                         .error(errorHandling); 
 
@@ -329,16 +378,20 @@ angular.module('app.controllers').controller('checkoutCtrl', function(
          * 选择支付方式
          */
         goChoosePayment: function() {
-            modals.choosePayment.open({
-                params: {
-                    orderId: ctrl.data.id,
-                    source: 'checkout',
-                    payment: ctrl.checkoutInfo.payment,
-                    callback: function(payment) {
-                        ctrl.checkoutInfo.payment = payment;
+
+            //  实物订单可以选择支付方式
+            if (ctrl.orderType == 1) {
+                modals.choosePayment.open({
+                    params: {
+                        orderId: ctrl.data.id,
+                        source: 'checkout',
+                        payment: ctrl.checkoutInfo.payment,
+                        callback: function(payment) {
+                            ctrl.checkoutInfo.payment = payment;
+                        }
                     }
-                }
-            });
+                });
+            }
         },
 
         /**

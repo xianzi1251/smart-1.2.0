@@ -16,6 +16,21 @@ angular.module('app.controllers').controller('userAccountPurchasedListCtrl', fun
             return userAccountService.getAccountHistory()
                 .success(function(response) {
                     ctrl.list = response.list[0];
+
+                    _.forEach(ctrl.list, function(item) {
+
+                        // 如果价格为负数／描述强制换行，则需要特殊处理
+                        item.symbol = '';
+                        if (item.transactionAmount < 0) {
+
+                            // 价格为负数
+                            item.symbol = '-';
+                            item.transactionAmount = Math.abs(item.transactionAmount);
+
+                            // 遇到冒号就换行
+                            item.detail =  _.unescape(item.detail).replace(/:/g, ':<br />');
+                        }
+                    });
                 })
                 .error(errorHandling)
                 .finally(function() {

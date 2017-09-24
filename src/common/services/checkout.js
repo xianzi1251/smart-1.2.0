@@ -38,7 +38,8 @@ angular.module('app.services').factory('checkoutService', function(
                     invoiceTitle: invoiceTitle,
                     taxpayerNo: taxpayerNo,
                     invoiceEmail: invoiceEmail,
-                    invoiceContent: invoiceContent
+                    invoiceContent: invoiceContent,
+                    device: ionic.Platform.isAndroid() ? 'android' : 'ios'
                 })
                 .success(function() {
                     // 广播消息 生成订单后，刷新购物车数据
@@ -66,6 +67,17 @@ angular.module('app.services').factory('checkoutService', function(
                     proName: 'BYT_ORD_CHANGE_PAYTYPE',
                     orderId: orderId,
                     termsName: termsName
+                });
+        },
+
+        /**
+         * 进入结算中心，需要先判断当前订单为虚拟还是实物订单［显示不同的支付方式］
+         */
+        getOrderType: function(itemIds) {
+            return api.post('/cosmos.json?command=scommerce.BYT_ORD_PHYSICAL_GET', {
+                    proName: 'BYT_ORD_PHYSICAL_GET',
+                    itemIds: itemIds,
+                    device: ionic.Platform.isAndroid() ? 'android' : 'ios'
                 });
         }
 

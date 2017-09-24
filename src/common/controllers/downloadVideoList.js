@@ -132,6 +132,9 @@ angular.module('app.controllers').controller('downloadVideoListCtrl', function(
                 }
             });
 
+            // 去除最后一个逗号
+            cacheIds = cacheIds.substring(0, cacheIds.length - 1);
+
             // 删除操作
             if (cacheIds == '') {
                 toast.open('请选择需要删除的内容');
