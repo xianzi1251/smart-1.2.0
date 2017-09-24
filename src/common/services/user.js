@@ -2,7 +2,7 @@
  * 封装用户相关业务操作
  */
 angular.module('app.services').factory('userService',function(
-    $http, api, messageCenter, localStorage, errorHandling
+    $http, api, messageCenter, localStorage, errorHandling, Md5
 ){
 
     return {
@@ -217,7 +217,12 @@ angular.module('app.services').factory('userService',function(
         sendSMSVerifyCode: function(obj) {
             var mobile = obj.phoneNumber,
                 content = obj.content,
-                validateEvent = obj.event;
+                validateEvent = obj.event
+                token = Math.random().toString(36).substr(2),
+                timestamp = Math.random().toFixed(20).substring(2);
+
+            // 加密
+            var sign = Md5.hex_md5(token + validateEvent + mobile + timestamp + window.APP_CONFIG.SIGN_KEY);
 
             return api.post('/cosmos.json?command=config.comSender', {
                 proName: 'comSender',
@@ -225,7 +230,10 @@ angular.module('app.services').factory('userService',function(
                 Content: content,
                 validateEvent: validateEvent,
                 validateType: 'mobile',
-                kaptcha: 'byt'
+                kaptcha: 'byt',
+                timestamp: timestamp,
+                token: token,
+                sign: sign
             });
         },
 
