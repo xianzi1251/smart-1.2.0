@@ -17,7 +17,7 @@ angular.module('app.controllers').controller('userCtrl', function(
         init: function() {
             ctrl.data = {};
 
-            ctrl.showUserAccount = ionic.Platform.isAndroid() ? false : true;
+            ctrl.iosPlateform = ionic.Platform.isAndroid() ? false : true;
 
             // 如当前为第三方登录，则隐藏 ‘修改密码’ 条目，显示 ‘绑定手机号’ 条目
             ctrl.thirdPartylogin = localStorage.get('user').thirdPartylogin;
