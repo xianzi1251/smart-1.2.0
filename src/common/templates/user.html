@@ -17,6 +17,18 @@
 
         <ul class="user-list light-bg">
 
+            <li class="user-item row" ng-click="user.goUserAccount()"
+                ng-if="user.iosPlateform">
+                <i class="iconfont icon-zaizhipeixun icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">我的帐户</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
             <li class="user-item row" ng-click="user.goShoppingCart()">
                 <i class="iconfont icon-shoppingcart icon-left col col-adaptive"></i>
                 <div class="col">
@@ -162,18 +174,6 @@
                     <div class="item-row row">
                         <span class="item-text col">绑定手机号</span>
                         <span class="item-tip col col-adaptive">{{user.wechatBindPhone}}</span>
-                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
-                    </div>
-                </div>
-            </li>
-
-            <li class="user-item row" ng-click="user.goUserAccount()"
-                ng-if="user.iosPlateform">
-                <i class="iconfont icon-zaizhipeixun icon-left col col-adaptive"></i>
-                <div class="col">
-                    <div class="item-row row">
-                        <span class="item-text col">我的帐户</span>
-                        <span class="item-tip col col-adaptive"></span>
                         <i class="iconfont icon-rightarrow col col-adaptive"></i>
                     </div>
                 </div>
