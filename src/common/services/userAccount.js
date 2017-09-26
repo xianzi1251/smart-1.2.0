@@ -1,4 +1,4 @@
-angular.module('app.services').factory('userAccountService', ['api',function(api, messageCenter) {
+angular.module('app.services').factory('userAccountService', ['api',function(api, messageCenter, Md5) {
 
     return {
 
@@ -35,11 +35,21 @@ angular.module('app.services').factory('userAccountService', ['api',function(api
          * 充值
          */
         recharge: function(receipt, balanceId, passKey) {
+            var privateKey = 'gregierhgFDru37@rf_4ngy',
+                token = Math.random().toString(36).substr(2),
+                timestamp = Math.random().toFixed(20).substring(2);
+
+            // 加密
+            var sign = Md5.hex_md5(token + timestamp + balanceId + passKey + privateKey);
+
             return api.post('/IapServlet.slrt', {
                 proName: 'IAP_RECHARGE',
                 receipt: receipt,
                 balanceId: balanceId,
-                passKey: passKey
+                passKey: passKey,
+                sign: sign,
+                token: token,
+                timestamp: timestamp
             });
         },
 
