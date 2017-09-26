@@ -9,7 +9,7 @@ angular.module('app.services').factory('unique',function(
     } else if (ionic.Platform.isIOS()) {
         device = 'ios';
     } else {
-        divice = 'web';
+        device = 'web';
     }
 
     var unique = localStorage.get('unique');
