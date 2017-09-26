@@ -3,8 +3,9 @@
 .user-account-panel {
     
     .account-num {
-        height: 2.2em;
-        line-height: 2.2em;
+        height: 2.5em;
+        padding-top: 5px;
+        line-height: 2.5em;
         text-align: center;
         font-size: 28px;
     }
@@ -51,14 +52,19 @@
     }
 
     .account-recharge {
-        padding: 5px 0 20px;
+        padding: 14px 0 20px;
         background: superfine-border-bottom($line-color);
 
         .recharge-title {
-            margin: 16px 0;
+            margin-bottom: 14px;
             padding: 0 12px;
-            line-height: 2em;
-            @extend %font-size-small;
+            line-height: 1.5em;
+            color: $text-color-quiet;
+            @extend %font-size-base;
+
+            span {
+                @extend %font-size-mini;
+            }
         }
 
         .recharge-list {
@@ -106,13 +112,15 @@
     }
 
     .account-shopping {
-        padding: 12px 0 24px;
+        padding: 14px 0 24px;
         background: superfine-border-bottom($line-color);
 
         .shopping-title {
             padding: 0 12px;
-            margin-bottom: 8px;
-            @extend %font-size-small;
+            margin-bottom: 14px;
+            line-height: 1.5em;
+            color: $text-color-quiet;
+            @extend %font-size-base;
         }
 
         .shopping-list {
