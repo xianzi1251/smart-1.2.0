@@ -36,6 +36,8 @@ angular.module('app.controllers').controller('userAccountCtrl', function(
 
             ctrl.finishProductsLoading = false;
 
+            ctrl.finishProductsIAPLoading = false;
+
             userAccountService.getIapProducts()
                 .success(function(response) {
 
@@ -61,13 +63,12 @@ angular.module('app.controllers').controller('userAccountCtrl', function(
                         inAppPurchase.getProducts(productIds)
                             .then(function (iapProducts) {
                                 // console.log('iapProducts', iapProducts);
-
+                                ctrl.finishProductsIAPLoading = true;
                                 loading.close();
-
                             })
                             .catch(function (err) {
-                                loading.close();
                                 // console.log('getProducts-error', err);
+                                loading.close();
                             });
                     } else {
                         loading.close();
@@ -97,8 +98,13 @@ angular.module('app.controllers').controller('userAccountCtrl', function(
 
         // 去充值
         submit: function() {
-                
+
             if (window.inAppPurchase) {
+
+                if (!ctrl.finishProductsIAPLoading) {
+                    toast.open('正在连接itunes，请稍等');
+                    return;
+                }
 
                 loading.open();
 
