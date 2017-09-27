@@ -203,9 +203,9 @@ app.run(function($rootScope, $q, $cordovaFile, $ionicPlatform) {
                 });
             } else {
                 // 初始化IOS平台的下载目录
-                $rootScope.downloadPath = cordova.file.documentsDirectory + folderName + '/';
+                $rootScope.downloadPath = cordova.file.cacheDirectory + folderName + '/';
 
-                createDir(cordova.file.documentsDirectory, folderName)
+                createDir(cordova.file.cacheDirectory, folderName)
                     .then(function (success) {
                         $rootScope.downloadPath = success.nativeURL;
 

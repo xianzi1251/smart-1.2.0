@@ -1,0 +1,173 @@
+@charset "utf-8";
+
+.user-account-panel {
+    
+    .account-num {
+        height: 2.5em;
+        padding-top: 5px;
+        line-height: 2.5em;
+        text-align: center;
+        font-size: 28px;
+    }
+
+    .account-bind {
+        text-align: center;
+        margin: 0 12px;
+        padding-bottom: 8px;
+        background: superfine-border-bottom($line-color);
+
+        .bind-btn {
+            display: inline-block;
+            padding: 0 12px;
+            line-height: 2em;
+            color: lighten($positive, 10%);
+            @extend %font-size-mini;
+        }
+
+        .btn-center {
+            position: relative;
+
+            &:before {
+                position: absolute;
+                left: -3px;
+                top: 0.5em;
+                width: 1px;
+                height: 1em;
+                @extend %font-size-mini;
+                background: superfine-border-left(lighten($positive, 10%));
+                content: '';
+            }
+
+            &:after {
+                position: absolute;
+                right: -3px;
+                top: 0.5em;
+                width: 1px;
+                height: 1em;
+                @extend %font-size-mini;
+                background: superfine-border-left(lighten($positive, 10%));
+                content: '';
+            }
+        }
+    }
+
+    .account-recharge {
+        padding: 14px 0 20px;
+        background: superfine-border-bottom($line-color);
+
+        .recharge-title {
+            margin-bottom: 14px;
+            padding: 0 12px;
+            line-height: 1.5em;
+            color: $text-color-quiet;
+            @extend %font-size-base;
+
+            span {
+                @extend %font-size-mini;
+            }
+        }
+
+        .recharge-list {
+            padding: 0 4px;
+        }
+
+        .recharge-item {
+            float: left;
+            width: 33.3%;
+        }
+
+        .recharge-text {
+            line-height: 2.5em;
+            color: $primary-color;
+            margin: 0 8px 10px 8px;
+            @extend %font-size-huge;
+            text-align: center;
+            border: $primary-color 1px solid;
+            border-radius: 2px;
+
+            &.active {
+                color: $light;
+                background-color: $primary-color;
+            }
+        }
+
+        .recharge-selected {
+            padding: 5px 0;
+            text-align: center;
+            color: $primary-color;
+            @extend %font-size-small;
+        }
+
+        .recharge-btn {
+            padding: 12px;
+
+            .button {
+                height: 38px;
+                min-height: 38px;
+                line-height: 36px;
+                margin: 0;
+                @extend %font-size-big;
+            }
+        }
+    }
+
+    .account-shopping {
+        padding: 14px 0 24px;
+        background: superfine-border-bottom($line-color);
+
+        .shopping-title {
+            padding: 0 12px;
+            margin-bottom: 14px;
+            line-height: 1.5em;
+            color: $text-color-quiet;
+            @extend %font-size-base;
+        }
+
+        .shopping-list {
+            padding: 0 12px;
+        }
+
+        .shopping-item {
+            float: left;
+            width: 33.3%;
+        }
+
+        .item-icon {
+            width: convert-rem(35px);
+            height: convert-rem(35px);
+            margin: 0 auto 8px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: convert-rem(35px);
+
+            &.icon-1 {
+                background-image: url(#{$images-path}/icon-shopping-manager-1@2x.png);
+            }
+
+            &.icon-2 {
+                background-image: url(#{$images-path}/icon-shopping-manager-2@2x.png);
+            }
+
+            &.icon-3 {
+                background-image: url(#{$images-path}/icon-shopping-manager-3@2x.png);
+            }
+
+            &.icon-4 {
+                background-image: url(#{$images-path}/icon-shopping-manager-4@2x.png);
+            }
+        }
+
+        .item-text {
+            text-align: center;
+            color: $text-color-secondary;
+            @extend %font-size-mini;
+        }
+    }
+
+    .account-tips {
+        padding: 20px 20px 10px;
+        line-height: 1.5em;
+        color: $text-color-quiet;
+        @extend %font-size-mini;
+    }
+}

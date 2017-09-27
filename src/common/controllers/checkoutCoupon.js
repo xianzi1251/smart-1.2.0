@@ -55,6 +55,9 @@ angular.module('app.controllers').controller('checkoutCouponCtrl', function(
                             allCouponCodes.push(coupon.code);
                         });
 
+                        // 去除最后一个逗号
+                        codes = codes.substring(0, codes.length - 1);
+
                         allCouponCodes = _.uniq(allCouponCodes);
 
                         couponService.getCheckoutCouponList(ctrl.ordItemIds, codes)

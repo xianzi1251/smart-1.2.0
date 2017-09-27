@@ -123,6 +123,11 @@ angular.module('app.services').provider('api', function apiProvider() {
                         // 微信登录／微信支付／支付宝支付
                         deferred.resolve(response);
 
+                    } else if (proName == 'IAP_RECHARGE') {
+
+                        // IAP支付
+                        deferred.resolve(response);
+
                     } else {
 
                         // 接口类型

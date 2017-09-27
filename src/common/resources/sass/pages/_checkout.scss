@@ -198,6 +198,8 @@
     .checkout-row-payment {
         float: right;
         padding-left: 28px;
+        color: $text-color-secondary;
+        @extend %font-size-base;
         background-repeat: no-repeat;
         background-size: 24px auto;
         background-position: left center;
@@ -214,6 +216,17 @@
 
         .icon-weixin {
             color: #1aad19;
+        }
+
+        .icon-account {
+            float: left;
+            width: 24px;
+            height: 24px;
+            margin-right: 3px;
+            background-image: url(#{$images-path}/icon-account-payment.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 24px;
         }
     }
 

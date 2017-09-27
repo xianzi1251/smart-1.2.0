@@ -150,6 +150,9 @@ angular.module('app.controllers').controller('viewVideoListCtrl', function(
                 }
             });
 
+            // 去除最后一个逗号
+            summaryIds = summaryIds.substring(0, summaryIds.length - 1);
+
             // 删除操作
             if (summaryIds == '') {
                 toast.open('请选择需要删除的内容');

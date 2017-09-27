@@ -119,6 +119,7 @@
   <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0" />
   <plugin name="cordova-plugin-splashscreen" spec="~3.2.2" />
   <plugin name="cordova-plugin-network-information" spec="~1.2.1" />
+  <plugin name="cordova-plugin-inapppurchase" spec="~1.1.0" />
 
   <plugin name="cordova-plugin-comall-umanalytics" spec="../plugins/cordova-plugin-comall-umanalytics">
       <variable name="UMENG_APPKEY_ANDROID" value="5997a75275ca3527dc0006d7" />

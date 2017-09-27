@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+.user-account-purchased-list-panel {
+    
+    .account-list {
+        padding: 0 12px;
+        background-color: $light;
+    }
+
+    .account-item {
+        padding: 12px 0;
+        margin: 0;
+        background: superfine-border-bottom($line-color);
+
+        &:last-child {
+            background: none;
+        }
+    }
+
+    .item-title {
+        margin-bottom: 3px;
+        line-height: 1.5em;
+        @extend %font-size-base;
+    }
+
+    .item-date {
+        color: $text-color-quiet;
+        @extend %font-size-mini;
+    }
+
+    .item-number {
+        min-width: convert-rem(60px);
+        color: $primary-color;
+        text-align: right;
+        @extend %font-size-base;
+    }   
+}

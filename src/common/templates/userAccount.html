@@ -1,0 +1,79 @@
+<ion-view title="我的帐户" cm-hide-tabs="true">
+
+    <ion-header-bar class="bar bar-header bar-primary disable-user-behavior">
+        <div class="buttons buttons-left">
+            <span class="left-buttons">
+                <button class="button back-button buttons button-clear button header-item" ng-click="goBack()">
+                    <i class="icon ion-ios-arrow-left"></i>
+                </button>
+            </span>
+        </div>
+        <div class="title title-center header-item">
+            我的帐户
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="user-account-panel stable-bg">
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="account.refresh({showLoading: false})" 
+            pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
+
+        <div ng-if="account.finishLoading && account.finishProductsLoading">
+        
+            <div class="light-bg">
+                <div class="account-num">{{account.accountBalance | currency: ''}}元</div>
+
+                <div class="account-bind">
+                    <span class="bind-btn" ng-click="account.goBindAlipay()">绑定支付宝</span>
+                    <span class="bind-btn btn-center" ng-click="account.goBindWechat()">绑定微信</span>
+                    <span class="bind-btn" ng-click="account.goBindBankCard()">绑定银行卡</span>
+                </div>
+
+                <div class="account-recharge">
+                    <div class="recharge-title">充值<span>（人民币）</span></div>
+                    <ul class="recharge-list clearfix">
+                        <li class="recharge-item" ng-repeat="product in account.products">
+                            <div class="recharge-text" ng-class="{'active': product.active}" 
+                                ng-click="account.selected(product)">
+                                {{product.title}}
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="recharge-selected">充值金额：{{account.rechargeAccount}}</div>
+                    <div class="recharge-btn">
+                        <button class="button button-block button-primary"
+                            ng-click="account.submit()">确认支付</button>
+                    </div>
+                </div>
+
+                <div class="account-shopping">
+                    <div class="shopping-title">购物管理</div>
+                    <ul class="shopping-list clearfix">
+                        <li class="shopping-item" ng-click="account.goAccountList()">
+                            <div class="item-icon icon-1"></div>
+                            <div class="item-text">购买记录</div>
+                        </li>
+                        <li class="shopping-item" ng-click="account.goOrderList()">
+                            <div class="item-icon icon-2"></div>
+                            <div class="item-text">我的订单</div>
+                        </li>
+                        <li class="shopping-item" ng-click="account.goShoppingCart()">
+                            <div class="item-icon icon-3"></div>
+                            <div class="item-text">购物车</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="account-tips">
+                <p>1. 用App Store绑定支付宝、微信或者银行卡可以直接在“半月谈”进行充值购买商品。</p>
+                <p>2. 虚拟产品必须通过苹果系统支付购买，苹果与非苹果设备余额不能互相通用。</p>
+                <p>3. 充值如遇问题，请关注“半月谈时政APP”微信公众号，我们会为你解决。</p>
+            </div>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

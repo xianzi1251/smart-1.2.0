@@ -237,6 +237,9 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
                 }
             });
 
+            // 去除最后一个逗号
+            itemsId = itemsId.substring(0, itemsId.length - 1);
+
             popup.confirm('提示', '确定要删除这 ' + ctrl.selectedAmount + ' 件商品吗？')
                 .then(function(res) {
                     if(res) {
@@ -261,11 +264,19 @@ angular.module('app.controllers').controller('shoppingCartCtrl', function(
                 }
             });
 
-            modals.checkout.open({
-                params: {
-                    ordItemIds: itemsId
-                }
-            });
+            // 去除最后一个逗号
+            itemsId = itemsId.substring(0, itemsId.length - 1);
+
+            // 判断当前是否可下单，ios禁止混合下单
+            cartService.validateCheckout(itemsId)
+                .success(function(response) {
+                    modals.checkout.open({
+                        params: {
+                            ordItemIds: itemsId
+                        }
+                    });
+                })
+                .error(errorHandling); 
         }
 
 

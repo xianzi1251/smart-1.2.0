@@ -17,6 +17,8 @@ angular.module('app.controllers').controller('userCtrl', function(
         init: function() {
             ctrl.data = {};
 
+            ctrl.iosPlateform = ionic.Platform.isAndroid() ? false : true;
+
             // 如当前为第三方登录，则隐藏 ‘修改密码’ 条目，显示 ‘绑定手机号’ 条目
             ctrl.thirdPartylogin = localStorage.get('user').thirdPartylogin;
 
@@ -71,8 +73,9 @@ angular.module('app.controllers').controller('userCtrl', function(
 
         // 我的订单
         goOrderList: function() {
+            var stateName = stateUtils.getStateNameByCurrentTab('orderList');
             nativeTransition.forward();
-            $state.go('tabs.orderList');
+            $state.go(stateName);
         },
 
         // 优惠券
@@ -90,13 +93,13 @@ angular.module('app.controllers').controller('userCtrl', function(
 
         // 积分兑换
         goExchangeList: function() {
-        	nativeTransition.forward();
+            nativeTransition.forward();
             $state.go('tabs.exchangeList');
         },
 
         // 兑换码
         goExchangeCode: function() {
-        	nativeTransition.forward();
+            nativeTransition.forward();
             $state.go('tabs.exchangeCode');
         },
 
@@ -138,6 +141,13 @@ angular.module('app.controllers').controller('userCtrl', function(
                     mobile: ctrl.wechatBindPhone
                 });
             }
+        },
+
+        // 我的帐户
+        goUserAccount: function() {
+            var stateName = stateUtils.getStateNameByCurrentTab('userAccount');
+            nativeTransition.forward();
+            $state.go(stateName);
         },
 
         // 意见反馈

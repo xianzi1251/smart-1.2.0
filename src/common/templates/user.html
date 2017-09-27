@@ -17,6 +17,18 @@
 
         <ul class="user-list light-bg">
 
+            <li class="user-item row" ng-click="user.goUserAccount()"
+                ng-if="user.iosPlateform">
+                <i class="iconfont icon-zaizhipeixun icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">我的帐户</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
             <li class="user-item row" ng-click="user.goShoppingCart()">
                 <i class="iconfont icon-shoppingcart icon-left col col-adaptive"></i>
                 <div class="col">
@@ -60,7 +72,9 @@
                 </div>
             </li> -->
 
-            <li class="user-item row" ng-click="user.goExchangeList()">
+            <!-- 积分兑换 ios且需要显示 -->
+            <li class="user-item row" ng-click="user.goExchangeList()"
+                ng-if="user.iosPlateform && user.bytSwitch21">
                 <i class="iconfont icon-duihuan icon-left col col-adaptive"></i>
                 <div class="col">
                     <div class="item-row row">
@@ -71,7 +85,35 @@
                 </div>
             </li>
 
-            <li class="user-item row" ng-click="user.goExchangeCode()">
+            <!-- 积分兑换 安卓平台 -->
+            <li class="user-item row" ng-click="user.goExchangeList()"
+                ng-if="!user.iosPlateform">
+                <i class="iconfont icon-duihuan icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">积分兑换</span>
+                        <span class="item-tip col col-adaptive">{{user.loyalty}}积分</span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <!-- 兑换码 ios且需要显示 -->
+            <li class="user-item row" ng-click="user.goExchangeCode()"
+                ng-if="user.iosPlateform && user.bytSwitch21">
+                <i class="iconfont icon-code icon-left col col-adaptive"></i>
+                <div class="col">
+                    <div class="item-row row">
+                        <span class="item-text col">兑换码</span>
+                        <span class="item-tip col col-adaptive"></span>
+                        <i class="iconfont icon-rightarrow col col-adaptive"></i>
+                    </div>
+                </div>
+            </li>
+
+            <!-- 兑换码 安卓平台 -->
+            <li class="user-item row" ng-click="user.goExchangeCode()"
+                ng-if="!user.iosPlateform">
                 <i class="iconfont icon-code icon-left col col-adaptive"></i>
                 <div class="col">
                     <div class="item-row row">
