@@ -1,6 +1,6 @@
 angular.module('app.controllers').controller('userAccountCtrl', function(
     $scope, loadDataMixin, loading, errorHandling, toast, userAccountService, stateUtils,
-    nativeTransition, $state
+    nativeTransition, $state, userService, modals, messageCenter
 ) {
 
     var ctrl = this;
@@ -96,8 +96,26 @@ angular.module('app.controllers').controller('userAccountCtrl', function(
             }
         },
 
-        // 去充值
+        // 确定充值支付
         submit: function() {
+            userService.hasLogined()
+                .success(function() {
+                    ctrl.goToRecharge();
+                })
+                .error(function() {
+
+                    modals.login.open()
+                        .then(function(e) {
+                            messageCenter.subscribeMessage(['login', 'wechatLogin'], function() {
+                                ctrl.init();
+                                ctrl.getProducts();
+                            }, e.scope);
+                        });
+                });
+        },
+
+        // 去充值
+        goToRecharge: function() {
 
             if (window.inAppPurchase) {
 
