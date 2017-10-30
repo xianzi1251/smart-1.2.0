@@ -24,7 +24,7 @@ angular.module('app.controllers').controller('indexCtrl', function(
             categoryTitle: '公考培训'
         },
         {
-            categoryName: '1482302767093',
+            categoryName: '1509333227229',
             categoryTitle: '考研培训'
         },
         {
