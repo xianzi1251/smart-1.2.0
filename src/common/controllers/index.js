@@ -25,7 +25,7 @@ angular.module('app.controllers').controller('indexCtrl', function(
         },
         {
             categoryName: '1482302767093',
-            categoryTitle: '军转培训'
+            categoryTitle: '考研培训'
         },
         {
             categoryName: '1482302920323',
