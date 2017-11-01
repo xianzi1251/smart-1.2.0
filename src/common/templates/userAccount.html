@@ -19,7 +19,7 @@
         <ion-refresher on-refresh="account.refresh({showLoading: false})" 
             pulling-text="下拉刷新" refreshing-text="正在刷新"></ion-refresher>
 
-        <div ng-if="account.finishLoading && account.finishProductsLoading">
+        <div ng-if="account.finishLoading">
         
             <div class="light-bg">
                 <div class="account-num">{{account.accountBalance | currency: ''}}元</div>
@@ -33,14 +33,14 @@
                 <div class="account-recharge">
                     <div class="recharge-title">充值<span>（人民币）</span></div>
                     <ul class="recharge-list clearfix">
-                        <li class="recharge-item" ng-repeat="product in account.products">
+                        <li class="recharge-item" ng-repeat="product in productsInIAP">
                             <div class="recharge-text" ng-class="{'active': product.active}" 
                                 ng-click="account.selected(product)">
                                 {{product.title}}
                             </div>
                         </li>
                     </ul>
-                    <div class="recharge-selected">充值金额：{{account.rechargeAccount}}</div>
+                    <div class="recharge-selected">充值金额：{{rechargeAccount}}</div>
                     <div class="recharge-btn">
                         <button class="button button-block button-primary"
                             ng-click="account.submit()">确认支付</button>

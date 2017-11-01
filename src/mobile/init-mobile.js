@@ -44,6 +44,15 @@ app.run(function(analytics) {
     analytics.init();
 });
 
+// 初始化iap支付
+app.run(function($ionicPlatform, smartIap) {
+    $ionicPlatform.ready(function() {
+        if (window.store && ionic.Platform.isIOS()) {
+            smartIap.initStore();
+        }
+    });
+});
+
 // 版本检测
 app.run(function($rootScope, localStorage, modals, $ionicPlatform, videoService, $cordovaFile, globalService, popup) {
 
